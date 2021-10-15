@@ -1,0 +1,33 @@
+# Contributing
+
+## Gradle タスク
+
+### ビルド
+
+```shell
+./gradlew build
+
+gradlew.bat build
+```
+
+全てのプロジェクトをビルドします。
+
+### コードのフォーマット
+
+```shell
+./gradlew formatKotlin
+
+gradlew.bat formatKotlin
+```
+
+ソースコードを整形します。コミットをする前に確認してください。
+
+### 依存関係の更新確認
+
+```shell
+./gradlew dependencyUpdates
+
+gradlew.bat dependencyUpdates
+```
+
+導入している依存関係に更新が存在するか確認します。

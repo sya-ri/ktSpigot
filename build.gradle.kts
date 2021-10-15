@@ -1,0 +1,66 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
+plugins {
+    kotlin("jvm") version "1.5.31"
+    id("org.jmailen.kotlinter") version "3.6.0"
+    id("com.github.ben-manes.versions") version "0.39.0"
+    id("net.minecrell.plugin-yml.bukkit") version "0.5.0" apply false
+    id("com.github.johnrengelman.shadow") version "7.1.0" apply false
+}
+
+group = "dev.s7a"
+version = "1.0.0-SNAPSHOT"
+
+allprojects {
+    apply(plugin = "org.jmailen.kotlinter")
+    apply(plugin = "com.github.ben-manes.versions")
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType<DependencyUpdatesTask> {
+        rejectVersionIf {
+            isNonStableVersion(candidate.version) && !isNonStableVersion(currentVersion)
+        }
+    }
+}
+
+subprojects {
+    apply(plugin = "kotlin")
+    apply(plugin = "com.github.johnrengelman.shadow")
+
+    repositories {
+        maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+        maven(url = "https://oss.sonatype.org/content/groups/public/")
+    }
+
+    val shadowImplementation: Configuration by configurations.creating
+    val shadowApi: Configuration by configurations.creating
+    configurations["implementation"].extendsFrom(shadowImplementation)
+    configurations["api"].extendsFrom(shadowApi)
+
+    tasks.withType<ShadowJar> {
+        configurations = listOf(shadowImplementation, shadowApi)
+        archiveClassifier.set("")
+    }
+
+    tasks.named("build") {
+        dependsOn(tasks.named("shadowJar"))
+    }
+}
+
+tasks.withType<Jar> {
+    enabled = false
+}
+
+/**
+ * [version] が非安定かを判定する
+ */
+fun isNonStableVersion(version: String): Boolean {
+    val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+    val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+    val isStable = stableKeyword || regex.matches(version)
+    return isStable.not()
+}
