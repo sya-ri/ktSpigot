@@ -1,3 +1,4 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 
 subprojects {
@@ -18,6 +19,10 @@ dependencies {
             exclude("org.spigotmc", "spigot-api")
         }
     }
+}
+
+tasks.withType<ShadowJar> {
+    archiveBaseName.set("ktSpigot")
 }
 
 configure<BukkitPluginDescription> {
