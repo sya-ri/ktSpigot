@@ -1,0 +1,14 @@
+name: Check Ktlint On PullRequest
+on: [pull_request]
+jobs:
+  ktlint:
+    name: Check Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v2
+      - name: Lint
+        uses: ScaCap/action-ktlint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
