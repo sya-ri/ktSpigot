@@ -41,6 +41,12 @@ subprojects {
     configurations["implementation"].extendsFrom(shadowImplementation)
     configurations["api"].extendsFrom(shadowApi)
 
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
+        }
+    }
+
     tasks.withType<ShadowJar> {
         configurations = listOf(shadowImplementation, shadowApi)
         archiveClassifier.set("")
