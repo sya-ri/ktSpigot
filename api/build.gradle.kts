@@ -8,6 +8,11 @@ subprojects {
                 implementation("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
             }
         }
+        when (project.name) {
+            "v1_8" -> {
+                api(project(":api:common"))
+            }
+        }
     }
 }
 
