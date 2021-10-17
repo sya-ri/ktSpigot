@@ -3,7 +3,7 @@ import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 subprojects {
     dependencies {
         when (project.name) {
-            "common" -> {
+            "common", "v1_8" -> {
                 implementation("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
             }
         }
