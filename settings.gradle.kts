@@ -5,5 +5,6 @@ include(
     ":api:v1_8",
     ":example",
     ":example:command",
+    ":example:listener",
     ":example:scheduler",
 )
