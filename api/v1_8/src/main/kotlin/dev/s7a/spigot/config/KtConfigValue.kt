@@ -1,5 +1,7 @@
 package dev.s7a.spigot.config
 
+import kotlin.collections.List as KotlinList
+
 /**
  * コンフィグの値
  *
@@ -12,7 +14,7 @@ package dev.s7a.spigot.config
 open class KtConfigValue<T>(
     val config: KtConfig,
     val path: String,
-    val type: KtConfigValueType<T>,
+    open val type: KtConfigValueType<T>,
 ) {
     /**
      * 値を取得する
@@ -73,7 +75,7 @@ open class KtConfigValue<T>(
      *
      * @since 1.0.0
      */
-    class Normal<T>(config: KtConfig, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type) {
+    open class Base<T>(config: KtConfig, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type) {
         /**
          * 値が設定されていなくてもエラーを出さない
          *
@@ -96,12 +98,48 @@ open class KtConfigValue<T>(
          * @since 1.0.0
          */
         fun default(defaultValue: () -> T) = Default.Dynamic(this, defaultValue)
+
+        /**
+         * [KtConfigValueType.Listable] である値を扱う
+         *
+         * @since 1.0.0
+         */
+        class Listable<T>(config: KtConfig, path: String, override val type: KtConfigValueType.Listable<T>) : Base<T>(config, path, type) {
+            /**
+             * リストでの値の入力を受け付ける
+             *
+             * @since 1.0.0
+             */
+            fun list() = List(config, path, type.list)
+        }
+
+        /**
+         * リストでの値の入力を受け付ける
+         *
+         * @since 1.0.0
+         */
+        class List<T>(config: KtConfig, path: String, type: KtConfigValueType<KotlinList<T>>) : Base<KotlinList<T>>(config, path, type) {
+            /**
+             * 値が設定されていなければデフォルト値を設定する
+             *
+             * @param defaultValue デフォルト値
+             * @since 1.0.0
+             */
+            fun default(vararg defaultValue: T) = default(defaultValue.toList())
+
+            /**
+             * デフォルト値として空リストを使う
+             *
+             * @since 1.0.0
+             */
+            fun orEmpty() = default(emptyList())
+        }
     }
 
     /**
      * 値が設定されていなくてもエラーを出さない
      *
-     * @see Normal.nullable
+     * @see Base.nullable
      * @since 1.0.0
      */
     @Suppress("UNCHECKED_CAST")
@@ -128,7 +166,7 @@ open class KtConfigValue<T>(
     /**
      * 値が設定されていなければデフォルト値を設定する
      *
-     * @see Normal.default
+     * @see Base.default
      * @since 1.0.0
      */
     abstract class Default<T>(

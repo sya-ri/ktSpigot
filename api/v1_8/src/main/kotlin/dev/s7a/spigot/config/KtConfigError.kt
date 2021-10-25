@@ -50,6 +50,18 @@ abstract class KtConfigError(val config: KtConfig) {
     }
 
     /**
+     * リスト内でコンフィグエラーが発生した
+     *
+     * @property path コンフィグパス
+     * @property data 値の一覧
+     * @property errors エラーの一覧
+     * @since 1.0.0
+     */
+    class ListConfigError<T>(config: KtConfig, val path: String, val data: List<T>, val errors: List<KtConfigResult.Failure<T>>) : KtConfigError(config) {
+        override val message = "$path のリストの内部でエラーが発生しました [${errors.size}]"
+    }
+
+    /**
      * リフレクションに関するエラー
      *
      * @since 1.0.0

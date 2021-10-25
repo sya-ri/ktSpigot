@@ -17,17 +17,30 @@ import dev.s7a.spigot.config.type.StringType
  * @param T 値の型
  * @param path コンフィグパス
  * @param type 値の種類
+ * @since 1.0.0
+ */
+fun <T> KtConfig.value(path: String, type: KtConfigValueType<T>) = KtConfigValue.Base(this, path, type)
+
+/**
+ * コンフィグの値を登録する
+ *
+ * @param T 値の型
+ * @param path コンフィグパス
+ * @param type 値の種類
  * @see booleanValue
  * @see dateValue
  * @see doubleValue
+ * @see enumNameValue
+ * @see enumOrdinalValue
  * @see floatValue
  * @see intValue
  * @see longValue
+ * @see materialValue
  * @see numberValue
  * @see stringValue
  * @since 1.0.0
  */
-fun <T> KtConfig.value(path: String, type: KtConfigValueType<T>) = KtConfigValue.Normal(this, path, type)
+fun <T> KtConfig.value(path: String, type: KtConfigValueType.Listable<T>) = KtConfigValue.Base.Listable(this, path, type)
 
 /**
  * [Boolean] のコンフィグデータ型として値を登録する

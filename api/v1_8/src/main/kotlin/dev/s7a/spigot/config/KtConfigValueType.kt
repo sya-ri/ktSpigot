@@ -26,4 +26,18 @@ interface KtConfigValueType<T> {
      * @since 1.0.0
      */
     fun set(config: KtConfig, path: String, value: T?)
+
+    /**
+     * 複数の値を受付られるコンフィグデータ型
+     *
+     * @since 1.0.0
+     */
+    interface Listable<T> : KtConfigValueType<T> {
+        /**
+         * リストとしてのコンフィグデータ型
+         *
+         * @since 1.0.0
+         */
+        val list: KtConfigValueType<List<T>>
+    }
 }
