@@ -38,6 +38,18 @@ abstract class KtConfigError(val config: KtConfig) {
     }
 
     /**
+     * 値に一致する列挙型が存在しなかった
+     *
+     * @property path コンフィグパス
+     * @param value 値に関する情報
+     * @property className クラス名
+     * @since 1.0.0
+     */
+    class NotFoundEnumConstant(config: KtConfig, val path: String, val value: String, val className: String) : KtConfigError(config) {
+        override val message = "$path の値($value)に一致する $className の値が見つかりませんでした"
+    }
+
+    /**
      * リフレクションに関するエラー
      *
      * @since 1.0.0

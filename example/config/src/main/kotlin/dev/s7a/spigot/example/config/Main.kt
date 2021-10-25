@@ -19,5 +19,6 @@ class Main : JavaPlugin() {
         SimpleConfig.load()
         SimpleConfigDirectory.loadAll()
         SimpleConfigRecursiveDirectory.loadAll()
+        AdvancedConfig.load()
     }
 }

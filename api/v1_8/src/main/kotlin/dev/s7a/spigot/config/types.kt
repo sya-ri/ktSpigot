@@ -3,9 +3,11 @@ package dev.s7a.spigot.config
 import dev.s7a.spigot.config.type.BooleanType
 import dev.s7a.spigot.config.type.DateType
 import dev.s7a.spigot.config.type.DoubleType
+import dev.s7a.spigot.config.type.EnumType
 import dev.s7a.spigot.config.type.FloatType
 import dev.s7a.spigot.config.type.IntType
 import dev.s7a.spigot.config.type.LongType
+import dev.s7a.spigot.config.type.MaterialType
 import dev.s7a.spigot.config.type.NumberType
 import dev.s7a.spigot.config.type.StringType
 
@@ -52,6 +54,23 @@ fun KtConfig.dateValue(path: String) = value(path, DateType)
 fun KtConfig.doubleValue(path: String) = value(path, DoubleType)
 
 /**
+ * [Enum.name] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @param ignoreCase 大文字小文字を無視するか / false
+ * @since 1.0.0
+ */
+inline fun <reified T : Enum<T>> KtConfig.enumNameValue(path: String, ignoreCase: Boolean = false) = value(path, EnumType.Name(T::class.java, ignoreCase))
+
+/**
+ * [Enum.ordinal] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @since 1.0.0
+ */
+inline fun <reified T : Enum<T>> KtConfig.enumOrdinalValue(path: String) = value(path, EnumType.Ordinal(T::class.java))
+
+/**
  * [Float] のコンフィグデータ型として値を登録する
  *
  * @param path コンフィグパス
@@ -74,6 +93,15 @@ fun KtConfig.intValue(path: String) = value(path, IntType)
  * @since 1.0.0
  */
 fun KtConfig.longValue(path: String) = value(path, LongType)
+
+/**
+ * [org.bukkit.Material] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @param ignoreCase 大文字小文字を無視するか / true
+ * @since 1.0.0
+ */
+fun KtConfig.materialValue(path: String, ignoreCase: Boolean = true) = value(path, MaterialType(ignoreCase))
 
 /**
  * [Number] のコンフィグデータ型として値を登録する
