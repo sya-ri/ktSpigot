@@ -50,6 +50,18 @@ abstract class KtConfigError(val config: KtConfig) {
     }
 
     /**
+     * 不正なフォーマット
+     *
+     * @property path コンフィグパス
+     * @property string 元の文字列
+     * @property formatter 使用したフォーマッタ
+     * @since 1.0.0
+     */
+    class IllegalFormat<T>(config: KtConfig, val path: String, val string: String, val formatter: KtConfigFormatter<T>) : KtConfigError(config) {
+        override val message = "$path の値($string)はフォーマット(${formatter.name})に一致していません"
+    }
+
+    /**
      * リスト内でコンフィグエラーが発生した
      *
      * @property path コンフィグパス
