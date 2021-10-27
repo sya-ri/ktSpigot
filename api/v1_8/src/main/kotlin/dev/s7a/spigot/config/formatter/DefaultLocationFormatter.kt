@@ -16,9 +16,9 @@ object DefaultLocationFormatter : KtConfigFormatter<Location> {
     override fun string(value: Location): String {
         return value.run {
             if (yaw == 0F && pitch == 0F) {
-                "${world.name}, $x, $y, $z"
+                "${world?.name}, $x, $y, $z"
             } else {
-                "${world.name}, $x, $y, $z, $yaw, $pitch"
+                "${world?.name}, $x, $y, $z, $yaw, $pitch"
             }
         }
     }

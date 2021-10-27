@@ -12,6 +12,16 @@ gradlew.bat build
 
 全てのプロジェクトをビルドします。
 
+### テスト
+
+```shell
+./gradlew test
+
+gradlew.bat test
+```
+
+テストコードの確認をします。
+
 ### コードのフォーマット
 
 ```shell

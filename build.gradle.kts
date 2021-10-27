@@ -1,5 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.5.31"
@@ -41,8 +42,14 @@ subprojects {
     configurations["implementation"].extendsFrom(shadowImplementation)
     configurations["api"].extendsFrom(shadowApi)
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    java {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    tasks.withType<KotlinCompile> {
         kotlinOptions {
+            jvmTarget = "1.8"
             freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
         }
     }
@@ -54,6 +61,27 @@ subprojects {
 
     tasks.named("build") {
         dependsOn(tasks.named("shadowJar"))
+    }
+}
+
+repositories {
+    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/public/")
+}
+
+dependencies {
+    testImplementation(project(":api"))
+    testImplementation(kotlin("test"))
+    testImplementation("com.github.seeseemelk:MockBukkit-v1.17:1.10.3")
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "16"
     }
 }
 
