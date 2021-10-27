@@ -22,4 +22,5 @@ jobs:
         with:
           draft: true
           files: |
-            api/build/libs/ktSpigot.jar
+            api/v1_8/build/libs/ktSpigot-v1_8.jar
+            api/v1_13/build/libs/ktSpigot-v1_13.jar
