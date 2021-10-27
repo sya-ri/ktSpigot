@@ -38,12 +38,6 @@ subprojects {
     }
 }
 
-dependencies {
-    subprojects.forEach {
-        shadowApi(project(it.path))
-    }
-}
-
 tasks.withType<Jar> {
     enabled = false
 }

@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(project(":api"))
+    testImplementation(project(":api:v1_13"))
     testImplementation(kotlin("test"))
     testImplementation("com.github.seeseemelk:MockBukkit-v1.17:1.10.3")
 }
