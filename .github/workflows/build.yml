@@ -1,7 +1,7 @@
 name: Release Build
 on:
   push:
-    tags: [*]
+    tags: ['*']
 jobs:
   build:
     name: Build
