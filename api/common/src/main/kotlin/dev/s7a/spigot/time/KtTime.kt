@@ -23,7 +23,7 @@ data class KtTime(val time: Long, val unit: KtTimeUnit) : Comparable<KtTime> {
     val ticks
         get() = time * unit.ticks
 
-    override fun compareTo(other: KtTime): Int {
-        return ticks.compareTo(other.ticks)
-    }
+    override fun compareTo(other: KtTime) = ticks.compareTo(other.ticks)
+    operator fun plus(other: KtTime) = KtTime(ticks + other.ticks, KtTimeUnit.Tick)
+    operator fun minus(other: KtTime) = KtTime(ticks - other.ticks, KtTimeUnit.Tick)
 }
