@@ -121,7 +121,7 @@ fun List<KtConfigError>.printError(logger: Logger) {
         logger.warning("${config.file.path} のエラー [${errorList.size}]")
         errorList.forEach { error ->
             logger.warning("- ${error.message}")
-            if (error is KtConfigError.ListConfigError<*>) {
+            if (error is KtConfigError.ErrorContainer<*>) {
                 error.errors.forEach {
                     logger.warning("  - ${it.error.message}")
                 }
@@ -160,6 +160,24 @@ fun <T> List<KtConfigResult<T>>.toResult(config: KtConfig, path: String): KtConf
         KtConfigResult.Success(data)
     } else {
         KtConfigResult.Failure(KtConfigError.ListConfigError(config, path, data, errors))
+    }
+}
+
+/**
+ * [KtConfigResult] のリストを展開する
+ *
+ * @param config コンフィグ
+ * @param path コンフィグパス
+ * @return リスト内に一つでもエラーがあれば [KtConfigError.ListConfigError] で失敗したことにする
+ * @since 1.0.0
+ */
+fun <T> Map<String, KtConfigResult<T>>.toResult(config: KtConfig, path: String): KtConfigResult<Map<String, T>> {
+    val data = entries.filterIsInstance<Map.Entry<String, KtConfigResult.Success<T>>>().associate { it.key to it.value.value }
+    val errors = values.filterIsInstance<KtConfigResult.Failure<T>>()
+    return if (errors.isEmpty()) {
+        KtConfigResult.Success(data)
+    } else {
+        KtConfigResult.Failure(KtConfigError.MapConfigError(config, path, data, errors))
     }
 }
 

@@ -1,6 +1,7 @@
 package dev.s7a.spigot.config
 
 import kotlin.collections.List as KotlinList
+import kotlin.collections.Map as KotlinMap
 
 /**
  * コンフィグの値
@@ -112,6 +113,36 @@ open class KtConfigValue<T>(
         fun default(defaultValue: () -> T) = Default.Dynamic(this, defaultValue)
 
         /**
+         * マップとしてのコンフィグデータ型
+         *
+         * @since 1.0.0
+         */
+        private val mapType
+            get() = object : KtConfigValueType<KotlinMap<String, T>> {
+                override fun get(config: KtConfig, path: String): KtConfigResult<KotlinMap<String, T>> {
+                    return config.bukkitConfig.getConfigurationSection(path)?.run {
+                        getKeys(false)?.associateWith {
+                            type.get(config, "$path.$it")
+                        }.orEmpty().toResult(config, path)
+                    } ?: KtConfigResult.Failure(KtConfigError.NotFound(config, path))
+                }
+
+                override fun set(config: KtConfig, path: String, value: KotlinMap<String, T>?) {
+                    config.setUnsafe(path, null)
+                    value?.forEach { (section, value) ->
+                        type.set(config, "$path.$section", value)
+                    }
+                }
+            }
+
+        /**
+         * キーを持ったリストでの値
+         *
+         * @since 1.0.0
+         */
+        fun map() = Map(config, path, mapType)
+
+        /**
          * [KtConfigValueType.Listable] である値を扱う
          *
          * @since 1.0.0
@@ -123,6 +154,28 @@ open class KtConfigValue<T>(
              * @since 1.0.0
              */
             fun list() = List(config, path, type.list)
+        }
+
+        /**
+         * キーを持ったリストでの値
+         *
+         * @since 1.0.0
+         */
+        class Map<T>(config: KtConfig, path: String, type: KtConfigValueType<KotlinMap<String, T>>) : Base<KotlinMap<String, T>>(config, path, type) {
+            /**
+             * 値が設定されていなければデフォルト値を設定する
+             *
+             * @param defaultValue デフォルト値
+             * @since 1.0.0
+             */
+            fun default(vararg defaultValue: Pair<String, T>) = default(defaultValue.toMap())
+
+            /**
+             * デフォルト値として空リストを使う
+             *
+             * @since 1.0.0
+             */
+            fun orEmpty() = default(emptyMap())
         }
 
         /**

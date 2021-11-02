@@ -279,6 +279,19 @@ class ConfigTypeTest {
     }
 
     @Test
+    fun `int map can be get`() {
+        val expected = List(5) { randomString() to Random.nextInt() }.toMap()
+        TestConfig.intValue("value").map().run {
+            setAndSave(expected)
+            get().run {
+                assertIs<KtConfigResult.Success<Map<String, Int>>>(this)
+                assertEquals(expected, value)
+            }
+        }
+        assertConfigContent("value" to expected.mapValues { " ${it.value}" }, TestConfig)
+    }
+
+    @Test
     fun `location can be get`() {
         val worldName = randomString()
         val world = server.addSimpleWorld(worldName)

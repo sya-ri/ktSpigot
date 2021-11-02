@@ -62,6 +62,20 @@ abstract class KtConfigError(val config: KtConfig) {
     }
 
     /**
+     * 複数のエラーを持つクラス
+     *
+     * @since 1.0.0
+     */
+    interface ErrorContainer<T> {
+        /**
+         * エラーの一覧
+         *
+         * @since 1.0.0
+         */
+        val errors: List<KtConfigResult.Failure<T>>
+    }
+
+    /**
      * リスト内でコンフィグエラーが発生した
      *
      * @property path コンフィグパス
@@ -69,8 +83,20 @@ abstract class KtConfigError(val config: KtConfig) {
      * @property errors エラーの一覧
      * @since 1.0.0
      */
-    class ListConfigError<T>(config: KtConfig, val path: String, val data: List<T>, val errors: List<KtConfigResult.Failure<T>>) : KtConfigError(config) {
+    class ListConfigError<T>(config: KtConfig, val path: String, val data: List<T>, override val errors: List<KtConfigResult.Failure<T>>) : KtConfigError(config), ErrorContainer<T> {
         override val message = "$path のリストの内部でエラーが発生しました [${errors.size}]"
+    }
+
+    /**
+     * リスト内でコンフィグエラーが発生した
+     *
+     * @property path コンフィグパス
+     * @property data 値の一覧
+     * @property errors エラーの一覧
+     * @since 1.0.0
+     */
+    class MapConfigError<T>(config: KtConfig, val path: String, val data: Map<String, T>, override val errors: List<KtConfigResult.Failure<T>>) : KtConfigError(config), ErrorContainer<T> {
+        override val message = "$path のマップ内部でエラーが発生しました [${errors.size}]"
     }
 
     /**
