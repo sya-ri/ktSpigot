@@ -14,6 +14,7 @@ import dev.s7a.spigot.config.type.LocationType
 import dev.s7a.spigot.config.type.LongType
 import dev.s7a.spigot.config.type.MaterialType
 import dev.s7a.spigot.config.type.NumberType
+import dev.s7a.spigot.config.type.MapListType
 import dev.s7a.spigot.config.type.StringType
 import dev.s7a.spigot.config.type.UUIDType
 import dev.s7a.spigot.config.type.VectorType
@@ -29,7 +30,7 @@ import java.util.UUID
  * @param type 値の種類
  * @since 1.0.0
  */
-fun <T> KtConfig.value(path: String, type: KtConfigValueType<T>) = KtConfigValue.Base(this, path, type)
+fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConfigValue.Base(config, fullPath(path), type)
 
 /**
  * コンフィグの値を登録する
@@ -49,12 +50,13 @@ fun <T> KtConfig.value(path: String, type: KtConfigValueType<T>) = KtConfigValue
  * @see longValue
  * @see materialValue
  * @see numberValue
+ * @see mapList
  * @see stringValue
  * @see uuidValue
  * @see vectorValue
  * @since 1.0.0
  */
-fun <T> KtConfig.value(path: String, type: KtConfigValueType.Listable<T>) = KtConfigValue.Base.Listable(this, path, type)
+fun <T> KtConfigSection.value(path: String, type: KtConfigValueType.Listable<T>) = KtConfigValue.Base.Listable(config, fullPath(path), type)
 
 /**
  * [Boolean] のコンフィグデータ型として値を登録する
@@ -62,7 +64,7 @@ fun <T> KtConfig.value(path: String, type: KtConfigValueType.Listable<T>) = KtCo
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.booleanValue(path: String) = value(path, BooleanType)
+fun KtConfigSection.booleanValue(path: String) = value(path, BooleanType)
 
 /**
  * [java.util.Date] のコンフィグデータ型として値を登録する
@@ -70,7 +72,7 @@ fun KtConfig.booleanValue(path: String) = value(path, BooleanType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.dateValue(path: String) = value(path, DateType)
+fun KtConfigSection.dateValue(path: String) = value(path, DateType)
 
 /**
  * [Double] のコンフィグデータ型として値を登録する
@@ -78,7 +80,7 @@ fun KtConfig.dateValue(path: String) = value(path, DateType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.doubleValue(path: String) = value(path, DoubleType)
+fun KtConfigSection.doubleValue(path: String) = value(path, DoubleType)
 
 /**
  * [Enum.name] のコンフィグデータ型として値を登録する
@@ -87,7 +89,7 @@ fun KtConfig.doubleValue(path: String) = value(path, DoubleType)
  * @param ignoreCase 大文字小文字を無視するか / false
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfig.enumNameValue(path: String, ignoreCase: Boolean = false) = value(path, EnumType.Name(T::class.java, ignoreCase))
+inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ignoreCase: Boolean = false) = value(path, EnumType.Name(T::class.java, ignoreCase))
 
 /**
  * [Enum.ordinal] のコンフィグデータ型として値を登録する
@@ -95,7 +97,7 @@ inline fun <reified T : Enum<T>> KtConfig.enumNameValue(path: String, ignoreCase
  * @param path コンフィグパス
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfig.enumOrdinalValue(path: String) = value(path, EnumType.Ordinal(T::class.java))
+inline fun <reified T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String) = value(path, EnumType.Ordinal(T::class.java))
 
 /**
  * [Float] のコンフィグデータ型として値を登録する
@@ -103,7 +105,7 @@ inline fun <reified T : Enum<T>> KtConfig.enumOrdinalValue(path: String) = value
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.floatValue(path: String) = value(path, FloatType)
+fun KtConfigSection.floatValue(path: String) = value(path, FloatType)
 
 /**
  * [KtConfigFormatter] のコンフィグデータ型として値を登録する
@@ -112,7 +114,7 @@ fun KtConfig.floatValue(path: String) = value(path, FloatType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun <T> KtConfig.formatterValue(path: String, formatter: KtConfigFormatter<T>) = value(path, FormatterType(formatter))
+fun <T> KtConfigSection.formatterValue(path: String, formatter: KtConfigFormatter<T>) = value(path, FormatterType(formatter))
 
 /**
  * [Int] のコンフィグデータ型として値を登録する
@@ -120,7 +122,7 @@ fun <T> KtConfig.formatterValue(path: String, formatter: KtConfigFormatter<T>) =
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.intValue(path: String) = value(path, IntType)
+fun KtConfigSection.intValue(path: String) = value(path, IntType)
 
 /**
  * [Location] のコンフィグデータ型として値を登録する
@@ -129,7 +131,7 @@ fun KtConfig.intValue(path: String) = value(path, IntType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfig.locationValue(path: String, formatter: KtConfigFormatter<Location> = DefaultLocationFormatter) = value(path, LocationType(formatter))
+fun KtConfigSection.locationValue(path: String, formatter: KtConfigFormatter<Location> = DefaultLocationFormatter) = value(path, LocationType(formatter))
 
 /**
  * [Long] のコンフィグデータ型として値を登録する
@@ -137,7 +139,7 @@ fun KtConfig.locationValue(path: String, formatter: KtConfigFormatter<Location> 
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.longValue(path: String) = value(path, LongType)
+fun KtConfigSection.longValue(path: String) = value(path, LongType)
 
 /**
  * [org.bukkit.Material] のコンフィグデータ型として値を登録する
@@ -146,7 +148,7 @@ fun KtConfig.longValue(path: String) = value(path, LongType)
  * @param ignoreCase 大文字小文字を無視するか / true
  * @since 1.0.0
  */
-fun KtConfig.materialValue(path: String, ignoreCase: Boolean = true) = value(path, MaterialType(ignoreCase))
+fun KtConfigSection.materialValue(path: String, ignoreCase: Boolean = true) = value(path, MaterialType(ignoreCase))
 
 /**
  * [Number] のコンフィグデータ型として値を登録する
@@ -154,7 +156,16 @@ fun KtConfig.materialValue(path: String, ignoreCase: Boolean = true) = value(pat
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.numberValue(path: String) = value(path, NumberType)
+fun KtConfigSection.numberValue(path: String) = value(path, NumberType)
+
+/**
+ * セクションマップを登録する
+ *
+ * @param T セクション型
+ * @param path コンフィグパス
+ * @since 1.0.0
+ */
+inline fun <reified T : KtConfigSection> KtConfigSection.mapList(path: String) = value(path, MapListType(T::class.java))
 
 /**
  * [String] のコンフィグデータ型として値を登録する
@@ -162,7 +173,7 @@ fun KtConfig.numberValue(path: String) = value(path, NumberType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfig.stringValue(path: String) = value(path, StringType)
+fun KtConfigSection.stringValue(path: String) = value(path, StringType)
 
 /**
  * [UUID] のコンフィグデータ型として値を登録する
@@ -171,7 +182,7 @@ fun KtConfig.stringValue(path: String) = value(path, StringType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfig.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = value(path, UUIDType(formatter))
+fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = value(path, UUIDType(formatter))
 
 /**
  * [Vector] のコンフィグデータ型として値を登録する
@@ -180,4 +191,4 @@ fun KtConfig.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = Defaul
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfig.vectorValue(path: String, formatter: KtConfigFormatter<Vector> = DefaultVectorFormatter) = value(path, VectorType(formatter))
+fun KtConfigSection.vectorValue(path: String, formatter: KtConfigFormatter<Vector> = DefaultVectorFormatter) = value(path, VectorType(formatter))

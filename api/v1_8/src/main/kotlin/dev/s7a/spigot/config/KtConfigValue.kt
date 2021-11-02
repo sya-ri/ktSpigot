@@ -35,6 +35,18 @@ open class KtConfigValue<T>(
     }
 
     /**
+     * 強制的に値を設定する
+     *
+     * @param value 設定後の値
+     * @see dev.s7a.spigot.config.type.MapListType.set
+     * @since 1.0.0
+     */
+    @Suppress("UNCHECKED_CAST")
+    internal fun set(value: Any?) {
+        set(value as T?)
+    }
+
+    /**
      * 値を設定し、変更を保存する
      *
      * @param value 設定後の値

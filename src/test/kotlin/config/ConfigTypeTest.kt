@@ -6,6 +6,7 @@ import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.booleanValue
 import dev.s7a.spigot.config.dateValue
 import dev.s7a.spigot.config.doubleValue
+import dev.s7a.spigot.config.editAndSave
 import dev.s7a.spigot.config.enumNameValue
 import dev.s7a.spigot.config.enumOrdinalValue
 import dev.s7a.spigot.config.floatValue
@@ -14,6 +15,7 @@ import dev.s7a.spigot.config.formatter.DefaultVectorFormatter
 import dev.s7a.spigot.config.intValue
 import dev.s7a.spigot.config.locationValue
 import dev.s7a.spigot.config.longValue
+import dev.s7a.spigot.config.mapList
 import dev.s7a.spigot.config.materialValue
 import dev.s7a.spigot.config.stringValue
 import dev.s7a.spigot.config.uuidValue
@@ -33,6 +35,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertIs
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
@@ -367,6 +370,26 @@ class ConfigTypeTest {
             }
         }
         assertConfigContent("value" to expected.map(Material::toString), TestConfig)
+    }
+
+    @Test
+    fun `mapList can be get`() {
+        val expected = List(5) {
+            randomString() to randomLocation(null)
+        }
+        TestConfig.mapList<TestSection>("value").run {
+            editAndSave {
+                expected.forEach { (key, location) ->
+                    put(key) {
+                        this.location.set(location)
+                    }
+                }
+            }
+            val value = getValue()
+            assertNotNull(value)
+            assertEquals(expected, value.map { it.key to it.value.location.getValue() })
+        }
+        assertConfigContent("value" to expected.associate { it.first to "\n    location: ${DefaultLocationFormatter.string(it.second)}" }, TestConfig)
     }
 
     @Test

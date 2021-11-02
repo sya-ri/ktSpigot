@@ -10,13 +10,20 @@ import java.io.File
  * @property file ファイル
  * @since 1.0.0
  */
-abstract class KtConfig(val file: File) {
+abstract class KtConfig(val file: File) : KtConfigSection {
     /**
      * @param plugin プラグイン
      * @param fileName ファイル名
      * @since 1.0.0
      */
     constructor(plugin: JavaPlugin, fileName: String) : this(plugin.dataFolder.resolve(fileName))
+
+    override val config
+        get() = this
+
+    override val path = ""
+
+    override fun fullPath(path: String) = path
 
     /**
      * コンフィグの実際のデータ
@@ -54,6 +61,17 @@ abstract class KtConfig(val file: File) {
         }
         bukkitConfig = YamlConfiguration.loadConfiguration(file)
         load()
+    }
+
+    /**
+     * コンフィグに指定したパスが存在するか
+     *
+     * @param path コンフィグパス
+     * @return 存在すれば true
+     * @since 1.0.0
+     */
+    fun contains(path: String): Boolean {
+        return bukkitConfig.contains(path)
     }
 
     /**

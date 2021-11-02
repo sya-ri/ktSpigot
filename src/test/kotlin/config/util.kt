@@ -1,6 +1,9 @@
 package config
 
 import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigSection
+import dev.s7a.spigot.config.locationValue
+import dev.s7a.spigot.config.mapList
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
@@ -16,6 +19,14 @@ enum class TestEnum {
 }
 
 /**
+ * テストで使用するセクション
+ */
+class TestSection(override val config: KtConfig, override val path: String) : KtConfigSection {
+    val location = locationValue("location")
+    val nest = mapList<TestSection>("nest")
+}
+
+/**
  * コンフィグのファイル内容をアサートする
  */
 fun assertConfigContent(expected: Pair<String, String>, actual: KtConfig) {
@@ -28,6 +39,14 @@ fun assertConfigContent(expected: Pair<String, String>, actual: KtConfig) {
 @JvmName("assertConfigContentList")
 fun assertConfigContent(expected: Pair<String, List<String>>, actual: KtConfig) {
     assertEquals("${expected.first}:\n${expected.second.joinToString("\n") { "- $it" }}\n", actual.file.readText())
+}
+
+/**
+ * コンフィグのファイル内容をアサートする
+ */
+@JvmName("assertConfigContentMap")
+fun assertConfigContent(expected: Pair<String, Map<String, String>>, actual: KtConfig) {
+    assertEquals("${expected.first}:\n${expected.second.entries.joinToString("\n") { "  ${it.key}:${it.value}" }}\n", actual.file.readText())
 }
 
 /**

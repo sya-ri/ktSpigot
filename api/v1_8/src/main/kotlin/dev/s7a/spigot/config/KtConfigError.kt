@@ -98,5 +98,15 @@ abstract class KtConfigError(val config: KtConfig) {
         class ThrowIllegalAccessException(config: KtConfig, val field: Field) : Reflection(config) {
             override val message = "${field.name} へのアクセスで IllegalAccessException が投げられました"
         }
+
+        /**
+         * [NoSuchMethodException] が投げられたとき
+         *
+         * @param description 説明
+         * @since 1.0.0
+         */
+        class ThrowNoSuchMethodException(config: KtConfig, description: String) : Reflection(config) {
+            override val message = "NoSuchMethodException が投げられました ($description)"
+        }
     }
 }

@@ -3,27 +3,6 @@ package dev.s7a.spigot.config
 import java.util.logging.Logger
 
 /**
- * コンフィグエラーを出力する
- *
- * @param logger 出力先
- * @see KtConfig.checkValues
- * @since 1.0.0
- */
-fun List<KtConfigError>.printError(logger: Logger) {
-    groupBy(KtConfigError::config).forEach { (config, errorList) ->
-        logger.warning("${config.file.path} のエラー [${errorList.size}]")
-        errorList.forEach { error ->
-            logger.warning("- ${error.message}")
-            if (error is KtConfigError.ListConfigError<*>) {
-                error.errors.forEach {
-                    logger.warning("  - ${it.error.message}")
-                }
-            }
-        }
-    }
-}
-
-/**
  * コンフィグから値を取得する
  *
  * @param T 値の型
@@ -85,6 +64,24 @@ fun KtConfig.setUnsafe(path: String, value: Any?) {
     bukkitConfig.set(path, value)
 }
 
+@OptIn(ExperimentalStdlibApi::class)
+fun KtConfigSection.getValues(): List<KtConfigValue<*>> {
+    val values = this::class.java.declaredFields
+    return buildList {
+        values.forEach { field ->
+            try {
+                field.isAccessible = true
+                val value = field.get(this@getValues)
+                if (value is KtConfigValue<*>) {
+                    add(value)
+                }
+            } catch (_: SecurityException) {
+            } catch (_: IllegalAccessException) {
+            }
+        }
+    }
+}
+
 /**
  * 値のエラーを確認する
  *
@@ -107,6 +104,27 @@ fun KtConfig.checkValues(): List<KtConfigError> {
                 add(KtConfigError.Reflection.ThrowSecurityException(this@checkValues, field))
             } catch (ex: IllegalAccessException) {
                 add(KtConfigError.Reflection.ThrowIllegalAccessException(this@checkValues, field))
+            }
+        }
+    }
+}
+
+/**
+ * コンフィグエラーを出力する
+ *
+ * @param logger 出力先
+ * @see KtConfig.checkValues
+ * @since 1.0.0
+ */
+fun List<KtConfigError>.printError(logger: Logger) {
+    groupBy(KtConfigError::config).forEach { (config, errorList) ->
+        logger.warning("${config.file.path} のエラー [${errorList.size}]")
+        errorList.forEach { error ->
+            logger.warning("- ${error.message}")
+            if (error is KtConfigError.ListConfigError<*>) {
+                error.errors.forEach {
+                    logger.warning("  - ${it.error.message}")
+                }
             }
         }
     }
@@ -161,4 +179,44 @@ fun <T> KtConfigValue<List<T>>.forceGetValue(): List<T> {
             }
         }
     }
+}
+
+/**
+ * セクション内の指定したパスの値を取得する
+ *
+ * @param T セクション
+ * @param path コンフィグパス
+ * @return セクション内にパスが存在すれば値を返し、しなければ [KtConfigResult.Failure] を返す
+ * @since 1.0.0
+ */
+inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.get(path: String): KtConfigResult<T> {
+    val fullPath = this.path + "." + path
+    return if (config.contains(fullPath)) {
+        val constructor = T::class.java.getDeclaredConstructor(KtConfig::class.java, String::class.java)
+        KtConfigResult.Success(constructor.newInstance(config, fullPath))
+    } else {
+        KtConfigResult.Failure(KtConfigError.NotFound(config, fullPath))
+    }
+}
+
+/**
+ * セクションの値を変更する
+ *
+ * @param block 変更処理
+ * @since 1.0.0
+ */
+inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.edit(block: KtConfigSectionEditor<T>.() -> Unit) {
+    val editor = KtConfigSectionEditor(config, path, T::class.java, getValue().orEmpty().toMutableMap())
+    set(editor.apply(block).toMap())
+}
+
+/**
+ * セクションの値を変更し、保存する
+ *
+ * @param block 変更処理
+ * @since 1.0.0
+ */
+inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.editAndSave(block: KtConfigSectionEditor<T>.() -> Unit) {
+    edit(block)
+    config.save()
 }
