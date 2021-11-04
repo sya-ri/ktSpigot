@@ -4,8 +4,8 @@ import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.KtConfigSection
 import dev.s7a.spigot.config.checkValues
 import dev.s7a.spigot.config.intValue
-import dev.s7a.spigot.config.mapList
 import dev.s7a.spigot.config.printError
+import dev.s7a.spigot.config.section
 import dev.s7a.spigot.example.config.Main.Companion.plugin
 
 /**
@@ -13,7 +13,7 @@ import dev.s7a.spigot.example.config.Main.Companion.plugin
  */
 object MapConfig : KtConfig(plugin, "map.yml") {
     /**
-     * [mapList] に使うクラス
+     * [section] に使うクラス
      */
     private class Value(override val config: KtConfig, override val path: String) : KtConfigSection {
         /**
@@ -35,7 +35,7 @@ object MapConfig : KtConfig(plugin, "map.yml") {
      *     int: 3
      * ```
      */
-    private val values = mapList<Value>("values")
+    private val values = section<Value>("values")
 
     override fun load() {
         checkValues().printError(plugin.logger)

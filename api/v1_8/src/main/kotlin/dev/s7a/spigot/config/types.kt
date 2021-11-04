@@ -12,9 +12,9 @@ import dev.s7a.spigot.config.type.FormatterType
 import dev.s7a.spigot.config.type.IntType
 import dev.s7a.spigot.config.type.LocationType
 import dev.s7a.spigot.config.type.LongType
-import dev.s7a.spigot.config.type.MapListType
 import dev.s7a.spigot.config.type.MaterialType
 import dev.s7a.spigot.config.type.NumberType
+import dev.s7a.spigot.config.type.SectionType
 import dev.s7a.spigot.config.type.StringType
 import dev.s7a.spigot.config.type.UUIDType
 import dev.s7a.spigot.config.type.VectorType
@@ -28,6 +28,7 @@ import java.util.UUID
  * @param T 値の型
  * @param path コンフィグパス
  * @param type 値の種類
+ * @see section
  * @since 1.0.0
  */
 fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConfigValue.Base(config, fullPath(path), type)
@@ -50,7 +51,7 @@ fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConf
  * @see longValue
  * @see materialValue
  * @see numberValue
- * @see mapList
+ * @see section
  * @see stringValue
  * @see uuidValue
  * @see vectorValue
@@ -165,7 +166,7 @@ fun KtConfigSection.numberValue(path: String) = value(path, NumberType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-inline fun <reified T : KtConfigSection> KtConfigSection.mapList(path: String) = value(path, MapListType(T::class.java))
+inline fun <reified T : KtConfigSection> KtConfigSection.section(path: String) = value(path, SectionType(T::class.java))
 
 /**
  * [String] のコンフィグデータ型として値を登録する

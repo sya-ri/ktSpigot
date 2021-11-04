@@ -11,10 +11,11 @@ import dev.s7a.spigot.config.floatValue
 import dev.s7a.spigot.config.intValue
 import dev.s7a.spigot.config.locationValue
 import dev.s7a.spigot.config.longValue
-import dev.s7a.spigot.config.mapList
 import dev.s7a.spigot.config.materialValue
+import dev.s7a.spigot.config.section
 import dev.s7a.spigot.config.stringValue
 import dev.s7a.spigot.config.uuidValue
+import dev.s7a.spigot.config.value
 import dev.s7a.spigot.config.vectorValue
 import org.bukkit.Location
 import org.bukkit.Material
@@ -413,7 +414,7 @@ class ConfigTypeTest {
                 }
             }
         )
-        TestConfig.mapList<TestSection>("value").run {
+        TestConfig.section<TestSection>("value").run {
             val value = getValue()
             assertNotNull(value)
             assertEquals(expected, value.map { it.key to (it.value.int.getValue() to it.value.boolean.getValue()) })
@@ -508,6 +509,44 @@ class ConfigTypeTest {
         TestConfig.vectorValue("value").list().run {
             get().run {
                 assertIs<KtConfigResult.Success<List<Vector>>>(this)
+                assertEquals(expected, value)
+            }
+        }
+    }
+
+    @Test
+    fun `data class can get`() {
+        val expected = TestDataClass(Random.nextInt(), Random.nextBoolean())
+        TestConfig.writeText(
+            buildString {
+                appendLine("value:")
+                appendLine("  int: ${expected.int}")
+                appendLine("  boolean: ${expected.boolean}")
+            }
+        )
+        TestConfig.value("value", TestDataClass).run {
+            get().run {
+                assertIs<KtConfigResult.Success<TestDataClass>>(this)
+                assertEquals(expected, value)
+            }
+        }
+    }
+
+    @Test
+    fun `data class list can get`() {
+        val expected = List(5) { TestDataClass(Random.nextInt(), Random.nextBoolean()) }
+        TestConfig.writeText(
+            buildString {
+                appendLine("value:")
+                expected.forEach {
+                    appendLine(" - int: ${it.int}")
+                    appendLine("   boolean: ${it.boolean}")
+                }
+            }
+        )
+        TestConfig.value("value", TestDataClass.list).run {
+            get().run {
+                assertIs<KtConfigResult.Success<List<TestDataClass>>>(this)
                 assertEquals(expected, value)
             }
         }

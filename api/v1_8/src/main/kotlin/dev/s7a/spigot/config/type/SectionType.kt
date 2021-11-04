@@ -10,10 +10,10 @@ import dev.s7a.spigot.config.getValues
 /**
  * [Map]<[String], [KtConfigSection]> のコンフィグデータ型
  *
- * @see dev.s7a.spigot.config.mapList
+ * @see dev.s7a.spigot.config.section
  * @since 1.0.0
  */
-class MapListType<T : KtConfigSection>(private val clazz: Class<T>) : KtConfigValueType<Map<String, T>> {
+class SectionType<T : KtConfigSection>(private val clazz: Class<T>) : KtConfigValueType<Map<String, T>> {
     override fun get(config: KtConfig, path: String): KtConfigResult<Map<String, T>> {
         val constructor = try {
             clazz.getDeclaredConstructor(KtConfig::class.java, String::class.java)

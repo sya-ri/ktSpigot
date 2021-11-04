@@ -11,7 +11,7 @@ import java.util.logging.Logger
  * @since 1.0.0
  */
 inline fun <reified T> KtConfig.getUnsafe(path: String): KtConfigResult<T> {
-    return if (bukkitConfig.contains(path)) {
+    return if (contains(path)) {
         val value = bukkitConfig.get(path)
         try {
             KtConfigResult.Success(value as T)
@@ -33,7 +33,7 @@ inline fun <reified T> KtConfig.getUnsafe(path: String): KtConfigResult<T> {
  */
 @OptIn(ExperimentalStdlibApi::class)
 inline fun <reified T> KtConfig.getListUnsafe(path: String): KtConfigResult<List<T>> {
-    return if (bukkitConfig.contains(path)) {
+    return if (contains(path)) {
         if (bukkitConfig.isList(path)) {
             getUnsafe<List<*>>(path).mapValues(this, path) { index, value ->
                 try {
@@ -47,6 +47,27 @@ inline fun <reified T> KtConfig.getListUnsafe(path: String): KtConfigResult<List
                 is KtConfigResult.Success -> KtConfigResult.Success(listOf(result.value))
                 is KtConfigResult.Failure -> KtConfigResult.Failure(result.error)
             }
+        }
+    } else {
+        KtConfigResult.Failure(KtConfigError.NotFound(this, path))
+    }
+}
+
+/**
+ * コンフィグからマップリストを取得する
+ *
+ * @param T 値の型
+ * @param path コンフィグパス
+ * @return 取得した値
+ * @since 1.0.0
+ */
+@Suppress("unchecked_cast")
+fun KtConfig.getMapListUnsafe(path: String): KtConfigResult<List<Map<String, Any>>> {
+    return if (contains(path)) {
+        try {
+            KtConfigResult.Success(bukkitConfig.getMapList(path) as List<Map<String, Any>>)
+        } catch (ex: ClassCastException) {
+            KtConfigResult.Failure(KtConfigError.ClassCastException(this, path, "List<Map<String, Any>>"))
         }
     } else {
         KtConfigResult.Failure(KtConfigError.NotFound(this, path))
