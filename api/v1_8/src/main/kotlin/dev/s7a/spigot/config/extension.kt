@@ -64,6 +64,11 @@ fun KtConfig.setUnsafe(path: String, value: Any?) {
     bukkitConfig.set(path, value)
 }
 
+/**
+ * セクション内の値を全て取得する
+ *
+ * @return 値一覧
+ */
 @OptIn(ExperimentalStdlibApi::class)
 fun KtConfigSection.getValues(): List<KtConfigValue<*>> {
     val values = this::class.java.declaredFields
