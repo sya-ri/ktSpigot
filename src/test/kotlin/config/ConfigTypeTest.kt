@@ -3,6 +3,7 @@ package config
 import be.seeseemelk.mockbukkit.MockBukkit
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.booleanValue
+import dev.s7a.spigot.config.dataClassValue
 import dev.s7a.spigot.config.dateValue
 import dev.s7a.spigot.config.doubleValue
 import dev.s7a.spigot.config.enumNameValue
@@ -524,7 +525,7 @@ class ConfigTypeTest {
                 appendLine("  boolean: ${expected.boolean}")
             }
         )
-        TestConfig.value("value", TestDataClass).run {
+        TestConfig.dataClassValue("value", TestDataClass.Converter).run {
             get().run {
                 assertIs<KtConfigResult.Success<TestDataClass>>(this)
                 assertEquals(expected, value)
@@ -544,7 +545,7 @@ class ConfigTypeTest {
                 }
             }
         )
-        TestConfig.value("value", TestDataClass.list).run {
+        TestConfig.dataClassValue("value", TestDataClass.Converter).list().run {
             get().run {
                 assertIs<KtConfigResult.Success<List<TestDataClass>>>(this)
                 assertEquals(expected, value)

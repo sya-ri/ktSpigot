@@ -4,6 +4,7 @@ import dev.s7a.spigot.config.formatter.DefaultLocationFormatter
 import dev.s7a.spigot.config.formatter.DefaultUUIDFormatter
 import dev.s7a.spigot.config.formatter.DefaultVectorFormatter
 import dev.s7a.spigot.config.type.BooleanType
+import dev.s7a.spigot.config.type.DataClassType
 import dev.s7a.spigot.config.type.DateType
 import dev.s7a.spigot.config.type.DoubleType
 import dev.s7a.spigot.config.type.EnumType
@@ -28,6 +29,7 @@ import java.util.UUID
  * @param T 値の型
  * @param path コンフィグパス
  * @param type 値の種類
+ * @see dataClassValue
  * @see section
  * @since 1.0.0
  */
@@ -40,6 +42,7 @@ fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConf
  * @param path コンフィグパス
  * @param type 値の種類
  * @see booleanValue
+ * @see dataClassValue
  * @see dateValue
  * @see doubleValue
  * @see enumNameValue
@@ -66,6 +69,26 @@ fun <T> KtConfigSection.value(path: String, type: KtConfigValueType.Listable<T>)
  * @since 1.0.0
  */
 fun KtConfigSection.booleanValue(path: String) = value(path, BooleanType)
+
+/**
+ * データクラスを登録する
+ *
+ * @param T セクション型
+ * @param path コンフィグパス
+ * @param converter データクラスとの変換を行うクラス
+ * @since 1.0.0
+ */
+fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClassConverter<T>) = value(path, DataClassType(converter))
+
+/**
+ * データクラスを登録する
+ *
+ * @param T セクション型
+ * @param path コンフィグパス
+ * @param converter データクラスとの変換を行うクラス
+ * @since 1.0.0
+ */
+fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClassConverter.Listable<T>) = value(path, DataClassType.Listable(converter))
 
 /**
  * [java.util.Date] のコンフィグデータ型として値を登録する
