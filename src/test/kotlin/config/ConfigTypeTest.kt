@@ -1,7 +1,6 @@
 package config
 
 import be.seeseemelk.mockbukkit.MockBukkit
-import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.booleanValue
 import dev.s7a.spigot.config.dateValue
@@ -26,7 +25,6 @@ import org.bukkit.util.Vector
 import randomLocation
 import randomString
 import randomVector
-import java.io.File
 import java.util.Date
 import java.util.UUID
 import kotlin.random.Random
@@ -44,11 +42,6 @@ import kotlin.test.assertTrue
  * @see dev.s7a.spigot.config
  */
 class ConfigTypeTest {
-    /**
-     * テストで使うコンフィグ
-     */
-    object TestConfig : KtConfig(File("build/tmp/test/config_test.yml"))
-
     /**
      * モックサーバー
      */

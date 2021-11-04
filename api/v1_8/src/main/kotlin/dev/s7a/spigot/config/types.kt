@@ -12,9 +12,9 @@ import dev.s7a.spigot.config.type.FormatterType
 import dev.s7a.spigot.config.type.IntType
 import dev.s7a.spigot.config.type.LocationType
 import dev.s7a.spigot.config.type.LongType
+import dev.s7a.spigot.config.type.MapListType
 import dev.s7a.spigot.config.type.MaterialType
 import dev.s7a.spigot.config.type.NumberType
-import dev.s7a.spigot.config.type.MapListType
 import dev.s7a.spigot.config.type.StringType
 import dev.s7a.spigot.config.type.UUIDType
 import dev.s7a.spigot.config.type.VectorType

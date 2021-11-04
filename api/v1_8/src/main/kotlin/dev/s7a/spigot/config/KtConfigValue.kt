@@ -18,6 +18,13 @@ open class KtConfigValue<T>(
     open val type: KtConfigValueType<T>,
 ) {
     /**
+     * 値が設定されているか
+     *
+     * @since 1.0.0
+     */
+    fun exists() = config.contains(path)
+
+    /**
      * 値を取得する
      *
      * @return [KtConfigResult]

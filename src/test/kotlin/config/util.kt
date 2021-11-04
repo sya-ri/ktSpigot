@@ -4,10 +4,16 @@ import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.KtConfigSection
 import dev.s7a.spigot.config.locationValue
 import dev.s7a.spigot.config.mapList
+import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
 import kotlin.test.assertEquals
+
+/**
+ * テストで使うコンフィグ
+ */
+object TestConfig : KtConfig(File("build/tmp/test/config_test.yml"))
 
 /**
  * テストで使用する列挙型
