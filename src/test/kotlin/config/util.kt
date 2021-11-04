@@ -2,13 +2,12 @@ package config
 
 import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.KtConfigSection
-import dev.s7a.spigot.config.locationValue
-import dev.s7a.spigot.config.mapList
+import dev.s7a.spigot.config.booleanValue
+import dev.s7a.spigot.config.intValue
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
-import kotlin.test.assertEquals
 
 /**
  * テストで使うコンフィグ
@@ -28,31 +27,16 @@ enum class TestEnum {
  * テストで使用するセクション
  */
 class TestSection(override val config: KtConfig, override val path: String) : KtConfigSection {
-    val location = locationValue("location")
-    val nest = mapList<TestSection>("nest")
+    val int = intValue("int")
+    val boolean = booleanValue("boolean")
 }
 
 /**
- * コンフィグのファイル内容をアサートする
+ * コンフィグに文字列を書き込む
  */
-fun assertConfigContent(expected: Pair<String, String>, actual: KtConfig) {
-    assertEquals("${expected.first}: ${expected.second}\n", actual.file.readText())
-}
-
-/**
- * コンフィグのファイル内容をアサートする
- */
-@JvmName("assertConfigContentList")
-fun assertConfigContent(expected: Pair<String, List<String>>, actual: KtConfig) {
-    assertEquals("${expected.first}:\n${expected.second.joinToString("\n") { "- $it" }}\n", actual.file.readText())
-}
-
-/**
- * コンフィグのファイル内容をアサートする
- */
-@JvmName("assertConfigContentMap")
-fun assertConfigContent(expected: Pair<String, Map<String, String>>, actual: KtConfig) {
-    assertEquals("${expected.first}:\n${expected.second.entries.joinToString("\n") { "  ${it.key}:${it.value}" }}\n", actual.file.readText())
+fun KtConfig.writeText(text: String) {
+    file.writeText(text)
+    reload()
 }
 
 /**
