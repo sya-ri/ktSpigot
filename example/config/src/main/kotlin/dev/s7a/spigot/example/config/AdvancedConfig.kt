@@ -6,7 +6,7 @@ import dev.s7a.spigot.config.enumNameValue
 import dev.s7a.spigot.config.enumOrdinalValue
 import dev.s7a.spigot.config.locationValue
 import dev.s7a.spigot.config.materialValue
-import dev.s7a.spigot.config.printError
+import dev.s7a.spigot.config.printErrors
 import dev.s7a.spigot.config.uuidValue
 import dev.s7a.spigot.config.vectorValue
 import dev.s7a.spigot.example.config.Main.Companion.plugin
@@ -64,7 +64,7 @@ object AdvancedConfig : KtConfig(plugin, "advanced.yml") {
     private val vector = vectorValue("vector").default(::Vector)
 
     override fun load() {
-        checkValues().printError(plugin.logger)
+        checkValues().printErrors(plugin.logger)
         println("enum1: ${enum1.get()} / ${enum1.getValue()}")
         println("enum1 (ignoreCase): ${enum1IgnoreCase.get()} / ${enum1IgnoreCase.getValue()}")
         println("enum2: ${enum2.get()} / ${enum2.getValue()}")

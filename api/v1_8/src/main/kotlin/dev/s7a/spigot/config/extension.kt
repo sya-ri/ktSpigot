@@ -1,5 +1,6 @@
 package dev.s7a.spigot.config
 
+import org.bukkit.command.CommandSender
 import java.util.logging.Logger
 
 /**
@@ -112,7 +113,7 @@ fun KtConfigSection.getValues(): List<KtConfigValue<*>> {
  * 値のエラーを確認する
  *
  * @return エラー一覧
- * @see printError
+ * @see printErrors
  * @since 1.0.0
  */
 @OptIn(ExperimentalStdlibApi::class)
@@ -136,23 +137,51 @@ fun KtConfig.checkValues(): List<KtConfigError> {
 }
 
 /**
+ * コンフィグエラーを取得する
+ *
+ * @return メッセージ一覧
+ * @since 1.0.0
+ */
+@OptIn(ExperimentalStdlibApi::class)
+fun List<KtConfigError>.getErrors(): List<String> {
+    return buildList<String> {
+        groupBy(KtConfigError::config).forEach { (config, errorList) ->
+            add("${config.file.path} のエラー [${errorList.size}]")
+            errorList.forEach { error ->
+                add("- ${error.message}")
+                if (error is KtConfigError.ErrorContainer<*>) {
+                    error.errors.forEach {
+                        add("  - ${it.error.message}")
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
  * コンフィグエラーを出力する
  *
  * @param logger 出力先
  * @see KtConfig.checkValues
  * @since 1.0.0
  */
-fun List<KtConfigError>.printError(logger: Logger) {
-    groupBy(KtConfigError::config).forEach { (config, errorList) ->
-        logger.warning("${config.file.path} のエラー [${errorList.size}]")
-        errorList.forEach { error ->
-            logger.warning("- ${error.message}")
-            if (error is KtConfigError.ErrorContainer<*>) {
-                error.errors.forEach {
-                    logger.warning("  - ${it.error.message}")
-                }
-            }
-        }
+fun List<KtConfigError>.printErrors(logger: Logger) {
+    getErrors().forEach {
+        logger.warning(it)
+    }
+}
+
+/**
+ * コンフィグエラーを出力する
+ *
+ * @param sender 出力先
+ * @see KtConfig.checkValues
+ * @since 1.0.0
+ */
+fun List<KtConfigError>.printErrors(sender: CommandSender) {
+    getErrors().forEach {
+        sender.sendMessage("§e$it")
     }
 }
 

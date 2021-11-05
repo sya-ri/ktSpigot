@@ -4,7 +4,7 @@ import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.KtConfigSection
 import dev.s7a.spigot.config.checkValues
 import dev.s7a.spigot.config.intValue
-import dev.s7a.spigot.config.printError
+import dev.s7a.spigot.config.printErrors
 import dev.s7a.spigot.config.section
 import dev.s7a.spigot.example.config.Main.Companion.plugin
 
@@ -38,7 +38,7 @@ object MapConfig : KtConfig(plugin, "map.yml") {
     private val values = section<Value>("values")
 
     override fun load() {
-        checkValues().printError(plugin.logger)
+        checkValues().printErrors(plugin.logger)
         println("values: ${values.get()}")
         values.getValue()?.forEach { (_, value) ->
             println("${value.int.path}: ${value.int.getValue()}")

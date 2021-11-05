@@ -3,7 +3,7 @@ package dev.s7a.spigot.example.config
 import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.checkValues
 import dev.s7a.spigot.config.intValue
-import dev.s7a.spigot.config.printError
+import dev.s7a.spigot.config.printErrors
 import dev.s7a.spigot.example.config.Main.Companion.plugin
 import kotlin.random.Random
 
@@ -37,7 +37,7 @@ object SimpleConfig : KtConfig(plugin, "simple.yml") {
     private val int5OrDefault = intValue("int5").default(0).force()
 
     override fun load() {
-        checkValues().printError(plugin.logger)
+        checkValues().printErrors(plugin.logger)
         println("int1: ${int1.get()} / ${int1.getValue()}")
         println("int2 (orNull): ${int2OrNull.get()} / ${int2OrNull.getValue()}")
         println("int3 (orDefault): ${int3OrDefault.get()} / ${int3OrDefault.getValue()}")
