@@ -5,7 +5,7 @@ subprojects {
 
     dependencies {
         implementation("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
-        implementation(project(":api"))
+        implementation(project(":api:v1_13"))
     }
 
     configure<BukkitPluginDescription> {
