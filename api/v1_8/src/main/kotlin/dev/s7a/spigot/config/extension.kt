@@ -198,8 +198,18 @@ fun <T> List<KtConfigResult<T>>.toResult(config: KtConfig, path: String): KtConf
  * @since 1.0.0
  */
 fun <T> Map<String, KtConfigResult<T>>.toResult(config: KtConfig, path: String): KtConfigResult<Map<String, T>> {
-    val data = entries.filterIsInstance<Map.Entry<String, KtConfigResult.Success<T>>>().associate { it.key to it.value.value }
-    val errors = values.filterIsInstance<KtConfigResult.Failure<T>>()
+    val data = mutableMapOf<String, T>()
+    val errors = mutableListOf<KtConfigResult.Failure<T>>()
+    entries.forEach { (key, value) ->
+        when (value) {
+            is KtConfigResult.Success<T> -> {
+                data[key] = value.value
+            }
+            is KtConfigResult.Failure<T> -> {
+                errors.add(value)
+            }
+        }
+    }
     return if (errors.isEmpty()) {
         KtConfigResult.Success(data)
     } else {
