@@ -236,6 +236,24 @@ fun <T> KtConfigValue<List<T>>.forceGetValue(): List<T> {
 }
 
 /**
+ * マップを取得する。エラーがある項目は無視する。
+ *
+ * @since 1.0.0
+ */
+@Suppress("UNCHECKED_CAST")
+fun <T> KtConfigValue<Map<String, T>>.forceGetValue(): Map<String, T> {
+    return when (val result = get()) {
+        is KtConfigResult.Success -> result.value
+        is KtConfigResult.Failure -> {
+            when (result.error) {
+                is KtConfigError.MapConfigError<*> -> result.error.data as Map<String, T>
+                else -> mapOf()
+            }
+        }
+    }
+}
+
+/**
  * セクション内の指定したパスの値を取得する
  *
  * @param T セクション
