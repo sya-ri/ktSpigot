@@ -44,10 +44,7 @@ inline fun <reified T> KtConfig.getListUnsafe(path: String): KtConfigResult<List
                 }
             }
         } else {
-            when (val result = getUnsafe<T>(path)) {
-                is KtConfigResult.Success -> KtConfigResult.Success(listOf(result.value))
-                is KtConfigResult.Failure -> KtConfigResult.Failure(result.error)
-            }
+            getUnsafe<T>(path).map { KtConfigResult.Success(listOf(it)) }
         }
     } else {
         KtConfigResult.Failure(KtConfigError.NotFound(this, path))
