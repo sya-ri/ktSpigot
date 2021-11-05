@@ -33,7 +33,7 @@ import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 
 /**
- * コンフィグに関するテスト
+ * コンフィグデータ型に関するテスト
  *
  * @see dev.s7a.spigot.config
  */
