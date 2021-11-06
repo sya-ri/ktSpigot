@@ -11,5 +11,6 @@ include(
     ":example:config",
     ":example:listener",
     ":example:message",
+    ":example:player",
     ":example:scheduler",
 )
