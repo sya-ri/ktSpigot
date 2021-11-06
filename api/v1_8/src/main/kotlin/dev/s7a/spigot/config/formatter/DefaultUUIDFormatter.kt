@@ -1,6 +1,7 @@
 package dev.s7a.spigot.config.formatter
 
 import dev.s7a.spigot.config.KtConfigFormatter
+import dev.s7a.spigot.util.uuidOrNull
 import java.util.UUID
 
 /**
@@ -17,10 +18,6 @@ object DefaultUUIDFormatter : KtConfigFormatter<UUID> {
     }
 
     override fun value(string: String): UUID? {
-        return try {
-            UUID.fromString(string)
-        } catch (ex: IllegalArgumentException) {
-            null
-        }
+        return uuidOrNull(string)
     }
 }
