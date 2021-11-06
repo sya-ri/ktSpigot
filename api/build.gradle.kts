@@ -13,9 +13,17 @@ subprojects {
                 compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
                 shadowApi(project(":api:common"))
             }
+            "v1_9" -> {
+                compileOnly("org.spigotmc:spigot-api:1.9.4-R0.1-SNAPSHOT")
+                shadowApi(project(":api:v1_8"))
+            }
+            "v1_11" -> {
+                compileOnly("org.spigotmc:spigot-api:1.11.2-R0.1-SNAPSHOT")
+                shadowApi(project(":api:v1_9"))
+            }
             "v1_13" -> {
                 compileOnly("org.spigotmc:spigot-api:1.13.2-R0.1-SNAPSHOT")
-                shadowApi(project(":api:v1_8"))
+                shadowApi(project(":api:v1_11"))
             }
         }
     }
