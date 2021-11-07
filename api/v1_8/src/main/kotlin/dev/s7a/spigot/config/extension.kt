@@ -54,7 +54,6 @@ inline fun <reified T> KtConfig.getListUnsafe(path: String): KtConfigResult<List
 /**
  * コンフィグからマップリストを取得する
  *
- * @param T 値の型
  * @param path コンフィグパス
  * @return 取得した値
  * @since 1.0.0
@@ -120,7 +119,7 @@ fun KtConfig.checkValues(): List<KtConfigError> {
         values.forEach { field ->
             try {
                 field.isAccessible = true
-                val value = field.get(this)
+                val value = field.get(this@checkValues)
                 if (value is KtConfigValue<*>) {
                     value.getValue(::add)
                 }
