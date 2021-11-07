@@ -11,14 +11,11 @@ import dev.s7a.spigot.config.type.EnumType
 import dev.s7a.spigot.config.type.FloatType
 import dev.s7a.spigot.config.type.FormatterType
 import dev.s7a.spigot.config.type.IntType
-import dev.s7a.spigot.config.type.LocationType
 import dev.s7a.spigot.config.type.LongType
 import dev.s7a.spigot.config.type.MaterialType
 import dev.s7a.spigot.config.type.NumberType
 import dev.s7a.spigot.config.type.SectionType
 import dev.s7a.spigot.config.type.StringType
-import dev.s7a.spigot.config.type.UUIDType
-import dev.s7a.spigot.config.type.VectorType
 import org.bukkit.Location
 import org.bukkit.util.Vector
 import java.util.UUID
@@ -113,7 +110,16 @@ fun KtConfigSection.doubleValue(path: String) = value(path, DoubleType)
  * @param ignoreCase 大文字小文字を無視するか / false
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ignoreCase: Boolean = false) = value(path, EnumType.Name(T::class.java, ignoreCase))
+fun <T : Enum<T>> KtConfigSection.enumNameValue(path: String, clazz: Class<T>, ignoreCase: Boolean = false) = value(path, EnumType.Name(clazz, ignoreCase))
+
+/**
+ * [Enum.name] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @param ignoreCase 大文字小文字を無視するか / false
+ * @since 1.0.0
+ */
+inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ignoreCase: Boolean = false) = enumNameValue(path, T::class.java, ignoreCase)
 
 /**
  * [Enum.ordinal] のコンフィグデータ型として値を登録する
@@ -121,7 +127,15 @@ inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ign
  * @param path コンフィグパス
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String) = value(path, EnumType.Ordinal(T::class.java))
+fun <T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String, clazz: Class<T>) = value(path, EnumType.Ordinal(clazz))
+
+/**
+ * [Enum.ordinal] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @since 1.0.0
+ */
+inline fun <reified T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String) = enumOrdinalValue(path, T::class.java)
 
 /**
  * [Float] のコンフィグデータ型として値を登録する
@@ -155,7 +169,7 @@ fun KtConfigSection.intValue(path: String) = value(path, IntType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfigSection.locationValue(path: String, formatter: KtConfigFormatter<Location> = DefaultLocationFormatter) = value(path, LocationType(formatter))
+fun KtConfigSection.locationValue(path: String, formatter: KtConfigFormatter<Location> = DefaultLocationFormatter) = formatterValue(path, formatter)
 
 /**
  * [Long] のコンフィグデータ型として値を登録する
@@ -189,7 +203,16 @@ fun KtConfigSection.numberValue(path: String) = value(path, NumberType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-inline fun <reified T : KtConfigSection> KtConfigSection.section(path: String) = value(path, SectionType(T::class.java))
+fun <T : KtConfigSection> KtConfigSection.section(path: String, clazz: Class<T>) = value(path, SectionType(clazz))
+
+/**
+ * セクションマップを登録する
+ *
+ * @param T セクション型
+ * @param path コンフィグパス
+ * @since 1.0.0
+ */
+inline fun <reified T : KtConfigSection> KtConfigSection.section(path: String) = section(path, T::class.java)
 
 /**
  * [String] のコンフィグデータ型として値を登録する
@@ -206,7 +229,7 @@ fun KtConfigSection.stringValue(path: String) = value(path, StringType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = value(path, UUIDType(formatter))
+fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = formatterValue(path, formatter)
 
 /**
  * [Vector] のコンフィグデータ型として値を登録する
@@ -215,4 +238,4 @@ fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> =
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfigSection.vectorValue(path: String, formatter: KtConfigFormatter<Vector> = DefaultVectorFormatter) = value(path, VectorType(formatter))
+fun KtConfigSection.vectorValue(path: String, formatter: KtConfigFormatter<Vector> = DefaultVectorFormatter) = formatterValue(path, formatter)

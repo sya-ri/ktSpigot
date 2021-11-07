@@ -13,7 +13,7 @@ import dev.s7a.spigot.config.KtConfigResult
  * @see dev.s7a.spigot.config.formatterValue
  * @since 1.0.0
  */
-open class FormatterType<T>(private val formatter: KtConfigFormatter<T>) : StringType.Base<T>() {
+class FormatterType<T>(private val formatter: KtConfigFormatter<T>) : StringType.Base<T>() {
     override val stringToResult = { config: KtConfig, path: String, string: String ->
         formatter.value(string)?.let {
             KtConfigResult.Success<T>(it)
