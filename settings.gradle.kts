@@ -13,4 +13,5 @@ include(
     ":example:message",
     ":example:player",
     ":example:scheduler",
+    ":showcase",
 )
