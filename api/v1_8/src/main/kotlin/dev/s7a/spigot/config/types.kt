@@ -11,14 +11,11 @@ import dev.s7a.spigot.config.type.EnumType
 import dev.s7a.spigot.config.type.FloatType
 import dev.s7a.spigot.config.type.FormatterType
 import dev.s7a.spigot.config.type.IntType
-import dev.s7a.spigot.config.type.LocationType
 import dev.s7a.spigot.config.type.LongType
 import dev.s7a.spigot.config.type.MaterialType
 import dev.s7a.spigot.config.type.NumberType
 import dev.s7a.spigot.config.type.SectionType
 import dev.s7a.spigot.config.type.StringType
-import dev.s7a.spigot.config.type.UUIDType
-import dev.s7a.spigot.config.type.VectorType
 import org.bukkit.Location
 import org.bukkit.util.Vector
 import java.util.UUID
@@ -155,7 +152,7 @@ fun KtConfigSection.intValue(path: String) = value(path, IntType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfigSection.locationValue(path: String, formatter: KtConfigFormatter<Location> = DefaultLocationFormatter) = value(path, LocationType(formatter))
+fun KtConfigSection.locationValue(path: String, formatter: KtConfigFormatter<Location> = DefaultLocationFormatter) = formatterValue(path, formatter)
 
 /**
  * [Long] のコンフィグデータ型として値を登録する
@@ -206,7 +203,7 @@ fun KtConfigSection.stringValue(path: String) = value(path, StringType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = value(path, UUIDType(formatter))
+fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = formatterValue(path, formatter)
 
 /**
  * [Vector] のコンフィグデータ型として値を登録する
@@ -215,4 +212,4 @@ fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> =
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfigSection.vectorValue(path: String, formatter: KtConfigFormatter<Vector> = DefaultVectorFormatter) = value(path, VectorType(formatter))
+fun KtConfigSection.vectorValue(path: String, formatter: KtConfigFormatter<Vector> = DefaultVectorFormatter) = formatterValue(path, formatter)
