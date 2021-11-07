@@ -6,3 +6,4 @@ Kotlin makes the Spigot library Easier
 
 - [Wiki](https://github.com/sya-ri/ktSpigot/wiki)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
+- [LICENSE](LICENSE)
