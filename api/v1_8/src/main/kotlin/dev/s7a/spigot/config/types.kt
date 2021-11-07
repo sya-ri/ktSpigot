@@ -110,7 +110,16 @@ fun KtConfigSection.doubleValue(path: String) = value(path, DoubleType)
  * @param ignoreCase 大文字小文字を無視するか / false
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ignoreCase: Boolean = false) = value(path, EnumType.Name(T::class.java, ignoreCase))
+fun <T : Enum<T>> KtConfigSection.enumNameValue(path: String, clazz: Class<T>, ignoreCase: Boolean = false) = value(path, EnumType.Name(clazz, ignoreCase))
+
+/**
+ * [Enum.name] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @param ignoreCase 大文字小文字を無視するか / false
+ * @since 1.0.0
+ */
+inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ignoreCase: Boolean = false) = enumNameValue(path, T::class.java, ignoreCase)
 
 /**
  * [Enum.ordinal] のコンフィグデータ型として値を登録する
@@ -118,7 +127,15 @@ inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ign
  * @param path コンフィグパス
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String) = value(path, EnumType.Ordinal(T::class.java))
+fun <T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String, clazz: Class<T>) = value(path, EnumType.Ordinal(clazz))
+
+/**
+ * [Enum.ordinal] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @since 1.0.0
+ */
+inline fun <reified T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String) = enumOrdinalValue(path, T::class.java)
 
 /**
  * [Float] のコンフィグデータ型として値を登録する
@@ -186,7 +203,16 @@ fun KtConfigSection.numberValue(path: String) = value(path, NumberType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-inline fun <reified T : KtConfigSection> KtConfigSection.section(path: String) = value(path, SectionType(T::class.java))
+fun <T : KtConfigSection> KtConfigSection.section(path: String, clazz: Class<T>) = value(path, SectionType(clazz))
+
+/**
+ * セクションマップを登録する
+ *
+ * @param T セクション型
+ * @param path コンフィグパス
+ * @since 1.0.0
+ */
+inline fun <reified T : KtConfigSection> KtConfigSection.section(path: String) = section(path, T::class.java)
 
 /**
  * [String] のコンフィグデータ型として値を登録する
