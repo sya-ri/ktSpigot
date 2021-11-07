@@ -41,3 +41,13 @@ gradlew.bat dependencyUpdates
 ```
 
 導入している依存関係に更新が存在するか確認します。
+
+### コードスニペットの更新
+
+```shell
+./gradlew :showcase:updateCodeSnippet
+
+gradlew.bat :showcase:updateCodeSnippet
+```
+
+`.md` のコードスニペットを更新します。
