@@ -9,6 +9,10 @@ Kotlin makes the Spigot library Easier
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [LICENSE](LICENSE)
 
+## What's this?
+
+[EasySpigotAPI](https://github.com/sya-ri/EasySpigotAPI) の反省点を元に生まれた全く新しいライブラリです。
+
 ## Badge
 
 [![ktSpigot](https://img.shields.io/badge/ktSpigot-%E2%AD%90-16E.svg)](https://github.com/sya-ri/ktSpigot)
@@ -16,4 +20,3 @@ Kotlin makes the Spigot library Easier
 ```
 [![ktSpigot](https://img.shields.io/badge/ktSpigot-%E2%AD%90-16E.svg)](https://github.com/sya-ri/ktSpigot)
 ```
-
