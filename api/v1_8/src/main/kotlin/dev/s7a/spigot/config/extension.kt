@@ -120,7 +120,7 @@ fun KtConfig.checkValues(): List<KtConfigError> {
         values.forEach { field ->
             try {
                 field.isAccessible = true
-                val value = field.get(this)
+                val value = field.get(this@checkValues)
                 if (value is KtConfigValue<*>) {
                     value.getValue(::add)
                 }
