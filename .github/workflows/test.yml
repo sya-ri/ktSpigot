@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Clone Repository
         uses: actions/checkout@v2
-        with:
-          submodules: recursive
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
