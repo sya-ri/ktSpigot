@@ -15,7 +15,7 @@ import dev.s7a.spigot.config.setUnsafe
  * @see dev.s7a.spigot.config.dataClassValue
  * @since 1.0.0
  */
-open class DataClassType<T>(protected open val converter: KtConfigDataClassConverter<T>) : KtConfigValueType<T> {
+sealed class DataClassType<T>(protected open val converter: KtConfigDataClassConverter<T>) : KtConfigValueType<T> {
     override fun get(config: KtConfig, path: String): KtConfigResult<T> {
         return converter.get(config, path)
     }
@@ -25,12 +25,21 @@ open class DataClassType<T>(protected open val converter: KtConfigDataClassConve
     }
 
     /**
+     * データクラスのコンフィグデータ型
+     *
+     * @param converter コンバーター
+     * @see dev.s7a.spigot.config.dataClassValue
+     * @since 1.0.0
+     */
+    class Default<T>(converter: KtConfigDataClassConverter<T>) : DataClassType<T>(converter)
+
+    /**
      * 複数の値を受付られるコンフィグデータ型
      *
      * @see dev.s7a.spigot.config.dataClassValue
      * @since 1.0.0
      */
-    open class Listable<T>(override val converter: KtConfigDataClassConverter.Listable<T>) : DataClassType<T>(converter), KtConfigValueType.Listable<T> {
+    class Listable<T>(override val converter: KtConfigDataClassConverter.Listable<T>) : DataClassType<T>(converter), KtConfigValueType.Listable<T> {
         override val list: KtConfigValueType<List<T>>
             get() = object : KtConfigValueType<List<T>> {
                 override fun get(config: KtConfig, path: String): KtConfigResult<List<T>> {
