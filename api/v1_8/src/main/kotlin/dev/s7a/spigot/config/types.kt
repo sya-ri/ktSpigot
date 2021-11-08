@@ -75,7 +75,7 @@ fun KtConfigSection.booleanValue(path: String) = value(path, BooleanType)
  * @param converter データクラスとの変換を行うクラス
  * @since 1.0.0
  */
-fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClassConverter<T>) = value(path, DataClassType(converter))
+fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClassConverter<T>) = value(path, DataClassType.Default(converter))
 
 /**
  * データクラスを登録する
