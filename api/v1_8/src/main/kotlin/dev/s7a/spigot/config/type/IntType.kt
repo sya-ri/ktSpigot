@@ -16,7 +16,7 @@ object IntType : NumberType.Base<Int>() {
     override val numberToValue = Number::toInt
 
     /**
-     * [Number] をベースとした [KtConfigValueType]
+     * [Int] をベースとした [KtConfigValueType]
      *
      * @since 1.0.0
      */
