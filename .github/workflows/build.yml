@@ -24,5 +24,11 @@ jobs:
           files: |
             api/v1_8/build/libs/ktSpigot-v1_8.jar
             api/v1_9/build/libs/ktSpigot-v1_9.jar
+            api/v1_10/build/libs/ktSpigot-v1_10.jar
             api/v1_11/build/libs/ktSpigot-v1_11.jar
+            api/v1_12/build/libs/ktSpigot-v1_12.jar
             api/v1_13/build/libs/ktSpigot-v1_13.jar
+            api/v1_14/build/libs/ktSpigot-v1_14.jar
+            api/v1_15/build/libs/ktSpigot-v1_15.jar
+            api/v1_16/build/libs/ktSpigot-v1_16.jar
+            api/v1_17/build/libs/ktSpigot-v1_17.jar

@@ -69,7 +69,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(project(":api:v1_13"))
+    testImplementation(project(":api:v1_17"))
     testImplementation(project(":showcase"))
     testImplementation(kotlin("test"))
     testImplementation(kotlin("reflect"))
