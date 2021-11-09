@@ -41,7 +41,7 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
             tree.literals.keys.forEach { literal ->
                 literal.list.forEach { (lower, origin) ->
                     if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
-                        add(origin)
+                        addAll(origin)
                     }
                 }
             }

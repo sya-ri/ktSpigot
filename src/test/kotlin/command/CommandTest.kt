@@ -80,12 +80,15 @@ class CommandTest {
                         dynamic({ listOf("m", "n") })
                     }
                 }
+                literal("o") {
+                    literal("abc", "ABC", "あいうえお")
+                }
             }
         }
         val command = plugin.getCommand(commandName)
         assertNotNull(command)
         val player = server.addPlayer()
-        assertEquals(listOf("a", "abc", "b", "bb", "d", "g", "j"), command.tabComplete(player, commandName, arrayOf("")))
+        assertEquals(listOf("a", "abc", "b", "bb", "d", "g", "j", "o"), command.tabComplete(player, commandName, arrayOf("")))
         assertEquals(listOf("a", "abc"), command.tabComplete(player, commandName, arrayOf("a")))
         assertEquals(listOf("abc"), command.tabComplete(player, commandName, arrayOf("ab")))
         assertEquals(listOf("abc"), command.tabComplete(player, commandName, arrayOf("abc")))
@@ -109,5 +112,9 @@ class CommandTest {
         assertEquals(listOf("m", "n"), command.tabComplete(player, commandName, arrayOf("j", "l", "")))
         assertEquals(listOf("m"), command.tabComplete(player, commandName, arrayOf("j", "k", "m")))
         assertEquals(listOf(), command.tabComplete(player, commandName, arrayOf("j", "k", "m", "")))
+        assertEquals(listOf("abc", "ABC", "あいうえお"), command.tabComplete(player, commandName, arrayOf("o", "")))
+        assertEquals(listOf("abc", "ABC"), command.tabComplete(player, commandName, arrayOf("o", "a")))
+        assertEquals(listOf("abc", "ABC"), command.tabComplete(player, commandName, arrayOf("o", "A")))
+        assertEquals(listOf("あいうえお"), command.tabComplete(player, commandName, arrayOf("o", "あ")))
     }
 }
