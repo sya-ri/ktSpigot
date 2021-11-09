@@ -1,7 +1,7 @@
 import java.util.regex.Matcher
 
 dependencies {
-    implementation(project(":api:v1_13"))
+    implementation(project(":api:v1_17"))
     implementation("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
 }
 
