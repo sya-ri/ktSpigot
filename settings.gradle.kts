@@ -15,6 +15,7 @@ include(
     ":example",
     ":example:command",
     ":example:config",
+    ":example:inventory",
     ":example:listener",
     ":example:message",
     ":example:player",
