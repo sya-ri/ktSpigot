@@ -18,7 +18,7 @@ internal sealed interface KtCommandTabCompleterCandidate {
      * @since 1.0.0
      */
     class Literal(list: Collection<String>, override val type: KtCommandTabCompleterType) : KtCommandTabCompleterCandidate {
-        val list = list.associateBy(String::lowercase)
+        val list = list.groupBy(String::lowercase)
     }
 
     /**
