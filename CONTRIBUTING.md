@@ -50,4 +50,8 @@ gradlew.bat dependencyUpdates
 gradlew.bat :showcase:updateCodeSnippet
 ```
 
-`.md` のコードスニペットを更新します。
+`.md` のコードスニペットを更新します。事前に `wiki/` をクローンしてください。
+
+```shell
+git clone https://github.com/sya-ri/ktSpigot.wiki wiki
+```
