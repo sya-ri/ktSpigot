@@ -90,6 +90,65 @@ class ItemConfig(private val plugin: JavaPlugin) : KtConfig(plugin, "item.yml") 
 
 </details>
 
+## Installation
+
+Minecraft のバージョン毎にライブラリがあります。
+
+- 対応バージョン `1.8.x` 〜 `1.17.x`
+
+### RELEASE
+
+基本的にこちらを使ってください。安定して使うことができます。
+
+:warning: 現在、開発中です。`1.0.0` がリリースされるまで `1.0.0-SNAPSHOT` を使ってください。
+
+### SNAPSHOT
+
+開発途中の最新バージョンを試すことができます。リリースされるまでに変更される可能性があるので、注意してください。
+
+<details>
+<summary>build.gradle.kts</summary>
+
+```kotlin
+repositories {
+    maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
+}
+
+dependencies {
+    // Minecraft 1.8.x
+    implementation("dev.s7a:ktSpigot-v1_8:1.0.0-SNAPSHOT")
+    
+    // Minecraft 1.9.x
+    implementation("dev.s7a:ktSpigot-v1_9:1.0.0-SNAPSHOT")
+    
+    // Minecraft 1.10.x
+    implementation("dev.s7a:ktSpigot-v1_10:1.0.0-SNAPSHOT")
+    
+    // Minecraft 1.11.x
+    implementation("dev.s7a:ktSpigot-v1_11:1.0.0-SNAPSHOT")
+
+    // Minecraft 1.12.x
+    implementation("dev.s7a:ktSpigot-v1_12:1.0.0-SNAPSHOT")
+
+    // Minecraft 1.13.x
+    implementation("dev.s7a:ktSpigot-v1_13:1.0.0-SNAPSHOT")
+
+    // Minecraft 1.14.x
+    implementation("dev.s7a:ktSpigot-v1_14:1.0.0-SNAPSHOT")
+
+    // Minecraft 1.15.x
+    implementation("dev.s7a:ktSpigot-v1_15:1.0.0-SNAPSHOT")
+
+    // Minecraft 1.16.x
+    implementation("dev.s7a:ktSpigot-v1_16:1.0.0-SNAPSHOT")
+
+    // Minecraft 1.17.x
+    implementation("dev.s7a:ktSpigot-v1_17:1.0.0-SNAPSHOT")
+}
+```
+
+</details>
+
 ## Badge
 
 [![ktSpigot](https://img.shields.io/badge/ktSpigot-%E2%AD%90-16E.svg)](https://github.com/sya-ri/ktSpigot)
