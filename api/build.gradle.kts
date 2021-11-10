@@ -1,8 +1,17 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 
+plugins {
+    `maven-publish`
+    signing
+}
+
 subprojects {
     apply(plugin = "net.minecrell.plugin-yml.bukkit")
+    apply(plugin = "org.gradle.maven-publish")
+    apply(plugin = "signing")
+
+    version = rootProject.version
 
     dependencies {
         when (project.name) {
@@ -71,6 +80,63 @@ subprojects {
             "v1_17" -> "1.17"
             else -> null
         }
+    }
+
+    val sourceJar by tasks.registering(Jar::class) {
+        archiveClassifier.set("sources")
+        from(sourceSets["main"].allSource)
+    }
+
+    publishing {
+        repositories {
+            maven {
+                url = uri(
+                    if (version.toString().endsWith("SNAPSHOT")) {
+                        "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                    } else {
+                        "https://s01.oss.sonatype.org/content/groups/staging/"
+                    }
+                )
+                credentials {
+                    username = System.getenv("SONATYPE_USER")
+                    password = System.getenv("SONATYPE_PASSWORD")
+                }
+            }
+        }
+        publications {
+            register<MavenPublication>("maven") {
+                groupId = "dev.s7a"
+                artifactId = "ktSpigot-${project.name}"
+                from(components["kotlin"])
+                artifact(sourceJar.get())
+                pom {
+                    packaging = "pom"
+                    name.set("ktSpigot-${project.name}")
+                    description.set("A Library that Simplifies Spigot with Kotlin.")
+                    url.set("https://github.com/sya-ri/ktSpigot")
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://github.com/sya-ri/ktSpigot/blob/master/LICENSE")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("sya-ri")
+                            name.set("sya-ri")
+                            email.set("sya79lua@gmail.com")
+                        }
+                    }
+                    scm {
+                        url.set("https://github.com/sya-ri/ktSpigot.git")
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        sign(publishing.publications["maven"])
     }
 }
 
