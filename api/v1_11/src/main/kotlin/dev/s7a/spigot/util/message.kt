@@ -21,7 +21,7 @@ fun Player.sendTitleMessage(
     fadeIn: Int = 10,
     stay: Int = 70,
     fadeOut: Int = 20,
-    altColorChar: Char = '&',
+    altColorChar: Char? = '&',
 ) {
     sendTitle(title?.toColor(altColorChar), subtitle?.toColor(altColorChar), fadeIn, stay, fadeOut)
 }

@@ -11,6 +11,6 @@ import org.bukkit.command.CommandSender
  * @param altColorChar セクションの代わりに使う文字 / '&'
  * @since 1.0.0
  */
-fun CommandSender.sendChatMessage(message: String, altColorChar: Char = '&') {
+fun CommandSender.sendChatMessage(message: String, altColorChar: Char? = '&') {
     sendMessage(message.toColor(altColorChar))
 }

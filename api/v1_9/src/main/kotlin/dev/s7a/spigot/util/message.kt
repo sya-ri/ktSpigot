@@ -13,6 +13,6 @@ import org.bukkit.entity.Player
  * @param altColorChar セクションの代わりに使う文字 / '&'
  * @since 1.0.0
  */
-fun Player.sendActionBarMessage(message: String, altColorChar: Char = '&') {
+fun Player.sendActionBarMessage(message: String, altColorChar: Char? = '&') {
     spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(message.toColor(altColorChar)))
 }

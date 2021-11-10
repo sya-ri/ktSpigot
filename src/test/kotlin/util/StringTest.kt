@@ -44,4 +44,13 @@ class StringTest {
             assertEquals(string, toUncolor())
         }
     }
+
+    @Test
+    fun `do not convert if altColorChar is null`() {
+        val color = ChatColor.values().random()
+        val string = randomString()
+        "&${color.char}$string".run {
+            assertEquals(this, toColor(null))
+        }
+    }
 }
