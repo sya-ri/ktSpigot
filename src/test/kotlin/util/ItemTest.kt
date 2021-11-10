@@ -4,9 +4,11 @@ import be.seeseemelk.mockbukkit.MockBukkit
 import dev.s7a.spigot.util.customModelDataOrNull
 import dev.s7a.spigot.util.displayNameOrNull
 import dev.s7a.spigot.util.editItemMeta
+import dev.s7a.spigot.util.itemStack
 import dev.s7a.spigot.util.localizedNameOrNull
 import dev.s7a.spigot.util.loreOrNull
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.Color
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
@@ -129,5 +131,42 @@ class ItemTest {
         assertNull(meta.customModelDataOrNull)
         meta.setCustomModelData(expected)
         assertEquals(expected, meta.customModelDataOrNull)
+    }
+
+    @Test
+    fun `itemStack8 can be get`() {
+        val displayNameColor = ChatColor.values().random()
+        val displayName = randomString()
+        val loreColor = ChatColor.values().random()
+        val lore = List(5) { randomString() }
+        val itemStack = itemStack(
+            Material.STONE,
+            displayName = "&${displayNameColor.char}$displayName",
+            lore = lore.map { "&${loreColor.char}$it" },
+        )
+        val meta = itemStack.itemMeta
+        assertNotNull(meta)
+        assertEquals("$displayNameColor$displayName", meta.displayName)
+        assertEquals(lore.map { "$loreColor$it" }, meta.lore)
+    }
+
+    @Test
+    fun `itemStack16 can be get`() {
+        val displayNameColor = ChatColor.values().random()
+        val displayName = randomString()
+        val loreColor = ChatColor.values().random()
+        val lore = List(5) { randomString() }
+        val customModelData = Random.nextInt()
+        val itemStack = itemStack(
+            Material.STONE,
+            displayName = "&${displayNameColor.char}$displayName",
+            lore = lore.map { "&${loreColor.char}$it" },
+            customModelData = customModelData
+        )
+        val meta = itemStack.itemMeta
+        assertNotNull(meta)
+        assertEquals("$displayNameColor$displayName", meta.displayName)
+        assertEquals(lore.map { "$loreColor$it" }, meta.lore)
+        assertEquals(customModelData, meta.customModelData)
     }
 }
