@@ -101,8 +101,8 @@ subprojects {
                     }
                 )
                 credentials {
-                    username = System.getenv("SONATYPE_USER")
-                    password = System.getenv("SONATYPE_PASSWORD")
+                    username = project.property("credentials.username").toString()
+                    password = project.property("credentials.password").toString()
                 }
             }
         }
