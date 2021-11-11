@@ -16,9 +16,30 @@ import org.bukkit.inventory.ItemStack
  * @param action クリック処理 / null
  * @since 1.0.0
  */
+fun KtInventory.item(index: Int, itemStack: ItemStack, action: ((InventoryClickEvent) -> Unit)? = null) {
+    if (index in bukkitInventory.contents.indices) {
+        bukkitInventory.setItem(index, itemStack)
+        if (action != null) {
+            actions[index] = action
+        } else {
+            actions.remove(index)
+        }
+    } else {
+        throw IllegalArgumentException("指定されているインデックスがインベントリの範囲外です (index: $index)")
+    }
+}
+
+/**
+ * アイテムを配置する
+ *
+ * @param index 配置するスロット
+ * @param itemStack アイテム
+ * @param action クリック処理 / null
+ * @since 1.0.0
+ */
 fun KtInventory.item(index: Iterable<Int>, itemStack: ItemStack, action: ((InventoryClickEvent) -> Unit)? = null) {
     index.forEach {
-        setItem(it, itemStack, action)
+        item(it, itemStack, action)
     }
 }
 
@@ -55,7 +76,7 @@ fun KtInventory.item(
     altColorChar: Char = '&',
     action: ((InventoryClickEvent) -> Unit)? = null,
 ) {
-    setItem(index, itemStack(type, amount, displayName, lore, altColorChar), action)
+    item(index, itemStack(type, amount, displayName, lore, altColorChar), action)
 }
 
 /**

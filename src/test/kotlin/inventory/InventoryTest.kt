@@ -52,7 +52,7 @@ class InventoryTest {
         val player = server.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
-            setItem(0, ItemStack(Material.STONE)) {
+            item(0, ItemStack(Material.STONE)) {
                 executed.set(true)
             }
         }.open(player)
@@ -71,7 +71,7 @@ class InventoryTest {
     fun `item placement outside slots fails`() {
         plugin.ktInventory("", 1) {
             assertFails {
-                setItem(-1, ItemStack(Material.STONE)) {
+                item(-1, ItemStack(Material.STONE)) {
                 }
             }
         }
@@ -114,11 +114,11 @@ class InventoryTest {
         val executeCount = AtomicInteger(0)
         val nestExecuteCount = AtomicInteger(0)
         plugin.ktInventory("", 1) {
-            setItem(0, ItemStack(Material.STONE)) {
+            item(0, ItemStack(Material.STONE)) {
                 executeCount.incrementAndGet()
-                setItem(0, ItemStack(Material.GRASS_BLOCK)) {
+                item(0, ItemStack(Material.GRASS_BLOCK)) {
                     nestExecuteCount.incrementAndGet()
-                    setItem(0, ItemStack(Material.COBBLESTONE))
+                    item(0, ItemStack(Material.COBBLESTONE))
                 }
             }
         }.open(player)

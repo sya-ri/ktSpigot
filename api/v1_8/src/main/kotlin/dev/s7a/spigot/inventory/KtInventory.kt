@@ -64,27 +64,6 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
     }
 
     /**
-     * アイテムを配置する
-     *
-     * @param index 配置するスロット
-     * @param itemStack アイテム
-     * @param action クリック処理 / null
-     * @since 1.0.0
-     */
-    fun setItem(index: Int, itemStack: ItemStack, action: ((InventoryClickEvent) -> Unit)? = null) {
-        if (index in bukkitInventory.contents.indices) {
-            bukkitInventory.setItem(index, itemStack)
-            if (action != null) {
-                actions[index] = action
-            } else {
-                actions.remove(index)
-            }
-        } else {
-            throw IllegalArgumentException("指定されているインデックスがインベントリの範囲外です (index: $index)")
-        }
-    }
-
-    /**
      * プレイヤーにインベントリを開かせる
      *
      * @param player プレイヤー
