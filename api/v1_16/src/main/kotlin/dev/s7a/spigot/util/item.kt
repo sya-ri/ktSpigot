@@ -22,7 +22,7 @@ val ItemMeta.customModelDataOrNull
  * @param displayName 表示名 / null
  * @param lore 説明文 / null
  * @param customModelData カスタムモデルデータ / null
- * @param altColorChar [toColor] に使う文字 / '&'
+ * @param altColorChar [color] に使う文字 / '&'
  * @param editMetaAction [ItemMeta] の変更処理 / null
  * @return [ItemStack]
  * @since 1.0.0

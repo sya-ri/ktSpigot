@@ -1,7 +1,7 @@
 package dev.s7a.spigot.inventory
 
 import dev.s7a.spigot.inventory.internal.KtInventoryHandler
-import dev.s7a.spigot.util.toColor
+import dev.s7a.spigot.util.color
 import org.bukkit.Bukkit
 import org.bukkit.inventory.Inventory
 import org.bukkit.plugin.Plugin
@@ -24,12 +24,12 @@ fun Plugin.ktInventory(bukkitInventory: Inventory, action: KtInventory.() -> Uni
  *
  * @param title タイトル
  * @param line インベントリ行数
- * @param altColorChar [title].[toColor] で使う文字 / '&'
+ * @param altColorChar [title].[color] で使う文字 / '&'
  * @param action インベントリの操作処理
  * @return [KtInventory]
  * @since 1.0.0
  */
 fun Plugin.ktInventory(title: String, line: Int = 3, altColorChar: Char? = '&', action: KtInventory.() -> Unit): KtInventory {
     require(line in 1..6)
-    return ktInventory(Bukkit.createInventory(null, line * 9, title.toColor(altColorChar)), action)
+    return ktInventory(Bukkit.createInventory(null, line * 9, title.color(altColorChar)), action)
 }

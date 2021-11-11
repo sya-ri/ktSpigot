@@ -12,5 +12,5 @@ import org.bukkit.command.CommandSender
  * @since 1.0.0
  */
 fun CommandSender.sendChatMessage(message: String, altColorChar: Char? = '&') {
-    sendMessage(message.toColor(altColorChar))
+    sendMessage(message.color(altColorChar))
 }

@@ -14,5 +14,5 @@ import org.bukkit.entity.Player
  * @since 1.0.0
  */
 fun Player.sendActionBarMessage(message: String, altColorChar: Char? = '&') {
-    spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(message.toColor(altColorChar)))
+    spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(message.color(altColorChar)))
 }
