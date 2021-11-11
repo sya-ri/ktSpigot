@@ -5,15 +5,13 @@ on:
       - master
 jobs:
   dokka:
+    if: github.repository == 'sya-ri/ktSpigot'
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository (master)
         uses: actions/checkout@v2
       - name: Clone Repository (gh-pages)
-        uses: actions/checkout@v2
-        with:
-          ref: gh-pages
-          path: dokka
+        run: git clone https://github.com/sya-ri/ktSpigot -b gh-pages dokka | mkdir dokka
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
