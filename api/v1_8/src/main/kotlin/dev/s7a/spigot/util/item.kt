@@ -76,7 +76,7 @@ inline fun itemStack(
  * @param amount アイテム数 / 1
  * @param displayName 表示名 / null
  * @param lore 説明文 / null
- * @param altColorChar [toColor] に使う文字 / '&'
+ * @param altColorChar [color] に使う文字 / '&'
  * @param editMetaAction [ItemMeta] の変更処理 / null
  * @return [ItemStack]
  * @since 1.0.0
@@ -90,8 +90,8 @@ fun itemStack(
     editMetaAction: (ItemMeta.() -> Unit)? = null,
 ): ItemStack {
     return itemStack(type, amount) {
-        setDisplayName(displayName?.toColor(altColorChar))
-        setLore(lore?.toColor(altColorChar))
+        setDisplayName(displayName?.color(altColorChar))
+        setLore(lore?.color(altColorChar))
         editMetaAction?.invoke(this)
     }
 }

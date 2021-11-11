@@ -9,7 +9,7 @@ import org.bukkit.ChatColor
  * @return 色付き文字列
  * @since 1.0.0
  */
-fun String.toColor(altColorChar: Char = '&'): String = ChatColor.translateAlternateColorCodes(altColorChar, this)
+fun String.color(altColorChar: Char = '&'): String = ChatColor.translateAlternateColorCodes(altColorChar, this)
 
 /**
  * 文字列を色付き文字列に変換する。[altColorChar] が null ならばそのままの文字列を返す
@@ -18,7 +18,7 @@ fun String.toColor(altColorChar: Char = '&'): String = ChatColor.translateAltern
  * @return 色付き文字列 もしくは そのまま
  * @since 1.0.0
  */
-fun String.toColor(altColorChar: Char?): String = altColorChar?.let(::toColor) ?: this
+fun String.color(altColorChar: Char?): String = altColorChar?.let(::color) ?: this
 
 /**
  * 文字列を色付き文字列に変換する
@@ -27,7 +27,7 @@ fun String.toColor(altColorChar: Char?): String = altColorChar?.let(::toColor) ?
  * @return 色付き文字列
  * @since 1.0.0
  */
-fun List<String>.toColor(altColorChar: Char = '&'): List<String> = map { it.toColor(altColorChar) }
+fun List<String>.color(altColorChar: Char = '&'): List<String> = map { it.color(altColorChar) }
 
 /**
  * 文字列を色付き文字列に変換する。[altColorChar] が null ならばそのままの文字列を返す
@@ -36,7 +36,7 @@ fun List<String>.toColor(altColorChar: Char = '&'): List<String> = map { it.toCo
  * @return 色付き文字列
  * @since 1.0.0
  */
-fun List<String>.toColor(altColorChar: Char?): List<String> = altColorChar?.let(::toColor) ?: this
+fun List<String>.color(altColorChar: Char?): List<String> = altColorChar?.let(::color) ?: this
 
 /**
  * 色付き文字列を文字列に変換する
@@ -44,7 +44,7 @@ fun List<String>.toColor(altColorChar: Char?): List<String> = altColorChar?.let(
  * @return 文字列
  * @since 1.0.0
  */
-fun String.toUncolor(): String = ChatColor.stripColor(this)
+fun String.uncolor(): String = ChatColor.stripColor(this)
 
 /**
  * 色付き文字列を文字列に変換する
@@ -52,4 +52,4 @@ fun String.toUncolor(): String = ChatColor.stripColor(this)
  * @return 文字列
  * @since 1.0.0
  */
-fun List<String>.toUncolor(): List<String> = map(String::toUncolor)
+fun List<String>.uncolor(): List<String> = map(String::uncolor)

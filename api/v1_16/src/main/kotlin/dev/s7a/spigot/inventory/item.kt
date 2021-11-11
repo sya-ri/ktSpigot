@@ -2,8 +2,8 @@
 
 package dev.s7a.spigot.inventory
 
+import dev.s7a.spigot.util.color
 import dev.s7a.spigot.util.itemStack
-import dev.s7a.spigot.util.toColor
 import org.bukkit.Material
 import org.bukkit.event.inventory.InventoryClickEvent
 
@@ -16,7 +16,7 @@ import org.bukkit.event.inventory.InventoryClickEvent
  * @param displayName 表示名 / null
  * @param lore 説明文 / null
  * @param customModelData カスタムモデルデータ / null
- * @param altColorChar [toColor] に使う文字 / '&'
+ * @param altColorChar [color] に使う文字 / '&'
  * @param action クリック処理 / null
  * @since 1.0.0
  */
@@ -42,7 +42,7 @@ fun KtInventory.item(
  * @param displayName 表示名 / null
  * @param lore 説明文 / null
  * @param customModelData カスタムモデルデータ / null
- * @param altColorChar [toColor] に使う文字 / '&'
+ * @param altColorChar [color] に使う文字 / '&'
  * @param action クリック処理 / null
  * @since 1.0.0
  */
@@ -68,7 +68,7 @@ fun KtInventory.item(
  * @param displayName 表示名 / null
  * @param lore 説明文 / null
  * @param customModelData カスタムモデルデータ / null
- * @param altColorChar [toColor] に使う文字 / '&'
+ * @param altColorChar [color] に使う文字 / '&'
  * @param action クリック処理 / null
  * @since 1.0.0
  */
