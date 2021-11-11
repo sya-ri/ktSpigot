@@ -11,7 +11,7 @@ jobs:
       - name: Clone Repository (master)
         uses: actions/checkout@v2
       - name: Clone Repository (gh-pages)
-        run: git clone https://github.com/sya-ri/ktSpigot -b gh-pages dokka || mkdir dokka
+        run: git clone https://github.com/sya-ri/ktSpigot -b gh-pages --depth 1 dokka || mkdir dokka
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
