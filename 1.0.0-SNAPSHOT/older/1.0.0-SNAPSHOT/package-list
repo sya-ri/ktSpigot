@@ -2,7 +2,6 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 
 module:ktSpigot
-dev.s7a.spigot
 dev.s7a.spigot.command
 dev.s7a.spigot.config
 dev.s7a.spigot.config.formatter
