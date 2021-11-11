@@ -55,3 +55,13 @@ gradlew.bat :showcase:updateCodeSnippet
 ```shell
 git clone https://github.com/sya-ri/ktSpigot.wiki wiki
 ```
+
+### ドキュメントの生成
+
+```shell
+./gradlew dokkaHtmlMultiModule
+
+gradlew.bat dokkaHtmlMultiModule
+```
+
+[Dokka](https://github.com/Kotlin/dokka) を使ってドキュメントを `dokka/` に生成します。

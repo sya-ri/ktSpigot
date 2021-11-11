@@ -1,5 +1,8 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
+import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import java.net.URL
 
 plugins {
     `maven-publish`
@@ -142,4 +145,31 @@ subprojects {
 
 tasks.withType<Jar> {
     enabled = false
+}
+
+apply(plugin = "org.jetbrains.dokka")
+
+val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
+    enabled = false
+}
+
+val dokkaHtmlPartial by tasks.getting(DokkaTaskPartial::class) {
+    moduleName.set("ktSpigot")
+    dependencies {
+        compileOnly("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
+    }
+    dokkaSourceSets {
+        named("main") {
+            subprojects.forEach {
+                if (it.projectDir.resolve("src").exists()) {
+                    sourceLink {
+                        localDirectory.set(file("${it.name}/src/main/kotlin"))
+                        remoteUrl.set(URL("https://github.com/sya-ri/ktSpigot/blob/master/api/${it.name}/src/main/kotlin"))
+                        remoteLineSuffix.set("#L")
+                    }
+                    sourceRoots.from(it.sourceSets.main.get().allSource)
+                }
+            }
+        }
+    }
 }

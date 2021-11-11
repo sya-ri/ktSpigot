@@ -1,0 +1,30 @@
+name: Dokka
+on:
+  push:
+    branches:
+      - master
+jobs:
+  dokka:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repository (master)
+        uses: actions/checkout@v2
+      - name: Clone Repository (gh-pages)
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: dokka
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 8
+          cache: gradle
+      - name: Build
+        run: ./gradlew dokkaHtmlMultiModule
+        working-directory: ./dokka
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dokka
