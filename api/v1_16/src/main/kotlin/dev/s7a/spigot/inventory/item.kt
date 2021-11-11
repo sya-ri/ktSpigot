@@ -30,7 +30,7 @@ fun KtInventory.item(
     altColorChar: Char = '&',
     action: ((InventoryClickEvent) -> Unit)? = null,
 ) {
-    setItem(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
+    item(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
 }
 
 /**
