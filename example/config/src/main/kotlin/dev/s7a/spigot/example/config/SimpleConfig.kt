@@ -37,7 +37,7 @@ object SimpleConfig : KtConfig(plugin, "simple.yml") {
     private val int5OrDefault = intValue("int5").default(0).force()
 
     override fun load() {
-        loadFromFile()
+        super.load()
         checkValues().printErrors(plugin.logger)
         println("int1: ${int1.get()} / ${int1.getValue()}")
         println("int2 (orNull): ${int2OrNull.get()} / ${int2OrNull.getValue()}")

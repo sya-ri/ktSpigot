@@ -22,7 +22,7 @@ class ConfigGeneralTest {
             val value = booleanValue("value").default(true).force()
 
             override fun load() {
-                loadFromFile()
+                super.load()
                 executed.set(true)
             }
         }
@@ -37,7 +37,7 @@ class ConfigGeneralTest {
             val value = booleanValue("value").default(true).force()
 
             override fun load() {
-                loadFromFile()
+                super.load()
                 executed.set(true)
             }
         }
