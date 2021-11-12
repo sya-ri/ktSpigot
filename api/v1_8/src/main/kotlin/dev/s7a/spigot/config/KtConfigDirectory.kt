@@ -76,7 +76,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
      */
     open fun loadAll(): List<T> {
         directory.mkdirs()
-        return directory.listFiles()?.mapNotNull(::get).orEmpty()
+        return directory.listFiles()?.filter(File::isFile)?.mapNotNull(::get).orEmpty()
     }
 
     /**
