@@ -38,6 +38,7 @@ object MapConfig : KtConfig(plugin, "map.yml") {
     private val values = section<Value>("values")
 
     override fun load() {
+        loadFromFile()
         checkValues().printErrors(plugin.logger)
         println("values: ${values.get()}")
         values.getValue()?.forEach { (_, value) ->

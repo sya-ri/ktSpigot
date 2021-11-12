@@ -70,6 +70,7 @@ class ItemConfig(private val plugin: JavaPlugin) : KtConfig(plugin, "item.yml") 
         }
 
     override fun load() {
+        loadFromFile()
         // 不正な値があったらログを流す
         checkValues().printErrors(plugin.logger)
     }
