@@ -72,7 +72,7 @@ subprojects {
         name = "ktSpigot"
         version = "${rootProject.version}(${project.name})"
         main = "dev.s7a.spigot.KtSpigot"
-        description = "Kotlin makes the Spigot library Easier"
+        description = "A Library that Simplifies Spigot with Kotlin."
         author = "sya_ri"
         website = "https://github.com/sya-ri/ktSpigot"
         apiVersion = when (project.name) {
@@ -101,8 +101,8 @@ subprojects {
                     }
                 )
                 credentials {
-                    username = System.getenv("SONATYPE_USER")
-                    password = System.getenv("SONATYPE_PASSWORD")
+                    username = project.properties["credentials.username"].toString()
+                    password = project.properties["credentials.password"].toString()
                 }
             }
         }
