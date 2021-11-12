@@ -98,6 +98,14 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
     /**
      * コンフィグを削除する
      *
+     * @param fileName ファイル名
+     * @since 1.0.0
+     */
+    fun delete(fileName: String) = delete(directory.resolve(fileName))
+
+    /**
+     * コンフィグを削除する
+     *
      * @param config コンフィグ
      * @since 1.0.0
      */
