@@ -64,7 +64,7 @@ object AdvancedConfig : KtConfig(plugin, "advanced.yml") {
     private val vector = vectorValue("vector").default(::Vector)
 
     override fun load() {
-        loadFromFile()
+        super.load()
         checkValues().printErrors(plugin.logger)
         println("enum1: ${enum1.get()} / ${enum1.getValue()}")
         println("enum1 (ignoreCase): ${enum1IgnoreCase.get()} / ${enum1IgnoreCase.getValue()}")

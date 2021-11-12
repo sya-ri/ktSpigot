@@ -49,7 +49,7 @@ abstract class KtConfig(val file: File) : KtConfigSection {
      *
      * @since 1.0.0
      */
-    protected fun loadFromFile() {
+    private fun loadFromFile() {
         if (file.exists().not()) {
             file.parentFile?.mkdirs()
             file.createNewFile()
