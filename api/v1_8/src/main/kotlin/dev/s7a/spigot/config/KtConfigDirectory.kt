@@ -27,7 +27,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
     private val files = ConcurrentHashMap<File, T>()
 
     /**
-     * コンフィグを読み込む。存在しなければ新しく作成する
+     * コンフィグを読み込む。ファイルが存在しなければ新しく作成する
      *
      * @param file ファイル
      * @return 読み込んだコンフィグ
@@ -36,7 +36,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
     operator fun get(file: File): T = files.getOrPut(file) { new(file) }
 
     /**
-     * コンフィグを読み込む。存在しなければ新しく作成する
+     * コンフィグを読み込む。ファイルが存在しなければ新しく作成する
      *
      * @param fileName ファイル名
      * @return 読み込んだコンフィグ
@@ -45,10 +45,10 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
     operator fun get(fileName: String): T = get(directory.resolve(fileName))
 
     /**
-     * コンフィグを読み込む
+     * コンフィグを読み込む。ファイルが存在しなければ何もしない
      *
      * @param file ファイル
-     * @return 読み込んだコンフィグ。存在しなければ null
+     * @return 読み込んだコンフィグ。ファイルが存在しなければ null
      * @since 1.0.0
      */
     fun getOrNull(file: File): T? = files.getOrPut(file) {
@@ -63,7 +63,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
      * コンフィグを読み込む
      *
      * @param fileName ファイル名
-     * @return 読み込んだコンフィグ。存在しなければ null
+     * @return 読み込んだコンフィグ。ファイルが存在しなければ null
      * @since 1.0.0
      */
     fun getOrNull(fileName: String): T? = getOrNull(directory.resolve(fileName))
@@ -112,10 +112,12 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
     fun delete(config: KtConfig) = delete(config.file)
 
     /**
-     * ファイルをコンフィグに変換する
+     * ファイルをコンフィグに変換する。内部で使用されるので、[get], [getOrNull] を代わりに使用してください
      *
      * @param file ファイル
      * @return コンフィグ
+     * @see get
+     * @see getOrNull
      * @since 1.0.0
      */
     protected abstract fun new(file: File): T
