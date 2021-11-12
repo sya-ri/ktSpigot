@@ -101,8 +101,8 @@ subprojects {
                     }
                 )
                 credentials {
-                    username = project.property("credentials.username").toString()
-                    password = project.property("credentials.password").toString()
+                    username = project.properties["credentials.username"].toString()
+                    password = project.properties["credentials.password"].toString()
                 }
             }
         }
