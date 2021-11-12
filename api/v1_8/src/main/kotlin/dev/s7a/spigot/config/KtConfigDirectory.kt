@@ -51,9 +51,9 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
      * @return 読み込んだコンフィグ。ファイルが存在しなければ null
      * @since 1.0.0
      */
-    fun getOrNull(file: File): T? = files.getOrPut(file) {
-        if (file.exists().not()) {
-            new(file)
+    fun getOrNull(file: File): T? = files[file] ?: run {
+        if (file.exists()) {
+            files.putIfAbsent(file, new(file))
         } else {
             null
         }
