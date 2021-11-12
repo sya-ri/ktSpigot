@@ -26,41 +26,44 @@ abstract class KtConfig(val file: File) : KtConfigSection {
     override fun fullPath(path: String) = path
 
     /**
+     * コンフィグの実際のデータ。読み込まれてなければ自動で読み込む
+     *
+     * @since 1.0.0
+     */
+    private var _bukkitConfig: YamlConfiguration? = null
+        get() /* : YamlConfiguration */ {
+            if (field == null) loadFromFile()
+            return field
+        }
+
+    /**
      * コンフィグの実際のデータ
      *
      * @since 1.0.0
      */
-    var bukkitConfig: YamlConfiguration
-        private set
+    val bukkitConfig: YamlConfiguration
+        get() = _bukkitConfig!!
 
-    init {
+    /**
+     * ファイルからコンフィグを読み込む
+     *
+     * @since 1.0.0
+     */
+    protected fun loadFromFile() {
         if (file.exists().not()) {
             file.parentFile?.mkdirs()
             file.createNewFile()
         }
-        bukkitConfig = YamlConfiguration.loadConfiguration(file)
+        _bukkitConfig = YamlConfiguration.loadConfiguration(file)
     }
 
     /**
-     * コンフィグの値を読み込む
+     * コンフィグの値を読み込む。既に読み込んでいる場合はリロードする
      *
      * @since 1.0.0
      */
     open fun load() {
-    }
-
-    /**
-     * コンフィグの値を再度読み込む
-     *
-     * @since 1.0.0
-     */
-    fun reload() {
-        if (file.exists().not()) {
-            file.parentFile?.mkdirs()
-            file.createNewFile()
-        }
-        bukkitConfig = YamlConfiguration.loadConfiguration(file)
-        load()
+        loadFromFile()
     }
 
     /**

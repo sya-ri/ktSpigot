@@ -81,7 +81,7 @@ data class TestDataClass(val int: Int, val boolean: Boolean) {
  */
 fun KtConfig.writeText(text: String) {
     file.writeText(text)
-    reload()
+    load()
 }
 
 /**
