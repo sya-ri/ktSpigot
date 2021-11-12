@@ -16,9 +16,19 @@ import kotlin.test.assertTrue
  */
 class ConfigGeneralTest {
     @Test
+    fun `lazy config load`() {
+        val file = File("build/tmp/test/config_lazy.yml")
+        file.delete()
+        val config = object : KtConfig(file) {}
+        assertFalse(file.exists())
+        config.load()
+        assertTrue(file.exists())
+    }
+
+    @Test
     fun `config can be accessed without loading`() {
         val executed = AtomicBoolean(false)
-        val tempConfig = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
+        val config = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
             val value = booleanValue("value").default(true).force()
 
             override fun load() {
@@ -27,13 +37,13 @@ class ConfigGeneralTest {
             }
         }
         assertFalse(executed.get())
-        assertTrue(tempConfig.value.getValue())
+        assertTrue(config.value.getValue())
     }
 
     @Test
     fun `config can be loaded`() {
         val executed = AtomicBoolean(false)
-        val tempConfig = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
+        val config = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
             val value = booleanValue("value").default(true).force()
 
             override fun load() {
@@ -41,9 +51,9 @@ class ConfigGeneralTest {
                 executed.set(true)
             }
         }
-        tempConfig.load()
+        config.load()
         assertTrue(executed.get())
-        assertTrue(tempConfig.value.getValue())
+        assertTrue(config.value.getValue())
     }
 
     @Test
