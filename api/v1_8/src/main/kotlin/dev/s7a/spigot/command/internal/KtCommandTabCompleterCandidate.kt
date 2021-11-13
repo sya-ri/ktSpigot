@@ -28,4 +28,14 @@ internal sealed interface KtCommandTabCompleterCandidate {
      * @since 1.0.0
      */
     class Dynamic(val action: (KtCommandTabCompleteParameter) -> Collection<String>?, override val type: KtCommandTabCompleterType) : KtCommandTabCompleterCandidate
+
+    /**
+     * [Literal], [Dynamic] で一致するものがなければ子要素として使う
+     *
+     * @see [dev.s7a.spigot.command.KtCommandTabCompleterTree.default]
+     * @since 1.0.0
+     */
+    object Default : KtCommandTabCompleterCandidate {
+        override val type = KtCommandTabCompleterType.Single
+    }
 }

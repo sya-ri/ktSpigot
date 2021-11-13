@@ -8,21 +8,24 @@ import dev.s7a.spigot.command.internal.KtCommandTabCompleterCandidate
  * @since 1.0.0
  */
 open class KtCommandTabCompleterTree internal constructor() {
-    internal val literals = mutableMapOf<KtCommandTabCompleterCandidate.Literal, KtCommandTabCompleterTree?>()
+    internal val list = mutableListOf<Pair<KtCommandTabCompleterCandidate, KtCommandTabCompleterTree?>>()
 
-    internal var dynamics = mutableMapOf<KtCommandTabCompleterCandidate.Dynamic, KtCommandTabCompleterTree?>()
+    private fun add(candidate: KtCommandTabCompleterCandidate, child: KtCommandTabCompleterTree?) {
+        list.lastOrNull()?.let { (lastCandidate) ->
+            if (lastCandidate is KtCommandTabCompleterCandidate.Default) {
+                throw IllegalStateException("既に default {} が設定されています")
+            }
+        }
+        list.add(candidate to child)
+    }
 
     private fun addLiteral(option: Collection<String>, type: KtCommandTabCompleterType, child: (KtCommandTabCompleterTree.() -> Unit)?) {
         val candidate = KtCommandTabCompleterCandidate.Literal(option.toList(), type)
-        literals[candidate] = child?.run {
-            KtCommandTabCompleterTree().apply(this)
-        }
+        add(candidate, child?.run { KtCommandTabCompleterTree().apply(this) })
     }
 
     private fun addDynamic(candidate: KtCommandTabCompleterCandidate.Dynamic, child: (KtCommandTabCompleterTree.() -> Unit)?) {
-        dynamics[candidate] = child?.run {
-            KtCommandTabCompleterTree().apply(this)
-        }
+        add(candidate, child?.run { KtCommandTabCompleterTree().apply(this) })
     }
 
     /**
@@ -89,5 +92,15 @@ open class KtCommandTabCompleterTree internal constructor() {
      */
     fun dynamic(action: (KtCommandTabCompleteParameter) -> Collection<String>?, child: KtCommandTabCompleterTree.() -> Unit) {
         addDynamic(KtCommandTabCompleterCandidate.Dynamic(action, KtCommandTabCompleterType.Single), child)
+    }
+
+    /**
+     * [literal], [dynamic] に一致するものがなければ、子要素を追加する
+     *
+     * @param child 子要素
+     * @since 1.0.0
+     */
+    fun default(child: KtCommandTabCompleterTree.() -> Unit) {
+        add(KtCommandTabCompleterCandidate.Default, KtCommandTabCompleterTree().apply(child))
     }
 }

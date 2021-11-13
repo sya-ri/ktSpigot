@@ -10,6 +10,7 @@ import kotlin.io.path.createTempFile
 import kotlin.io.path.writeText
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -83,6 +84,14 @@ class CommandTest {
                 literal("o") {
                     literal("abc", "ABC", "あいうえお")
                 }
+                default {
+                    literal("p")
+                }
+                assertFailsWith<IllegalStateException> {
+                    literal("q") {
+                        literal("r")
+                    }
+                }
             }
         }
         val command = plugin.getCommand(commandName)
@@ -116,5 +125,7 @@ class CommandTest {
         assertEquals(listOf("abc", "ABC"), command.tabComplete(player, commandName, arrayOf("o", "a")))
         assertEquals(listOf("abc", "ABC"), command.tabComplete(player, commandName, arrayOf("o", "A")))
         assertEquals(listOf("あいうえお"), command.tabComplete(player, commandName, arrayOf("o", "あ")))
+        assertEquals(listOf("p"), command.tabComplete(player, commandName, arrayOf("null", "")))
+        assertEquals(listOf("p"), command.tabComplete(player, commandName, arrayOf("q", "")))
     }
 }
