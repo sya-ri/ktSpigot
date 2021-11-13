@@ -6,7 +6,7 @@ package dev.s7a.spigot.config
  * @param T データ型
  * @since 1.0.0
  */
-sealed interface KtConfigResult<T> {
+sealed interface KtConfigResult<out T> {
     /**
      * 取得できれば値を返し、できなければ null を返す
      *
@@ -30,7 +30,7 @@ sealed interface KtConfigResult<T> {
      * @property value 値
      * @since 1.0.0
      */
-    data class Success<T>(val value: T) : KtConfigResult<T> {
+    data class Success<out T>(val value: T) : KtConfigResult<T> {
         override val orNull = value
         override fun <R> map(action: (T) -> KtConfigResult<R>) = action(value)
     }
@@ -41,7 +41,7 @@ sealed interface KtConfigResult<T> {
      * @property error エラー
      * @since 1.0.0
      */
-    data class Failure<T>(val error: KtConfigError) : KtConfigResult<T> {
+    data class Failure<out T>(val error: KtConfigError) : KtConfigResult<T> {
         override val orNull: T? = null
         override fun <R> map(action: (T) -> KtConfigResult<R>) = Failure<R>(error)
     }
