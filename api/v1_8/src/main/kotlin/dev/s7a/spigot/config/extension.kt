@@ -299,21 +299,50 @@ inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.get(path:
 /**
  * セクションの値を変更する
  *
+ * @param getAction 取得処理
  * @param block 変更処理
  * @since 1.0.0
  */
-inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.edit(block: KtConfigSectionEditor<T>.() -> Unit) {
-    val editor = KtConfigSectionEditor(config, path, T::class.java, getValue().orEmpty().toMutableMap())
+@JvmName("editMap")
+inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.edit(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
+    val editor = KtConfigSectionEditor(config, path, T::class.java, getAction().toMutableMap())
     set(editor.apply(block).toMap())
 }
 
 /**
  * セクションの値を変更し、保存する
  *
+ * @param getAction 取得処理
  * @param block 変更処理
  * @since 1.0.0
  */
-inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.editAndSave(block: KtConfigSectionEditor<T>.() -> Unit) {
-    edit(block)
+@JvmName("editAndSaveMap")
+inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.editAndSave(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
+    edit(getAction, block)
+    config.save()
+}
+
+/**
+ * リストの値を変更する
+ *
+ * @param getAction 取得処理
+ * @param block 変更処理
+ * @since 1.0.0
+ */
+@JvmName("editList")
+inline fun <reified T : KtConfigSection> KtConfigValue<List<T>>.edit(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
+    set(getAction().toMutableList().apply(block).toList())
+}
+
+/**
+ * リストの値を変更し、保存する
+ *
+ * @param getAction 取得処理
+ * @param block 変更処理
+ * @since 1.0.0
+ */
+@JvmName("editAndSaveList")
+inline fun <reified T : KtConfigSection> KtConfigValue<List<T>>.editAndSave(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
+    edit(getAction, block)
     config.save()
 }

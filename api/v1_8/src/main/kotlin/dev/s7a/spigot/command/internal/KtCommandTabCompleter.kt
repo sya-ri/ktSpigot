@@ -18,10 +18,18 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
         var excludes = listOf<String>()
         for (i in 0 until args.lastIndex) {
             val lower = args[i].lowercase()
-            val (candidate, child) = tree.literals.entries.firstOrNull { (key) ->
-                key.list.keys.contains(lower)
-            } ?: tree.dynamics.entries.firstOrNull { (key) ->
-                key.action(parameter)?.map(String::lowercase)?.contains(lower) ?: false
+            val (candidate, child) = tree.list.firstOrNull { (candidate) ->
+                when (candidate) {
+                    is KtCommandTabCompleterCandidate.Literal -> {
+                        candidate.list.keys.contains(lower)
+                    }
+                    is KtCommandTabCompleterCandidate.Dynamic -> {
+                        candidate.action(parameter)?.map(String::lowercase)?.contains(lower) ?: false
+                    }
+                    is KtCommandTabCompleterCandidate.Default -> {
+                        true
+                    }
+                }
             } ?: return emptyList()
             when (candidate.type) {
                 KtCommandTabCompleterType.Single -> {
@@ -38,19 +46,24 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
         }
         val argLastLower = args.last().lowercase()
         return buildList {
-            tree.literals.keys.forEach { literal ->
-                literal.list.forEach { (lower, origin) ->
-                    if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
-                        addAll(origin)
+            tree.list.forEach { (candidate) ->
+                when (candidate) {
+                    is KtCommandTabCompleterCandidate.Literal -> {
+                        candidate.list.forEach { (lower, origin) ->
+                            if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
+                                addAll(origin)
+                            }
+                        }
                     }
-                }
-            }
-            tree.dynamics.keys.forEach { dynamic ->
-                dynamic.action(parameter)?.forEach { origin ->
-                    val lower = origin.lowercase()
-                    if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
-                        add(origin)
+                    is KtCommandTabCompleterCandidate.Dynamic -> {
+                        candidate.action(parameter)?.forEach { origin ->
+                            val lower = origin.lowercase()
+                            if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
+                                add(origin)
+                            }
+                        }
                     }
+                    else -> {}
                 }
             }
         }
