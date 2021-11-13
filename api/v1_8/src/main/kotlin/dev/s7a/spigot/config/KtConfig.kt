@@ -3,6 +3,7 @@ package dev.s7a.spigot.config
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+import java.io.FileNotFoundException
 
 /**
  * コンフィグ
@@ -50,9 +51,14 @@ abstract class KtConfig(val file: File) : KtConfigSection {
      * @since 1.0.0
      */
     private fun loadFromFile() {
-        if (file.exists().not()) {
-            file.parentFile?.mkdirs()
-            file.createNewFile()
+        when {
+            file.exists().not() -> {
+                file.parentFile?.mkdirs()
+                file.createNewFile()
+            }
+            file.isDirectory -> {
+                throw FileNotFoundException("${file.path} (Is a directory)")
+            }
         }
         _bukkitConfig = YamlConfiguration.loadConfiguration(file)
     }
