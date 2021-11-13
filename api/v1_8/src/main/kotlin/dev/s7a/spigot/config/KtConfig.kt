@@ -1,8 +1,10 @@
 package dev.s7a.spigot.config
 
+import dev.s7a.spigot.util.internal.LazyMutable
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+import java.io.FileNotFoundException
 
 /**
  * コンフィグ
@@ -26,35 +28,29 @@ abstract class KtConfig(val file: File) : KtConfigSection {
     override fun fullPath(path: String) = path
 
     /**
-     * コンフィグの実際のデータ。読み込まれてなければ自動で読み込む
-     *
-     * @since 1.0.0
-     */
-    private var _bukkitConfig: YamlConfiguration? = null
-        get() /* : YamlConfiguration */ {
-            if (field == null) loadFromFile()
-            return field
-        }
-
-    /**
      * コンフィグの実際のデータ
      *
      * @since 1.0.0
      */
-    val bukkitConfig: YamlConfiguration
-        get() = _bukkitConfig!!
+    var bukkitConfig by LazyMutable { loadFromFile() }
+        private set
 
     /**
      * ファイルからコンフィグを読み込む
      *
      * @since 1.0.0
      */
-    private fun loadFromFile() {
-        if (file.exists().not()) {
-            file.parentFile?.mkdirs()
-            file.createNewFile()
+    private fun loadFromFile(): YamlConfiguration {
+        when {
+            file.exists().not() -> {
+                file.parentFile?.mkdirs()
+                file.createNewFile()
+            }
+            file.isDirectory -> {
+                throw FileNotFoundException("${file.path} (Is a directory)")
+            }
         }
-        _bukkitConfig = YamlConfiguration.loadConfiguration(file)
+        return YamlConfiguration.loadConfiguration(file)
     }
 
     /**
@@ -63,7 +59,7 @@ abstract class KtConfig(val file: File) : KtConfigSection {
      * @since 1.0.0
      */
     open fun load() {
-        loadFromFile()
+        bukkitConfig = loadFromFile()
     }
 
     /**

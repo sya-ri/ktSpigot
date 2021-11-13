@@ -4,8 +4,10 @@ import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.booleanValue
 import dev.s7a.spigot.config.intValue
 import java.io.File
+import java.io.FileNotFoundException
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.Test
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -16,24 +18,9 @@ import kotlin.test.assertTrue
  */
 class ConfigGeneralTest {
     @Test
-    fun `config can be accessed without loading`() {
-        val executed = AtomicBoolean(false)
-        val tempConfig = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
-            val value = booleanValue("value").default(true).force()
-
-            override fun load() {
-                super.load()
-                executed.set(true)
-            }
-        }
-        assertFalse(executed.get())
-        assertTrue(tempConfig.value.getValue())
-    }
-
-    @Test
     fun `config can be loaded`() {
         val executed = AtomicBoolean(false)
-        val tempConfig = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
+        val config = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
             val value = booleanValue("value").default(true).force()
 
             override fun load() {
@@ -41,9 +28,9 @@ class ConfigGeneralTest {
                 executed.set(true)
             }
         }
-        tempConfig.load()
+        config.load()
         assertTrue(executed.get())
-        assertTrue(tempConfig.value.getValue())
+        assertTrue(config.value.getValue())
     }
 
     @Test
@@ -61,5 +48,42 @@ class ConfigGeneralTest {
             TestConfig.load()
             assertTrue(exists()) // 値を設定して保存すれば、リロードすると true
         }
+    }
+
+    @Test
+    fun `config can be accessed without loading`() {
+        val executed = AtomicBoolean(false)
+        val config = object : KtConfig(File("build/tmp/test/config_temp.yml")) {
+            val value = booleanValue("value").default(true).force()
+
+            override fun load() {
+                super.load()
+                executed.set(true)
+            }
+        }
+        assertFalse(executed.get())
+        assertTrue(config.value.getValue())
+    }
+
+    @Test
+    fun `lazy config load`() {
+        val file = File("build/tmp/test/config_lazy.yml")
+        file.delete()
+        val config = object : KtConfig(file) {}
+        assertFalse(file.exists())
+        config.load()
+        assertTrue(file.exists())
+    }
+
+    @Test
+    fun `config is directory`() {
+        val file = File("build/tmp/test/test_directory")
+        file.delete()
+        file.mkdir()
+        val config = object : KtConfig(file) {
+            val int = intValue("value").nullable()
+        }
+        assertFailsWith<FileNotFoundException> { config.load() }
+        assertFailsWith<FileNotFoundException> { config.int.setAndSave(5) }
     }
 }
