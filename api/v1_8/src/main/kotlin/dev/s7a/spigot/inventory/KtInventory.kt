@@ -5,15 +5,16 @@ import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.Inventory
+import org.bukkit.inventory.ItemStack
 
 /**
  * インベントリ
  *
  * @property handler イベントハンドラー
- * @param bukkitInventory インベントリ
+ * @property bukkitInventory インベントリ
  * @since 1.0.0
  */
-class KtInventory internal constructor(private val handler: KtInventoryHandler, bukkitInventory: Inventory) : Inventory by bukkitInventory {
+class KtInventory internal constructor(private val handler: KtInventoryHandler, val bukkitInventory: Inventory) {
     /**
      * クリック時の処理
      *

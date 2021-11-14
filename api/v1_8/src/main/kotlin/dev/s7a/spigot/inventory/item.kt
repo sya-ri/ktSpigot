@@ -17,8 +17,8 @@ import org.bukkit.inventory.ItemStack
  * @since 1.0.0
  */
 fun KtInventory.item(index: Int, itemStack: ItemStack, action: ((InventoryClickEvent) -> Unit)? = null) {
-    if (index in contents.indices) {
-        setItem(index, itemStack)
+    if (index in bukkitInventory.contents.indices) {
+        bukkitInventory.setItem(index, itemStack)
         if (action != null) {
             actions[index] = action
         } else {
