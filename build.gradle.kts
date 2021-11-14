@@ -2,14 +2,6 @@ import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.dokka.versioning.VersioningConfiguration
-import org.jetbrains.dokka.versioning.VersioningPlugin
-
-buildscript {
-    dependencies {
-        classpath("org.jetbrains.dokka:versioning-plugin:1.5.31")
-    }
-}
 
 plugins {
     kotlin("jvm") version "1.5.31"
@@ -108,10 +100,18 @@ val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
     dependencies {
         dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.5.31")
     }
-    pluginConfiguration<VersioningPlugin, VersioningConfiguration> {
-        this.version = version
-        olderVersionsDir = dokkaDir
-    }
+    pluginsMapConfiguration.set(
+        mapOf(
+            "org.jetbrains.dokka.versioning.VersioningPlugin" to (
+                """
+                {
+                    "version": "$version",
+                    "olderVersionsDir": "$dokkaDir"
+                }
+                """.trimIndent()
+            )
+        )
+    )
 }
 
 /**
