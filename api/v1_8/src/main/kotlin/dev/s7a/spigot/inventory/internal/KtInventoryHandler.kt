@@ -1,6 +1,7 @@
 package dev.s7a.spigot.inventory.internal
 
 import dev.s7a.spigot.inventory.KtInventory
+import dev.s7a.spigot.listener.registerListener
 import dev.s7a.spigot.util.VirtualPlayer
 import dev.s7a.spigot.util.VirtualPlayer.Companion.toVirtual
 import org.bukkit.entity.Player
@@ -20,7 +21,7 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
     private val players = mutableMapOf<VirtualPlayer, KtInventory>()
 
     init {
-        plugin.server.pluginManager.registerEvents(this, plugin)
+        plugin.registerListener(this)
     }
 
     /**
