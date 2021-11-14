@@ -6,6 +6,7 @@ import dev.s7a.spigot.command.KtCommandTabCompleterType
 import dev.s7a.spigot.command.ktCommand
 import randomString
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.io.path.createTempFile
 import kotlin.io.path.writeText
 import kotlin.test.Test
@@ -127,5 +128,48 @@ class CommandTest {
         assertEquals(listOf("あいうえお"), command.tabComplete(player, commandName, arrayOf("o", "あ")))
         assertEquals(listOf("p"), command.tabComplete(player, commandName, arrayOf("null", "")))
         assertEquals(listOf("p"), command.tabComplete(player, commandName, arrayOf("q", "")))
+    }
+
+    @Test
+    fun `command setting can be overwrote`() {
+        val commandName = randomString()
+        val descriptionFile = createTempFile()
+        descriptionFile.writeText(
+            """
+                name: MockPlugin
+                version: 1.0.0
+                main: ${MockPlugin::class.java.name}
+                commands:
+                  $commandName: {}
+            """.trimIndent()
+        )
+        val plugin = MockBukkit.loadWith(MockPlugin::class.java, descriptionFile.toFile())
+        val executeCount1 = AtomicInteger(0)
+        val executeCount2 = AtomicInteger(0)
+        plugin.ktCommand(commandName) {
+            execute {
+                executeCount1.incrementAndGet()
+                tabComplete {
+                    literal("after")
+                }
+                execute {
+                    executeCount2.incrementAndGet()
+                }
+            }
+            tabComplete {
+                literal("before")
+            }
+        }
+        val player = server.addPlayer()
+        val command = plugin.getCommand(commandName)
+        assertNotNull(command)
+        assertEquals(listOf("before"), command.tabComplete(player, commandName, arrayOf("")))
+        assertTrue(player.performCommand(commandName))
+        assertEquals(1, executeCount1.get())
+        assertEquals(0, executeCount2.get())
+        assertEquals(listOf("after"), command.tabComplete(player, commandName, arrayOf("")))
+        assertTrue(player.performCommand(commandName))
+        assertEquals(1, executeCount1.get())
+        assertEquals(1, executeCount2.get())
     }
 }
