@@ -1,7 +1,9 @@
 package dev.s7a.spigot.inventory.internal
 
 import dev.s7a.spigot.inventory.KtInventory
-import dev.s7a.spigot.listener.registerListener
+import dev.s7a.spigot.util.VirtualPlayer
+import dev.s7a.spigot.util.VirtualPlayer.Companion.toVirtual
+import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -16,7 +18,18 @@ import org.bukkit.plugin.Plugin
  */
 internal class KtInventoryHandler(plugin: Plugin) : Listener {
     init {
-        plugin.registerListener(this)
+        plugin.server.pluginManager.registerEvents(this, plugin)
+    }
+
+    /**
+     * インベントリを開かせる
+     *
+     * @param player 開くプレイヤー
+     * @param inventory 開くインベントリ
+     * @since 1.0.0
+     */
+    internal fun open(player: Player, inventory: KtInventory) {
+        player.openInventory(inventory)
     }
 
     @EventHandler
