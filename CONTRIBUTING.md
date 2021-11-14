@@ -45,9 +45,9 @@ gradlew.bat dependencyUpdates
 ### コードスニペットの更新
 
 ```shell
-./gradlew :showcase:updateCodeSnippet
+./gradlew updateCodeSnippet
 
-gradlew.bat :showcase:updateCodeSnippet
+gradlew.bat updateCodeSnippet
 ```
 
 `.md` のコードスニペットを更新します。事前に `wiki/` をクローンしてください。

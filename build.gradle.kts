@@ -123,3 +123,7 @@ fun isNonStableVersion(version: String): Boolean {
     val isStable = stableKeyword || regex.matches(version)
     return isStable.not()
 }
+
+task("updateCodeSnippet") {
+    dependsOn(":showcase:updateCodeSnippet")
+}
