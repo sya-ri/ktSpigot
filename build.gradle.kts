@@ -102,14 +102,12 @@ val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
     }
     pluginsMapConfiguration.set(
         mapOf(
-            "org.jetbrains.dokka.versioning.VersioningPlugin" to (
-                """
+            "org.jetbrains.dokka.versioning.VersioningPlugin" to """
                 {
                     "version": "$version",
                     "olderVersionsDir": "$dokkaDir"
                 }
                 """.trimIndent()
-            )
         )
     )
 }
