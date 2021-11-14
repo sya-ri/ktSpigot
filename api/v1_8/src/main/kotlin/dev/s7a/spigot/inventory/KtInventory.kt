@@ -69,6 +69,6 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @since 1.0.0
      */
     fun open(player: Player) {
-        handler.open(player, this)
+        player.openInventory(this)
     }
 }
