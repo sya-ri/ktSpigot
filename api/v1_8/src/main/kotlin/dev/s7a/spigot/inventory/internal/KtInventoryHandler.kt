@@ -17,8 +17,6 @@ import org.bukkit.plugin.Plugin
  * @since 1.0.0
  */
 internal class KtInventoryHandler(plugin: Plugin) : Listener {
-    private val players = mutableMapOf<VirtualPlayer, KtInventory>()
-
     init {
         plugin.server.pluginManager.registerEvents(this, plugin)
     }
@@ -31,20 +29,12 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
      * @since 1.0.0
      */
     internal fun open(player: Player, inventory: KtInventory) {
-        val virtualPlayer = player.toVirtual()
-        players[virtualPlayer] = inventory
-        player.openInventory(inventory.bukkitInventory)
+        player.openInventory(inventory)
     }
 
     @EventHandler
     fun on(event: InventoryClickEvent) {
-        val player = event.whoClicked as? Player ?: return
-        val virtualPlayer = player.toVirtual()
-        val inventory = players[virtualPlayer] ?: return
-        if (inventory.bukkitInventory != event.inventory) {
-            players.remove(virtualPlayer)
-            return
-        }
+        val inventory = event.inventory as? KtInventory ?: return
         if (inventory.isCancel) {
             event.isCancelled = true
         }
@@ -54,12 +44,8 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
 
     @EventHandler
     fun on(event: InventoryCloseEvent) {
-        val player = event.player as? Player ?: return
-        val virtualPlayer = player.toVirtual()
-        val inventory = players.remove(virtualPlayer) ?: return
-        if (inventory.bukkitInventory == event.inventory) {
-            inventory.onClose?.invoke(event)
-        }
+        val inventory = event.inventory as? KtInventory ?: return
+        inventory.onClose?.invoke(event)
     }
 
     companion object {

@@ -1,6 +1,8 @@
 package dev.s7a.spigot.example.command
 
 import dev.s7a.spigot.command.Dynamics
+import dev.s7a.spigot.command.KtCommandTabCompleteParameter
+import dev.s7a.spigot.command.KtCommandTabCompleterTree
 import dev.s7a.spigot.command.KtCommandTabCompleterType
 import dev.s7a.spigot.command.Literals
 import dev.s7a.spigot.command.ktCommand
@@ -18,7 +20,7 @@ fun JavaPlugin.exampleCommand() {
         tabComplete {
             // プレイヤーからプレイヤーへテレポートします
             literal("teleport", "tp") {
-                dynamic(Dynamics.OnlinePlayers) {
+                dynamicDefault(Dynamics.OnlinePlayers) {
                     dynamic(Dynamics.OnlinePlayers)
                 }
             }
@@ -28,13 +30,13 @@ fun JavaPlugin.exampleCommand() {
             }
             // 指定した座標にブロックを設置します
             literal("setblock") {
-                dynamic({ (sender) ->
+                dynamicDefault({ (sender) ->
                     (sender as? Player)?.location?.blockX?.toString()?.let(::listOf)
                 }) {
-                    dynamic({ (sender) ->
+                    dynamicDefault({ (sender) ->
                         (sender as? Player)?.location?.blockY?.toString()?.let(::listOf)
                     }) {
-                        dynamic({ (sender) ->
+                        dynamicDefault({ (sender) ->
                             (sender as? Player)?.location?.blockZ?.toString()?.let(::listOf)
                         }) {
                             literal(Literals.Blocks)
@@ -128,4 +130,12 @@ fun JavaPlugin.exampleCommand() {
             }
         }
     }
+}
+
+/**
+ * [KtCommandTabCompleterTree.dynamic] [KtCommandTabCompleterTree.default] を同時に登録する
+ */
+private fun KtCommandTabCompleterTree.dynamicDefault(action: (KtCommandTabCompleteParameter) -> Collection<String>?, child: KtCommandTabCompleterTree.() -> Unit) {
+    dynamic(action, child)
+    default(child)
 }
