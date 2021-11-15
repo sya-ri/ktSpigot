@@ -330,7 +330,7 @@ inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.editAndSa
  * @since 1.0.0
  */
 @JvmName("editList")
-inline fun <reified T : KtConfigSection> KtConfigValue<List<T>>.edit(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
+inline fun <reified T> KtConfigValue<List<T>>.edit(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
     set(getAction().toMutableList().apply(block).toList())
 }
 
@@ -342,7 +342,7 @@ inline fun <reified T : KtConfigSection> KtConfigValue<List<T>>.edit(getAction: 
  * @since 1.0.0
  */
 @JvmName("editAndSaveList")
-inline fun <reified T : KtConfigSection> KtConfigValue<List<T>>.editAndSave(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
+inline fun <reified T> KtConfigValue<List<T>>.editAndSave(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
     edit(getAction, block)
     config.save()
 }
