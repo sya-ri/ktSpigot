@@ -5,7 +5,6 @@ package dev.s7a.spigot.inventory
 import dev.s7a.spigot.util.color
 import dev.s7a.spigot.util.itemStack
 import org.bukkit.Material
-import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.ItemStack
 
 /**
@@ -16,7 +15,7 @@ import org.bukkit.inventory.ItemStack
  * @param action クリック処理 / null
  * @since 1.0.0
  */
-fun KtInventory.item(index: Int, itemStack: ItemStack, action: ((InventoryClickEvent) -> Unit)? = null) {
+fun KtInventory.item(index: Int, itemStack: ItemStack, action: InventoryClickEventHandler? = null) {
     if (index in bukkitInventory.contents.indices) {
         bukkitInventory.setItem(index, itemStack)
         if (action != null) {
@@ -37,7 +36,7 @@ fun KtInventory.item(index: Int, itemStack: ItemStack, action: ((InventoryClickE
  * @param action クリック処理 / null
  * @since 1.0.0
  */
-fun KtInventory.item(index: Iterable<Int>, itemStack: ItemStack, action: ((InventoryClickEvent) -> Unit)? = null) {
+fun KtInventory.item(index: Iterable<Int>, itemStack: ItemStack, action: InventoryClickEventHandler? = null) {
     index.forEach {
         item(it, itemStack, action)
     }
@@ -51,7 +50,7 @@ fun KtInventory.item(index: Iterable<Int>, itemStack: ItemStack, action: ((Inven
  * @param action クリック処理 / null
  * @since 1.0.0
  */
-fun KtInventory.item(index: IntRange, itemStack: ItemStack, action: ((InventoryClickEvent) -> Unit)? = null) {
+fun KtInventory.item(index: IntRange, itemStack: ItemStack, action: InventoryClickEventHandler? = null) {
     item(index.toList(), itemStack, action)
 }
 
@@ -74,7 +73,7 @@ fun KtInventory.item(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char = '&',
-    action: ((InventoryClickEvent) -> Unit)? = null,
+    action: InventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, altColorChar), action)
 }
@@ -98,7 +97,7 @@ fun KtInventory.item(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char = '&',
-    action: ((InventoryClickEvent) -> Unit)? = null,
+    action: InventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, altColorChar), action)
 }
@@ -122,7 +121,7 @@ fun KtInventory.item(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char = '&',
-    action: ((InventoryClickEvent) -> Unit)? = null,
+    action: InventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, altColorChar), action)
 }

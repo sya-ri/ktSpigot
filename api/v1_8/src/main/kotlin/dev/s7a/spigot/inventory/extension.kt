@@ -3,8 +3,16 @@ package dev.s7a.spigot.inventory
 import dev.s7a.spigot.inventory.internal.KtInventoryHandler
 import dev.s7a.spigot.util.color
 import org.bukkit.Bukkit
+import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.inventory.Inventory
 import org.bukkit.plugin.Plugin
+
+/**
+ * [InventoryClickEvent] のハンドリング処理
+ *
+ * @since 1.0.0
+ */
+typealias InventoryClickEventHandler = (InventoryClickEvent) -> Unit
 
 /**
  * ktSpigot を使ってインベントリを操作する

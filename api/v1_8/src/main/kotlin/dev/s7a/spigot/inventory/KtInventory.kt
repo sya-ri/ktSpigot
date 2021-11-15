@@ -2,7 +2,6 @@ package dev.s7a.spigot.inventory
 
 import dev.s7a.spigot.inventory.internal.KtInventoryHandler
 import org.bukkit.entity.Player
-import org.bukkit.event.inventory.InventoryClickEvent
 import org.bukkit.event.inventory.InventoryCloseEvent
 import org.bukkit.inventory.Inventory
 
@@ -19,7 +18,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      *
      * @since 1.0.0
      */
-    internal var onClick: ((InventoryClickEvent) -> Unit)? = null
+    internal var onClick: InventoryClickEventHandler? = null
 
     /**
      * 閉じる時の処理
@@ -33,7 +32,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      *
      * @since 1.0.0
      */
-    internal val actions = mutableMapOf<Int, (InventoryClickEvent) -> Unit>()
+    internal val actions = mutableMapOf<Int, InventoryClickEventHandler>()
 
     /**
      * デフォルトでクリックイベントをキャンセルする
@@ -48,7 +47,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @param action 処理
      * @since 1.0.0
      */
-    fun onClick(action: (InventoryClickEvent) -> Unit) {
+    fun onClick(action: InventoryClickEventHandler) {
         onClick = action
     }
 
