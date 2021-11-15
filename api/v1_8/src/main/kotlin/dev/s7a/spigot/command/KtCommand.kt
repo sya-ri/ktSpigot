@@ -21,7 +21,7 @@ class KtCommand internal constructor() : CommandExecutor, TabCompleter {
      * @param action タブ補完処理
      * @since 1.0.0
      */
-    fun tabComplete(action: KtCommandTabCompleterTree.() -> Unit) {
+    fun tabComplete(action: KtCommandTabCompleteBuilder) {
         tabCompleter = KtCommandTabCompleter().apply(action)
     }
 

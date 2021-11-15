@@ -19,12 +19,12 @@ open class KtCommandTabCompleterTree internal constructor() {
         list.add(candidate to child)
     }
 
-    private fun addLiteral(option: Collection<String>, type: KtCommandTabCompleterType, child: (KtCommandTabCompleterTree.() -> Unit)?) {
+    private fun addLiteral(option: Collection<String>, type: KtCommandTabCompleterType, child: KtCommandTabCompleteBuilder?) {
         val candidate = KtCommandTabCompleterCandidate.Literal(option.toList(), type)
         add(candidate, child?.run { KtCommandTabCompleterTree().apply(this) })
     }
 
-    private fun addDynamic(candidate: KtCommandTabCompleterCandidate.Dynamic, child: (KtCommandTabCompleterTree.() -> Unit)?) {
+    private fun addDynamic(candidate: KtCommandTabCompleterCandidate.Dynamic, child: KtCommandTabCompleteBuilder?) {
         add(candidate, child?.run { KtCommandTabCompleterTree().apply(this) })
     }
 
@@ -57,7 +57,7 @@ open class KtCommandTabCompleterTree internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun literal(vararg option: String, child: KtCommandTabCompleterTree.() -> Unit) {
+    fun literal(vararg option: String, child: KtCommandTabCompleteBuilder) {
         literal(option.toList(), child)
     }
 
@@ -68,7 +68,7 @@ open class KtCommandTabCompleterTree internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun literal(option: Collection<String>, child: KtCommandTabCompleterTree.() -> Unit) {
+    fun literal(option: Collection<String>, child: KtCommandTabCompleteBuilder) {
         addLiteral(option, KtCommandTabCompleterType.Single, child)
     }
 
@@ -90,7 +90,7 @@ open class KtCommandTabCompleterTree internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun dynamic(action: KtCommandTabCompleteAction, child: KtCommandTabCompleterTree.() -> Unit) {
+    fun dynamic(action: KtCommandTabCompleteAction, child: KtCommandTabCompleteBuilder) {
         addDynamic(KtCommandTabCompleterCandidate.Dynamic(action, KtCommandTabCompleterType.Single), child)
     }
 
@@ -100,7 +100,7 @@ open class KtCommandTabCompleterTree internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun default(child: KtCommandTabCompleterTree.() -> Unit) {
+    fun default(child: KtCommandTabCompleteBuilder) {
         add(KtCommandTabCompleterCandidate.Default, KtCommandTabCompleterTree().apply(child))
     }
 }

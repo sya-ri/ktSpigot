@@ -3,6 +3,13 @@ package dev.s7a.spigot.command
 import org.bukkit.plugin.java.JavaPlugin
 
 /**
+ * タブ補完を定義する処理
+ *
+ * @since 1.0.0
+ */
+typealias KtCommandTabCompleteBuilder = KtCommandTabCompleterTree.() -> Unit
+
+/**
  * ktSpigot を使ってコマンドを登録する
  *
  * @param name コマンド名
