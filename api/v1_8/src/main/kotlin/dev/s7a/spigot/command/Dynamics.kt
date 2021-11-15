@@ -17,7 +17,7 @@ object Dynamics {
      * @see Bukkit.getOnlinePlayers
      * @since 1.0.0
      */
-    val OnlinePlayers: (KtCommandTabCompleteParameter) -> List<String> = { Bukkit.getOnlinePlayers().map(Player::getName) }
+    val OnlinePlayers = KtCommandTabCompleteAction { Bukkit.getOnlinePlayers().map(Player::getName) }
 
     /**
      * オフラインプレイヤー
@@ -25,5 +25,5 @@ object Dynamics {
      * @see Bukkit.getOfflinePlayers
      * @since 1.0.0
      */
-    val OfflinePlayers: (KtCommandTabCompleteParameter) -> List<String> = { Bukkit.getOfflinePlayers().mapNotNull(OfflinePlayer::getName) }
+    val OfflinePlayers = KtCommandTabCompleteAction { Bukkit.getOfflinePlayers().mapNotNull(OfflinePlayer::getName) }
 }

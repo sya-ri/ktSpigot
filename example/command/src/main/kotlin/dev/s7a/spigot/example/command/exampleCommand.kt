@@ -1,6 +1,7 @@
 package dev.s7a.spigot.example.command
 
 import dev.s7a.spigot.command.Dynamics
+import dev.s7a.spigot.command.KtCommandTabCompleteAction
 import dev.s7a.spigot.command.KtCommandTabCompleteParameter
 import dev.s7a.spigot.command.KtCommandTabCompleterTree
 import dev.s7a.spigot.command.KtCommandTabCompleterType
@@ -135,7 +136,7 @@ fun JavaPlugin.exampleCommand() {
 /**
  * [KtCommandTabCompleterTree.dynamic] [KtCommandTabCompleterTree.default] を同時に登録する
  */
-private fun KtCommandTabCompleterTree.dynamicDefault(action: (KtCommandTabCompleteParameter) -> Collection<String>?, child: KtCommandTabCompleterTree.() -> Unit) {
+private fun KtCommandTabCompleterTree.dynamicDefault(action: KtCommandTabCompleteAction, child: KtCommandTabCompleterTree.() -> Unit) {
     dynamic(action, child)
     default(child)
 }

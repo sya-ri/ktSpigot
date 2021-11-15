@@ -79,7 +79,7 @@ open class KtCommandTabCompleterTree internal constructor() {
      * @param type 補完方式
      * @since 1.0.0
      */
-    fun dynamic(action: (KtCommandTabCompleteParameter) -> Collection<String>?, type: KtCommandTabCompleterType = KtCommandTabCompleterType.Single) {
+    fun dynamic(action: KtCommandTabCompleteAction, type: KtCommandTabCompleterType = KtCommandTabCompleterType.Single) {
         addDynamic(KtCommandTabCompleterCandidate.Dynamic(action, type), null)
     }
 
@@ -90,7 +90,7 @@ open class KtCommandTabCompleterTree internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun dynamic(action: (KtCommandTabCompleteParameter) -> Collection<String>?, child: KtCommandTabCompleterTree.() -> Unit) {
+    fun dynamic(action: KtCommandTabCompleteAction, child: KtCommandTabCompleterTree.() -> Unit) {
         addDynamic(KtCommandTabCompleterCandidate.Dynamic(action, KtCommandTabCompleterType.Single), child)
     }
 
