@@ -23,13 +23,20 @@ val ItemMeta.loreOrNull: List<String>?
     get() = if (hasLore()) lore else null
 
 /**
+ * [ItemMeta] を変更する処理
+ *
+ * @since 1.0.0
+ */
+typealias ItemMetaEditAction = ItemMeta.() -> Unit
+
+/**
  * [ItemMeta] を変更する
  *
  * @param action [ItemMeta] の変更処理
  * @return [ItemMeta] を変更できたら true
  * @since 1.0.0
  */
-inline fun ItemStack.editItemMeta(action: ItemMeta.() -> Unit): Boolean {
+inline fun ItemStack.editItemMeta(action: ItemMetaEditAction): Boolean {
     itemMeta = itemMeta?.apply(action) ?: return false
     return true
 }
@@ -62,7 +69,7 @@ inline fun <reified T : ItemMeta> ItemStack.editItemMeta(action: T.() -> Unit): 
 inline fun itemStack(
     type: Material,
     amount: Int = 1,
-    editMetaAction: ItemMeta.() -> Unit,
+    editMetaAction: ItemMetaEditAction,
 ): ItemStack {
     return ItemStack(type, amount).apply {
         editItemMeta(editMetaAction)
@@ -87,7 +94,7 @@ fun itemStack(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char? = '&',
-    editMetaAction: (ItemMeta.() -> Unit)? = null,
+    editMetaAction: ItemMetaEditAction? = null,
 ): ItemStack {
     return itemStack(type, amount) {
         setDisplayName(displayName?.color(altColorChar))

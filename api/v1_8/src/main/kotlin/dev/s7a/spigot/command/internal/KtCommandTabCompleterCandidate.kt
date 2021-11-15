@@ -1,5 +1,6 @@
 package dev.s7a.spigot.command.internal
 
+import dev.s7a.spigot.command.KtCommandTabCompleteAction
 import dev.s7a.spigot.command.KtCommandTabCompleteParameter
 import dev.s7a.spigot.command.KtCommandTabCompleterType
 
@@ -27,7 +28,7 @@ internal sealed interface KtCommandTabCompleterCandidate {
      * @see [dev.s7a.spigot.command.KtCommandTabCompleterTree.dynamic]
      * @since 1.0.0
      */
-    class Dynamic(val action: (KtCommandTabCompleteParameter) -> Collection<String>?, override val type: KtCommandTabCompleterType) : KtCommandTabCompleterCandidate
+    class Dynamic(val action: KtCommandTabCompleteAction, override val type: KtCommandTabCompleterType) : KtCommandTabCompleterCandidate
 
     /**
      * [Literal], [Dynamic] で一致するものがなければ子要素として使う

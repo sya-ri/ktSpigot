@@ -5,7 +5,6 @@ package dev.s7a.spigot.inventory
 import dev.s7a.spigot.util.color
 import dev.s7a.spigot.util.itemStack
 import org.bukkit.Material
-import org.bukkit.event.inventory.InventoryClickEvent
 
 /**
  * アイテムを配置する
@@ -28,7 +27,7 @@ fun KtInventory.item(
     lore: List<String>? = null,
     customModelData: Int? = null,
     altColorChar: Char = '&',
-    action: ((InventoryClickEvent) -> Unit)? = null,
+    action: InventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
 }
@@ -54,7 +53,7 @@ fun KtInventory.item(
     lore: List<String>? = null,
     customModelData: Int? = null,
     altColorChar: Char = '&',
-    action: ((InventoryClickEvent) -> Unit)? = null,
+    action: InventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
 }
@@ -80,7 +79,7 @@ fun KtInventory.item(
     lore: List<String>? = null,
     customModelData: Int? = null,
     altColorChar: Char = '&',
-    action: ((InventoryClickEvent) -> Unit)? = null,
+    action: InventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
 }

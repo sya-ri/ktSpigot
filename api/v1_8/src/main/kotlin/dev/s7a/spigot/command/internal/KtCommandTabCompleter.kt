@@ -24,7 +24,7 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
                         candidate.list.keys.contains(lower)
                     }
                     is KtCommandTabCompleterCandidate.Dynamic -> {
-                        candidate.action(parameter)?.map(String::lowercase)?.contains(lower) ?: false
+                        candidate.action.complete(parameter)?.map(String::lowercase)?.contains(lower) ?: false
                     }
                     is KtCommandTabCompleterCandidate.Default -> {
                         true
@@ -56,7 +56,7 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
                         }
                     }
                     is KtCommandTabCompleterCandidate.Dynamic -> {
-                        candidate.action(parameter)?.forEach { origin ->
+                        candidate.action.complete(parameter)?.forEach { origin ->
                             val lower = origin.lowercase()
                             if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
                                 add(origin)
