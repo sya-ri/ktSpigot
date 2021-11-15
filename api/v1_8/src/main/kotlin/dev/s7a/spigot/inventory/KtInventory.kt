@@ -25,7 +25,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      *
      * @since 1.0.0
      */
-    internal var onClose: ((InventoryCloseEvent) -> Unit)? = null
+    internal var onClose: InventoryCloseEventHandler? = null
 
     /**
      * クリックアクション一覧
@@ -57,7 +57,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @param action 処理
      * @since 1.0.0
      */
-    fun onClose(action: (InventoryCloseEvent) -> Unit) {
+    fun onClose(action: InventoryCloseEventHandler) {
         onClose = action
     }
 
