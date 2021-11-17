@@ -3,6 +3,7 @@ $dokka.linkExtension:html
 
 module:ktSpigot
 dev.s7a.spigot.command
+dev.s7a.spigot.component
 dev.s7a.spigot.config
 dev.s7a.spigot.config.formatter
 dev.s7a.spigot.config.type
