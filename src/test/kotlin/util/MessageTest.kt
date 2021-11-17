@@ -3,6 +3,7 @@ package util
 import be.seeseemelk.mockbukkit.MockBukkit
 import dev.s7a.spigot.util.sendActionBarMessage
 import dev.s7a.spigot.util.sendChatMessage
+import dev.s7a.spigot.util.sendComponentMessage
 import dev.s7a.spigot.util.sendTitleMessage
 import org.bukkit.ChatColor
 import randomString
@@ -51,5 +52,36 @@ class MessageTest {
         val color = ChatColor.values().random()
         val string = randomString()
         player.sendTitleMessage("&${color.char}$string")
+    }
+
+    @Test
+    fun `component message using line can be received`() {
+        val expected = """
+            1
+            23
+            4
+            5
+            
+        """.trimIndent()
+        val player = server.addPlayer()
+        player.sendComponentMessage {
+            line {
+                append("1")
+                lineBreak()
+                line {
+                    append("2")
+                    append("3")
+                }
+                append("4")
+            }
+            line {
+                append("5")
+                lineBreak()
+            }
+        }
+        expected.lines().forEach {
+            player.assertSaid(it)
+        }
+        player.assertNoMoreSaid()
     }
 }

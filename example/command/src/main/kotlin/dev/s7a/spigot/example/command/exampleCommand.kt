@@ -2,7 +2,6 @@ package dev.s7a.spigot.example.command
 
 import dev.s7a.spigot.command.Dynamics
 import dev.s7a.spigot.command.KtCommandTabCompleteAction
-import dev.s7a.spigot.command.KtCommandTabCompleteParameter
 import dev.s7a.spigot.command.KtCommandTabCompleterTree
 import dev.s7a.spigot.command.KtCommandTabCompleterType
 import dev.s7a.spigot.command.Literals

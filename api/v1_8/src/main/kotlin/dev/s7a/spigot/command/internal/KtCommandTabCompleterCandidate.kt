@@ -1,7 +1,6 @@
 package dev.s7a.spigot.command.internal
 
 import dev.s7a.spigot.command.KtCommandTabCompleteAction
-import dev.s7a.spigot.command.KtCommandTabCompleteParameter
 import dev.s7a.spigot.command.KtCommandTabCompleterType
 
 /**
