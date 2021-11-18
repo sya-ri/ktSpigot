@@ -11,7 +11,6 @@ import org.bukkit.command.CommandSender
  * @since 1.0.0
  */
 internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
-    @OptIn(ExperimentalStdlibApi::class)
     fun complete(sender: CommandSender, args: Array<out String>): List<String> {
         val parameter = KtCommandTabCompleteParameter(sender, args.toList())
         var tree: KtCommandTabCompleterTree = this
