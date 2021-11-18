@@ -13,7 +13,7 @@ import org.bukkit.command.TabCompleter
  */
 class KtCommand internal constructor() : CommandExecutor, TabCompleter {
     private var tabCompleter: KtCommandTabCompleter? = null
-    private var executeAction: (KtCommandExecuteParameter) -> Unit = {}
+    private var executeAction: KtCommandExecuteAction = {}
 
     /**
      * タブ補完を設定する
@@ -31,7 +31,7 @@ class KtCommand internal constructor() : CommandExecutor, TabCompleter {
      * @param action 実行処理
      * @since 1.0.0
      */
-    fun execute(action: (KtCommandExecuteParameter) -> Unit) {
+    fun execute(action: KtCommandExecuteAction) {
         executeAction = action
     }
 
