@@ -2,6 +2,7 @@ package command
 
 import be.seeseemelk.mockbukkit.MockBukkit
 import be.seeseemelk.mockbukkit.MockPlugin
+import dev.s7a.spigot.command.KtCommandCancelException
 import dev.s7a.spigot.command.KtCommandTabCompleterType
 import dev.s7a.spigot.command.ktCommand
 import randomString
@@ -12,6 +13,7 @@ import kotlin.io.path.writeText
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -171,5 +173,30 @@ class CommandTest {
         assertTrue(player.performCommand(commandName))
         assertEquals(1, executeCount1.get())
         assertEquals(1, executeCount2.get())
+    }
+
+    @Test
+    fun `command can be cancelled`() {
+        val commandName = randomString()
+        val descriptionFile = createTempFile()
+        descriptionFile.writeText(
+            """
+                name: MockPlugin
+                version: 1.0.0
+                main: ${MockPlugin::class.java.name}
+                commands:
+                  $commandName: {}
+            """.trimIndent()
+        )
+        val plugin = MockBukkit.loadWith(MockPlugin::class.java, descriptionFile.toFile())
+        plugin.ktCommand(commandName) {
+            execute {
+                throw KtCommandCancelException()
+            }
+        }
+        val player = server.addPlayer()
+        val command = plugin.getCommand(commandName)
+        assertNotNull(command)
+        assertFalse(player.performCommand("/$commandName"))
     }
 }
