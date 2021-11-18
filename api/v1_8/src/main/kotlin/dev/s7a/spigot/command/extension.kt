@@ -10,6 +10,13 @@ import org.bukkit.plugin.java.JavaPlugin
 typealias KtCommandTabCompleteBuilder = KtCommandTabCompleterTree.() -> Unit
 
 /**
+ * コマンド実行の処理
+ *
+ * @since 1.0.0
+ */
+typealias KtCommandExecuteAction = (KtCommandExecuteParameter) -> Unit
+
+/**
  * ktSpigot を使ってコマンドを登録する
  *
  * @param name コマンド名

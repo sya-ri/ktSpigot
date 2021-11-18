@@ -32,7 +32,6 @@ inline fun <reified T> KtConfig.getUnsafe(path: String): KtConfigResult<T> {
  * @return 取得した値
  * @since 1.0.0
  */
-@OptIn(ExperimentalStdlibApi::class)
 inline fun <reified T> KtConfig.getListUnsafe(path: String): KtConfigResult<List<T>> {
     return if (contains(path)) {
         if (bukkitConfig.isList(path)) {
@@ -112,7 +111,6 @@ fun KtConfigSection.getValues(): List<KtConfigValue<*>> {
  * @see printErrors
  * @since 1.0.0
  */
-@OptIn(ExperimentalStdlibApi::class)
 fun KtConfig.checkValues(): List<KtConfigError> {
     val values = this::class.java.declaredFields
     return buildList {
