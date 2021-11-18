@@ -168,6 +168,14 @@ val dokkaHtmlPartial by tasks.getting(DokkaTaskPartial::class) {
                         remoteLineSuffix.set("#L")
                     }
                     sourceRoots.from(it.sourceSets.main.get().allSource)
+                    externalDocumentationLink {
+                        url.set(URL("https://hub.spigotmc.org/javadocs/spigot/"))
+                        packageListUrl.set(URL("https://hub.spigotmc.org/javadocs/spigot/element-list"))
+                    }
+                    externalDocumentationLink {
+                        url.set(URL("https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/"))
+                        packageListUrl.set(URL("https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/element-list"))
+                    }
                 }
             }
         }
