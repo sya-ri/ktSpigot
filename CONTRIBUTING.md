@@ -59,9 +59,9 @@ git clone https://github.com/sya-ri/ktSpigot.wiki wiki
 ### ドキュメントの生成
 
 ```shell
-./gradlew dokkaHtmlMultiModule
+./gradlew dokka
 
-gradlew.bat dokkaHtmlMultiModule
+gradlew.bat dokka
 ```
 
 [Dokka](https://github.com/Kotlin/dokka) を使ってドキュメントを `dokka/` に生成します。
