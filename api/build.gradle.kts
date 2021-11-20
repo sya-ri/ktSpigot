@@ -1,12 +1,12 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
-import org.jetbrains.dokka.gradle.DokkaTaskPartial
+import org.jetbrains.dokka.gradle.DokkaTask
 import java.net.URL
 
 plugins {
     `maven-publish`
     signing
+    id("org.jetbrains.dokka") version "1.6.0"
 }
 
 subprojects {
@@ -147,17 +147,25 @@ tasks.withType<Jar> {
     enabled = false
 }
 
-apply(plugin = "org.jetbrains.dokka")
-
-val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
-    enabled = false
-}
-
-val dokkaHtmlPartial by tasks.getting(DokkaTaskPartial::class) {
+val dokkaHtml by tasks.getting(DokkaTask::class) {
     moduleName.set("ktSpigot")
+    val dokkaDir = rootProject.projectDir.resolve("dokka")
+    val version = rootProject.version.toString()
+    outputDirectory.set(file(dokkaDir.resolve(version)))
     dependencies {
+        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.6.0-SNAPSHOT") // TODO delete -SNAPSHOT
         compileOnly("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
     }
+    pluginsMapConfiguration.set(
+        mapOf(
+            "org.jetbrains.dokka.versioning.VersioningPlugin" to """
+                {
+                    "version": "$version",
+                    "olderVersionsDir": "$dokkaDir"
+                }
+            """.trimIndent()
+        )
+    )
     dokkaSourceSets {
         named("main") {
             subprojects.forEach {
