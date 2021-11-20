@@ -3,7 +3,6 @@ package util
 import be.seeseemelk.mockbukkit.MockBukkit
 import dev.s7a.spigot.util.sendActionBarMessage
 import dev.s7a.spigot.util.sendChatMessage
-import dev.s7a.spigot.util.sendComponentMessage
 import dev.s7a.spigot.util.sendTitleMessage
 import org.bukkit.ChatColor
 import randomString
@@ -64,7 +63,7 @@ class MessageTest {
             
         """.trimIndent()
         val player = server.addPlayer()
-        player.sendComponentMessage {
+        player.sendChatMessage {
             line {
                 append("1")
                 lineBreak()
