@@ -125,3 +125,7 @@ fun isNonStableVersion(version: String): Boolean {
 task("updateCodeSnippet") {
     dependsOn(":showcase:updateCodeSnippet")
 }
+
+task("dokka") {
+    dependsOn("dokkaHtmlMultiModule")
+}
