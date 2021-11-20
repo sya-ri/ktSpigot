@@ -33,6 +33,7 @@ class MessageTest {
         player.assertNoMoreSaid()
     }
 
+    @Ignore // https://github.com/MockBukkit/MockBukkit/pull/267
     @Test
     fun `action bar message can be received`() {
         val player = server.addPlayer()
@@ -53,25 +54,26 @@ class MessageTest {
         player.sendTitleMessage("&${color.char}$string")
     }
 
+    @Ignore // https://github.com/MockBukkit/MockBukkit/pull/267
     @Test
     fun `component message using line can be received`() {
         val expected = """
-            1
+            §a1
             23
-            4
+            §b4
             5
             
         """.trimIndent()
         val player = server.addPlayer()
         player.sendChatMessage {
             line {
-                append("1")
+                append("&a1")
                 lineBreak()
                 line {
                     append("2")
                     append("3")
                 }
-                append("4")
+                append("4", ChatColor.AQUA.asBungee())
             }
             line {
                 append("5")
