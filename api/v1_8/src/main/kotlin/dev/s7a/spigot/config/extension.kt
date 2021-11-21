@@ -86,7 +86,6 @@ fun KtConfig.setUnsafe(path: String, value: Any?) {
  *
  * @return 値一覧
  */
-@OptIn(ExperimentalStdlibApi::class)
 fun KtConfigSection.getValues(): List<KtConfigValue<*>> {
     val values = this::class.java.declaredFields
     return buildList {
@@ -136,10 +135,9 @@ fun KtConfig.checkValues(): List<KtConfigError> {
  * @return メッセージ一覧
  * @since 1.0.0
  */
-@OptIn(ExperimentalStdlibApi::class)
 fun List<KtConfigError>.getErrors(): List<String> {
-    return buildList<String> {
-        groupBy(KtConfigError::config).forEach { (config, errorList) ->
+    return buildList {
+        this@getErrors.groupBy(KtConfigError::config).forEach { (config, errorList) ->
             add("${config.file.path} のエラー [${errorList.size}]")
             errorList.forEach { error ->
                 add("- ${error.message}")
