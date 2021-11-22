@@ -25,8 +25,8 @@ fun CommandSender.sendChatMessage(message: String, altColorChar: Char? = '&') {
  * @param buildAction メッセージの生成処理
  * @since 1.0.0
  */
-inline fun Player.sendComponentMessage(buildAction: KtComponentBuildAction) {
-    sendComponentMessage(*buildComponent(buildAction))
+inline fun Player.sendChatMessage(buildAction: KtComponentBuildAction) {
+    sendChatMessage(*buildComponent(buildAction))
 }
 
 /**
@@ -35,6 +35,6 @@ inline fun Player.sendComponentMessage(buildAction: KtComponentBuildAction) {
  * @param message メッセージ
  * @since 1.0.0
  */
-fun Player.sendComponentMessage(vararg message: BaseComponent) {
+fun Player.sendChatMessage(vararg message: BaseComponent) {
     spigot().sendMessage(*message)
 }

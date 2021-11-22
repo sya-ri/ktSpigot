@@ -2,8 +2,10 @@
 
 package dev.s7a.spigot.util
 
+import dev.s7a.spigot.component.KtComponentBuildAction
+import dev.s7a.spigot.component.buildComponent
 import net.md_5.bungee.api.ChatMessageType
-import net.md_5.bungee.api.chat.TextComponent
+import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.entity.Player
 
 /**
@@ -14,5 +16,27 @@ import org.bukkit.entity.Player
  * @since 1.0.0
  */
 fun Player.sendActionBarMessage(message: String, altColorChar: Char? = '&') {
-    spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(message.color(altColorChar)))
+    sendActionBarMessage {
+        append(message, altColorChar = altColorChar)
+    }
+}
+
+/**
+ * アクションバーにコンポーネントメッセージを送信する
+ *
+ * @param buildAction メッセージの生成処理
+ * @since 1.0.0
+ */
+inline fun Player.sendActionBarMessage(buildAction: KtComponentBuildAction) {
+    sendActionBarMessage(*buildComponent(buildAction))
+}
+
+/**
+ * アクションバーにコンポーネントメッセージを送信する
+ *
+ * @param message メッセージ
+ * @since 1.0.0
+ */
+fun Player.sendActionBarMessage(vararg message: BaseComponent) {
+    spigot().sendMessage(ChatMessageType.ACTION_BAR, *message)
 }
