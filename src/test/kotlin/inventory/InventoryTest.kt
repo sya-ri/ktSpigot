@@ -88,7 +88,7 @@ class InventoryTest {
         val player = KtSpigotTest.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
-            onClick {
+            onClickResult {
                 executed.set(true)
             }
         }.open(player)

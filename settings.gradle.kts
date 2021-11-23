@@ -12,14 +12,7 @@ include(
     ":api:v1_15",
     ":api:v1_16",
     ":api:v1_17",
-    ":example",
-    ":example:command",
-    ":example:config",
-    ":example:inventory",
-    ":example:listener",
-    ":example:message",
-    ":example:player",
-    ":example:scheduler",
+    ":libs:test",
     ":showcase",
-    ":libs:test"
+    ":test"
 )
