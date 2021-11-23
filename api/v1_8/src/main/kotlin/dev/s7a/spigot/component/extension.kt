@@ -31,6 +31,8 @@ inline fun buildComponent(buildAction: KtComponentBuildAction): Array<BaseCompon
 /**
  * [TranslatableComponent] を末尾に追加する
  *
+ * - [lang/en_us.json](https://github.com/InventivetalentDev/minecraft-assets/blob/1.17.1/assets/minecraft/lang/en_us.json)
+ *
  * @param key 翻訳キー
  * @param color 文字色 / null
  * @param bold 太字 / false
