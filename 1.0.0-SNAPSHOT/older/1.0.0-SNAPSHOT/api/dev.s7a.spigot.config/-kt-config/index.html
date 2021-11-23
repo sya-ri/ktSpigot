@@ -2,28 +2,32 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>KtConfig</title>
-</head><body><link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script><script type="text/javascript" src="../../../scripts/main.js" async></script>
+</head><body><link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><link href="../../../styles/prism.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script><script type="text/javascript" src="../../../scripts/main.js" async></script><script type="text/javascript" src="../../../scripts/prism.js" async></script><script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+
   
+    <div class="navigation-wrapper" id="navigation-wrapper">
+      <div id="leftToggler"><span class="icon-toggler"></span></div>
+      <div class="library-name"><a href="../../../index.html"><span>ktSpigot</span></a></div>
+      <div><dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;dev.s7a.spigot.config/-kt-config/index.html&quot;}">1.0.0-SNAPSHOT</dokka-template-command></div>
+      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+      </div>
+    </div>
     <div id="container">
-      <div id="leftColumn"><a href="../../../index.html">
-            <div id="logo"></div>
-          </a>
-        <div id="paneSearch"></div>
+      <div id="leftColumn">
         <div id="sideMenu"></div>
       </div>
-      <div id="main">
-        <script type="text/javascript" src="../../../scripts/main.js"></script><div id="leftToggler"><span class="icon-toggler"></span></div>
-
+      <div id="main"><script type="text/javascript" src="../../../scripts/main.js"></script>
         <div class="main-content" id="content" pageids="ktSpigot::dev.s7a.spigot.config/KtConfig///PointingToDeclaration//-1197683648">
-          <div class="navigation-wrapper" id="navigation-wrapper">
-            <div class="breadcrumbs"><a href="../../index.html">ktSpigot</a>/<a href="../index.html">dev.s7a.spigot.config</a>/<a href="index.html">KtConfig</a></div>
-            <div class="pull-right d-flex">
-              <div id="searchBar"></div>
-            </div>
-          </div>
+          <div class="breadcrumbs"><a href="../../index.html">ktSpigot</a>/<a href="../index.html">dev.s7a.spigot.config</a>/<a href="index.html">KtConfig</a></div>
           <div class="cover ">
             <h1 class="cover"><span>Kt</span><wbr><span><span>Config</span></span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">abstract class <a href="index.html">KtConfig</a>(file: <a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a>) : <a href="../-kt-config-section/index.html">KtConfigSection</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">コンフィグ</p><h4 class="">Since</h4><p class="paragraph">1.0.0</p></div></div>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">KtConfig</a><span class="token punctuation">(</span>file<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a><span class="token punctuation">)</span> : <a href="../-kt-config-section/index.html">KtConfigSection</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">コンフィグ</p><h4 class="">Since</h4><p class="paragraph">1.0.0</p></div></div>
           </div>
           <div class="tabbedcontent">
             <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Extensions">Extensions</button><button class="section-tab" data-togglable="Sources">Sources</button></div>
@@ -37,7 +41,7 @@
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="-kt-config.html">KtConfig</a>(plugin: <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/plugin/java/JavaPlugin.html">JavaPlugin</a>, fileName: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-kt-config.html"><span class="token function">KtConfig</span></a><span class="token punctuation">(</span>plugin<span class="token operator">: </span><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/plugin/java/JavaPlugin.html">JavaPlugin</a><span class="token punctuation">, </span>fileName<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "></div></div></div>
                       </div>
                     </div>
                   </div>
@@ -50,7 +54,7 @@
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="-kt-config.html">KtConfig</a>(file: <a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-kt-config.html"><span class="token function">KtConfig</span></a><span class="token punctuation">(</span>file<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
                       </div>
                     </div>
                   </div>
@@ -64,13 +68,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="contains.html">contains</a>(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">コンフィグに指定したパスが存在するか</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="contains.html"><span class="token function">contains</span></a><span class="token punctuation">(</span>path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">コンフィグに指定したパスが存在するか</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -81,13 +81,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="delete.html">delete</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">ファイルを削除する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="delete.html"><span class="token function">delete</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">ファイルを削除する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -98,13 +94,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">open override fun <a href="full-path.html">fullPath</a>(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">フルパスを取得する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="full-path.html"><span class="token function">fullPath</span></a><span class="token punctuation">(</span>path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">フルパスを取得する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -115,13 +107,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">open fun <a href="load.html">load</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">コンフィグの値を読み込む。既に読み込んでいる場合はリロードする</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="load.html"><span class="token function">load</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">コンフィグの値を読み込む。既に読み込んでいる場合はリロードする</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -132,13 +120,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="save.html">save</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">コンフィグへの変更を保存する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="save.html"><span class="token function">save</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">コンフィグへの変更を保存する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -152,7 +136,7 @@
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="-327073982%2FProperties%2F-1197683648" anchor-label="bukkitConfig" id="-327073982%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace">var <a href="bukkit-config.html">bukkitConfig</a>: <a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/configuration/file/YamlConfiguration.html">YamlConfiguration</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-327073982%2FProperties%2F-1197683648" anchor-label="bukkitConfig" id="-327073982%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">コンフィグの実際のデータ</p></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="-327073982%2FProperties%2F-1197683648" anchor-label="bukkitConfig" id="-327073982%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="bukkit-config.html">bukkitConfig</a><span class="token operator">: </span><a href="https://hub.spigotmc.org/javadocs/spigot/org/bukkit/configuration/file/YamlConfiguration.html">YamlConfiguration</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-327073982%2FProperties%2F-1197683648" anchor-label="bukkitConfig" id="-327073982%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">コンフィグの実際のデータ</p></div></div></div>
                       </div>
                     </div>
                   </div>
@@ -165,7 +149,7 @@
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="-1332455360%2FProperties%2F-1197683648" anchor-label="config" id="-1332455360%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace">open override val <a href="config.html">config</a>: <a href="index.html">KtConfig</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1332455360%2FProperties%2F-1197683648" anchor-label="config" id="-1332455360%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">コンフィグ</p></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="-1332455360%2FProperties%2F-1197683648" anchor-label="config" id="-1332455360%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="config.html">config</a><span class="token operator">: </span><a href="index.html">KtConfig</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1332455360%2FProperties%2F-1197683648" anchor-label="config" id="-1332455360%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">コンフィグ</p></div></div></div>
                       </div>
                     </div>
                   </div>
@@ -178,7 +162,7 @@
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="877369478%2FProperties%2F-1197683648" anchor-label="file" id="877369478%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace">val <a href="file.html">file</a>: <a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="877369478%2FProperties%2F-1197683648" anchor-label="file" id="877369478%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">ファイル</p></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="877369478%2FProperties%2F-1197683648" anchor-label="file" id="877369478%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="file.html">file</a><span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="877369478%2FProperties%2F-1197683648" anchor-label="file" id="877369478%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">ファイル</p></div></div></div>
                       </div>
                     </div>
                   </div>
@@ -191,7 +175,7 @@
                         </span></span></div>
                     <div>
                       <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="452381181%2FProperties%2F-1197683648" anchor-label="path" id="452381181%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace">open override val <a href="path.html">path</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="452381181%2FProperties%2F-1197683648" anchor-label="path" id="452381181%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">コンフィグパス</p></div></div></div>
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><a data-name="452381181%2FProperties%2F-1197683648" anchor-label="path" id="452381181%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="path.html">path</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="452381181%2FProperties%2F-1197683648" anchor-label="path" id="452381181%2FProperties%2F-1197683648" data-filterable-set=":api:dokkaHtmlPartial/main"></a><p class="paragraph">コンフィグパス</p></div></div></div>
                       </div>
                     </div>
                   </div>
@@ -205,13 +189,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="index.html">KtConfig</a>.<a href="../check-values.html">checkValues</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../-kt-config-error/index.html">KtConfigError</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">値のエラーを確認する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">KtConfig</a><span class="token punctuation">.</span><a href="../check-values.html"><span class="token function">checkValues</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-kt-config-error/index.html">KtConfigError</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">値のエラーを確認する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -222,13 +202,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">inline fun &lt;<a href="../get-list-unsafe.html">T</a>&gt; <a href="index.html">KtConfig</a>.<a href="../get-list-unsafe.html">getListUnsafe</a>(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="../-kt-config-result/index.html">KtConfigResult</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../get-list-unsafe.html">T</a>&gt;&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">コンフィグからリストを取得する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../get-list-unsafe.html">T</a><span class="token operator">&gt; </span><a href="index.html">KtConfig</a><span class="token punctuation">.</span><a href="../get-list-unsafe.html"><span class="token function">getListUnsafe</span></a><span class="token punctuation">(</span>path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-kt-config-result/index.html">KtConfigResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../get-list-unsafe.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">コンフィグからリストを取得する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -239,13 +215,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="index.html">KtConfig</a>.<a href="../get-map-list-unsafe.html">getMapListUnsafe</a>(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="../-kt-config-result/index.html">KtConfigResult</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>&gt;&gt;&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">コンフィグからマップリストを取得する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">KtConfig</a><span class="token punctuation">.</span><a href="../get-map-list-unsafe.html"><span class="token function">getMapListUnsafe</span></a><span class="token punctuation">(</span>path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-kt-config-result/index.html">KtConfigResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html">Map</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">コンフィグからマップリストを取得する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -256,13 +228,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">inline fun &lt;<a href="../get-unsafe.html">T</a>&gt; <a href="index.html">KtConfig</a>.<a href="../get-unsafe.html">getUnsafe</a>(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>): <a href="../-kt-config-result/index.html">KtConfigResult</a>&lt;<a href="../get-unsafe.html">T</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">コンフィグから値を取得する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../get-unsafe.html">T</a><span class="token operator">&gt; </span><a href="index.html">KtConfig</a><span class="token punctuation">.</span><a href="../get-unsafe.html"><span class="token function">getUnsafe</span></a><span class="token punctuation">(</span>path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">)</span><span class="token operator">: </span><a href="../-kt-config-result/index.html">KtConfigResult</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../get-unsafe.html">T</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">コンフィグから値を取得する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -273,13 +241,9 @@
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
-                      <div class="title"><div class="divergent-group" data-filterable-current=":api:dokkaHtmlPartial/main" data-filterable-set=":api:dokkaHtmlPartial/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
-
-  <div>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace">fun <a href="index.html">KtConfig</a>.<a href="../set-unsafe.html">setUnsafe</a>(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, value: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>?)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-<div class="brief "><p class="paragraph">コンフィグに値を設定する</p></div></div>
-</div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="index.html">KtConfig</a><span class="token punctuation">.</span><a href="../set-unsafe.html"><span class="token function">setUnsafe</span></a><span class="token punctuation">(</span>path<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span>value<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">コンフィグに値を設定する</p></div></div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -298,10 +262,11 @@
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
       </div>
     </div>
   
 </body></html>
+
 
 
