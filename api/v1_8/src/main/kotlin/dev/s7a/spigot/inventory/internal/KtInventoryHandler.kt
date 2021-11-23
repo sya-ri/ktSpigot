@@ -42,7 +42,7 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
         val player = event.whoClicked as? Player ?: return
         val virtualPlayer = player.toVirtual()
         val inventory = players[virtualPlayer] ?: return
-        if (inventory.bukkitInventory != event.inventory) {
+        if (inventory.bukkitInventory !== event.inventory) {
             players.remove(virtualPlayer)
             return
         }
