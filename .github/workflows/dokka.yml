@@ -19,7 +19,7 @@ jobs:
           java-version: 8
           cache: gradle
       - name: Build
-        run: ./gradlew dokkaHtmlMultiModule
+        run: ./gradlew dokka
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
