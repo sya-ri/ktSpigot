@@ -1,7 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 
 plugins {
     kotlin("jvm") version "1.6.0"
@@ -9,7 +8,6 @@ plugins {
     id("com.github.ben-manes.versions") version "0.39.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.0" apply false
     id("com.github.johnrengelman.shadow") version "7.1.0" apply false
-    id("org.jetbrains.dokka") version "1.6.0"
 }
 
 group = "dev.s7a"
@@ -92,25 +90,6 @@ tasks.withType<Jar> {
     enabled = false
 }
 
-val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
-    val dokkaDir = projectDir.resolve("dokka")
-    val version = rootProject.version.toString()
-    outputDirectory.set(file(dokkaDir.resolve(version)))
-    dependencies {
-        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.6.0")
-    }
-    pluginsMapConfiguration.set(
-        mapOf(
-            "org.jetbrains.dokka.versioning.VersioningPlugin" to """
-                {
-                    "version": "$version",
-                    "olderVersionsDir": "$dokkaDir"
-                }
-                """.trimIndent()
-        )
-    )
-}
-
 /**
  * [version] が非安定かを判定する
  */
@@ -126,5 +105,5 @@ task("updateCodeSnippet") {
 }
 
 task("dokka") {
-    dependsOn("dokkaHtmlMultiModule")
+    dependsOn(":api:dokkaHtml")
 }
