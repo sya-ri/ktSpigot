@@ -27,7 +27,7 @@ fun KtInventory.item(
     lore: List<String>? = null,
     customModelData: Int? = null,
     altColorChar: Char = '&',
-    action: InventoryClickEventHandler? = null,
+    action: KtInventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
 }
@@ -53,7 +53,7 @@ fun KtInventory.item(
     lore: List<String>? = null,
     customModelData: Int? = null,
     altColorChar: Char = '&',
-    action: InventoryClickEventHandler? = null,
+    action: KtInventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
 }
@@ -79,7 +79,7 @@ fun KtInventory.item(
     lore: List<String>? = null,
     customModelData: Int? = null,
     altColorChar: Char = '&',
-    action: InventoryClickEventHandler? = null,
+    action: KtInventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, customModelData, altColorChar), action)
 }
