@@ -33,8 +33,8 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
      */
     internal fun open(player: Player, inventory: KtInventory) {
         val virtualPlayer = player.toVirtual()
-        players[virtualPlayer] = inventory
         player.openInventory(inventory.bukkitInventory)
+        players[virtualPlayer] = inventory
     }
 
     @EventHandler
@@ -58,7 +58,7 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
         val player = event.player as? Player ?: return
         val virtualPlayer = player.toVirtual()
         val inventory = players.remove(virtualPlayer) ?: return
-        if (inventory.bukkitInventory == event.inventory) {
+        if (inventory.bukkitInventory === event.inventory) {
             inventory.onClose?.invoke(event)
         }
     }
