@@ -13,25 +13,32 @@ import org.bukkit.inventory.Inventory
  */
 class KtInventory internal constructor(private val handler: KtInventoryHandler, val bukkitInventory: Inventory) {
     /**
-     * クリック時の処理
+     * クリック時の処理。アイテム毎のクリックアクションが処理される前に実行する
      *
      * @since 1.0.0
      */
-    internal var onClick: InventoryClickEventHandler? = null
+    internal var onClick: KtInventoryClickEventHandler? = null
+
+    /**
+     * クリック時の処理。アイテム毎のクリックアクションが処理された後に実行する
+     *
+     * @since 1.0.0
+     */
+    internal var onClickResult: KtInventoryClickEventResultHandler? = null
 
     /**
      * 閉じる時の処理
      *
      * @since 1.0.0
      */
-    internal var onClose: InventoryCloseEventHandler? = null
+    internal var onClose: KtInventoryCloseEventHandler? = null
 
     /**
      * クリックアクション一覧
      *
      * @since 1.0.0
      */
-    internal val actions = mutableMapOf<Int, InventoryClickEventHandler>()
+    internal val actions = mutableMapOf<Int, KtInventoryClickEventHandler>()
 
     /**
      * デフォルトでクリックイベントをキャンセルする
@@ -41,13 +48,23 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
     var isCancel = true
 
     /**
-     * クリック時の処理を変更する
+     * クリック時の処理を変更する。アイテム毎のクリックアクションが処理される前に実行する
      *
      * @param action 処理
      * @since 1.0.0
      */
-    fun onClick(action: InventoryClickEventHandler) {
+    fun onClick(action: KtInventoryClickEventHandler) {
         onClick = action
+    }
+
+    /**
+     * クリック時の処理を変更する。アイテム毎のクリックアクションが処理された後に実行する
+     *
+     * @param action 処理
+     * @since 1.0.0
+     */
+    fun onClickResult(action: KtInventoryClickEventResultHandler) {
+        onClickResult = action
     }
 
     /**
@@ -56,7 +73,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @param action 処理
      * @since 1.0.0
      */
-    fun onClose(action: InventoryCloseEventHandler) {
+    fun onClose(action: KtInventoryCloseEventHandler) {
         onClose = action
     }
 

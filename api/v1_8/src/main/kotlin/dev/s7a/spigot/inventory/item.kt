@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack
  * @param action クリック処理 / null
  * @since 1.0.0
  */
-fun KtInventory.item(index: Int, itemStack: ItemStack, action: InventoryClickEventHandler? = null) {
+fun KtInventory.item(index: Int, itemStack: ItemStack, action: KtInventoryClickEventHandler? = null) {
     if (index in bukkitInventory.contents.indices) {
         bukkitInventory.setItem(index, itemStack)
         if (action != null) {
@@ -36,7 +36,7 @@ fun KtInventory.item(index: Int, itemStack: ItemStack, action: InventoryClickEve
  * @param action クリック処理 / null
  * @since 1.0.0
  */
-fun KtInventory.item(index: Iterable<Int>, itemStack: ItemStack, action: InventoryClickEventHandler? = null) {
+fun KtInventory.item(index: Iterable<Int>, itemStack: ItemStack, action: KtInventoryClickEventHandler? = null) {
     index.forEach {
         item(it, itemStack, action)
     }
@@ -50,7 +50,7 @@ fun KtInventory.item(index: Iterable<Int>, itemStack: ItemStack, action: Invento
  * @param action クリック処理 / null
  * @since 1.0.0
  */
-fun KtInventory.item(index: IntRange, itemStack: ItemStack, action: InventoryClickEventHandler? = null) {
+fun KtInventory.item(index: IntRange, itemStack: ItemStack, action: KtInventoryClickEventHandler? = null) {
     item(index.toList(), itemStack, action)
 }
 
@@ -73,7 +73,7 @@ fun KtInventory.item(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char = '&',
-    action: InventoryClickEventHandler? = null,
+    action: KtInventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, altColorChar), action)
 }
@@ -97,7 +97,7 @@ fun KtInventory.item(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char = '&',
-    action: InventoryClickEventHandler? = null,
+    action: KtInventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, altColorChar), action)
 }
@@ -121,7 +121,7 @@ fun KtInventory.item(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char = '&',
-    action: InventoryClickEventHandler? = null,
+    action: KtInventoryClickEventHandler? = null,
 ) {
     item(index, itemStack(type, amount, displayName, lore, altColorChar), action)
 }

@@ -1,6 +1,7 @@
 package dev.s7a.spigot.inventory.internal
 
 import dev.s7a.spigot.inventory.KtInventory
+import dev.s7a.spigot.inventory.KtInventoryClickEventResult
 import dev.s7a.spigot.listener.registerListener
 import dev.s7a.spigot.util.VirtualPlayer
 import dev.s7a.spigot.util.VirtualPlayer.Companion.toVirtual
@@ -49,8 +50,9 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
         if (inventory.isCancel) {
             event.isCancelled = true
         }
-        inventory.actions[event.slot]?.invoke(event)
         inventory.onClick?.invoke(event)
+        val isInvoked = inventory.actions[event.slot]?.invoke(event) != null
+        inventory.onClickResult?.invoke(KtInventoryClickEventResult(event, isInvoked))
     }
 
     @EventHandler

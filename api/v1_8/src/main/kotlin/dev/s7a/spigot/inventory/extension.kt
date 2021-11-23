@@ -11,16 +11,35 @@ import org.bukkit.plugin.Plugin
 /**
  * [InventoryClickEvent] のハンドリング処理
  *
+ * @see KtInventory.onClickResult
  * @since 1.0.0
  */
-typealias InventoryClickEventHandler = (InventoryClickEvent) -> Unit
+typealias KtInventoryClickEventHandler = (InventoryClickEvent) -> Unit
+
+/**
+ * [KtInventory.onClickResult] で使われるパラメータ
+ *
+ * @property event クリックイベント
+ * @property isInvoked アイテム毎のクリックイベントが実行されたか
+ * @since 1.0.0
+ */
+data class KtInventoryClickEventResult(val event: InventoryClickEvent, val isInvoked: Boolean)
+
+/**
+ * [InventoryClickEvent] のハンドリング処理
+ *
+ * @see KtInventory.onClickResult
+ * @since 1.0.0
+ */
+typealias KtInventoryClickEventResultHandler = (KtInventoryClickEventResult) -> Unit
 
 /**
  * [InventoryCloseEvent] のハンドリング処理
  *
+ * @see KtInventory.onClose
  * @since 1.0.0
  */
-typealias InventoryCloseEventHandler = (InventoryCloseEvent) -> Unit
+typealias KtInventoryCloseEventHandler = (InventoryCloseEvent) -> Unit
 
 /**
  * ktSpigot を使ってインベントリを操作する
