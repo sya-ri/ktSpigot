@@ -72,7 +72,7 @@ dependencies {
     testImplementation(project(":showcase"))
     testImplementation(kotlin("test"))
     testImplementation(kotlin("reflect"))
-    testImplementation("com.github.seeseemelk:MockBukkit-v1.17:1.10.3")
+    testImplementation("com.github.seeseemelk:MockBukkit-v1.17:1.10.4")
 }
 
 java {
