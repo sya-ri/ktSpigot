@@ -153,7 +153,7 @@ val dokkaHtml by tasks.getting(DokkaTask::class) {
     val version = rootProject.version.toString()
     outputDirectory.set(file(dokkaDir.resolve(version)))
     dependencies {
-        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.6.0-SNAPSHOT") // TODO delete -SNAPSHOT
+        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.6.0")
         compileOnly("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
     }
     pluginsMapConfiguration.set(
