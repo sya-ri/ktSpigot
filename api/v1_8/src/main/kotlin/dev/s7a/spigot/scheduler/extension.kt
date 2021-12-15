@@ -1,10 +1,35 @@
 package dev.s7a.spigot.scheduler
 
-import dev.s7a.spigot.time.KtTime
-import dev.s7a.spigot.time.sec
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.DurationUnit
+
+/**
+ * [Duration] を tick に変換する
+ *
+ * @since 1.0.0
+ */
+inline val Duration.asTicks
+    get() = toLong(DurationUnit.SECONDS) * 20
+
+/**
+ * tick として [Duration] を定義する
+ *
+ * @since 1.0.0
+ */
+inline val Int.ticks
+    get() = (this * 50).milliseconds
+
+/**
+ * tick として [Duration] を定義する
+ *
+ * @since 1.0.0
+ */
+inline val Long.ticks
+    get() = (this * 50).milliseconds
 
 /**
  * [BukkitRunnable] を生成する
@@ -65,8 +90,8 @@ inline fun JavaPlugin.runTaskLater(delay: Long, crossinline action: BukkitRunnab
  * @see BukkitRunnable.runTaskLater
  * @since 1.0.0
  */
-inline fun JavaPlugin.runTaskLater(delay: KtTime, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
-    return runTaskLater(delay.ticks, action)
+inline fun JavaPlugin.runTaskLater(delay: Duration, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
+    return runTaskLater(delay.asTicks, action)
 }
 
 /**
@@ -91,8 +116,8 @@ inline fun JavaPlugin.runTaskLaterAsync(delay: Long, crossinline action: BukkitR
  * @see BukkitRunnable.runTaskLaterAsynchronously
  * @since 1.0.0
  */
-inline fun JavaPlugin.runTaskLaterAsync(delay: KtTime, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
-    return runTaskLaterAsync(delay.ticks, action)
+inline fun JavaPlugin.runTaskLaterAsync(delay: Duration, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
+    return runTaskLaterAsync(delay.asTicks, action)
 }
 
 /**
@@ -119,8 +144,8 @@ inline fun JavaPlugin.runTaskTimer(period: Long, delay: Long = 0L, crossinline a
  * @see BukkitRunnable.runTaskTimer
  * @since 1.0.0
  */
-inline fun JavaPlugin.runTaskTimer(period: KtTime, delay: KtTime = 0.sec, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
-    return runTaskTimer(period.ticks, delay.ticks, action)
+inline fun JavaPlugin.runTaskTimer(period: Duration, delay: Duration = Duration.ZERO, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
+    return runTaskTimer(period.asTicks, delay.asTicks, action)
 }
 
 /**
@@ -147,6 +172,6 @@ inline fun JavaPlugin.runTaskTimerAsync(period: Long, delay: Long = 0L, crossinl
  * @see BukkitRunnable.runTaskTimerAsynchronously
  * @since 1.0.0
  */
-inline fun JavaPlugin.runTaskTimerAsync(period: KtTime, delay: KtTime = 0.sec, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
-    return runTaskTimerAsync(period.ticks, delay.ticks, action)
+inline fun JavaPlugin.runTaskTimerAsync(period: Duration, delay: Duration = Duration.ZERO, crossinline action: BukkitRunnable.() -> Unit): BukkitTask {
+    return runTaskTimerAsync(period.asTicks, delay.asTicks, action)
 }
