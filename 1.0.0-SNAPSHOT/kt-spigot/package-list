@@ -370,43 +370,20 @@ $dokka.location:dev.s7a.spigot.inventory/KtInventoryClickEventResult/isInvoked/#
 $dokka.location:dev.s7a.spigot.listener////PointingToDeclaration/kt-spigot/dev.s7a.spigot.listener/index.html
 $dokka.location:dev.s7a.spigot.listener//registerListener/org.bukkit.plugin.Plugin#org.bukkit.event.Listener/PointingToDeclaration/kt-spigot/dev.s7a.spigot.listener/register-listener.html
 $dokka.location:dev.s7a.spigot.scheduler////PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/index.html
+$dokka.location:dev.s7a.spigot.scheduler//asTicks/kotlin.time.Duration#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/as-ticks.html
 $dokka.location:dev.s7a.spigot.scheduler//bukkitRunnable/#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/bukkit-runnable.html
 $dokka.location:dev.s7a.spigot.scheduler//runTask/org.bukkit.plugin.java.JavaPlugin#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task.html
 $dokka.location:dev.s7a.spigot.scheduler//runTaskAsync/org.bukkit.plugin.java.JavaPlugin#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-async.html
-$dokka.location:dev.s7a.spigot.scheduler//runTaskLater/org.bukkit.plugin.java.JavaPlugin#dev.s7a.spigot.time.KtTime#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-later.html
 $dokka.location:dev.s7a.spigot.scheduler//runTaskLater/org.bukkit.plugin.java.JavaPlugin#kotlin.Long#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-later.html
-$dokka.location:dev.s7a.spigot.scheduler//runTaskLaterAsync/org.bukkit.plugin.java.JavaPlugin#dev.s7a.spigot.time.KtTime#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-later-async.html
+$dokka.location:dev.s7a.spigot.scheduler//runTaskLater/org.bukkit.plugin.java.JavaPlugin#kotlin.time.Duration#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-later.html
 $dokka.location:dev.s7a.spigot.scheduler//runTaskLaterAsync/org.bukkit.plugin.java.JavaPlugin#kotlin.Long#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-later-async.html
-$dokka.location:dev.s7a.spigot.scheduler//runTaskTimer/org.bukkit.plugin.java.JavaPlugin#dev.s7a.spigot.time.KtTime#dev.s7a.spigot.time.KtTime#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-timer.html
+$dokka.location:dev.s7a.spigot.scheduler//runTaskLaterAsync/org.bukkit.plugin.java.JavaPlugin#kotlin.time.Duration#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-later-async.html
 $dokka.location:dev.s7a.spigot.scheduler//runTaskTimer/org.bukkit.plugin.java.JavaPlugin#kotlin.Long#kotlin.Long#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-timer.html
-$dokka.location:dev.s7a.spigot.scheduler//runTaskTimerAsync/org.bukkit.plugin.java.JavaPlugin#dev.s7a.spigot.time.KtTime#dev.s7a.spigot.time.KtTime#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-timer-async.html
+$dokka.location:dev.s7a.spigot.scheduler//runTaskTimer/org.bukkit.plugin.java.JavaPlugin#kotlin.time.Duration#kotlin.time.Duration#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-timer.html
 $dokka.location:dev.s7a.spigot.scheduler//runTaskTimerAsync/org.bukkit.plugin.java.JavaPlugin#kotlin.Long#kotlin.Long#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-timer-async.html
-$dokka.location:dev.s7a.spigot.time////PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/index.html
-$dokka.location:dev.s7a.spigot.time//day/kotlin.Int#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/day.html
-$dokka.location:dev.s7a.spigot.time//day/kotlin.Long#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/day.html
-$dokka.location:dev.s7a.spigot.time//hour/kotlin.Int#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/hour.html
-$dokka.location:dev.s7a.spigot.time//hour/kotlin.Long#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/hour.html
-$dokka.location:dev.s7a.spigot.time//min/kotlin.Int#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/min.html
-$dokka.location:dev.s7a.spigot.time//min/kotlin.Long#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/min.html
-$dokka.location:dev.s7a.spigot.time//sec/kotlin.Int#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/sec.html
-$dokka.location:dev.s7a.spigot.time//sec/kotlin.Long#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/sec.html
-$dokka.location:dev.s7a.spigot.time//tick/kotlin.Int#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/tick.html
-$dokka.location:dev.s7a.spigot.time//tick/kotlin.Long#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/tick.html
-$dokka.location:dev.s7a.spigot.time/KtTime///PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/index.html
-$dokka.location:dev.s7a.spigot.time/KtTime/KtTime/#kotlin.Long#dev.s7a.spigot.time.KtTimeUnit/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/-kt-time.html
-$dokka.location:dev.s7a.spigot.time/KtTime/compareTo/#dev.s7a.spigot.time.KtTime/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/compare-to.html
-$dokka.location:dev.s7a.spigot.time/KtTime/minus/#dev.s7a.spigot.time.KtTime/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/minus.html
-$dokka.location:dev.s7a.spigot.time/KtTime/plus/#dev.s7a.spigot.time.KtTime/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/plus.html
-$dokka.location:dev.s7a.spigot.time/KtTime/ticks/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/ticks.html
-$dokka.location:dev.s7a.spigot.time/KtTime/time/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/time.html
-$dokka.location:dev.s7a.spigot.time/KtTime/unit/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time/unit.html
-$dokka.location:dev.s7a.spigot.time/KtTimeUnit.Day///PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time-unit/-day/index.html
-$dokka.location:dev.s7a.spigot.time/KtTimeUnit.Hour///PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time-unit/-hour/index.html
-$dokka.location:dev.s7a.spigot.time/KtTimeUnit.Minute///PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time-unit/-minute/index.html
-$dokka.location:dev.s7a.spigot.time/KtTimeUnit.Second///PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time-unit/-second/index.html
-$dokka.location:dev.s7a.spigot.time/KtTimeUnit.Tick///PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time-unit/-tick/index.html
-$dokka.location:dev.s7a.spigot.time/KtTimeUnit///PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time-unit/index.html
-$dokka.location:dev.s7a.spigot.time/KtTimeUnit/ticks/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.time/-kt-time-unit/ticks.html
+$dokka.location:dev.s7a.spigot.scheduler//runTaskTimerAsync/org.bukkit.plugin.java.JavaPlugin#kotlin.time.Duration#kotlin.time.Duration#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/run-task-timer-async.html
+$dokka.location:dev.s7a.spigot.scheduler//ticks/kotlin.Int#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/ticks.html
+$dokka.location:dev.s7a.spigot.scheduler//ticks/kotlin.Long#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/ticks.html
 $dokka.location:dev.s7a.spigot.util////PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/index.html
 $dokka.location:dev.s7a.spigot.util//color/kotlin.String#kotlin.Char/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/color.html
 $dokka.location:dev.s7a.spigot.util//color/kotlin.String#kotlin.Char?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/color.html
@@ -449,6 +426,5 @@ dev.s7a.spigot.entity
 dev.s7a.spigot.inventory
 dev.s7a.spigot.listener
 dev.s7a.spigot.scheduler
-dev.s7a.spigot.time
 dev.s7a.spigot.util
 
