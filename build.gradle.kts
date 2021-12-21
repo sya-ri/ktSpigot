@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.6.10"
-    id("org.jmailen.kotlinter") version "3.7.0"
+    id("org.jmailen.kotlinter") version "3.8.0"
     id("com.github.ben-manes.versions") version "0.39.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.1" apply false
     id("com.github.johnrengelman.shadow") version "7.1.1" apply false
