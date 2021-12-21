@@ -8,14 +8,47 @@ import org.bukkit.Material
  * @see KtCommandTabCompleterTree.literal
  * @since 1.0.0
  */
+@Suppress("FunctionName")
 object Literals {
+    /**
+     * 列挙型の一覧
+     *
+     * @param transform 列挙型定数を文字列に変換する処理
+     * @since 1.0.0
+     */
+    inline fun <reified E : Enum<E>> Enums(transform: (E) -> String) = enumValues<E>().map(transform)
+
+    /**
+     * 列挙型の一覧
+     *
+     * @param transform 列挙型定数を文字列に変換する処理
+     * @param predicate フィルター処理
+     * @since 1.0.0
+     */
+    inline fun <reified E : Enum<E>> Enums(transform: (E) -> String, predicate: (E) -> Boolean) = enumValues<E>().filter(predicate).map(transform)
+
+    /**
+     * 列挙型の名前一覧
+     *
+     * @since 1.0.0
+     */
+    inline fun <reified E : Enum<E>> EnumNames() = Enums<E> { it.name }
+
+    /**
+     * [predicate] でフィルターされた列挙型の名前一覧
+     *
+     * @param predicate フィルター処理
+     * @since 1.0.0
+     */
+    inline fun <reified E : Enum<E>> EnumNames(predicate: (E) -> Boolean) = Enums({ it.name }, predicate)
+
     /**
      * マテリアル
      *
      * @see Material.values
      * @since 1.0.0
      */
-    val Materials = Material.values().map(Material::name)
+    val Materials = EnumNames<Material>()
 
     /**
      * ブロックマテリアル
@@ -24,5 +57,5 @@ object Literals {
      * @see Material.isBlock
      * @since 1.0.0
      */
-    val Blocks = Material.values().filter(Material::isBlock).map(Material::name)
+    val Blocks = EnumNames(Material::isBlock)
 }
