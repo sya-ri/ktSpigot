@@ -2,8 +2,8 @@
 
 package dev.s7a.spigot.inventory
 
+import dev.s7a.spigot.item.itemStack
 import dev.s7a.spigot.util.color
-import dev.s7a.spigot.util.itemStack
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 

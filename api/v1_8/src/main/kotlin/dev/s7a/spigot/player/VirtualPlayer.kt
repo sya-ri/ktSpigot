@@ -1,4 +1,4 @@
-package dev.s7a.spigot.util
+package dev.s7a.spigot.player
 
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer

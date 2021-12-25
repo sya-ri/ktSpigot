@@ -3,8 +3,8 @@ package dev.s7a.spigot.inventory.internal
 import dev.s7a.spigot.inventory.KtInventory
 import dev.s7a.spigot.inventory.KtInventoryClickEventResult
 import dev.s7a.spigot.listener.registerListener
-import dev.s7a.spigot.util.VirtualPlayer
-import dev.s7a.spigot.util.VirtualPlayer.Companion.toVirtual
+import dev.s7a.spigot.player.VirtualPlayer
+import dev.s7a.spigot.player.VirtualPlayer.Companion.toVirtual
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
