@@ -37,6 +37,10 @@ $dokka.location:dev.s7a.spigot.command/KtCommandTabCompleterType.Single///Pointi
 $dokka.location:dev.s7a.spigot.command/KtCommandTabCompleterType///PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-kt-command-tab-completer-type/index.html
 $dokka.location:dev.s7a.spigot.command/Literals///PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-literals/index.html
 $dokka.location:dev.s7a.spigot.command/Literals/Blocks/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-literals/-blocks.html
+$dokka.location:dev.s7a.spigot.command/Literals/EnumNames/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-literals/-enum-names.html
+$dokka.location:dev.s7a.spigot.command/Literals/EnumNames/#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-literals/-enum-names.html
+$dokka.location:dev.s7a.spigot.command/Literals/Enums/#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.String]#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.Boolean]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-literals/-enums.html
+$dokka.location:dev.s7a.spigot.command/Literals/Enums/#kotlin.Function1[TypeParam(bounds=[kotlin.Enum[^]]),kotlin.String]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-literals/-enums.html
 $dokka.location:dev.s7a.spigot.command/Literals/Materials/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-literals/-materials.html
 $dokka.location:dev.s7a.spigot.component////PointingToDeclaration/kt-spigot/dev.s7a.spigot.component/index.html
 $dokka.location:dev.s7a.spigot.component//appendKeybind/dev.s7a.spigot.component.KtComponentBuilder#kotlin.String#net.md_5.bungee.api.ChatColor?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#kotlin.Boolean?#net.md_5.bungee.api.chat.HoverEvent?#net.md_5.bungee.api.chat.ClickEvent?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.component/append-keybind.html
