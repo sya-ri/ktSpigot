@@ -371,8 +371,27 @@ $dokka.location:dev.s7a.spigot.inventory/KtInventoryClickEventResult///PointingT
 $dokka.location:dev.s7a.spigot.inventory/KtInventoryClickEventResult/KtInventoryClickEventResult/#org.bukkit.event.inventory.InventoryClickEvent#kotlin.Boolean/PointingToDeclaration/kt-spigot/dev.s7a.spigot.inventory/-kt-inventory-click-event-result/-kt-inventory-click-event-result.html
 $dokka.location:dev.s7a.spigot.inventory/KtInventoryClickEventResult/event/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.inventory/-kt-inventory-click-event-result/event.html
 $dokka.location:dev.s7a.spigot.inventory/KtInventoryClickEventResult/isInvoked/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.inventory/-kt-inventory-click-event-result/is-invoked.html
+$dokka.location:dev.s7a.spigot.item////PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/index.html
+$dokka.location:dev.s7a.spigot.item//customModelDataOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/custom-model-data-or-null.html
+$dokka.location:dev.s7a.spigot.item//displayNameOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/display-name-or-null.html
+$dokka.location:dev.s7a.spigot.item//editItemMeta/org.bukkit.inventory.ItemStack#kotlin.Function1[TypeParam(bounds=[org.bukkit.inventory.meta.ItemMeta]),kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/edit-item-meta.html
+$dokka.location:dev.s7a.spigot.item//editItemMeta/org.bukkit.inventory.ItemStack#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/edit-item-meta.html
+$dokka.location:dev.s7a.spigot.item//itemStack/#org.bukkit.Material#kotlin.Int#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/item-stack.html
+$dokka.location:dev.s7a.spigot.item//itemStack/#org.bukkit.Material#kotlin.Int#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.Char?#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/item-stack.html
+$dokka.location:dev.s7a.spigot.item//itemStack/#org.bukkit.Material#kotlin.Int#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.Int?#kotlin.Char?#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/item-stack.html
+$dokka.location:dev.s7a.spigot.item//localizedNameOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/localized-name-or-null.html
+$dokka.location:dev.s7a.spigot.item//loreOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/lore-or-null.html
 $dokka.location:dev.s7a.spigot.listener////PointingToDeclaration/kt-spigot/dev.s7a.spigot.listener/index.html
 $dokka.location:dev.s7a.spigot.listener//registerListener/org.bukkit.plugin.Plugin#org.bukkit.event.Listener/PointingToDeclaration/kt-spigot/dev.s7a.spigot.listener/register-listener.html
+$dokka.location:dev.s7a.spigot.player////PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/index.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer.Companion///PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/-companion/index.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer.Companion/toVirtual/org.bukkit.OfflinePlayer#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/-companion/to-virtual.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer///PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/index.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer/VirtualPlayer/#java.util.UUID/PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/-virtual-player.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer/offlinePlayer/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/offline-player.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer/player/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/player.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer/toString/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/to-string.html
+$dokka.location:dev.s7a.spigot.player/VirtualPlayer/uniqueId/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/unique-id.html
 $dokka.location:dev.s7a.spigot.scheduler////PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/index.html
 $dokka.location:dev.s7a.spigot.scheduler//asTicks/kotlin.time.Duration#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/as-ticks.html
 $dokka.location:dev.s7a.spigot.scheduler//bukkitRunnable/#kotlin.Function1[org.bukkit.scheduler.BukkitRunnable,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/bukkit-runnable.html
@@ -393,15 +412,6 @@ $dokka.location:dev.s7a.spigot.util//color/kotlin.String#kotlin.Char/PointingToD
 $dokka.location:dev.s7a.spigot.util//color/kotlin.String#kotlin.Char?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/color.html
 $dokka.location:dev.s7a.spigot.util//color/kotlin.collections.List[kotlin.String]#kotlin.Char/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/color.html
 $dokka.location:dev.s7a.spigot.util//color/kotlin.collections.List[kotlin.String]#kotlin.Char?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/color.html
-$dokka.location:dev.s7a.spigot.util//customModelDataOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/custom-model-data-or-null.html
-$dokka.location:dev.s7a.spigot.util//displayNameOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/display-name-or-null.html
-$dokka.location:dev.s7a.spigot.util//editItemMeta/org.bukkit.inventory.ItemStack#kotlin.Function1[TypeParam(bounds=[org.bukkit.inventory.meta.ItemMeta]),kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/edit-item-meta.html
-$dokka.location:dev.s7a.spigot.util//editItemMeta/org.bukkit.inventory.ItemStack#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/edit-item-meta.html
-$dokka.location:dev.s7a.spigot.util//itemStack/#org.bukkit.Material#kotlin.Int#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/item-stack.html
-$dokka.location:dev.s7a.spigot.util//itemStack/#org.bukkit.Material#kotlin.Int#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.Char?#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/item-stack.html
-$dokka.location:dev.s7a.spigot.util//itemStack/#org.bukkit.Material#kotlin.Int#kotlin.String?#kotlin.collections.List[kotlin.String]?#kotlin.Int?#kotlin.Char?#kotlin.Function1[org.bukkit.inventory.meta.ItemMeta,kotlin.Unit]?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/item-stack.html
-$dokka.location:dev.s7a.spigot.util//localizedNameOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/localized-name-or-null.html
-$dokka.location:dev.s7a.spigot.util//loreOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/lore-or-null.html
 $dokka.location:dev.s7a.spigot.util//sendActionBarMessage/org.bukkit.entity.Player#kotlin.Array[net.md_5.bungee.api.chat.BaseComponent]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/send-action-bar-message.html
 $dokka.location:dev.s7a.spigot.util//sendActionBarMessage/org.bukkit.entity.Player#kotlin.Function1[dev.s7a.spigot.component.KtComponentBuilder,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/send-action-bar-message.html
 $dokka.location:dev.s7a.spigot.util//sendActionBarMessage/org.bukkit.entity.Player#kotlin.String#kotlin.Char?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/send-action-bar-message.html
@@ -413,14 +423,6 @@ $dokka.location:dev.s7a.spigot.util//uncolor/kotlin.String#/PointingToDeclaratio
 $dokka.location:dev.s7a.spigot.util//uncolor/kotlin.collections.List[kotlin.String]#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/uncolor.html
 $dokka.location:dev.s7a.spigot.util//uuid/#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/uuid.html
 $dokka.location:dev.s7a.spigot.util//uuidOrNull/#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/uuid-or-null.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer.Companion///PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/-companion/index.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer.Companion/toVirtual/org.bukkit.OfflinePlayer#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/-companion/to-virtual.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer///PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/index.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer/VirtualPlayer/#java.util.UUID/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/-virtual-player.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer/offlinePlayer/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/offline-player.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer/player/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/player.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer/toString/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/to-string.html
-$dokka.location:dev.s7a.spigot.util/VirtualPlayer/uniqueId/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/-virtual-player/unique-id.html
 dev.s7a.spigot.command
 dev.s7a.spigot.component
 dev.s7a.spigot.config
@@ -428,7 +430,9 @@ dev.s7a.spigot.config.formatter
 dev.s7a.spigot.config.type
 dev.s7a.spigot.entity
 dev.s7a.spigot.inventory
+dev.s7a.spigot.item
 dev.s7a.spigot.listener
+dev.s7a.spigot.player
 dev.s7a.spigot.scheduler
 dev.s7a.spigot.util
 
