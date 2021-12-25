@@ -49,7 +49,7 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
                 when (candidate) {
                     is KtCommandTabCompleterCandidate.Literal -> {
                         candidate.list.forEach { (lower, origin) ->
-                            if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
+                            if (excludes.contains(lower).not() && lower.contains(argLastLower)) {
                                 addAll(origin)
                             }
                         }
@@ -57,7 +57,7 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
                     is KtCommandTabCompleterCandidate.Dynamic -> {
                         candidate.action.complete(parameter)?.forEach { origin ->
                             val lower = origin.lowercase()
-                            if (excludes.contains(lower).not() && lower.startsWith(argLastLower)) {
+                            if (excludes.contains(lower).not() && lower.contains(argLastLower)) {
                                 add(origin)
                             }
                         }

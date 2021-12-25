@@ -129,6 +129,7 @@ class CommandTest {
             assert(listOf("abc", "ABC"), arrayOf("o", "a"))
             assert(listOf("abc", "ABC"), arrayOf("o", "A"))
             assert(listOf("あいうえお"), arrayOf("o", "あ"))
+            assert(listOf("あいうえお"), arrayOf("o", "いう"))
             assert(listOf("p"), arrayOf("null", ""))
             assert(listOf("p"), arrayOf("q", ""))
         }
