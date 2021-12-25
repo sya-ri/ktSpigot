@@ -1,6 +1,6 @@
 @file:JvmName("Item16")
 
-package dev.s7a.spigot.util
+package dev.s7a.spigot.item
 
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack

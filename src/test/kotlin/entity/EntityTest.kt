@@ -2,7 +2,7 @@ package entity
 
 import be.seeseemelk.mockbukkit.MockBukkit
 import dev.s7a.spigot.entity.spawnEntity
-import dev.s7a.spigot.util.itemStack
+import dev.s7a.spigot.item.itemStack
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Zombie

@@ -1,7 +1,7 @@
 package util
 
 import be.seeseemelk.mockbukkit.MockBukkit
-import dev.s7a.spigot.util.VirtualPlayer.Companion.toVirtual
+import dev.s7a.spigot.player.VirtualPlayer.Companion.toVirtual
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

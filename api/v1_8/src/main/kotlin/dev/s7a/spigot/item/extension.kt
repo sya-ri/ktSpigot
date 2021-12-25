@@ -1,7 +1,8 @@
 @file:JvmName("Item8")
 
-package dev.s7a.spigot.util
+package dev.s7a.spigot.item
 
+import dev.s7a.spigot.util.color
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta

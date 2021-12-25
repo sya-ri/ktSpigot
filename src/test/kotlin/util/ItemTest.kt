@@ -1,12 +1,12 @@
 package util
 
 import be.seeseemelk.mockbukkit.MockBukkit
-import dev.s7a.spigot.util.customModelDataOrNull
-import dev.s7a.spigot.util.displayNameOrNull
-import dev.s7a.spigot.util.editItemMeta
-import dev.s7a.spigot.util.itemStack
-import dev.s7a.spigot.util.localizedNameOrNull
-import dev.s7a.spigot.util.loreOrNull
+import dev.s7a.spigot.item.customModelDataOrNull
+import dev.s7a.spigot.item.displayNameOrNull
+import dev.s7a.spigot.item.editItemMeta
+import dev.s7a.spigot.item.itemStack
+import dev.s7a.spigot.item.localizedNameOrNull
+import dev.s7a.spigot.item.loreOrNull
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Color
