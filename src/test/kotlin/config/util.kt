@@ -88,7 +88,7 @@ fun KtConfig.writeText(text: String) {
  * .yml に保存される形式にフォーマットする
  */
 fun Date.toVerboseString(): String {
-    val dateFormat = SimpleDateFormat("YYYY-MM-dd'T'HH:mm:ss.SSS'Z'")
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     dateFormat.timeZone = TimeZone.getTimeZone("UTC")
     return dateFormat.format(this)
 }
