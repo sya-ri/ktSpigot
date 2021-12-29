@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config
 
-class KtConfigSectionEditor<T : KtConfigSection>(
+class KtConfigSectionEditor<T>(
     private val config: KtConfig,
     private val path: String,
     private val clazz: Class<T>,

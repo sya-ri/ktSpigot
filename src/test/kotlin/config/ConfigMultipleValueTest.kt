@@ -129,6 +129,41 @@ class ConfigMultipleValueTest {
     }
 
     @Test
+    fun `multiple value can be edited as map`() {
+        val expected1 = List(5) { randomString() to Random.nextInt() }.toMap()
+        val expected2 = List(5) { randomString() to Random.nextInt() }.toMap()
+        TestConfig.writeText(
+            buildString {
+                appendLine("value:")
+                expected1.forEach { (key, value) ->
+                    appendLine("  $key: $value")
+                }
+            }
+        )
+        TestConfig.intValue("value").map().run {
+            get().run {
+                assertIs<KtConfigResult.Success<Map<String, Int>>>(this)
+                assertEquals(expected1, value)
+            }
+            editAndSave {
+                putAll(expected2)
+            }
+            get().run {
+                assertIs<KtConfigResult.Success<Map<String, Int>>>(this)
+                assertEquals(expected1 + expected2, value)
+            }
+        }
+        TestConfig.assertContent(
+            buildString {
+                appendLine("value:")
+                (expected1 + expected2).forEach { (key, value) ->
+                    appendLine("  $key: $value")
+                }
+            }
+        )
+    }
+
+    @Test
     fun `forceGet can be get as map, ignore error`() {
         val expected = List(2) { Random.nextInt() }
         TestConfig.writeText(
