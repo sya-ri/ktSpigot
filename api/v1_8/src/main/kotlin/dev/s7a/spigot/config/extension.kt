@@ -300,7 +300,7 @@ inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.get(path:
  * @since 1.0.0
  */
 @JvmName("editMap")
-inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.edit(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
+inline fun <reified T> KtConfigValue<Map<String, T>>.edit(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
     val editor = KtConfigSectionEditor(config, path, T::class.java, getAction().toMutableMap())
     set(editor.apply(block).toMap())
 }
@@ -313,7 +313,7 @@ inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.edit(getA
  * @since 1.0.0
  */
 @JvmName("editAndSaveMap")
-inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.editAndSave(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
+inline fun <reified T> KtConfigValue<Map<String, T>>.editAndSave(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
     edit(getAction, block)
     config.save()
 }
