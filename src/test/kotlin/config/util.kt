@@ -12,6 +12,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
+import kotlin.test.assertEquals
 
 /**
  * テストで使うコンフィグ
@@ -82,6 +83,13 @@ data class TestDataClass(val int: Int, val boolean: Boolean) {
 fun KtConfig.writeText(text: String) {
     file.writeText(text)
     load()
+}
+
+/**
+ * コンフィグの内容をアサートする
+ */
+fun KtConfig.assertContent(expected: String) {
+    assertEquals(expected, file.readText())
 }
 
 /**
