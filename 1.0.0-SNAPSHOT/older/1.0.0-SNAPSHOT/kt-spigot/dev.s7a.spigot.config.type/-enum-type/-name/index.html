@@ -7,7 +7,7 @@ const savedDarkMode = storage ? JSON.parse(storage) : false
 if(savedDarkMode === true){
     document.getElementsByTagName("html")[0].classList.add("theme-dark")
 }</script>
-<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script><link href="../../../../styles/style.css" rel="Stylesheet"><link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../../styles/main.css" rel="Stylesheet"><link href="../../../../styles/prism.css" rel="Stylesheet"><link href="../../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../../scripts/clipboard.js" async></script><script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script><script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script><script type="text/javascript" src="../../../../scripts/main.js" async></script><script type="text/javascript" src="../../../../scripts/prism.js" async></script><link href="../../../../styles/multimodule.css" rel="Stylesheet">  </head>
+<script type="text/javascript" src="../../../../scripts/sourceset_dependencies.js" async></script><link href="../../../../styles/style.css" rel="Stylesheet"><link href="../../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../../styles/main.css" rel="Stylesheet"><link href="../../../../styles/prism.css" rel="Stylesheet"><link href="../../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../../scripts/clipboard.js" async></script><script type="text/javascript" src="../../../../scripts/navigation-loader.js" async></script><script type="text/javascript" src="../../../../scripts/platform-content-handler.js" async></script><script type="text/javascript" src="../../../../scripts/main.js" defer></script><script type="text/javascript" src="../../../../scripts/prism.js" async></script><link href="../../../../styles/multimodule.css" rel="Stylesheet">  </head>
   <body>
     <div class="navigation-wrapper" id="navigation-wrapper">
       <div id="leftToggler"><span class="icon-toggler"></span></div>
@@ -21,7 +21,7 @@ if(savedDarkMode === true){
       <div id="leftColumn">
         <div id="sideMenu"></div>
       </div>
-      <div id="main"><script type="text/javascript" src="../../../../scripts/main.js"></script>
+      <div id="main">
         <div class="main-content" id="content" pageids="ktSpigot::dev.s7a.spigot.config.type/EnumType.Name///PointingToDeclaration//1245306095">
           <div class="breadcrumbs"><a href="../../../../index.html">ktSpigot</a>/<a href="../../index.html">dev.s7a.spigot.config.type</a>/<a href="../index.html">EnumType</a>/<a href="index.html">Name</a></div>
           <div class="cover ">
@@ -33,13 +33,15 @@ if(savedDarkMode === true){
             <div class="tabs-section-body">
               <h2 class="">See also</h2>
               <div data-togglable="See also">
-                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtml/main"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><a href="../../../dev.s7a.spigot.config/enum-name-value.html">dev.s7a.spigot.config.enumNameValue</a></span></div><div><div class="title"><div data-togglable="See also"></div></div></div></div></div></div></div></div></div>
+                <div class="platform-hinted WithExtraAttributes" data-platform-hinted="data-platform-hinted" data-togglable="See also"><div class="content sourceset-depenent-content" data-active="" data-togglable=":api:dokkaHtml/main"><div data-togglable="See also"><div class="table" data-togglable="See also"><div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main"><div class="main-subrow keyValue WithExtraAttributes"><div class=""><span class="inline-flex"><div><a href="../../../dev.s7a.spigot.config/enum-name-value.html"><span>dev.</span><wbr><span>s7a.</span><wbr><span>spigot.</span><wbr><span>config.</span><wbr><span>enum</span><wbr><span>Name</span><wbr><span><span>Value</span></span></a></div></span></div><div><div class="title"><div data-togglable="See also"></div></div></div></div></div></div></div></div></div>
               </div>
               <h2 class="tabbedcontent">Constructors</h2>
               <div class="table" data-togglable="Constructors"><a data-name="-188440260%2FConstructors%2F1245306095" anchor-label="Name" id="-188440260%2FConstructors%2F1245306095" data-filterable-set=":api:dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main">
                   <div class="main-subrow keyValue TabbedContent">
-                    <div class=""><span class="inline-flex"><a href="-name.html">Name</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-188440260%2FConstructors%2F1245306095"></span>
+                    <div class=""><span class="inline-flex">
+                        <div><a href="-name.html"><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-188440260%2FConstructors%2F1245306095"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -54,7 +56,9 @@ if(savedDarkMode === true){
               <div class="table" data-togglable="Functions"><a data-name="-14819807%2FFunctions%2F1245306095" anchor-label="get" id="-14819807%2FFunctions%2F1245306095" data-filterable-set=":api:dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../-string-type/-base/get.html"><span><span>get</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-14819807%2FFunctions%2F1245306095"></span>
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../../-string-type/-base/get.html"><span><span>get</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-14819807%2FFunctions%2F1245306095"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -67,7 +71,9 @@ if(savedDarkMode === true){
 <a data-name="1120713817%2FFunctions%2F1245306095" anchor-label="set" id="1120713817%2FFunctions%2F1245306095" data-filterable-set=":api:dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="index.html#1120713817%2FFunctions%2F1245306095"><span><span>set</span></span></a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1120713817%2FFunctions%2F1245306095"></span>
+                    <div class=""><span class="inline-flex">
+                        <div><a href="index.html#1120713817%2FFunctions%2F1245306095"><span><span>set</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1120713817%2FFunctions%2F1245306095"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -82,7 +88,9 @@ if(savedDarkMode === true){
               <div class="table" data-togglable="Properties"><a data-name="1098944087%2FProperties%2F1245306095" anchor-label="list" id="1098944087%2FProperties%2F1245306095" data-filterable-set=":api:dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../-string-type/-base/list.html">list</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1098944087%2FProperties%2F1245306095"></span>
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../../-string-type/-base/list.html">list</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1098944087%2FProperties%2F1245306095"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div>
@@ -97,7 +105,9 @@ if(savedDarkMode === true){
               <div class="table" data-togglable="Inheritors"><a data-name="1555298691%2FInheritors%2F1245306095" anchor-label="MaterialType" id="1555298691%2FInheritors%2F1245306095" data-filterable-set=":api:dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="../../-material-type/index.html">MaterialType</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1555298691%2FInheritors%2F1245306095"></span>
+                    <div class=""><span class="inline-flex">
+                        <div><a href="../../-material-type/index.html">MaterialType</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1555298691%2FInheritors%2F1245306095"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div></div>
@@ -108,7 +118,9 @@ if(savedDarkMode === true){
               <div class="table" data-togglable="Sources"><a data-name="2071870528%2FSource%2F1245306095" anchor-label="https://github.com/sya-ri/ktSpigot/blob/master/api/v1_8/src/main/kotlin/dev/s7a/spigot/config/type/EnumType.kt#L13" id="2071870528%2FSource%2F1245306095" data-filterable-set=":api:dokkaHtml/main"></a>
                 <div class="table-row" data-filterable-current=":api:dokkaHtml/main" data-filterable-set=":api:dokkaHtml/main">
                   <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex"><a href="https://github.com/sya-ri/ktSpigot/blob/master/api/v1_8/src/main/kotlin/dev/s7a/spigot/config/type/EnumType.kt#L13">jvm source</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2071870528%2FSource%2F1245306095"></span>
+                    <div class=""><span class="inline-flex">
+                        <div><a href="https://github.com/sya-ri/ktSpigot/blob/master/api/v1_8/src/main/kotlin/dev/s7a/spigot/config/type/EnumType.kt#L13">jvm source</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2071870528%2FSource%2F1245306095"></span>
                           <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                         </span></span></div>
                     <div></div>
