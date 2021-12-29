@@ -6,7 +6,7 @@ import java.net.URL
 plugins {
     `maven-publish`
     signing
-    id("org.jetbrains.dokka") version "1.6.0"
+    id("org.jetbrains.dokka") version "1.6.10"
 }
 
 subprojects {
@@ -153,7 +153,7 @@ val dokkaHtml by tasks.getting(DokkaTask::class) {
     val version = rootProject.version.toString()
     outputDirectory.set(file(dokkaDir.resolve(version)))
     dependencies {
-        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.6.0")
+        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.6.10")
         compileOnly("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
     }
     pluginsMapConfiguration.set(
