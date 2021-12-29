@@ -2,6 +2,7 @@ package config
 
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigResult
+import dev.s7a.spigot.config.editAndSave
 import dev.s7a.spigot.config.forceGetValue
 import dev.s7a.spigot.config.intValue
 import randomString
@@ -49,6 +50,41 @@ class ConfigMultipleValueTest {
                 assertEquals(expected, value)
             }
         }
+    }
+
+    @Test
+    fun `multiple value can be edited as list`() {
+        val expected1 = List(5) { Random.nextInt() }
+        val expected2 = List(5) { Random.nextInt() }
+        TestConfig.writeText(
+            buildString {
+                appendLine("value:")
+                expected1.forEach {
+                    appendLine(" - $it")
+                }
+            }
+        )
+        TestConfig.intValue("value").list().run {
+            get().run {
+                assertIs<KtConfigResult.Success<List<Int>>>(this)
+                assertEquals(expected1, value)
+            }
+            editAndSave {
+                addAll(expected2)
+            }
+            get().run {
+                assertIs<KtConfigResult.Success<List<Int>>>(this)
+                assertEquals(expected1 + expected2, value)
+            }
+        }
+        TestConfig.assertContent(
+            buildString {
+                appendLine("value:")
+                (expected1 + expected2).forEach {
+                    appendLine("- $it")
+                }
+            }
+        )
     }
 
     @Test
