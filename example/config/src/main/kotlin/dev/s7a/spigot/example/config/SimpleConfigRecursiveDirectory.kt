@@ -11,5 +11,5 @@ import java.io.File
 object SimpleConfigRecursiveDirectory : KtConfigDirectory.Recursive<SimpleConfigRecursiveDirectory.ConfigFile>(plugin, "simple-recursive") {
     class ConfigFile(file: File) : KtConfig(file)
 
-    override fun new(file: File) = ConfigFile(file)
+    override fun load(file: File) = ConfigFile(file)
 }
