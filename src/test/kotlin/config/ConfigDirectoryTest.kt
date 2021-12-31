@@ -35,7 +35,7 @@ class ConfigDirectoryTest {
     @Test
     fun `non recursive config directory can be get`() {
         val configDirectory = object : KtConfigDirectory<Config>(parentFile) {
-            override fun new(file: File) = Config(file)
+            override fun load(file: File) = Config(file)
         }
         assertEquals(0, configDirectory.loadedConfigList.size)
         assertEquals(2, configDirectory.loadAll().size)
@@ -51,7 +51,7 @@ class ConfigDirectoryTest {
     @Test
     fun `recursive config directory can be get`() {
         val configDirectory = object : KtConfigDirectory.Recursive<Config>(parentFile) {
-            override fun new(file: File) = Config(file)
+            override fun load(file: File) = Config(file)
         }
         assertEquals(0, configDirectory.loadedConfigList.size)
         assertEquals(4, configDirectory.loadAll().size)

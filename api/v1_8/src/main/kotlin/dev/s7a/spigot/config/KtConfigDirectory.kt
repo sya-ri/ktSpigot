@@ -33,7 +33,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
      * @return 読み込んだコンフィグ
      * @since 1.0.0
      */
-    operator fun get(file: File): T = files.getOrPut(file) { new(file) }
+    operator fun get(file: File): T = files.getOrPut(file) { load(file) }
 
     /**
      * コンフィグを読み込む。ファイルが存在しなければ新しく作成する
@@ -53,7 +53,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
      */
     fun getOrNull(file: File): T? = files[file] ?: run {
         if (file.exists()) {
-            files.putIfAbsent(file, new(file))
+            files.putIfAbsent(file, load(file))
         } else {
             null
         }
@@ -121,7 +121,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
     fun delete(config: KtConfig) = delete(config.file)
 
     /**
-     * ファイルをコンフィグに変換する。内部で使用されるので、[get], [getOrNull] を代わりに使用してください
+     * ファイルをコンフィグとして読み込む。内部で使用されるので、これを直接呼び出さず [get], [getOrNull] を代わりに使用してください
      *
      * @param file ファイル
      * @return コンフィグ
@@ -129,7 +129,7 @@ abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
      * @see getOrNull
      * @since 1.0.0
      */
-    protected abstract fun new(file: File): T
+    protected abstract fun load(file: File): T
 
     /**
      * ディレクトリ内のファイルを再帰的に取得し、コンフィグとして読み込む

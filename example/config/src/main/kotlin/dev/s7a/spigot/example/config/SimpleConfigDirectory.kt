@@ -11,5 +11,5 @@ import java.io.File
 object SimpleConfigDirectory : KtConfigDirectory<SimpleConfigDirectory.ConfigFile>(plugin, "simple") {
     class ConfigFile(file: File) : KtConfig(file)
 
-    override fun new(file: File) = ConfigFile(file)
+    override fun load(file: File) = ConfigFile(file)
 }
