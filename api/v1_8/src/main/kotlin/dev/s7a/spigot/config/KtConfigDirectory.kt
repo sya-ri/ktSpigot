@@ -80,6 +80,15 @@ abstract class KtConfigDirectory<out T : KtConfig>(val directory: File) {
     }
 
     /**
+     * 読み込んだファイル情報を削除する
+     *
+     * @since 1.0.0
+     */
+    fun clear() {
+        files.clear()
+    }
+
+    /**
      * 既に読み込み済みのコンフィグ
      *
      * @since 1.0.0
