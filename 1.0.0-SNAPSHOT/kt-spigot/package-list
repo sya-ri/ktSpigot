@@ -200,11 +200,11 @@ $dokka.location:dev.s7a.spigot.config/KtConfigDirectory.Recursive/loadAll/#/Poin
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory///PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/index.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/KtConfigDirectory/#java.io.File/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/-kt-config-directory.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/KtConfigDirectory/#org.bukkit.plugin.java.JavaPlugin#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/-kt-config-directory.html
+$dokka.location:dev.s7a.spigot.config/KtConfigDirectory/clear/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/clear.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/delete/#dev.s7a.spigot.config.KtConfig/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/delete.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/delete/#java.io.File/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/delete.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/delete/#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/delete.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/directory/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/directory.html
-$dokka.location:dev.s7a.spigot.config/KtConfigDirectory/files/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/files.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/get/#java.io.File/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/get.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/get/#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/get.html
 $dokka.location:dev.s7a.spigot.config/KtConfigDirectory/getOrNull/#java.io.File/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/-kt-config-directory/get-or-null.html
