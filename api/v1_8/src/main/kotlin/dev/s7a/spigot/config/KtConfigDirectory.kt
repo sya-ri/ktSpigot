@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap
  * @property directory ディレクトリ
  * @since 1.0.0
  */
-abstract class KtConfigDirectory<out T : KtConfig>(val directory: File) {
+abstract class KtConfigDirectory<T : KtConfig>(val directory: File) {
     /**
      * @param plugin プラグイン
      * @param directoryName ディレクトリ名
@@ -24,7 +24,7 @@ abstract class KtConfigDirectory<out T : KtConfig>(val directory: File) {
      *
      * @since 1.0.0
      */
-    private val files = ConcurrentHashMap<File, T>()
+    protected val files = ConcurrentHashMap<File, T>()
 
     /**
      * コンフィグを読み込む。ファイルが存在しなければ新しく作成する
@@ -138,7 +138,7 @@ abstract class KtConfigDirectory<out T : KtConfig>(val directory: File) {
      * @property directory ディレクトリ
      * @since 1.0.0
      */
-    abstract class Recursive<out T : KtConfig>(directory: File) : KtConfigDirectory<T>(directory) {
+    abstract class Recursive<T : KtConfig>(directory: File) : KtConfigDirectory<T>(directory) {
         /**
          * @param plugin プラグイン
          * @param directoryName ディレクトリ名
