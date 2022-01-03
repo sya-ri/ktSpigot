@@ -47,9 +47,6 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
             players.remove(virtualPlayer)
             return
         }
-        if (inventory.isCancel) {
-            event.isCancelled = true
-        }
         inventory.onClick?.invoke(event)
         val isInvoked = inventory.actions[event.slot]?.invoke(event) != null
         inventory.onClickResult?.invoke(KtInventoryClickEventResult(event, isInvoked))
