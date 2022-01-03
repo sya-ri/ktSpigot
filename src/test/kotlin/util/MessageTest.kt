@@ -8,6 +8,7 @@ import org.bukkit.ChatColor
 import randomString
 import kotlin.test.Ignore
 import kotlin.test.Test
+import kotlin.test.assertEquals
 
 /**
  * メッセージに関するテスト
@@ -45,13 +46,14 @@ class MessageTest {
         player.assertNoMoreSaid()
     }
 
-    @Ignore // UnimplementedOperationException by MockBukkit
     @Test
     fun `title message can be received`() {
         val player = server.addPlayer()
         val color = ChatColor.values().random()
         val string = randomString()
-        player.sendTitleMessage("&${color.char}$string")
+        player.sendTitleMessage("&${color.char}$string", "other")
+        assertEquals("$color$string", player.nextTitle())
+        assertEquals("other", player.nextSubTitle())
     }
 
     @Ignore // https://github.com/MockBukkit/MockBukkit/pull/267
