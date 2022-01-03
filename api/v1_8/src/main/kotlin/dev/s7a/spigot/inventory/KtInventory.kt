@@ -15,9 +15,13 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
     /**
      * クリック時の処理。アイテム毎のクリックアクションが処理される前に実行する
      *
+     * デフォルトは イベントキャンセル
+     *
      * @since 1.0.0
      */
-    internal var onClick: KtInventoryClickEventHandler? = null
+    internal var onClick: KtInventoryClickEventHandler? = {
+        it.isCancelled = true
+    }
 
     /**
      * クリック時の処理。アイテム毎のクリックアクションが処理された後に実行する
@@ -41,14 +45,9 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
     internal val actions = mutableMapOf<Int, KtInventoryClickEventHandler>()
 
     /**
-     * デフォルトでクリックイベントをキャンセルする
-     *
-     * @since 1.0.0
-     */
-    var isCancel = true
-
-    /**
      * クリック時の処理を変更する。アイテム毎のクリックアクションが処理される前に実行する
+     *
+     * デフォルトは イベントキャンセル
      *
      * @param action 処理
      * @since 1.0.0
