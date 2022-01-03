@@ -6,7 +6,7 @@ import dev.s7a.spigot.config.KtConfigErrorHandler
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.checkValues
 import dev.s7a.spigot.config.getErrors
-import dev.s7a.spigot.config.intValue
+import dev.s7a.spigot.config.type.intValue
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.Test

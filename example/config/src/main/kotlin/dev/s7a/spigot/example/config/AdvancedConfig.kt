@@ -2,13 +2,13 @@ package dev.s7a.spigot.example.config
 
 import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.checkValues
-import dev.s7a.spigot.config.enumNameValue
-import dev.s7a.spigot.config.enumOrdinalValue
-import dev.s7a.spigot.config.locationValue
-import dev.s7a.spigot.config.materialValue
 import dev.s7a.spigot.config.printErrors
-import dev.s7a.spigot.config.uuidValue
-import dev.s7a.spigot.config.vectorValue
+import dev.s7a.spigot.config.type.enumNameValue
+import dev.s7a.spigot.config.type.enumOrdinalValue
+import dev.s7a.spigot.config.type.locationValue
+import dev.s7a.spigot.config.type.materialValue
+import dev.s7a.spigot.config.type.uuidValue
+import dev.s7a.spigot.config.type.vectorValue
 import dev.s7a.spigot.example.config.Main.Companion.plugin
 import org.bukkit.Bukkit
 import org.bukkit.Material

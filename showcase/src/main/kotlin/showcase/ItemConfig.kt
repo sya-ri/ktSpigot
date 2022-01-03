@@ -2,10 +2,10 @@ package showcase
 
 import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.checkValues
-import dev.s7a.spigot.config.intValue
-import dev.s7a.spigot.config.materialValue
 import dev.s7a.spigot.config.printErrors
-import dev.s7a.spigot.config.stringValue
+import dev.s7a.spigot.config.type.intValue
+import dev.s7a.spigot.config.type.materialValue
+import dev.s7a.spigot.config.type.stringValue
 import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 import org.bukkit.plugin.java.JavaPlugin

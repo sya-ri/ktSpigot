@@ -5,7 +5,6 @@ import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
 import dev.s7a.spigot.config.mapValues
-import dev.s7a.spigot.config.uuidValue
 import org.bukkit.Bukkit
 import org.bukkit.entity.Entity
 import java.util.UUID

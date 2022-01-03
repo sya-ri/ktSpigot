@@ -5,9 +5,9 @@ import dev.s7a.spigot.config.KtConfigDataClassConverter
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigSection
-import dev.s7a.spigot.config.booleanValue
-import dev.s7a.spigot.config.intValue
 import dev.s7a.spigot.config.setUnsafe
+import dev.s7a.spigot.config.type.booleanValue
+import dev.s7a.spigot.config.type.intValue
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date

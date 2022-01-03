@@ -4,8 +4,8 @@ import be.seeseemelk.mockbukkit.MockBukkit
 import config.TestConfig
 import config.writeText
 import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.dataClassValue
 import dev.s7a.spigot.config.formatter.DefaultLocationFormatter
+import dev.s7a.spigot.config.type.dataClassValue
 import randomLocation
 import randomString
 import kotlin.random.Random

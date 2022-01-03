@@ -2,8 +2,8 @@ package dev.s7a.spigot.example.config
 
 import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.checkValues
-import dev.s7a.spigot.config.intValue
 import dev.s7a.spigot.config.printErrors
+import dev.s7a.spigot.config.type.intValue
 import dev.s7a.spigot.example.config.Main.Companion.plugin
 import kotlin.random.Random
 
