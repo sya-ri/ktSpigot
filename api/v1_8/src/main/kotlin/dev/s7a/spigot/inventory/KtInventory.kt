@@ -52,7 +52,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @param action 処理
      * @since 1.0.0
      */
-    fun onClick(action: KtInventoryClickEventHandler) {
+    fun onClick(action: KtInventoryClickEventHandler?) {
         onClick = action
     }
 
@@ -62,7 +62,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @param action 処理
      * @since 1.0.0
      */
-    fun onClickResult(action: KtInventoryClickEventResultHandler) {
+    fun onClickResult(action: KtInventoryClickEventResultHandler?) {
         onClickResult = action
     }
 
@@ -72,7 +72,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @param action 処理
      * @since 1.0.0
      */
-    fun onClose(action: KtInventoryCloseEventHandler) {
+    fun onClose(action: KtInventoryCloseEventHandler?) {
         onClose = action
     }
 
