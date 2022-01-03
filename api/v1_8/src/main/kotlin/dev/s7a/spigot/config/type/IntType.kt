@@ -3,7 +3,6 @@ package dev.s7a.spigot.config.type
 import dev.s7a.spigot.config.KtConfig
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
-import dev.s7a.spigot.config.intValue
 import dev.s7a.spigot.config.mapValues
 
 /**

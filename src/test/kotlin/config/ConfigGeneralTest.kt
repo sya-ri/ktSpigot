@@ -1,8 +1,8 @@
 package config
 
 import dev.s7a.spigot.config.KtConfig
-import dev.s7a.spigot.config.booleanValue
-import dev.s7a.spigot.config.intValue
+import dev.s7a.spigot.config.type.booleanValue
+import dev.s7a.spigot.config.type.intValue
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.concurrent.atomic.AtomicBoolean

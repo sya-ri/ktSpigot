@@ -6,7 +6,7 @@ import dev.s7a.spigot.config.KtConfigSection
 import dev.s7a.spigot.config.KtConfigValueType
 import dev.s7a.spigot.config.getUnsafe
 import dev.s7a.spigot.config.setUnsafe
-import dev.s7a.spigot.config.value
+import dev.s7a.spigot.config.type.value
 import org.bukkit.inventory.ItemStack
 
 // CODE-SNIPPET BEGIN

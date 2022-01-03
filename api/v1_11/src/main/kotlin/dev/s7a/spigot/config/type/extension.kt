@@ -1,9 +1,8 @@
-@file:JvmName("Types11")
+@file:JvmName("Extension11")
 
-package dev.s7a.spigot.config
+package dev.s7a.spigot.config.type
 
-import dev.s7a.spigot.config.type.EntityType
-import dev.s7a.spigot.config.type.SpecificEntityType
+import dev.s7a.spigot.config.KtConfigSection
 import org.bukkit.entity.Entity
 
 /**

@@ -5,9 +5,9 @@ import dev.s7a.spigot.config.KtConfigDataClassConverter
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigFormatter
 import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.intValue
-import dev.s7a.spigot.config.locationValue
 import dev.s7a.spigot.config.setUnsafe
+import dev.s7a.spigot.config.type.intValue
+import dev.s7a.spigot.config.type.locationValue
 import org.bukkit.Location
 
 // CODE-SNIPPET BEGIN

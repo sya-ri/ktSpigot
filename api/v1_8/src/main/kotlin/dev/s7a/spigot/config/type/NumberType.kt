@@ -5,7 +5,6 @@ import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
 import dev.s7a.spigot.config.getListUnsafe
 import dev.s7a.spigot.config.getUnsafe
-import dev.s7a.spigot.config.numberValue
 import dev.s7a.spigot.config.setUnsafe
 
 /**

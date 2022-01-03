@@ -4,7 +4,7 @@ import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.editAndSave
 import dev.s7a.spigot.config.forceGetValue
-import dev.s7a.spigot.config.intValue
+import dev.s7a.spigot.config.type.intValue
 import randomString
 import kotlin.random.Random
 import kotlin.test.Test
