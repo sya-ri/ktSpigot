@@ -16,12 +16,14 @@ import dev.s7a.spigot.config.longValue
 import dev.s7a.spigot.config.materialValue
 import dev.s7a.spigot.config.section
 import dev.s7a.spigot.config.stringValue
+import dev.s7a.spigot.config.type.SpecificEntityType
 import dev.s7a.spigot.config.uuidValue
 import dev.s7a.spigot.config.vectorValue
 import dev.s7a.spigot.entity.spawnEntity
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Entity
+import org.bukkit.entity.Skeleton
 import org.bukkit.entity.Zombie
 import org.bukkit.util.Vector
 import randomLocation
@@ -150,6 +152,18 @@ class ConfigTypeTest {
             get().run {
                 assertIs<KtConfigResult.Success<Entity>>(this)
                 assertEquals(expected, value)
+            }
+        }
+        TestConfig.entityValue<Zombie>("value").run {
+            get().run {
+                assertIs<KtConfigResult.Success<Entity>>(this)
+                assertEquals(expected, value)
+            }
+        }
+        TestConfig.entityValue<Skeleton>("value").run {
+            get().run {
+                assertIs<KtConfigResult.Failure<Entity>>(this)
+                assertIs<SpecificEntityType.MismatchEntityTypeError>(error)
             }
         }
     }
