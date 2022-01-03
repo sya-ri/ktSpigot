@@ -6,6 +6,7 @@ import dev.s7a.spigot.config.booleanValue
 import dev.s7a.spigot.config.dataClassValue
 import dev.s7a.spigot.config.dateValue
 import dev.s7a.spigot.config.doubleValue
+import dev.s7a.spigot.config.entityValue
 import dev.s7a.spigot.config.enumNameValue
 import dev.s7a.spigot.config.enumOrdinalValue
 import dev.s7a.spigot.config.floatValue
@@ -16,10 +17,12 @@ import dev.s7a.spigot.config.materialValue
 import dev.s7a.spigot.config.section
 import dev.s7a.spigot.config.stringValue
 import dev.s7a.spigot.config.uuidValue
-import dev.s7a.spigot.config.value
 import dev.s7a.spigot.config.vectorValue
+import dev.s7a.spigot.entity.spawnEntity
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.entity.Entity
+import org.bukkit.entity.Zombie
 import org.bukkit.util.Vector
 import randomLocation
 import randomString
@@ -27,6 +30,7 @@ import randomVector
 import java.util.Date
 import java.util.UUID
 import kotlin.random.Random
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -131,6 +135,20 @@ class ConfigTypeTest {
         TestConfig.doubleValue("value").list().run {
             get().run {
                 assertIs<KtConfigResult.Success<List<Double>>>(this)
+                assertEquals(expected, value)
+            }
+        }
+    }
+
+    @Ignore // NotImplemented by MockBukkit
+    @Test
+    fun `entity can be get`() {
+        val world = server.addSimpleWorld(randomString())
+        val expected = world.spawnEntity<Zombie>(Location(world, 0.0, 0.0, 0.0))
+        TestConfig.writeText("value: ${expected.uniqueId}")
+        TestConfig.entityValue("value").run {
+            get().run {
+                assertIs<KtConfigResult.Success<Entity>>(this)
                 assertEquals(expected, value)
             }
         }
