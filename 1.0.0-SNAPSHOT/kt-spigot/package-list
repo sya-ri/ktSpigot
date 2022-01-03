@@ -63,6 +63,10 @@ $dokka.location:dev.s7a.spigot.component/KtComponentBuilder/build/#/PointingToDe
 $dokka.location:dev.s7a.spigot.component/KtComponentBuilder/line/#kotlin.Function1[dev.s7a.spigot.component.KtComponentBuilder,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.component/-kt-component-builder/line.html
 $dokka.location:dev.s7a.spigot.component/KtComponentBuilder/lineBreak/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.component/-kt-component-builder/line-break.html
 $dokka.location:dev.s7a.spigot.config.formatter////PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/index.html
+$dokka.location:dev.s7a.spigot.config.formatter/DefaultBlockLocationFormatter///PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/-default-block-location-formatter/index.html
+$dokka.location:dev.s7a.spigot.config.formatter/DefaultBlockLocationFormatter/name/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/-default-block-location-formatter/name.html
+$dokka.location:dev.s7a.spigot.config.formatter/DefaultBlockLocationFormatter/string/#dev.s7a.spigot.location.BlockLocation/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/-default-block-location-formatter/string.html
+$dokka.location:dev.s7a.spigot.config.formatter/DefaultBlockLocationFormatter/value/#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/-default-block-location-formatter/value.html
 $dokka.location:dev.s7a.spigot.config.formatter/DefaultLocationFormatter///PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/-default-location-formatter/index.html
 $dokka.location:dev.s7a.spigot.config.formatter/DefaultLocationFormatter/name/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/-default-location-formatter/name.html
 $dokka.location:dev.s7a.spigot.config.formatter/DefaultLocationFormatter/string/#org.bukkit.Location/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.formatter/-default-location-formatter/string.html
@@ -133,6 +137,7 @@ $dokka.location:dev.s7a.spigot.config.type/StringType/get/#dev.s7a.spigot.config
 $dokka.location:dev.s7a.spigot.config.type/StringType/list/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.type/-string-type/list.html
 $dokka.location:dev.s7a.spigot.config.type/StringType/set/#dev.s7a.spigot.config.KtConfig#kotlin.String#kotlin.String?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config.type/-string-type/set.html
 $dokka.location:dev.s7a.spigot.config////PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/index.html
+$dokka.location:dev.s7a.spigot.config//blockLocationValue/dev.s7a.spigot.config.KtConfigSection#kotlin.String#dev.s7a.spigot.config.KtConfigFormatter[dev.s7a.spigot.location.BlockLocation]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/block-location-value.html
 $dokka.location:dev.s7a.spigot.config//booleanValue/dev.s7a.spigot.config.KtConfigSection#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/boolean-value.html
 $dokka.location:dev.s7a.spigot.config//checkValues/dev.s7a.spigot.config.KtConfig#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/check-values.html
 $dokka.location:dev.s7a.spigot.config//dataClassValue/dev.s7a.spigot.config.KtConfigSection#kotlin.String#dev.s7a.spigot.config.KtConfigDataClassConverter.Listable[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.config/data-class-value.html
@@ -382,6 +387,29 @@ $dokka.location:dev.s7a.spigot.item//localizedNameOrNull/org.bukkit.inventory.me
 $dokka.location:dev.s7a.spigot.item//loreOrNull/org.bukkit.inventory.meta.ItemMeta#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.item/lore-or-null.html
 $dokka.location:dev.s7a.spigot.listener////PointingToDeclaration/kt-spigot/dev.s7a.spigot.listener/index.html
 $dokka.location:dev.s7a.spigot.listener//registerListener/org.bukkit.plugin.Plugin#org.bukkit.event.Listener/PointingToDeclaration/kt-spigot/dev.s7a.spigot.listener/register-listener.html
+$dokka.location:dev.s7a.spigot.location////PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/index.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation.Companion///PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/-companion/index.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation.Companion/toBlockLocation/org.bukkit.Location#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/-companion/to-block-location.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation///PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/index.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/BlockLocation/#org.bukkit.Location/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/-block-location.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/BlockLocation/#org.bukkit.World?#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/-block-location.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/add/#dev.s7a.spigot.location.BlockLocation/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/add.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/add/#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/add.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/block/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/block.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/distance/#dev.s7a.spigot.location.BlockLocation/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/distance.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/distanceSquared/#dev.s7a.spigot.location.BlockLocation/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/distance-squared.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/length/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/length.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/lengthSquared/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/length-squared.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/multiply/#kotlin.Int/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/multiply.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/subtract/#dev.s7a.spigot.location.BlockLocation/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/subtract.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/subtract/#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/subtract.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/toLocation/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/to-location.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/toVector/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/to-vector.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/world/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/world.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/x/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/x.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/y/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/y.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/z/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/z.html
+$dokka.location:dev.s7a.spigot.location/BlockLocation/zero/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.location/-block-location/zero.html
 $dokka.location:dev.s7a.spigot.player////PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/index.html
 $dokka.location:dev.s7a.spigot.player/VirtualPlayer.Companion///PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/-companion/index.html
 $dokka.location:dev.s7a.spigot.player/VirtualPlayer.Companion/toVirtual/org.bukkit.OfflinePlayer#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.player/-virtual-player/-companion/to-virtual.html
@@ -431,6 +459,7 @@ dev.s7a.spigot.entity
 dev.s7a.spigot.inventory
 dev.s7a.spigot.item
 dev.s7a.spigot.listener
+dev.s7a.spigot.location
 dev.s7a.spigot.player
 dev.s7a.spigot.scheduler
 dev.s7a.spigot.util
