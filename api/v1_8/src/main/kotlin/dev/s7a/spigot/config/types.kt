@@ -1,5 +1,6 @@
 package dev.s7a.spigot.config
 
+import dev.s7a.spigot.config.formatter.DefaultBlockLocationFormatter
 import dev.s7a.spigot.config.formatter.DefaultLocationFormatter
 import dev.s7a.spigot.config.formatter.DefaultUUIDFormatter
 import dev.s7a.spigot.config.formatter.DefaultVectorFormatter
@@ -16,6 +17,7 @@ import dev.s7a.spigot.config.type.MaterialType
 import dev.s7a.spigot.config.type.NumberType
 import dev.s7a.spigot.config.type.SectionType
 import dev.s7a.spigot.config.type.StringType
+import dev.s7a.spigot.location.BlockLocation
 import org.bukkit.Location
 import org.bukkit.util.Vector
 import java.util.UUID
@@ -58,6 +60,15 @@ fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConf
  * @since 1.0.0
  */
 fun <T> KtConfigSection.value(path: String, type: KtConfigValueType.Listable<T>) = KtConfigValue.Base.Listable(config, fullPath(path), type)
+
+/**
+ * [BlockLocation] のコンフィグデータ型として値を登録する
+ *
+ * @param path コンフィグパス
+ * @param formatter フォーマッタ
+ * @since 1.0.0
+ */
+fun KtConfigSection.blockLocationValue(path: String, formatter: KtConfigFormatter<BlockLocation> = DefaultBlockLocationFormatter) = formatterValue(path, formatter)
 
 /**
  * [Boolean] のコンフィグデータ型として値を登録する
