@@ -9,6 +9,15 @@ import org.bukkit.inventory.meta.ItemMeta
 /**
  * [ItemMeta.hasCustomModelData] が true ならば [ItemMeta.getCustomModelData] を返す
  *
+ * @see ItemMeta.customModelDataOrNull
+ * @since 1.0.0
+ */
+val ItemStack.customModelDataOrNull
+    get() = itemMeta?.customModelDataOrNull
+
+/**
+ * [ItemMeta.hasCustomModelData] が true ならば [ItemMeta.getCustomModelData] を返す
+ *
  * @since 1.0.0
  */
 val ItemMeta.customModelDataOrNull
