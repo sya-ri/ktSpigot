@@ -21,4 +21,5 @@ include(
     ":example:player",
     ":example:scheduler",
     ":showcase",
+    ":libs:test"
 )

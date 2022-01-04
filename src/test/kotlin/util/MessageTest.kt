@@ -1,14 +1,12 @@
 package util
 
-import be.seeseemelk.mockbukkit.MockBukkit
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.util.sendActionBarMessage
 import dev.s7a.spigot.util.sendChatMessage
 import dev.s7a.spigot.util.sendTitleMessage
 import org.bukkit.ChatColor
 import randomString
-import kotlin.test.Ignore
 import kotlin.test.Test
-import kotlin.test.assertEquals
 
 /**
  * メッセージに関するテスト
@@ -18,55 +16,47 @@ import kotlin.test.assertEquals
  * @see dev.s7a.spigot.util.sendTitleMessage
  */
 class MessageTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
     @Test
     fun `chat message can be received`() {
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         val color = ChatColor.values().random()
         val string = randomString()
-        player.assertNoMoreSaid()
+        player.assertMessageIsEmpty()
         player.sendChatMessage("&${color.char}$string")
-        player.assertSaid("$color$string")
-        player.assertNoMoreSaid()
+        player.assertMessage("$color$string")
+        player.assertMessageIsEmpty()
     }
 
-    @Ignore // https://github.com/MockBukkit/MockBukkit/pull/267
     @Test
     fun `action bar message can be received`() {
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         val color = ChatColor.values().random()
         val string = randomString()
-        player.assertNoMoreSaid()
+        player.assertActionBarIsEmpty()
         player.sendActionBarMessage("&${color.char}$string")
-        player.assertSaid("$color$string")
-        player.assertNoMoreSaid()
+        player.assertActionBar("$color$string")
     }
 
     @Test
     fun `title message can be received`() {
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         val color = ChatColor.values().random()
         val string = randomString()
-        player.sendTitleMessage("&${color.char}$string", "other")
-        assertEquals("$color$string", player.nextTitle())
-        assertEquals("other", player.nextSubTitle())
+        player.assertTitleIsEmpty()
+        player.sendTitleMessage("&${color.char}$string",)
+        player.assertTitle("$color$string")
     }
 
-    @Ignore // https://github.com/MockBukkit/MockBukkit/pull/267
     @Test
     fun `component message using line can be received`() {
         val expected = """
             §a1
-            23
+            §f2§f3
             §b4
-            5
+            §c5§d6§e7
             
         """.trimIndent()
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         player.sendChatMessage {
             line {
                 append("&a1")
@@ -78,13 +68,13 @@ class MessageTest {
                 append("4", ChatColor.AQUA.asBungee())
             }
             line {
-                append("5")
+                append("&c5&d6&e7")
                 lineBreak()
             }
         }
         expected.lines().forEach {
-            player.assertSaid(it)
+            player.assertMessage(it)
         }
-        player.assertNoMoreSaid()
+        player.assertMessageIsEmpty()
     }
 }

@@ -1,7 +1,7 @@
 package showcase
 
-import be.seeseemelk.mockbukkit.MockBukkit
 import config.writeText
+import dev.s7a.spigot.KtSpigotTest
 import org.bukkit.Material
 import randomString
 import kotlin.test.Test
@@ -14,14 +14,9 @@ import kotlin.test.assertNotNull
  * @see showcase.ItemConfig
  */
 class ItemConfigTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
     @Test
     fun `itemStack can be get`() {
-        val plugin = MockBukkit.createMockPlugin()
+        val plugin = KtSpigotTest.plugin
         val itemConfig = ItemConfig(plugin)
         val expectedMaterial = Material.STONE
         val expectedAmount = (1..64).random()

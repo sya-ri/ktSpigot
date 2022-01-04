@@ -1,15 +1,12 @@
 package command
 
-import be.seeseemelk.mockbukkit.MockBukkit
-import be.seeseemelk.mockbukkit.MockPlugin
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.command.KtCommandCancelException
 import dev.s7a.spigot.command.KtCommandTabCompleterType
 import dev.s7a.spigot.command.ktCommand
 import randomString
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
-import kotlin.io.path.createTempFile
-import kotlin.io.path.writeText
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -23,32 +20,18 @@ import kotlin.test.assertTrue
  * @see dev.s7a.spigot.command
  */
 class CommandTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
     @Test
     fun `command can be created`() {
         val commandName = randomString()
-        val descriptionFile = createTempFile()
-        descriptionFile.writeText(
-            """
-                name: MockPlugin
-                version: 1.0.0
-                main: ${MockPlugin::class.java.name}
-                commands:
-                  $commandName: {}
-            """.trimIndent()
-        )
-        val plugin = MockBukkit.loadWith(MockPlugin::class.java, descriptionFile.toFile())
+        val plugin = KtSpigotTest.plugin
+        plugin.addCommand(commandName)
         val executed = AtomicBoolean(false)
         plugin.ktCommand(commandName) {
             execute {
                 executed.set(true)
             }
         }
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         assertTrue(player.performCommand(commandName))
         assertTrue(executed.get())
     }
@@ -56,17 +39,8 @@ class CommandTest {
     @Test
     fun `command can be completed`() {
         val commandName = randomString()
-        val descriptionFile = createTempFile()
-        descriptionFile.writeText(
-            """
-                name: MockPlugin
-                version: 1.0.0
-                main: ${MockPlugin::class.java.name}
-                commands:
-                  $commandName: {}
-            """.trimIndent()
-        )
-        val plugin = MockBukkit.loadWith(MockPlugin::class.java, descriptionFile.toFile())
+        val plugin = KtSpigotTest.plugin
+        plugin.addCommand(commandName)
         plugin.ktCommand(commandName) {
             tabComplete {
                 literal("a", "abc")
@@ -99,7 +73,7 @@ class CommandTest {
         }
         val command = plugin.getCommand(commandName)
         assertNotNull(command)
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         tabCompleteAssert(player, command, commandName) {
             assert(listOf("a", "abc", "b", "bb", "d", "g", "j", "o"), arrayOf(""))
             assert(listOf("a", "abc"), arrayOf("a"))
@@ -138,17 +112,8 @@ class CommandTest {
     @Test
     fun `command setting can be overwrote`() {
         val commandName = randomString()
-        val descriptionFile = createTempFile()
-        descriptionFile.writeText(
-            """
-                name: MockPlugin
-                version: 1.0.0
-                main: ${MockPlugin::class.java.name}
-                commands:
-                  $commandName: {}
-            """.trimIndent()
-        )
-        val plugin = MockBukkit.loadWith(MockPlugin::class.java, descriptionFile.toFile())
+        val plugin = KtSpigotTest.plugin
+        plugin.addCommand(commandName)
         val executeCount1 = AtomicInteger(0)
         val executeCount2 = AtomicInteger(0)
         plugin.ktCommand(commandName) {
@@ -165,7 +130,7 @@ class CommandTest {
                 literal("before")
             }
         }
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         val command = plugin.getCommand(commandName)
         assertNotNull(command)
         tabCompleteAssert(player, command, commandName) {
@@ -185,23 +150,14 @@ class CommandTest {
     @Test
     fun `command can be cancelled`() {
         val commandName = randomString()
-        val descriptionFile = createTempFile()
-        descriptionFile.writeText(
-            """
-                name: MockPlugin
-                version: 1.0.0
-                main: ${MockPlugin::class.java.name}
-                commands:
-                  $commandName: {}
-            """.trimIndent()
-        )
-        val plugin = MockBukkit.loadWith(MockPlugin::class.java, descriptionFile.toFile())
+        val plugin = KtSpigotTest.plugin
+        plugin.addCommand(commandName)
         plugin.ktCommand(commandName) {
             execute {
                 throw KtCommandCancelException()
             }
         }
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         val command = plugin.getCommand(commandName)
         assertNotNull(command)
         assertFalse(player.performCommand("/$commandName"))
