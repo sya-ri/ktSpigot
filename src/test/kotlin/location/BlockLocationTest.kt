@@ -1,6 +1,6 @@
 package location
 
-import be.seeseemelk.mockbukkit.MockBukkit
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.location.BlockLocation
 import dev.s7a.spigot.location.BlockLocation.Companion.toBlockLocation
 import randomLocation
@@ -9,14 +9,9 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class BlockLocationTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
     @Test
     fun `blockLocation can be get from location`() {
-        val world = server.addSimpleWorld("test")
+        val world = KtSpigotTest.addWorld("test")
         val location = randomLocation(world)
         val blockLocation = location.toBlockLocation()
         assertEquals(location.world, blockLocation.world)
@@ -113,7 +108,7 @@ class BlockLocationTest {
 
     @Test
     fun `blockLocation can be get distance`() {
-        val world = server.addSimpleWorld("test")
+        val world = KtSpigotTest.addWorld("test")
         val blockLocation1 = BlockLocation(world, 1, 2, 3)
         val location1 = blockLocation1.toLocation()
         val blockLocation2 = BlockLocation(world, 5, 6, 7)
@@ -124,7 +119,7 @@ class BlockLocationTest {
 
     @Test
     fun `blockLocation can be get block`() {
-        val world = server.addSimpleWorld("test")
+        val world = KtSpigotTest.addWorld("test")
         val location = BlockLocation(world, 1, 2, 3)
         assertNotNull(location.block)
     }

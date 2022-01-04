@@ -1,8 +1,8 @@
 package showcase
 
-import be.seeseemelk.mockbukkit.MockBukkit
 import config.TestConfig
 import config.writeText
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.formatter.DefaultLocationFormatter
 import dev.s7a.spigot.config.type.dataClassValue
@@ -19,14 +19,9 @@ import kotlin.test.assertIs
  * @see showcase.ExampleDataClass
  */
 class ExampleDataClassTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
     @Test
     fun `example data class can be get`() {
-        val world = server.addSimpleWorld(randomString())
+        val world = KtSpigotTest.addWorld(randomString())
         val expected = ExampleDataClass(Random.nextInt(), randomLocation(world))
         val formatter = DefaultLocationFormatter
         TestConfig.writeText(
@@ -46,7 +41,7 @@ class ExampleDataClassTest {
 
     @Test
     fun `example data class list can be get`() {
-        val world = server.addSimpleWorld(randomString())
+        val world = KtSpigotTest.addWorld(randomString())
         val expected = List(5) { ExampleDataClass(Random.nextInt(), randomLocation(world)) }
         val formatter = DefaultLocationFormatter
         TestConfig.writeText(

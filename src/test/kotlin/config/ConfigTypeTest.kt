@@ -1,6 +1,6 @@
 package config
 
-import be.seeseemelk.mockbukkit.MockBukkit
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.type.SpecificEntityType
 import dev.s7a.spigot.config.type.booleanValue
@@ -32,7 +32,6 @@ import randomVector
 import java.util.Date
 import java.util.UUID
 import kotlin.random.Random
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -44,11 +43,6 @@ import kotlin.test.assertNotNull
  * @see dev.s7a.spigot.config
  */
 class ConfigTypeTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
     @Test
     fun `boolean can be get`() {
         val expected = Random.nextBoolean()
@@ -142,10 +136,9 @@ class ConfigTypeTest {
         }
     }
 
-    @Ignore // NotImplemented by MockBukkit
     @Test
     fun `entity can be get`() {
-        val world = server.addSimpleWorld(randomString())
+        val world = KtSpigotTest.addWorld(randomString())
         val expected = world.spawnEntity<Zombie>(Location(world, 0.0, 0.0, 0.0))
         TestConfig.writeText("value: ${expected.uniqueId}")
         TestConfig.entityValue("value").run {
@@ -326,7 +319,7 @@ class ConfigTypeTest {
     @Test
     fun `location can be get`() {
         val worldName = randomString()
-        val world = server.addSimpleWorld(worldName)
+        val world = KtSpigotTest.addWorld(worldName)
         val expected = randomLocation(world)
         TestConfig.writeText("value: ${expected.world?.name}, ${expected.x}, ${expected.y}, ${expected.z}")
         TestConfig.locationValue("value").run {
@@ -339,6 +332,7 @@ class ConfigTypeTest {
 
     @Test
     fun `location unless world can be get`() {
+        KtSpigotTest.init()
         val expected = randomLocation(null)
         TestConfig.writeText("value: ${expected.world?.name}, ${expected.x}, ${expected.y}, ${expected.z}")
         TestConfig.locationValue("value").run {
@@ -351,7 +345,7 @@ class ConfigTypeTest {
 
     @Test
     fun `location list can be get`() {
-        val world = server.addSimpleWorld(randomString())
+        val world = KtSpigotTest.addWorld(randomString())
         val expected = List(5) { randomLocation(world) }
         TestConfig.writeText(
             buildString {

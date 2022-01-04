@@ -1,6 +1,6 @@
 package util
 
-import be.seeseemelk.mockbukkit.MockBukkit
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.player.VirtualPlayer.Companion.toVirtual
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -11,14 +11,9 @@ import kotlin.test.assertEquals
  * @see dev.s7a.spigot.util.VirtualPlayer
  */
 class VirtualPlayerTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
     @Test
     fun `player can be get`() {
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         val virtualPlayer = player.toVirtual()
         assertEquals(player, virtualPlayer.player)
         assertEquals(player, virtualPlayer.offlinePlayer)
@@ -26,7 +21,7 @@ class VirtualPlayerTest {
 
     @Test
     fun `VirtualPlayer#toString is UUID#toString`() {
-        val player = server.addPlayer()
+        val player = KtSpigotTest.addPlayer()
         val virtualPlayer = player.toVirtual()
         assertEquals("${player.uniqueId}", virtualPlayer.toString())
     }

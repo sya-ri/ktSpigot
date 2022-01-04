@@ -1,6 +1,6 @@
 package inventory
 
-import be.seeseemelk.mockbukkit.MockBukkit
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.inventory.item
 import dev.s7a.spigot.inventory.ktInventory
 import org.bukkit.Material
@@ -26,20 +26,11 @@ import kotlin.test.assertTrue
  * @see dev.s7a.spigot.inventory
  */
 class InventoryTest {
-    /**
-     * モックサーバー
-     */
-    private val server = MockBukkit.getOrCreateMock()
-
-    /**
-     * モックプラグイン
-     */
-    private val plugin = MockBukkit.createMockPlugin()
-
     @Test
     fun `inventory can be opened`() {
+        val plugin = KtSpigotTest.plugin
+        val player = KtSpigotTest.addPlayer()
         val line = (1..6).random()
-        val player = server.addPlayer()
         plugin.ktInventory("", line) {
         }.open(player)
         val topInventory = player.openInventory.topInventory
@@ -49,7 +40,8 @@ class InventoryTest {
 
     @Test
     fun `ktInventory#item can be executed`() {
-        val player = server.addPlayer()
+        val plugin = KtSpigotTest.plugin
+        val player = KtSpigotTest.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
             item(0, ItemStack(Material.STONE)) {
@@ -69,6 +61,7 @@ class InventoryTest {
 
     @Test
     fun `item placement outside slots fails`() {
+        val plugin = KtSpigotTest.plugin
         plugin.ktInventory("", 1) {
             assertFails {
                 item(-1, ItemStack(Material.STONE)) {
@@ -79,7 +72,8 @@ class InventoryTest {
 
     @Test
     fun `ktInventory#onClick can be executed`() {
-        val player = server.addPlayer()
+        val plugin = KtSpigotTest.plugin
+        val player = KtSpigotTest.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
             onClick {
@@ -95,7 +89,8 @@ class InventoryTest {
 
     @Test
     fun `ktInventory#onClose can be executed`() {
-        val player = server.addPlayer()
+        val plugin = KtSpigotTest.plugin
+        val player = KtSpigotTest.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
             onClose {
@@ -110,7 +105,8 @@ class InventoryTest {
 
     @Test
     fun `click action can be overwrote`() {
-        val player = server.addPlayer()
+        val plugin = KtSpigotTest.plugin
+        val player = KtSpigotTest.addPlayer()
         val executeCount = AtomicInteger(0)
         val nestExecuteCount = AtomicInteger(0)
         plugin.ktInventory("", 1) {
@@ -162,7 +158,8 @@ class InventoryTest {
 
     @Test
     fun `item can be placed use itemStack8`() {
-        val player = server.addPlayer()
+        val plugin = KtSpigotTest.plugin
+        val player = KtSpigotTest.addPlayer()
         val amount = (1..64).random()
         val displayName = randomString()
         val lore = List(5) { randomString() }
@@ -184,7 +181,8 @@ class InventoryTest {
 
     @Test
     fun `item can be placed use itemStack16`() {
-        val player = server.addPlayer()
+        val plugin = KtSpigotTest.plugin
+        val player = KtSpigotTest.addPlayer()
         val amount = (1..64).random()
         val displayName = randomString()
         val lore = List(5) { randomString() }
