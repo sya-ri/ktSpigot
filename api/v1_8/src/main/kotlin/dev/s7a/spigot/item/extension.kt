@@ -10,10 +10,28 @@ import org.bukkit.inventory.meta.ItemMeta
 /**
  * [ItemMeta.hasDisplayName] が true ならば [ItemMeta.getDisplayName] を返す
  *
+ * @see ItemMeta.displayNameOrNull
+ * @since 1.0.0
+ */
+val ItemStack.displayNameOrNull
+    get() = itemMeta?.displayNameOrNull
+
+/**
+ * [ItemMeta.hasDisplayName] が true ならば [ItemMeta.getDisplayName] を返す
+ *
  * @since 1.0.0
  */
 val ItemMeta.displayNameOrNull
     get() = if (hasDisplayName()) displayName else null
+
+/**
+ * [ItemMeta.hasLore] が true ならば [ItemMeta.getLore] を返す
+ *
+ * @see ItemMeta.loreOrNull
+ * @since 1.0.0
+ */
+val ItemStack.loreOrNull
+    get() = itemMeta?.loreOrNull
 
 /**
  * [ItemMeta.hasLore] が true ならば [ItemMeta.getLore] を返す

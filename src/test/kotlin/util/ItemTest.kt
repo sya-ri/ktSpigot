@@ -87,8 +87,11 @@ class ItemTest {
         val itemStack = ItemStack(Material.STONE)
         val meta = itemStack.itemMeta
         assertNotNull(meta)
+        assertNull(itemStack.displayNameOrNull)
         assertNull(meta.displayNameOrNull)
         meta.setDisplayName(expected)
+        itemStack.itemMeta = meta
+        assertEquals(expected, itemStack.displayNameOrNull)
         assertEquals(expected, meta.displayNameOrNull)
     }
 
@@ -98,8 +101,11 @@ class ItemTest {
         val itemStack = ItemStack(Material.STONE)
         val meta = itemStack.itemMeta
         assertNotNull(meta)
+        assertNull(itemStack.loreOrNull)
         assertNull(meta.loreOrNull)
         meta.lore = expected
+        itemStack.itemMeta = meta
+        assertEquals(expected, itemStack.loreOrNull)
         assertEquals(expected, meta.loreOrNull)
     }
 
@@ -109,8 +115,11 @@ class ItemTest {
         val itemStack = ItemStack(Material.STONE)
         val meta = itemStack.itemMeta
         assertNotNull(meta)
+        assertNull(itemStack.localizedNameOrNull)
         assertNull(meta.localizedNameOrNull)
         meta.setLocalizedName(expected)
+        itemStack.itemMeta = meta
+        assertEquals(expected, itemStack.localizedNameOrNull)
         assertEquals(expected, meta.localizedNameOrNull)
     }
 
@@ -120,8 +129,11 @@ class ItemTest {
         val itemStack = ItemStack(Material.STONE)
         val meta = itemStack.itemMeta
         assertNotNull(meta)
+        assertNull(itemStack.customModelDataOrNull)
         assertNull(meta.customModelDataOrNull)
         meta.setCustomModelData(expected)
+        itemStack.itemMeta = meta
+        assertEquals(expected, itemStack.customModelDataOrNull)
         assertEquals(expected, meta.customModelDataOrNull)
     }
 
