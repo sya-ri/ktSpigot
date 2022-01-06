@@ -47,7 +47,7 @@ class TestPlayer(
     }
 
     fun assertActionBar(message: String) {
-        assertTrue("§f$message" == actionbar || message == actionbar)
+        assertTrue(message == actionbar || "§f§f$message" == actionbar || "§f$message" == actionbar)
     }
 
     fun assertTitleIsEmpty() {
