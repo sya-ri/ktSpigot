@@ -36,7 +36,7 @@ abstract class TestEntity(
 
     fun assertMessage(message: String) {
         val lastMessage = messages.removeLast()
-        assertTrue(message == lastMessage || "§f$message" == lastMessage)
+        assertTrue(message == lastMessage || "§f$message" == lastMessage || "§f§f$message" == lastMessage)
     }
 
     override fun setMetadata(metadataKey: String, newMetadataValue: MetadataValue) {
