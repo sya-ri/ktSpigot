@@ -6,6 +6,8 @@ import dev.s7a.spigot.item.itemStack
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Zombie
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
@@ -17,6 +19,16 @@ import kotlin.test.assertIs
  * @see dev.s7a.spigot.entity
  */
 class EntityTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `entity can be spawned`() {
         val world = KtSpigotTest.addWorld("test")

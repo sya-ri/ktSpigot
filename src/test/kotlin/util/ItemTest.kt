@@ -1,5 +1,6 @@
 package util
 
+import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.item.customModelDataOrNull
 import dev.s7a.spigot.item.displayNameOrNull
 import dev.s7a.spigot.item.editItemMeta
@@ -17,6 +18,8 @@ import randomString
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.random.Random
 import kotlin.random.nextUInt
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -32,6 +35,16 @@ import kotlin.test.assertTrue
  * @see dev.s7a.spigot.util.editItemMeta
  */
 class ItemTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `item meta can be changed`() {
         val expected = randomString()

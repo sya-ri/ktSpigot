@@ -4,11 +4,23 @@ import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.location.BlockLocation
 import dev.s7a.spigot.location.BlockLocation.Companion.toBlockLocation
 import randomLocation
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
 class BlockLocationTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `blockLocation can be get from location`() {
         val world = KtSpigotTest.addWorld("test")
