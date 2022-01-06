@@ -426,7 +426,24 @@ class ConfigTypeTest {
     }
 
     @Test
-    fun `mapList can be get`() {
+    fun `section can be get`() {
+        val expected = Random.nextInt() to Random.nextBoolean()
+        TestConfig.writeText(
+            buildString {
+                appendLine("value:")
+                appendLine("  int: ${expected.first}")
+                appendLine("  boolean: ${expected.second}")
+            }
+        )
+        TestConfig.section<TestSection>("value").run {
+            val value = getValue()
+            assertNotNull(value)
+            assertEquals(expected, value.int.getValue() to value.boolean.getValue())
+        }
+    }
+
+    @Test
+    fun `section map can be get`() {
         val expected = List(5) {
             randomString() to (Random.nextInt() to Random.nextBoolean())
         }
@@ -441,7 +458,7 @@ class ConfigTypeTest {
                 }
             }
         )
-        TestConfig.section<TestSection>("value").run {
+        TestConfig.section<TestSection>("value").map().run {
             val value = getValue()
             assertNotNull(value)
             assertEquals(expected, value.map { it.key to (it.value.int.getValue() to it.value.boolean.getValue()) })

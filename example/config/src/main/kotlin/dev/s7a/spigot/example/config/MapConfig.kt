@@ -35,7 +35,7 @@ object MapConfig : KtConfig(plugin, "map.yml") {
      *     int: 3
      * ```
      */
-    private val values = section<Value>("values")
+    private val values = section<Value>("values").map()
 
     override fun load() {
         super.load()
