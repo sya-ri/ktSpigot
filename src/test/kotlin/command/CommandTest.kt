@@ -7,6 +7,8 @@ import dev.s7a.spigot.command.ktCommand
 import randomString
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -20,10 +22,20 @@ import kotlin.test.assertTrue
  * @see dev.s7a.spigot.command
  */
 class CommandTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `command can be created`() {
         val commandName = randomString()
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         plugin.addCommand(commandName)
         val executed = AtomicBoolean(false)
         plugin.ktCommand(commandName) {
@@ -39,7 +51,7 @@ class CommandTest {
     @Test
     fun `command can be completed`() {
         val commandName = randomString()
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         plugin.addCommand(commandName)
         plugin.ktCommand(commandName) {
             tabComplete {
@@ -112,7 +124,7 @@ class CommandTest {
     @Test
     fun `command setting can be overwrote`() {
         val commandName = randomString()
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         plugin.addCommand(commandName)
         val executeCount1 = AtomicInteger(0)
         val executeCount2 = AtomicInteger(0)
@@ -150,7 +162,7 @@ class CommandTest {
     @Test
     fun `command can be cancelled`() {
         val commandName = randomString()
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         plugin.addCommand(commandName)
         plugin.ktCommand(commandName) {
             execute {

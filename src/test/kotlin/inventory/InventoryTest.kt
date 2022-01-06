@@ -14,6 +14,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.random.Random
 import kotlin.random.nextUInt
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
@@ -26,9 +28,19 @@ import kotlin.test.assertTrue
  * @see dev.s7a.spigot.inventory
  */
 class InventoryTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `inventory can be opened`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()
         val line = (1..6).random()
         plugin.ktInventory("", line) {
@@ -40,7 +52,7 @@ class InventoryTest {
 
     @Test
     fun `ktInventory#item can be executed`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
@@ -61,7 +73,7 @@ class InventoryTest {
 
     @Test
     fun `item placement outside slots fails`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         plugin.ktInventory("", 1) {
             assertFails {
                 item(-1, ItemStack(Material.STONE)) {
@@ -72,7 +84,7 @@ class InventoryTest {
 
     @Test
     fun `ktInventory#onClick can be executed`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
@@ -89,7 +101,7 @@ class InventoryTest {
 
     @Test
     fun `ktInventory#onClose can be executed`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()
         val executed = AtomicBoolean(false)
         plugin.ktInventory("", 1) {
@@ -105,7 +117,7 @@ class InventoryTest {
 
     @Test
     fun `click action can be overwrote`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()
         val executeCount = AtomicInteger(0)
         val nestExecuteCount = AtomicInteger(0)
@@ -158,7 +170,7 @@ class InventoryTest {
 
     @Test
     fun `item can be placed use itemStack8`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()
         val amount = (1..64).random()
         val displayName = randomString()
@@ -181,7 +193,7 @@ class InventoryTest {
 
     @Test
     fun `item can be placed use itemStack16`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()
         val amount = (1..64).random()
         val displayName = randomString()

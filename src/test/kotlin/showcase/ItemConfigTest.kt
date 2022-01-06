@@ -4,6 +4,8 @@ import config.writeText
 import dev.s7a.spigot.KtSpigotTest
 import org.bukkit.Material
 import randomString
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
@@ -14,9 +16,19 @@ import kotlin.test.assertNotNull
  * @see showcase.ItemConfig
  */
 class ItemConfigTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `itemStack can be get`() {
-        val plugin = KtSpigotTest.plugin
+        val plugin = KtSpigotTest.getPlugin()
         val itemConfig = ItemConfig(plugin)
         val expectedMaterial = Material.STONE
         val expectedAmount = (1..64).random()

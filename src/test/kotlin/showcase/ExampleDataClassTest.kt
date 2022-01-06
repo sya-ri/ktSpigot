@@ -9,6 +9,8 @@ import dev.s7a.spigot.config.type.dataClassValue
 import randomLocation
 import randomString
 import kotlin.random.Random
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -19,6 +21,16 @@ import kotlin.test.assertIs
  * @see showcase.ExampleDataClass
  */
 class ExampleDataClassTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `example data class can be get`() {
         val world = KtSpigotTest.addWorld(randomString())

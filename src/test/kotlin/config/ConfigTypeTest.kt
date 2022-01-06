@@ -32,6 +32,8 @@ import randomVector
 import java.util.Date
 import java.util.UUID
 import kotlin.random.Random
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
@@ -43,6 +45,16 @@ import kotlin.test.assertNotNull
  * @see dev.s7a.spigot.config
  */
 class ConfigTypeTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `boolean can be get`() {
         val expected = Random.nextBoolean()
@@ -332,7 +344,6 @@ class ConfigTypeTest {
 
     @Test
     fun `location unless world can be get`() {
-        KtSpigotTest.init()
         val expected = randomLocation(null)
         TestConfig.writeText("value: ${expected.world?.name}, ${expected.x}, ${expected.y}, ${expected.z}")
         TestConfig.locationValue("value").run {

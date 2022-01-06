@@ -6,6 +6,8 @@ import dev.s7a.spigot.util.sendChatMessage
 import dev.s7a.spigot.util.sendTitleMessage
 import org.bukkit.ChatColor
 import randomString
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 
 /**
@@ -16,6 +18,16 @@ import kotlin.test.Test
  * @see dev.s7a.spigot.util.sendTitleMessage
  */
 class MessageTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `chat message can be received`() {
         val player = KtSpigotTest.addPlayer()

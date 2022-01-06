@@ -2,6 +2,8 @@ package util
 
 import dev.s7a.spigot.KtSpigotTest
 import dev.s7a.spigot.player.VirtualPlayer.Companion.toVirtual
+import kotlin.test.AfterTest
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -11,6 +13,16 @@ import kotlin.test.assertEquals
  * @see dev.s7a.spigot.util.VirtualPlayer
  */
 class VirtualPlayerTest {
+    @BeforeTest
+    fun before() {
+        KtSpigotTest.mock()
+    }
+
+    @AfterTest
+    fun after() {
+        KtSpigotTest.unmock()
+    }
+
     @Test
     fun `player can be get`() {
         val player = KtSpigotTest.addPlayer()
