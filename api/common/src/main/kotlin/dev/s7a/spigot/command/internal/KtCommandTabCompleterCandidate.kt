@@ -17,7 +17,8 @@ internal sealed interface KtCommandTabCompleterCandidate {
      * @see [dev.s7a.spigot.command.KtCommandTabCompleterTree.literal]
      * @since 1.0.0
      */
-    class Literal(list: Collection<String>, override val type: KtCommandTabCompleterType) : KtCommandTabCompleterCandidate {
+    class Literal(list: Collection<String>, override val type: KtCommandTabCompleterType) :
+        KtCommandTabCompleterCandidate {
         val list = list.groupBy(String::lowercase)
     }
 
@@ -27,7 +28,8 @@ internal sealed interface KtCommandTabCompleterCandidate {
      * @see [dev.s7a.spigot.command.KtCommandTabCompleterTree.dynamic]
      * @since 1.0.0
      */
-    class Dynamic(val action: KtCommandTabCompleteAction, override val type: KtCommandTabCompleterType) : KtCommandTabCompleterCandidate
+    class Dynamic<T>(val action: KtCommandTabCompleteAction<T>, override val type: KtCommandTabCompleterType) :
+        KtCommandTabCompleterCandidate
 
     /**
      * [Literal], [Dynamic] で一致するものがなければ子要素として使う

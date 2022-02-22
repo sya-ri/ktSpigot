@@ -6,7 +6,7 @@ package dev.s7a.spigot.command
  * @see KtCommandTabCompleterTree.dynamic
  * @since 1.0.0
  */
-fun interface KtCommandTabCompleteAction {
+fun interface KtCommandTabCompleteAction<T> {
     /**
      * 補完処理
      *
@@ -14,5 +14,5 @@ fun interface KtCommandTabCompleteAction {
      * @return 補完候補
      * @since 1.0.0
      */
-    fun complete(parameter: KtCommandTabCompleteParameter): Collection<String>?
+    fun complete(parameter: KtCommandTabCompleteParameter<T>): Collection<String>?
 }

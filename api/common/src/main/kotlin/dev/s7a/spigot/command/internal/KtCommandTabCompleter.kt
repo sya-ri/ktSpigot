@@ -1,19 +1,20 @@
 package dev.s7a.spigot.command.internal
 
+import dev.s7a.spigot.command.KtCommandTabCompleteAction
 import dev.s7a.spigot.command.KtCommandTabCompleteParameter
 import dev.s7a.spigot.command.KtCommandTabCompleterTree
 import dev.s7a.spigot.command.KtCommandTabCompleterType
-import org.bukkit.command.CommandSender
 
 /**
  * [KtCommandTabCompleterTree] のルートであり、実際にタブ補完を行うクラス
  *
  * @since 1.0.0
  */
-internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
-    fun complete(sender: CommandSender, args: Array<out String>): List<String> {
+internal class KtCommandTabCompleter<T> : KtCommandTabCompleterTree<T>() {
+    @Suppress("UNCHECKED_CAST")
+    fun complete(sender: T, args: Array<out String>): List<String> {
         val parameter = KtCommandTabCompleteParameter(sender, args.toList())
-        var tree: KtCommandTabCompleterTree = this
+        var tree: KtCommandTabCompleterTree<T> = this
         var excludes = listOf<String>()
         for (i in 0 until args.lastIndex) {
             val lower = args[i].lowercase()
@@ -22,8 +23,8 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
                     is KtCommandTabCompleterCandidate.Literal -> {
                         candidate.list.keys.contains(lower)
                     }
-                    is KtCommandTabCompleterCandidate.Dynamic -> {
-                        candidate.action.complete(parameter)?.map(String::lowercase)?.contains(lower) ?: false
+                    is KtCommandTabCompleterCandidate.Dynamic<*> -> {
+                        (candidate.action as KtCommandTabCompleteAction<T>).complete(parameter)?.map(String::lowercase)?.contains(lower) ?: false
                     }
                     is KtCommandTabCompleterCandidate.Default -> {
                         true
@@ -54,8 +55,8 @@ internal class KtCommandTabCompleter : KtCommandTabCompleterTree() {
                             }
                         }
                     }
-                    is KtCommandTabCompleterCandidate.Dynamic -> {
-                        candidate.action.complete(parameter)?.forEach { origin ->
+                    is KtCommandTabCompleterCandidate.Dynamic<*> -> {
+                        (candidate.action as KtCommandTabCompleteAction<T>).complete(parameter)?.forEach { origin ->
                             val lower = origin.lowercase()
                             if (excludes.contains(lower).not() && lower.contains(argLastLower)) {
                                 add(origin)

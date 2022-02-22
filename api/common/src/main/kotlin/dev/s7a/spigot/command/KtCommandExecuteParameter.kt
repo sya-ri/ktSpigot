@@ -1,7 +1,5 @@
 package dev.s7a.spigot.command
 
-import org.bukkit.command.CommandSender
-
 /**
  * コマンドの実行パラメータ
  *
@@ -10,4 +8,4 @@ import org.bukkit.command.CommandSender
  * @property args 実行引数
  * @since 1.0.0
  */
-data class KtCommandExecuteParameter(val sender: CommandSender, val label: String, val args: List<String>)
+data class KtCommandExecuteParameter<T>(val sender: T, val label: String, val args: List<String>)
