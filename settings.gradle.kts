@@ -13,6 +13,7 @@ include(
     ":api:v1_15",
     ":api:v1_16",
     ":api:v1_17",
+    ":api:v1_18",
     ":libs:test",
     ":showcase",
     ":test"
