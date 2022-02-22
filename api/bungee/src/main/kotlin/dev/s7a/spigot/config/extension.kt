@@ -1,9 +1,9 @@
-@file:JvmName("Extension8")
+@file:JvmName("ExtensionBungee")
 
 package dev.s7a.spigot.config
 
 import dev.s7a.spigot.util.sendChatMessage
-import org.bukkit.command.CommandSender
+import net.md_5.bungee.api.CommandSender
 
 /**
  * コンフィグエラーを出力する
