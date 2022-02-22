@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config.type
 
-import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
 import dev.s7a.spigot.config.getListUnsafe
@@ -15,20 +15,20 @@ import dev.s7a.spigot.config.setUnsafe
  * @since 1.0.0
  */
 object StringType : KtConfigValueType.Listable<String> {
-    override fun get(config: KtConfig, path: String): KtConfigResult<String> {
+    override fun get(config: KtConfigBase, path: String): KtConfigResult<String> {
         return config.getUnsafe(path)
     }
 
-    override fun set(config: KtConfig, path: String, value: String?) {
+    override fun set(config: KtConfigBase, path: String, value: String?) {
         config.setUnsafe(path, value)
     }
 
     override val list = object : KtConfigValueType<List<String>> {
-        override fun get(config: KtConfig, path: String): KtConfigResult<List<String>> {
+        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<String>> {
             return config.getListUnsafe(path)
         }
 
-        override fun set(config: KtConfig, path: String, value: List<String>?) {
+        override fun set(config: KtConfigBase, path: String, value: List<String>?) {
             config.setUnsafe(path, value)
         }
     }
@@ -44,7 +44,7 @@ object StringType : KtConfigValueType.Listable<String> {
          *
          * @since 1.0.0
          */
-        protected abstract val stringToResult: (KtConfig, String, String) -> KtConfigResult<T>
+        protected abstract val stringToResult: (KtConfigBase, String, String) -> KtConfigResult<T>
 
         /**
          * [T] から [String] に変換する処理
@@ -53,22 +53,22 @@ object StringType : KtConfigValueType.Listable<String> {
          */
         protected abstract val valueToString: (T) -> String
 
-        override fun get(config: KtConfig, path: String): KtConfigResult<T> {
+        override fun get(config: KtConfigBase, path: String): KtConfigResult<T> {
             return config.stringValue(path).get().map { stringToResult(config, path, it) }
         }
 
-        override fun set(config: KtConfig, path: String, value: T?) {
+        override fun set(config: KtConfigBase, path: String, value: T?) {
             config.stringValue(path).set(value?.let(valueToString))
         }
 
         override val list = object : KtConfigValueType<List<T>> {
-            override fun get(config: KtConfig, path: String): KtConfigResult<List<T>> {
+            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
                 return config.stringValue(path).list().get().mapValues(config, path) { index, value ->
                     stringToResult(config, "$path#$index", value)
                 }
             }
 
-            override fun set(config: KtConfig, path: String, value: List<T>?) {
+            override fun set(config: KtConfigBase, path: String, value: List<T>?) {
                 config.stringValue(path).list().set(value?.map(valueToString))
             }
         }

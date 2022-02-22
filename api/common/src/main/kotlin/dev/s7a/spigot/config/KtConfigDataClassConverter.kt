@@ -14,7 +14,7 @@ interface KtConfigDataClassConverter<T> {
      * @return [KtConfigResult]
      * @since 1.0.0
      */
-    fun get(config: KtConfig, path: String): KtConfigResult<T>
+    fun get(config: KtConfigBase, path: String): KtConfigResult<T>
 
     /**
      * コンフィグに値を設定する
@@ -24,7 +24,7 @@ interface KtConfigDataClassConverter<T> {
      * @param value 設定後の値
      * @since 1.0.0
      */
-    fun set(config: KtConfig, path: String, value: T?)
+    fun set(config: KtConfigBase, path: String, value: T?)
 
     /**
      * 複数の値を受付られるようにする
@@ -42,7 +42,7 @@ interface KtConfigDataClassConverter<T> {
          * @return [KtConfigResult]
          * @since 1.0.0
          */
-        fun toValue(config: KtConfig, path: String, index: Int, map: Map<String, Any>): KtConfigResult<T>
+        fun toValue(config: KtConfigBase, path: String, index: Int, map: Map<String, Any>): KtConfigResult<T>
 
         /**
          * 値からマップに変換する

@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config.type
 
-import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigDataClassConverter
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
@@ -16,11 +16,11 @@ import dev.s7a.spigot.config.setUnsafe
  * @since 1.0.0
  */
 sealed class DataClassType<T>(protected open val converter: KtConfigDataClassConverter<T>) : KtConfigValueType<T> {
-    override fun get(config: KtConfig, path: String): KtConfigResult<T> {
+    override fun get(config: KtConfigBase, path: String): KtConfigResult<T> {
         return converter.get(config, path)
     }
 
-    override fun set(config: KtConfig, path: String, value: T?) {
+    override fun set(config: KtConfigBase, path: String, value: T?) {
         converter.set(config, path, value)
     }
 
@@ -42,13 +42,13 @@ sealed class DataClassType<T>(protected open val converter: KtConfigDataClassCon
     class Listable<T>(override val converter: KtConfigDataClassConverter.Listable<T>) : DataClassType<T>(converter), KtConfigValueType.Listable<T> {
         override val list: KtConfigValueType<List<T>>
             get() = object : KtConfigValueType<List<T>> {
-                override fun get(config: KtConfig, path: String): KtConfigResult<List<T>> {
+                override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
                     return config.getMapListUnsafe(path).mapValues(config, path) { index, map ->
                         converter.toValue(config, path, index, map)
                     }
                 }
 
-                override fun set(config: KtConfig, path: String, value: List<T>?) {
+                override fun set(config: KtConfigBase, path: String, value: List<T>?) {
                     config.setUnsafe(path, value?.map(converter::toMap))
                 }
             }

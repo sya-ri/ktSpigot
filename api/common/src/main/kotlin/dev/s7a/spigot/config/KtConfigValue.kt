@@ -13,7 +13,7 @@ import kotlin.collections.Map as KotlinMap
  * @since 1.0.0
  */
 open class KtConfigValue<T>(
-    val config: KtConfig,
+    val config: KtConfigBase,
     val path: String,
     open val type: KtConfigValueType<T>,
 ) {
@@ -50,7 +50,7 @@ open class KtConfigValue<T>(
      * @since 1.0.0
      */
     @Suppress("UNCHECKED_CAST")
-    internal fun set(value: Any?) {
+    fun setUnsafe(value: Any?) {
         set(value as T?)
     }
 
@@ -95,7 +95,7 @@ open class KtConfigValue<T>(
      *
      * @since 1.0.0
      */
-    open class Base<T>(config: KtConfig, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type) {
+    open class Base<T>(config: KtConfigBase, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type) {
         /**
          * 値が設定されていなくてもエラーを出さない
          *
@@ -126,15 +126,15 @@ open class KtConfigValue<T>(
          */
         private val mapType
             get() = object : KtConfigValueType<KotlinMap<String, T>> {
-                override fun get(config: KtConfig, path: String): KtConfigResult<KotlinMap<String, T>> {
-                    return config.bukkitConfig.getConfigurationSection(path)?.run {
-                        getKeys(false)?.associateWith {
+                override fun get(config: KtConfigBase, path: String): KtConfigResult<KotlinMap<String, T>> {
+                    return config.getSectionKeys(path)?.run {
+                        associateWith {
                             type.get(config, "$path.$it")
-                        }.orEmpty().toResult(config, path)
+                        }.toResult(config, path)
                     } ?: KtConfigResult.Failure(KtConfigError.NotFound(config, path))
                 }
 
-                override fun set(config: KtConfig, path: String, value: KotlinMap<String, T>?) {
+                override fun set(config: KtConfigBase, path: String, value: KotlinMap<String, T>?) {
                     config.setUnsafe(path, null)
                     value?.forEach { (section, value) ->
                         type.set(config, "$path.$section", value)
@@ -154,7 +154,7 @@ open class KtConfigValue<T>(
          *
          * @since 1.0.0
          */
-        class Listable<T>(config: KtConfig, path: String, override val type: KtConfigValueType.Listable<T>) : Base<T>(config, path, type) {
+        class Listable<T>(config: KtConfigBase, path: String, override val type: KtConfigValueType.Listable<T>) : Base<T>(config, path, type) {
             /**
              * リストでの値の入力を受け付ける
              *
@@ -168,7 +168,7 @@ open class KtConfigValue<T>(
          *
          * @since 1.0.0
          */
-        class Map<T>(config: KtConfig, path: String, type: KtConfigValueType<KotlinMap<String, T>>) : Base<KotlinMap<String, T>>(config, path, type) {
+        class Map<T>(config: KtConfigBase, path: String, type: KtConfigValueType<KotlinMap<String, T>>) : Base<KotlinMap<String, T>>(config, path, type) {
             /**
              * 値が設定されていなければデフォルト値を設定する
              *
@@ -190,7 +190,7 @@ open class KtConfigValue<T>(
          *
          * @since 1.0.0
          */
-        class List<T>(config: KtConfig, path: String, type: KtConfigValueType<KotlinList<T>>) : Base<KotlinList<T>>(config, path, type) {
+        class List<T>(config: KtConfigBase, path: String, type: KtConfigValueType<KotlinList<T>>) : Base<KotlinList<T>>(config, path, type) {
             /**
              * 値が設定されていなければデフォルト値を設定する
              *

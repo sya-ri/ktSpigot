@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config.type
 
-import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
@@ -20,7 +20,7 @@ class SpecificEntityType<T : Entity>(private val clazz: Class<T>) : KtConfigValu
      *
      * @since 1.0.0
      */
-    class MismatchEntityTypeError(config: KtConfig, path: String, value: UUID, name: String) : KtConfigError(config) {
+    class MismatchEntityTypeError(config: KtConfigBase, path: String, value: UUID, name: String) : KtConfigError(config) {
         override val message = "$path の値($value)に対応するエンティティは $name ではありません"
     }
 
@@ -29,28 +29,28 @@ class SpecificEntityType<T : Entity>(private val clazz: Class<T>) : KtConfigValu
      *
      * @since 1.0.0
      */
-    private fun entityToResult(config: KtConfig, path: String, value: Entity) = if (clazz.isInstance(value)) {
+    private fun entityToResult(config: KtConfigBase, path: String, value: Entity) = if (clazz.isInstance(value)) {
         KtConfigResult.Success(clazz.cast(value))
     } else {
         KtConfigResult.Failure(MismatchEntityTypeError(config, path, value.uniqueId, clazz.simpleName))
     }
 
-    override fun get(config: KtConfig, path: String): KtConfigResult<T> {
+    override fun get(config: KtConfigBase, path: String): KtConfigResult<T> {
         return config.entityValue(path).get().map { entityToResult(config, path, it) }
     }
 
-    override fun set(config: KtConfig, path: String, value: T?) {
+    override fun set(config: KtConfigBase, path: String, value: T?) {
         config.entityValue(path).set(value)
     }
 
     override val list = object : KtConfigValueType<List<T>> {
-        override fun get(config: KtConfig, path: String): KtConfigResult<List<T>> {
+        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
             return config.entityValue(path).list().get().mapValues(config, path) { index, value ->
                 entityToResult(config, "$path#$index", value)
             }
         }
 
-        override fun set(config: KtConfig, path: String, value: List<T>?) {
+        override fun set(config: KtConfigBase, path: String, value: List<T>?) {
             config.entityValue(path).list().set(value)
         }
     }

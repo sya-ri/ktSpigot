@@ -1,6 +1,6 @@
 package showcase
 
-import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigDataClassConverter
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigFormatter
@@ -19,7 +19,7 @@ data class ExampleDataClass(val int: Int, val location: Location) {
      * コンバータ
      */
     class Converter(private val formatter: KtConfigFormatter<Location>) : KtConfigDataClassConverter.Listable<ExampleDataClass> {
-        override fun get(config: KtConfig, path: String): KtConfigResult<ExampleDataClass> {
+        override fun get(config: KtConfigBase, path: String): KtConfigResult<ExampleDataClass> {
             return config.intValue("$path.int").get().map { int ->
                 config.locationValue("$path.location", formatter).get().map { location ->
                     KtConfigResult.Success(ExampleDataClass(int, location))
@@ -27,7 +27,7 @@ data class ExampleDataClass(val int: Int, val location: Location) {
             }
         }
 
-        override fun set(config: KtConfig, path: String, value: ExampleDataClass?) {
+        override fun set(config: KtConfigBase, path: String, value: ExampleDataClass?) {
             if (value != null) {
                 config.intValue("$path.int").set(value.int)
                 config.locationValue("$path.location", formatter).set(value.location)
@@ -36,7 +36,7 @@ data class ExampleDataClass(val int: Int, val location: Location) {
             }
         }
 
-        override fun toValue(config: KtConfig, path: String, index: Int, map: Map<String, Any>): KtConfigResult<ExampleDataClass> {
+        override fun toValue(config: KtConfigBase, path: String, index: Int, map: Map<String, Any>): KtConfigResult<ExampleDataClass> {
             return try {
                 val int = map["int"] as Int
                 val locationString = map["location"] as String

@@ -15,7 +15,7 @@ interface KtConfigValueType<T> {
      * @return [KtConfigResult]
      * @since 1.0.0
      */
-    fun get(config: KtConfig, path: String): KtConfigResult<T>
+    fun get(config: KtConfigBase, path: String): KtConfigResult<T>
 
     /**
      * コンフィグに値を設定する
@@ -25,7 +25,7 @@ interface KtConfigValueType<T> {
      * @param value 設定後の値
      * @since 1.0.0
      */
-    fun set(config: KtConfig, path: String, value: T?)
+    fun set(config: KtConfigBase, path: String, value: T?)
 
     /**
      * 複数の値を受付られるコンフィグデータ型

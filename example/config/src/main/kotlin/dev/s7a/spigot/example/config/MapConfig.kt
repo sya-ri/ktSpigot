@@ -1,6 +1,7 @@
 package dev.s7a.spigot.example.config
 
 import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigSection
 import dev.s7a.spigot.config.checkValues
 import dev.s7a.spigot.config.printErrors
@@ -15,7 +16,7 @@ object MapConfig : KtConfig(plugin, "map.yml") {
     /**
      * [section] に使うクラス
      */
-    private class Value(override val config: KtConfig, override val path: String) : KtConfigSection {
+    private class Value(override val config: KtConfigBase, override val path: String) : KtConfigSection {
         /**
          * コンフィグから取得する値
          */

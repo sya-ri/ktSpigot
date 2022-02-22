@@ -11,7 +11,7 @@ interface KtConfigSection {
      *
      * @since 1.0.0
      */
-    val config: KtConfig
+    val config: KtConfigBase
 
     /**
      * コンフィグパス
