@@ -1,5 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
+import net.minecrell.pluginyml.bungee.BungeePluginDescription
 import org.jetbrains.dokka.gradle.DokkaTask
 import java.net.URL
 
@@ -10,7 +11,6 @@ plugins {
 }
 
 subprojects {
-    apply(plugin = "net.minecrell.plugin-yml.bukkit")
     apply(plugin = "org.gradle.maven-publish")
     apply(plugin = "signing")
 
@@ -76,20 +76,35 @@ subprojects {
         archiveBaseName.set("ktSpigot-${project.name}")
     }
 
-    configure<BukkitPluginDescription> {
-        name = "ktSpigot"
-        version = "${rootProject.version}(${project.name})"
-        main = "dev.s7a.spigot.KtSpigot"
-        description = "A Library that Simplifies Spigot with Kotlin."
-        author = "sya_ri"
-        website = "https://github.com/sya-ri/ktSpigot"
-        apiVersion = when (project.name) {
-            "v1_13" -> "1.13"
-            "v1_14" -> "1.14"
-            "v1_15" -> "1.15"
-            "v1_16" -> "1.16"
-            "v1_17" -> "1.17"
-            else -> null
+    if (project.name != "bungee") {
+        apply(plugin = "net.minecrell.plugin-yml.bungee")
+
+        configure<BungeePluginDescription> {
+            name = "ktSpigot"
+            version = "${rootProject.version}(${project.name})"
+            main = "dev.s7a.spigot.KtSpigot"
+            description = "A Library that Simplifies Spigot with Kotlin."
+            author = "sya_ri"
+        }
+    } else {
+        apply(plugin = "net.minecrell.plugin-yml.bukkit")
+
+        configure<BukkitPluginDescription> {
+            name = "ktSpigot"
+            version = "${rootProject.version}(${project.name})"
+            main = "dev.s7a.spigot.KtSpigot"
+            description = "A Library that Simplifies Spigot with Kotlin."
+            author = "sya_ri"
+            website = "https://github.com/sya-ri/ktSpigot"
+            apiVersion = when (project.name) {
+                "v1_13" -> "1.13"
+                "v1_14" -> "1.14"
+                "v1_15" -> "1.15"
+                "v1_16" -> "1.16"
+                "v1_17" -> "1.17"
+                "v1_18" -> "1.18"
+                else -> null
+            }
         }
     }
 
