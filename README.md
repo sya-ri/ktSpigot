@@ -14,6 +14,11 @@ A Library that Simplifies Spigot with Kotlin.
 
 [EasySpigotAPI](https://github.com/sya-ri/EasySpigotAPI) の反省点を元に生まれた全く新しいライブラリです。
 
+### Support platform
+
+- Spigot `1.8.x` 〜 `1.18.x`
+- BungeeCord
+
 ## Example
 
 ### Config
@@ -96,8 +101,6 @@ class ItemConfig(private val plugin: JavaPlugin) : KtConfig(plugin, "item.yml") 
 
 Minecraft のバージョン毎にライブラリがあります。
 
-- 対応バージョン `1.8.x` 〜 `1.17.x`
-
 ### RELEASE
 
 基本的にこちらを使ってください。安定して使うことができます。
@@ -120,37 +123,37 @@ dependencies {
     // BungeeCord
     implementation("dev.s7a:ktSpigot-bungee:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.8.x
+    // Spigot 1.8.x
     implementation("dev.s7a:ktSpigot-v1_8:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.9.x
+    // Spigot 1.9.x
     implementation("dev.s7a:ktSpigot-v1_9:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.10.x
+    // Spigot 1.10.x
     implementation("dev.s7a:ktSpigot-v1_10:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.11.x
+    // Spigot 1.11.x
     implementation("dev.s7a:ktSpigot-v1_11:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.12.x
+    // Spigot 1.12.x
     implementation("dev.s7a:ktSpigot-v1_12:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.13.x
+    // Spigot 1.13.x
     implementation("dev.s7a:ktSpigot-v1_13:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.14.x
+    // Spigot 1.14.x
     implementation("dev.s7a:ktSpigot-v1_14:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.15.x
+    // Spigot 1.15.x
     implementation("dev.s7a:ktSpigot-v1_15:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.16.x
+    // Spigot 1.16.x
     implementation("dev.s7a:ktSpigot-v1_16:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.17.x
+    // Spigot 1.17.x
     implementation("dev.s7a:ktSpigot-v1_17:1.0.0-SNAPSHOT")
 
-    // Minecraft 1.18.x
+    // Spigot 1.18.x
     implementation("dev.s7a:ktSpigot-v1_18:1.0.0-SNAPSHOT")
 }
 ```
