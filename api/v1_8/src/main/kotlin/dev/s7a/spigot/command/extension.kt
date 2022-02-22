@@ -1,20 +1,8 @@
+@file:JvmName("Extension8")
+
 package dev.s7a.spigot.command
 
 import org.bukkit.plugin.java.JavaPlugin
-
-/**
- * タブ補完を定義する処理
- *
- * @since 1.0.0
- */
-typealias KtCommandTabCompleteBuilder = KtCommandTabCompleterTree.() -> Unit
-
-/**
- * コマンド実行の処理
- *
- * @since 1.0.0
- */
-typealias KtCommandExecuteAction = (KtCommandExecuteParameter) -> Unit
 
 /**
  * ktSpigot を使ってコマンドを登録する

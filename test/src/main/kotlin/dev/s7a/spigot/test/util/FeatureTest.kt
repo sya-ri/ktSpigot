@@ -4,11 +4,12 @@ import dev.s7a.spigot.command.KtCommandExecuteAction
 import dev.s7a.spigot.command.KtCommandExecuteParameter
 import dev.s7a.spigot.command.KtCommandTabCompleteBuilder
 import dev.s7a.spigot.util.sendChatMessage
+import org.bukkit.command.CommandSender
 
 /**
  * 機能テスト
  */
-fun featureTest(name: String, tabComplete: KtCommandTabCompleteBuilder = {}, execute: KtCommandExecuteAction) = FeatureTest(name, tabComplete, execute)
+fun featureTest(name: String, tabComplete: KtCommandTabCompleteBuilder<CommandSender> = {}, execute: KtCommandExecuteAction<CommandSender>) = FeatureTest(name, tabComplete, execute)
 
 /**
  * 機能単位のテスト
@@ -16,7 +17,7 @@ fun featureTest(name: String, tabComplete: KtCommandTabCompleteBuilder = {}, exe
  * @property tabComplete タブ補完処理
  * @property execute 実行処理
  */
-open class FeatureTest(name: String?, val tabComplete: KtCommandTabCompleteBuilder, val execute: KtCommandExecuteAction) {
+open class FeatureTest(name: String?, val tabComplete: KtCommandTabCompleteBuilder<CommandSender>, val execute: KtCommandExecuteAction<CommandSender>) {
     /**
      * 機能名
      */
@@ -29,7 +30,7 @@ open class FeatureTest(name: String?, val tabComplete: KtCommandTabCompleteBuild
         /**
          * タブ補完
          */
-        val tabComplete: KtCommandTabCompleteBuilder = {
+        val tabComplete: KtCommandTabCompleteBuilder<CommandSender> = {
             features.forEach {
                 literal(it.name) {
                     it.tabComplete(this)
@@ -40,7 +41,7 @@ open class FeatureTest(name: String?, val tabComplete: KtCommandTabCompleteBuild
         /**
          * 実行
          */
-        val execute: KtCommandExecuteAction = { (sender, label, args) ->
+        val execute: KtCommandExecuteAction<CommandSender> = { (sender, label, args) ->
             val arg0 = args.getOrNull(0)
             val feature = features.firstOrNull { it.name.equals(arg0, true) }
             if (feature != null) {
