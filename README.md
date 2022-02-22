@@ -117,6 +117,9 @@ repositories {
 }
 
 dependencies {
+    // BungeeCord
+    implementation("dev.s7a:ktSpigot-bungee:1.0.0-SNAPSHOT")
+    
     // Minecraft 1.8.x
     implementation("dev.s7a:ktSpigot-v1_8:1.0.0-SNAPSHOT")
     

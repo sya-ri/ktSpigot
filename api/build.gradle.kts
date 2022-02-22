@@ -21,6 +21,10 @@ subprojects {
             "common" -> {
                 compileOnly("net.md-5:bungeecord-chat:1.8-SNAPSHOT")
             }
+            "bungee" -> {
+                compileOnly("net.md-5:bungeecord-api:1.17-R0.1-SNAPSHOT")
+                shadowApi(project(":api:common"))
+            }
             "v1_8" -> {
                 compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
                 shadowApi(project(":api:common"))
