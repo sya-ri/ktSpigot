@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config.type
 
-import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
 import dev.s7a.spigot.config.getListUnsafe
@@ -15,20 +15,20 @@ import java.util.Date
  * @since 1.0.0
  */
 object DateType : KtConfigValueType.Listable<Date> {
-    override fun get(config: KtConfig, path: String): KtConfigResult<Date> {
+    override fun get(config: KtConfigBase, path: String): KtConfigResult<Date> {
         return config.getUnsafe(path)
     }
 
-    override fun set(config: KtConfig, path: String, value: Date?) {
+    override fun set(config: KtConfigBase, path: String, value: Date?) {
         config.setUnsafe(path, value)
     }
 
     override val list = object : KtConfigValueType<List<Date>> {
-        override fun get(config: KtConfig, path: String): KtConfigResult<List<Date>> {
+        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Date>> {
             return config.getListUnsafe(path)
         }
 
-        override fun set(config: KtConfig, path: String, value: List<Date>?) {
+        override fun set(config: KtConfigBase, path: String, value: List<Date>?) {
             config.setUnsafe(path, value)
         }
     }

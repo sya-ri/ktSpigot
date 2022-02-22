@@ -1,6 +1,7 @@
 package config
 
 import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigDataClassConverter
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigResult
@@ -31,7 +32,7 @@ enum class TestEnum {
 /**
  * テストで使用するセクション
  */
-class TestSection(override val config: KtConfig, override val path: String) : KtConfigSection {
+class TestSection(override val config: KtConfigBase, override val path: String) : KtConfigSection {
     val int = intValue("int")
     val boolean = booleanValue("boolean")
 }
@@ -41,7 +42,7 @@ class TestSection(override val config: KtConfig, override val path: String) : Kt
  */
 data class TestDataClass(val int: Int, val boolean: Boolean) {
     object Converter : KtConfigDataClassConverter.Listable<TestDataClass> {
-        override fun get(config: KtConfig, path: String): KtConfigResult<TestDataClass> {
+        override fun get(config: KtConfigBase, path: String): KtConfigResult<TestDataClass> {
             return config.intValue("$path.int").get().map { int ->
                 config.booleanValue("$path.boolean").get().map { boolean ->
                     KtConfigResult.Success(TestDataClass(int, boolean))
@@ -49,7 +50,7 @@ data class TestDataClass(val int: Int, val boolean: Boolean) {
             }
         }
 
-        override fun set(config: KtConfig, path: String, value: TestDataClass?) {
+        override fun set(config: KtConfigBase, path: String, value: TestDataClass?) {
             if (value != null) {
                 config.intValue("$path.int").set(value.int)
                 config.booleanValue("$path.boolean").set(value.boolean)
@@ -58,7 +59,7 @@ data class TestDataClass(val int: Int, val boolean: Boolean) {
             }
         }
 
-        override fun toValue(config: KtConfig, path: String, index: Int, map: Map<String, Any>): KtConfigResult<TestDataClass> {
+        override fun toValue(config: KtConfigBase, path: String, index: Int, map: Map<String, Any>): KtConfigResult<TestDataClass> {
             return try {
                 val int = map["int"] as Int
                 val boolean = map["boolean"] as Boolean
@@ -80,7 +81,7 @@ data class TestDataClass(val int: Int, val boolean: Boolean) {
 /**
  * コンフィグに文字列を書き込む
  */
-fun KtConfig.writeText(text: String) {
+fun KtConfigBase.writeText(text: String) {
     file.writeText(text)
     load()
 }
@@ -88,7 +89,7 @@ fun KtConfig.writeText(text: String) {
 /**
  * コンフィグの内容をアサートする
  */
-fun KtConfig.assertContent(expected: String) {
+fun KtConfigBase.assertContent(expected: String) {
     assertEquals(expected, file.readText())
 }
 

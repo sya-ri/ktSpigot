@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config.type
 
-import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigFormatter
 import dev.s7a.spigot.config.KtConfigResult
@@ -14,7 +14,7 @@ import dev.s7a.spigot.config.KtConfigResult
  * @since 1.0.0
  */
 class FormatterType<T>(private val formatter: KtConfigFormatter<T>) : StringType.Base<T>() {
-    override val stringToResult = { config: KtConfig, path: String, string: String ->
+    override val stringToResult = { config: KtConfigBase, path: String, string: String ->
         formatter.value(string)?.let {
             KtConfigResult.Success<T>(it)
         } ?: KtConfigResult.Failure(

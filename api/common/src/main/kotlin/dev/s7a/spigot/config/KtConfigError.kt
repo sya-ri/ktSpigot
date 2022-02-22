@@ -8,7 +8,7 @@ import java.lang.reflect.Field
  * @property config コンフィグ
  * @since 1.0.0
  */
-abstract class KtConfigError(val config: KtConfig) {
+abstract class KtConfigError(val config: KtConfigBase) {
     /**
      * エラーメッセージ
      *
@@ -22,7 +22,7 @@ abstract class KtConfigError(val config: KtConfig) {
      * @property path コンフィグパス
      * @since 1.0.0
      */
-    class NotFound(config: KtConfig, val path: String) : KtConfigError(config) {
+    class NotFound(config: KtConfigBase, val path: String) : KtConfigError(config) {
         override val message = "$path が見つかりませんでした"
     }
 
@@ -33,7 +33,7 @@ abstract class KtConfigError(val config: KtConfig) {
      * @property className クラス名
      * @since 1.0.0
      */
-    class ClassCastException(config: KtConfig, val path: String, val className: String) : KtConfigError(config) {
+    class ClassCastException(config: KtConfigBase, val path: String, val className: String) : KtConfigError(config) {
         override val message = "$path の値を $className として取得できませんでした"
     }
 
@@ -45,7 +45,7 @@ abstract class KtConfigError(val config: KtConfig) {
      * @property className クラス名
      * @since 1.0.0
      */
-    class NotFoundEnumConstant(config: KtConfig, val path: String, val value: String, val className: String) : KtConfigError(config) {
+    class NotFoundEnumConstant(config: KtConfigBase, val path: String, val value: String, val className: String) : KtConfigError(config) {
         override val message = "$path の値($value)に一致する $className の値が見つかりませんでした"
     }
 
@@ -57,7 +57,7 @@ abstract class KtConfigError(val config: KtConfig) {
      * @property formatter 使用したフォーマッタ
      * @since 1.0.0
      */
-    class IllegalFormat<T>(config: KtConfig, val path: String, val string: String, val formatter: KtConfigFormatter<T>) : KtConfigError(config) {
+    class IllegalFormat<T>(config: KtConfigBase, val path: String, val string: String, val formatter: KtConfigFormatter<T>) : KtConfigError(config) {
         override val message = "$path の値($string)はフォーマット(${formatter.name})に一致していません"
     }
 
@@ -83,7 +83,9 @@ abstract class KtConfigError(val config: KtConfig) {
      * @property errors エラーの一覧
      * @since 1.0.0
      */
-    class ListConfigError<out T>(config: KtConfig, val path: String, val data: List<T>, override val errors: List<KtConfigResult.Failure<T>>) : KtConfigError(config), ErrorContainer<T> {
+    class ListConfigError<out T>(config: KtConfigBase, val path: String, val data: List<T>, override val errors: List<KtConfigResult.Failure<T>>) :
+        KtConfigError(config),
+        ErrorContainer<T> {
         override val message = "$path のリストの内部でエラーが発生しました [${errors.size}]"
     }
 
@@ -95,7 +97,9 @@ abstract class KtConfigError(val config: KtConfig) {
      * @property errors エラーの一覧
      * @since 1.0.0
      */
-    class MapConfigError<out T>(config: KtConfig, val path: String, val data: Map<String, T>, override val errors: List<KtConfigResult.Failure<T>>) : KtConfigError(config), ErrorContainer<T> {
+    class MapConfigError<out T>(config: KtConfigBase, val path: String, val data: Map<String, T>, override val errors: List<KtConfigResult.Failure<T>>) :
+        KtConfigError(config),
+        ErrorContainer<T> {
         override val message = "$path のマップ内部でエラーが発生しました [${errors.size}]"
     }
 
@@ -104,14 +108,14 @@ abstract class KtConfigError(val config: KtConfig) {
      *
      * @since 1.0.0
      */
-    abstract class Reflection(config: KtConfig) : KtConfigError(config) {
+    abstract class Reflection(config: KtConfigBase) : KtConfigError(config) {
         /**
          * [SecurityException] が投げられたとき
          *
          * @property field フィールド
          * @since 1.0.0
          */
-        class ThrowSecurityException(config: KtConfig, val field: Field) : Reflection(config) {
+        class ThrowSecurityException(config: KtConfigBase, val field: Field) : Reflection(config) {
             override val message = "${field.name} へのアクセスで SecurityException が投げられました"
         }
 
@@ -121,7 +125,7 @@ abstract class KtConfigError(val config: KtConfig) {
          * @property field フィールド
          * @since 1.0.0
          */
-        class ThrowIllegalAccessException(config: KtConfig, val field: Field) : Reflection(config) {
+        class ThrowIllegalAccessException(config: KtConfigBase, val field: Field) : Reflection(config) {
             override val message = "${field.name} へのアクセスで IllegalAccessException が投げられました"
         }
 
@@ -131,7 +135,7 @@ abstract class KtConfigError(val config: KtConfig) {
          * @param description 説明
          * @since 1.0.0
          */
-        class ThrowNoSuchMethodException(config: KtConfig, description: String) : Reflection(config) {
+        class ThrowNoSuchMethodException(config: KtConfigBase, description: String) : Reflection(config) {
             override val message = "NoSuchMethodException が投げられました ($description)"
         }
     }

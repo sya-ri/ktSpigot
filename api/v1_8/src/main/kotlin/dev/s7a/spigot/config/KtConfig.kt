@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config
 
-import dev.s7a.spigot.util.internal.LazyMutable
+import dev.s7a.spigot.util.LazyMutable
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
@@ -12,20 +12,13 @@ import java.io.FileNotFoundException
  * @property file ファイル
  * @since 1.0.0
  */
-abstract class KtConfig(val file: File) : KtConfigSection {
+abstract class KtConfig(file: File) : KtConfigBase(file) {
     /**
      * @param plugin プラグイン
      * @param fileName ファイル名
      * @since 1.0.0
      */
     constructor(plugin: JavaPlugin, fileName: String) : this(plugin.dataFolder.resolve(fileName))
-
-    override val config
-        get() = this
-
-    override val path = ""
-
-    override fun fullPath(path: String) = path
 
     /**
      * コンフィグの実際のデータ
@@ -53,42 +46,35 @@ abstract class KtConfig(val file: File) : KtConfigSection {
         return YamlConfiguration.loadConfiguration(file)
     }
 
-    /**
-     * コンフィグの値を読み込む。既に読み込んでいる場合はリロードする
-     *
-     * @since 1.0.0
-     */
-    open fun load() {
+    override fun load() {
         bukkitConfig = loadFromFile()
     }
 
-    /**
-     * コンフィグに指定したパスが存在するか
-     *
-     * @param path コンフィグパス
-     * @return 存在すれば true
-     * @since 1.0.0
-     */
-    fun contains(path: String): Boolean {
+    final override fun contains(path: String): Boolean {
         return bukkitConfig.contains(path)
     }
 
-    /**
-     * コンフィグへの変更を保存する
-     *
-     * @since 1.0.0
-     */
-    fun save() {
+    final override fun save() {
         bukkitConfig.save(file)
     }
 
-    /**
-     * ファイルを削除する
-     *
-     * @return ファイルの削除に成功すれば true
-     * @since 1.0.0
-     */
-    fun delete(): Boolean {
-        return file.delete()
+    final override fun isList(path: String): Boolean {
+        return bukkitConfig.isList(path)
+    }
+
+    final override fun get(path: String): Any? {
+        return bukkitConfig.get(path)
+    }
+
+    final override fun getSectionKeys(path: String): Set<String>? {
+        return bukkitConfig.getConfigurationSection(path)?.getKeys(false)
+    }
+
+    final override fun getMapList(path: String): List<Map<*, *>> {
+        return bukkitConfig.getMapList(path)
+    }
+
+    final override fun set(path: String, value: Any?) {
+        bukkitConfig.set(path, value)
     }
 }

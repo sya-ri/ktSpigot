@@ -1,4 +1,4 @@
-package dev.s7a.spigot.util.internal
+package dev.s7a.spigot.util
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -9,7 +9,7 @@ import kotlin.reflect.KProperty
  * @property initializer 初期化処理
  * @since 1.0.0
  */
-internal class LazyMutable<T : Any>(private val initializer: () -> T) : ReadWriteProperty<Any?, T> {
+class LazyMutable<T : Any>(private val initializer: () -> T) : ReadWriteProperty<Any?, T> {
     private val lazyValue by lazy { initializer() }
     private var newValue: T? = null
 

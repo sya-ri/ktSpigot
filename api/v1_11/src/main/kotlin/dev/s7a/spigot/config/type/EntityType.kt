@@ -1,6 +1,6 @@
 package dev.s7a.spigot.config.type
 
-import dev.s7a.spigot.config.KtConfig
+import dev.s7a.spigot.config.KtConfigBase
 import dev.s7a.spigot.config.KtConfigError
 import dev.s7a.spigot.config.KtConfigResult
 import dev.s7a.spigot.config.KtConfigValueType
@@ -21,7 +21,7 @@ object EntityType : KtConfigValueType.Listable<Entity> {
      *
      * @since 1.0.0
      */
-    class NotFoundEntityError(config: KtConfig, path: String, value: UUID) : KtConfigError(config) {
+    class NotFoundEntityError(config: KtConfigBase, path: String, value: UUID) : KtConfigError(config) {
         override val message = "$path の値($value)に対応するエンティティが見つかりませんでした"
     }
 
@@ -30,7 +30,7 @@ object EntityType : KtConfigValueType.Listable<Entity> {
      *
      * @since 1.0.0
      */
-    private fun uuidToResult(config: KtConfig, path: String, value: UUID) = Bukkit.getEntity(value)?.let {
+    private fun uuidToResult(config: KtConfigBase, path: String, value: UUID) = Bukkit.getEntity(value)?.let {
         KtConfigResult.Success(it)
     } ?: KtConfigResult.Failure(NotFoundEntityError(config, path, value))
 
@@ -41,22 +41,22 @@ object EntityType : KtConfigValueType.Listable<Entity> {
      */
     private fun valueToUuid(value: Entity) = value.uniqueId
 
-    override fun get(config: KtConfig, path: String): KtConfigResult<Entity> {
+    override fun get(config: KtConfigBase, path: String): KtConfigResult<Entity> {
         return config.uuidValue(path).get().map { uuidToResult(config, path, it) }
     }
 
-    override fun set(config: KtConfig, path: String, value: Entity?) {
+    override fun set(config: KtConfigBase, path: String, value: Entity?) {
         config.uuidValue(path).set(value?.let(::valueToUuid))
     }
 
     override val list = object : KtConfigValueType<List<Entity>> {
-        override fun get(config: KtConfig, path: String): KtConfigResult<List<Entity>> {
+        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Entity>> {
             return config.uuidValue(path).list().get().mapValues(config, path) { index, value ->
                 uuidToResult(config, "$path#$index", value)
             }
         }
 
-        override fun set(config: KtConfig, path: String, value: List<Entity>?) {
+        override fun set(config: KtConfigBase, path: String, value: List<Entity>?) {
             config.uuidValue(path).list().set(value?.map(::valueToUuid))
         }
     }

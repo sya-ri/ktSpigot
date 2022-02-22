@@ -1,7 +1,7 @@
 package config
 
 import dev.s7a.spigot.config.KtConfig
-import dev.s7a.spigot.config.KtConfigDirectory
+import dev.s7a.spigot.config.KtConfigDirectoryBase
 import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -10,7 +10,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 
 /**
- * [KtConfigDirectory] に関するテスト
+ * [KtConfigDirectoryBase] に関するテスト
  */
 class ConfigDirectoryTest {
     private val parentFile = File("build/tmp/test/directory")
@@ -34,7 +34,7 @@ class ConfigDirectoryTest {
 
     @Test
     fun `non recursive config directory can be get`() {
-        val configDirectory = object : KtConfigDirectory<Config>(parentFile) {
+        val configDirectory = object : KtConfigDirectoryBase<Config>(parentFile) {
             override fun load(file: File) = Config(file)
         }
         assertEquals(0, configDirectory.loadedConfigList.size)
@@ -50,7 +50,7 @@ class ConfigDirectoryTest {
 
     @Test
     fun `recursive config directory can be get`() {
-        val configDirectory = object : KtConfigDirectory.Recursive<Config>(parentFile) {
+        val configDirectory = object : KtConfigDirectoryBase.Recursive<Config>(parentFile) {
             override fun load(file: File) = Config(file)
         }
         assertEquals(0, configDirectory.loadedConfigList.size)
