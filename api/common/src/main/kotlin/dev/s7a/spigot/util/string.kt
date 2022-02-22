@@ -1,6 +1,6 @@
 package dev.s7a.spigot.util
 
-import org.bukkit.ChatColor
+import net.md_5.bungee.api.ChatColor
 
 /**
  * 文字列を色付き文字列に変換する
