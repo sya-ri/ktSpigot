@@ -74,7 +74,7 @@ abstract class KtConfigBase(val file: File) : KtConfigSection {
      * @return セクションキー
      * @since 1.0.0
      */
-    abstract fun getSectionKeys(path: String): Set<String>?
+    abstract fun getSectionKeys(path: String): Collection<String>?
 
     /**
      * コンフィグからマップリストを取得する

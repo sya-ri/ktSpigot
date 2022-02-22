@@ -2,6 +2,7 @@ rootProject.name = "ktSpigot"
 
 include(
     ":api:common",
+    ":api:bungee",
     ":api:v1_8",
     ":api:v1_9",
     ":api:v1_10",

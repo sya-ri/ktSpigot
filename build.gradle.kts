@@ -36,6 +36,7 @@ subprojects {
     repositories {
         maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
         maven(url = "https://oss.sonatype.org/content/groups/public/")
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
     }
 
     val shadowImplementation: Configuration by configurations.creating
