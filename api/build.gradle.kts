@@ -18,6 +18,9 @@ subprojects {
 
     dependencies {
         when (project.name) {
+            "common" -> {
+                compileOnly("net.md-5:bungeecord-chat:1.8-SNAPSHOT")
+            }
             "v1_8" -> {
                 compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
                 shadowApi(project(":api:common"))
