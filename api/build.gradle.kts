@@ -18,9 +18,6 @@ subprojects {
 
     dependencies {
         when (project.name) {
-            "common" -> {
-                compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
-            }
             "v1_8" -> {
                 compileOnly("org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT")
                 shadowApi(project(":api:common"))
