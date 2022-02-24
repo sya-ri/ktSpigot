@@ -496,10 +496,10 @@ $dokka.location:dev.s7a.spigot.scheduler//ticks/kotlin.Long#/PointingToDeclarati
 $dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable///PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/index.html
 $dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable/BungeeRunnable/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/-bungee-runnable.html
 $dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable/cancel/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/cancel.html
+$dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable/getTaskId/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/get-task-id.html
 $dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable/runTaskAsynchronously/#Plugin/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/run-task-asynchronously.html
 $dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable/runTaskLaterAsynchronously/#Plugin#kotlin.Long/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/run-task-later-asynchronously.html
 $dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable/runTaskTimerAsynchronously/#Plugin#kotlin.Long#kotlin.Long/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/run-task-timer-asynchronously.html
-$dokka.location:dev.s7a.spigot.scheduler/BungeeRunnable/taskId/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.scheduler/-bungee-runnable/task-id.html
 $dokka.location:dev.s7a.spigot.util////PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/index.html
 $dokka.location:dev.s7a.spigot.util//color/kotlin.String#kotlin.Char/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/color.html
 $dokka.location:dev.s7a.spigot.util//color/kotlin.String#kotlin.Char?/PointingToDeclaration/kt-spigot/dev.s7a.spigot.util/color.html
