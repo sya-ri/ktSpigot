@@ -7,9 +7,12 @@ import net.md_5.bungee.api.plugin.TabExecutor
 /**
  * コマンド
  *
+ * @param name コマンド名
+ * @param permission 実行権限
+ * @param aliases コマンドの別名
  * @since 1.0.0
  */
-class KtCommand(name: String) : KtCommandBase<CommandSender>, Command(name), TabExecutor {
+class KtCommand(name: String, permission: String?, vararg aliases: String) : KtCommandBase<CommandSender>, Command(name, permission, *aliases), TabExecutor {
     private val manager = KtCommandManager<CommandSender>()
 
     override fun execute(action: KtCommandExecuteAction<CommandSender>) {
