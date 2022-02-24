@@ -11,21 +11,7 @@ import java.util.concurrent.TimeUnit
  * @since 1.0.0
  */
 abstract class BungeeRunnable : Runnable {
-    /**
-     * Gets the task id for this runnable.
-     *
-     * @return the task id that this runnable was scheduled as
-     * @throws IllegalStateException if task was not scheduled yet
-     * @since 1.0.0
-     */
-    var taskId = -1
-        @Synchronized
-        @Throws(IllegalStateException::class)
-        get() {
-            check(field != -1) { "Not scheduled yet" }
-            return field
-        }
-        private set
+    private var taskId = -1
 
     /**
      * Attempts to cancel this task.
@@ -97,6 +83,20 @@ abstract class BungeeRunnable : Runnable {
         return setupId(
             ProxyServer.getInstance().scheduler.schedule(plugin, this, delay, period, TimeUnit.MICROSECONDS)
         )
+    }
+
+    /**
+     * Gets the task id for this runnable.
+     *
+     * @return the task id that this runnable was scheduled as
+     * @throws IllegalStateException if task was not scheduled yet
+     * @since 1.0.0
+     */
+    @Synchronized
+    @Throws(IllegalStateException::class)
+    fun getTaskId(): Int {
+        check(taskId != -1) { "Not scheduled yet" }
+        return taskId
     }
 
     private fun checkState() {
