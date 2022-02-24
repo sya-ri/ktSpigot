@@ -1,13 +1,13 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:dev.s7a.spigot.command////PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/index.html
-$dokka.location:dev.s7a.spigot.command//ktCommand/Plugin#kotlin.String#kotlin.Function1[dev.s7a.spigot.command.KtCommand,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/kt-command.html
+$dokka.location:dev.s7a.spigot.command//ktCommand/Plugin#kotlin.String#kotlin.String?#kotlin.Array[kotlin.String]#kotlin.Function1[dev.s7a.spigot.command.KtCommand,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/kt-command.html
 $dokka.location:dev.s7a.spigot.command//ktCommand/org.bukkit.plugin.java.JavaPlugin#kotlin.String#kotlin.Function1[dev.s7a.spigot.command.KtCommand,kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/kt-command.html
 $dokka.location:dev.s7a.spigot.command/Dynamics///PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-dynamics/index.html
 $dokka.location:dev.s7a.spigot.command/Dynamics/Players/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-dynamics/-players.html
 $dokka.location:dev.s7a.spigot.command/Dynamics/Servers/#/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-dynamics/-servers.html
 $dokka.location:dev.s7a.spigot.command/KtCommand///PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-kt-command/index.html
-$dokka.location:dev.s7a.spigot.command/KtCommand/KtCommand/#kotlin.String/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-kt-command/-kt-command.html
+$dokka.location:dev.s7a.spigot.command/KtCommand/KtCommand/#kotlin.String#kotlin.String?#kotlin.Array[kotlin.String]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-kt-command/-kt-command.html
 $dokka.location:dev.s7a.spigot.command/KtCommand/execute/#CommandSender#kotlin.Array[kotlin.String]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-kt-command/execute.html
 $dokka.location:dev.s7a.spigot.command/KtCommand/execute/#kotlin.Function1[dev.s7a.spigot.command.KtCommandExecuteParameter[CommandSender],kotlin.Unit]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-kt-command/execute.html
 $dokka.location:dev.s7a.spigot.command/KtCommand/onTabComplete/#CommandSender#kotlin.Array[kotlin.String]/PointingToDeclaration/kt-spigot/dev.s7a.spigot.command/-kt-command/on-tab-complete.html
