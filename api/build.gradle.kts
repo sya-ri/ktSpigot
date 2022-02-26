@@ -1,6 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 import net.minecrell.pluginyml.bungee.BungeePluginDescription
+import org.jetbrains.dokka.gradle.DokkaMultiModuleTask
 import org.jetbrains.dokka.gradle.DokkaTask
 import java.net.URL
 
@@ -13,6 +14,7 @@ plugins {
 subprojects {
     apply(plugin = "org.gradle.maven-publish")
     apply(plugin = "signing")
+    apply(plugin = "org.jetbrains.dokka")
 
     version = rootProject.version
 
@@ -164,20 +166,40 @@ subprojects {
     signing {
         sign(publishing.publications["maven"])
     }
+
+    val dokkaHtml by tasks.getting(DokkaTask::class) {
+        dokkaSourceSets {
+            named("main") {
+                sourceLink {
+                    localDirectory.set(file("${project.name}/src/main/kotlin"))
+                    remoteUrl.set(URL("https://github.com/sya-ri/ktSpigot/blob/master/api/${project.name}/src/main/kotlin"))
+                    remoteLineSuffix.set("#L")
+                }
+                sourceRoots.from(project.sourceSets.main.get().allSource)
+                externalDocumentationLink {
+                    url.set(URL("https://hub.spigotmc.org/javadocs/spigot/"))
+                    packageListUrl.set(URL("https://hub.spigotmc.org/javadocs/spigot/element-list"))
+                }
+                externalDocumentationLink {
+                    url.set(URL("https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/"))
+                    packageListUrl.set(URL("https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/element-list"))
+                }
+            }
+        }
+    }
 }
 
 tasks.withType<Jar> {
     enabled = false
 }
 
-val dokkaHtml by tasks.getting(DokkaTask::class) {
+val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
     moduleName.set("ktSpigot")
     val dokkaDir = rootProject.projectDir.resolve("dokka")
     val version = rootProject.version.toString()
     outputDirectory.set(file(dokkaDir.resolve(version)))
     dependencies {
         dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.6.10")
-        compileOnly("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
     }
     pluginsMapConfiguration.set(
         mapOf(
@@ -189,26 +211,4 @@ val dokkaHtml by tasks.getting(DokkaTask::class) {
             """.trimIndent()
         )
     )
-    dokkaSourceSets {
-        named("main") {
-            subprojects.forEach {
-                if (it.projectDir.resolve("src").exists()) {
-                    sourceLink {
-                        localDirectory.set(file("${it.name}/src/main/kotlin"))
-                        remoteUrl.set(URL("https://github.com/sya-ri/ktSpigot/blob/master/api/${it.name}/src/main/kotlin"))
-                        remoteLineSuffix.set("#L")
-                    }
-                    sourceRoots.from(it.sourceSets.main.get().allSource)
-                    externalDocumentationLink {
-                        url.set(URL("https://hub.spigotmc.org/javadocs/spigot/"))
-                        packageListUrl.set(URL("https://hub.spigotmc.org/javadocs/spigot/element-list"))
-                    }
-                    externalDocumentationLink {
-                        url.set(URL("https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/"))
-                        packageListUrl.set(URL("https://ci.md-5.net/job/BungeeCord/ws/chat/target/apidocs/element-list"))
-                    }
-                }
-            }
-        }
-    }
 }

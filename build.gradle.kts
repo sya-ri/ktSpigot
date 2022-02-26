@@ -108,5 +108,5 @@ task("updateCodeSnippet") {
 }
 
 task("dokka") {
-    dependsOn(":api:dokkaHtml")
+    dependsOn(":api:dokkaHtmlMultiModule")
 }
