@@ -1,14 +1,14 @@
 package config
 
-import dev.s7a.spigot.config.KtConfig
-import dev.s7a.spigot.config.KtConfigBase
-import dev.s7a.spigot.config.KtConfigDataClassConverter
-import dev.s7a.spigot.config.KtConfigError
-import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.KtConfigSection
-import dev.s7a.spigot.config.setUnsafe
-import dev.s7a.spigot.config.type.booleanValue
-import dev.s7a.spigot.config.type.intValue
+import dev.s7a.ktspigot.config.KtConfig
+import dev.s7a.ktspigot.config.KtConfigBase
+import dev.s7a.ktspigot.config.KtConfigDataClassConverter
+import dev.s7a.ktspigot.config.KtConfigError
+import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.KtConfigSection
+import dev.s7a.ktspigot.config.setUnsafe
+import dev.s7a.ktspigot.config.type.booleanValue
+import dev.s7a.ktspigot.config.type.intValue
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date

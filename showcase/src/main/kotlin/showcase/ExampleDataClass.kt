@@ -1,13 +1,13 @@
 package showcase
 
-import dev.s7a.spigot.config.KtConfigBase
-import dev.s7a.spigot.config.KtConfigDataClassConverter
-import dev.s7a.spigot.config.KtConfigError
-import dev.s7a.spigot.config.KtConfigFormatter
-import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.setUnsafe
-import dev.s7a.spigot.config.type.intValue
-import dev.s7a.spigot.config.type.locationValue
+import dev.s7a.ktspigot.config.KtConfigBase
+import dev.s7a.ktspigot.config.KtConfigDataClassConverter
+import dev.s7a.ktspigot.config.KtConfigError
+import dev.s7a.ktspigot.config.KtConfigFormatter
+import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.setUnsafe
+import dev.s7a.ktspigot.config.type.intValue
+import dev.s7a.ktspigot.config.type.locationValue
 import org.bukkit.Location
 
 // CODE-SNIPPET BEGIN

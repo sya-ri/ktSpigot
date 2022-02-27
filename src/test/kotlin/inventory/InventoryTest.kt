@@ -1,8 +1,8 @@
 package inventory
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.inventory.item
-import dev.s7a.spigot.inventory.ktInventory
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.inventory.item
+import dev.s7a.ktspigot.inventory.ktInventory
 import org.bukkit.Material
 import org.bukkit.event.inventory.ClickType
 import org.bukkit.event.inventory.InventoryAction
@@ -25,7 +25,7 @@ import kotlin.test.assertTrue
 /**
  * インベントリに関するテスト
  *
- * @see dev.s7a.spigot.inventory
+ * @see dev.s7a.ktspigot.inventory
  */
 class InventoryTest {
     @BeforeTest

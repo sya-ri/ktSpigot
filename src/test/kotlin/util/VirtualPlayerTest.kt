@@ -1,7 +1,7 @@
 package util
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.player.VirtualPlayer.Companion.toVirtual
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.player.VirtualPlayer.Companion.toVirtual
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 /**
  * VirtualPlayerのテスト
  *
- * @see dev.s7a.spigot.util.VirtualPlayer
+ * @see dev.s7a.ktspigot.util.VirtualPlayer
  */
 class VirtualPlayerTest {
     @BeforeTest

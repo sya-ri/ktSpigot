@@ -1,12 +1,12 @@
 package showcase
 
-import dev.s7a.spigot.config.KtConfigBase
-import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.KtConfigSection
-import dev.s7a.spigot.config.KtConfigValueType
-import dev.s7a.spigot.config.getUnsafe
-import dev.s7a.spigot.config.setUnsafe
-import dev.s7a.spigot.config.type.value
+import dev.s7a.ktspigot.config.KtConfigBase
+import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.KtConfigSection
+import dev.s7a.ktspigot.config.KtConfigValueType
+import dev.s7a.ktspigot.config.getUnsafe
+import dev.s7a.ktspigot.config.setUnsafe
+import dev.s7a.ktspigot.config.type.value
 import org.bukkit.inventory.ItemStack
 
 // CODE-SNIPPET BEGIN

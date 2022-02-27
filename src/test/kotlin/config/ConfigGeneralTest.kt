@@ -1,8 +1,8 @@
 package config
 
-import dev.s7a.spigot.config.KtConfig
-import dev.s7a.spigot.config.type.booleanValue
-import dev.s7a.spigot.config.type.intValue
+import dev.s7a.ktspigot.config.KtConfig
+import dev.s7a.ktspigot.config.type.booleanValue
+import dev.s7a.ktspigot.config.type.intValue
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.concurrent.atomic.AtomicBoolean
@@ -14,7 +14,7 @@ import kotlin.test.assertTrue
 /**
  * コンフィグの一般的なテスト
  *
- * @see dev.s7a.spigot.config
+ * @see dev.s7a.ktspigot.config
  */
 class ConfigGeneralTest {
     @Test

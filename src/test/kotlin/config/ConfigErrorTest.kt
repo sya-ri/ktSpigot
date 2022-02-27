@@ -1,12 +1,12 @@
 package config
 
-import dev.s7a.spigot.config.KtConfig
-import dev.s7a.spigot.config.KtConfigError
-import dev.s7a.spigot.config.KtConfigErrorHandler
-import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.checkValues
-import dev.s7a.spigot.config.getErrors
-import dev.s7a.spigot.config.type.intValue
+import dev.s7a.ktspigot.config.KtConfig
+import dev.s7a.ktspigot.config.KtConfigError
+import dev.s7a.ktspigot.config.KtConfigErrorHandler
+import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.checkValues
+import dev.s7a.ktspigot.config.getErrors
+import dev.s7a.ktspigot.config.type.intValue
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.test.Test

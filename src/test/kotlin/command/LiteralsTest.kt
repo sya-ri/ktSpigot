@@ -1,6 +1,6 @@
 package command
 
-import dev.s7a.spigot.command.Literals
+import dev.s7a.ktspigot.command.Literals
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 

@@ -2,16 +2,16 @@ package component
 
 import com.google.gson.Gson
 import com.google.gson.JsonParser
-import dev.s7a.spigot.component.appendKeybind
-import dev.s7a.spigot.component.appendScore
-import dev.s7a.spigot.component.appendSelector
-import dev.s7a.spigot.component.appendTranslatable
-import dev.s7a.spigot.component.buildComponent
-import dev.s7a.spigot.component.clickCopyToClipboard
-import dev.s7a.spigot.component.clickOpenUrl
-import dev.s7a.spigot.component.clickRunCommand
-import dev.s7a.spigot.component.clickSuggestCommand
-import dev.s7a.spigot.component.hoverShowText
+import dev.s7a.ktspigot.component.appendKeybind
+import dev.s7a.ktspigot.component.appendScore
+import dev.s7a.ktspigot.component.appendSelector
+import dev.s7a.ktspigot.component.appendTranslatable
+import dev.s7a.ktspigot.component.buildComponent
+import dev.s7a.ktspigot.component.clickCopyToClipboard
+import dev.s7a.ktspigot.component.clickOpenUrl
+import dev.s7a.ktspigot.component.clickRunCommand
+import dev.s7a.ktspigot.component.clickSuggestCommand
+import dev.s7a.ktspigot.component.hoverShowText
 import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.chat.Keybinds
 import randomString
@@ -22,7 +22,7 @@ import kotlin.test.assertEquals
 /**
  * コンポーネントに関するテスト
  *
- * @see dev.s7a.spigot.component
+ * @see dev.s7a.ktspigot.component
  */
 class ComponentTest {
     @Test

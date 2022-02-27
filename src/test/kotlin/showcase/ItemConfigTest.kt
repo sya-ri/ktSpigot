@@ -1,7 +1,7 @@
 package showcase
 
 import config.writeText
-import dev.s7a.spigot.KtSpigotTest
+import dev.s7a.ktspigot.KtSpigotTest
 import org.bukkit.Material
 import randomString
 import kotlin.test.AfterTest

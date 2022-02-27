@@ -84,7 +84,7 @@ subprojects {
         configure<BungeePluginDescription> {
             name = "ktSpigot"
             version = "${rootProject.version}(${project.name})"
-            main = "dev.s7a.spigot.KtSpigot"
+            main = "dev.s7a.ktspigot.KtSpigot"
             description = "A Library that Simplifies Spigot with Kotlin."
             author = "sya_ri"
         }
@@ -94,7 +94,7 @@ subprojects {
         configure<BukkitPluginDescription> {
             name = "ktSpigot"
             version = "${rootProject.version}(${project.name})"
-            main = "dev.s7a.spigot.KtSpigot"
+            main = "dev.s7a.ktspigot.KtSpigot"
             description = "A Library that Simplifies Spigot with Kotlin."
             author = "sya_ri"
             website = "https://github.com/sya-ri/ktSpigot"

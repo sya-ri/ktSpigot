@@ -1,9 +1,9 @@
 package util
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.util.sendActionBarMessage
-import dev.s7a.spigot.util.sendChatMessage
-import dev.s7a.spigot.util.sendTitleMessage
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.util.sendActionBarMessage
+import dev.s7a.ktspigot.util.sendChatMessage
+import dev.s7a.ktspigot.util.sendTitleMessage
 import org.bukkit.ChatColor
 import randomString
 import kotlin.test.AfterTest
@@ -13,9 +13,9 @@ import kotlin.test.Test
 /**
  * メッセージに関するテスト
  *
- * @see dev.s7a.spigot.util.sendChatMessage
- * @see dev.s7a.spigot.util.sendActionBarMessage
- * @see dev.s7a.spigot.util.sendTitleMessage
+ * @see dev.s7a.ktspigot.util.sendChatMessage
+ * @see dev.s7a.ktspigot.util.sendActionBarMessage
+ * @see dev.s7a.ktspigot.util.sendTitleMessage
  */
 class MessageTest {
     @BeforeTest
