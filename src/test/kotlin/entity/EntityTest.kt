@@ -1,8 +1,8 @@
 package entity
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.entity.spawnEntity
-import dev.s7a.spigot.item.itemStack
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.entity.spawnEntity
+import dev.s7a.ktspigot.item.itemStack
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Zombie
@@ -16,7 +16,7 @@ import kotlin.test.assertIs
 /**
  * エンティティに関するテスト
  *
- * @see dev.s7a.spigot.entity
+ * @see dev.s7a.ktspigot.entity
  */
 class EntityTest {
     @BeforeTest

@@ -1,10 +1,10 @@
 package config
 
-import dev.s7a.spigot.config.KtConfigError
-import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.editAndSave
-import dev.s7a.spigot.config.forceGetValue
-import dev.s7a.spigot.config.type.intValue
+import dev.s7a.ktspigot.config.KtConfigError
+import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.editAndSave
+import dev.s7a.ktspigot.config.forceGetValue
+import dev.s7a.ktspigot.config.type.intValue
 import randomString
 import kotlin.random.Random
 import kotlin.test.Test
@@ -14,7 +14,7 @@ import kotlin.test.assertIs
 /**
  * list, map 等の複数の値を受け付けるコンフィグデータ型に関するテスト
  *
- * @see dev.s7a.spigot.config
+ * @see dev.s7a.ktspigot.config
  */
 class ConfigMultipleValueTest {
     @Test

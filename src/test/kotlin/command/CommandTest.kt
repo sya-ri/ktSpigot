@@ -1,9 +1,9 @@
 package command
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.command.KtCommandCancelException
-import dev.s7a.spigot.command.KtCommandTabCompleterType
-import dev.s7a.spigot.command.ktCommand
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.command.KtCommandCancelException
+import dev.s7a.ktspigot.command.KtCommandTabCompleterType
+import dev.s7a.ktspigot.command.ktCommand
 import randomString
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
@@ -19,7 +19,7 @@ import kotlin.test.assertTrue
 /**
  * コマンドのテスト
  *
- * @see dev.s7a.spigot.command
+ * @see dev.s7a.ktspigot.command
  */
 class CommandTest {
     @BeforeTest

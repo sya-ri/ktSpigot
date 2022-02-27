@@ -1,8 +1,8 @@
 package location
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.location.BlockLocation
-import dev.s7a.spigot.location.BlockLocation.Companion.toBlockLocation
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.location.BlockLocation
+import dev.s7a.ktspigot.location.BlockLocation.Companion.toBlockLocation
 import randomLocation
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest

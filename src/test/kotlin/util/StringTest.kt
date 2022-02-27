@@ -1,7 +1,7 @@
 package util
 
-import dev.s7a.spigot.util.color
-import dev.s7a.spigot.util.uncolor
+import dev.s7a.ktspigot.util.color
+import dev.s7a.ktspigot.util.uncolor
 import org.bukkit.ChatColor
 import randomString
 import kotlin.test.Test
@@ -11,8 +11,8 @@ import kotlin.test.assertEquals
 /**
  * 文字列に関するテスト
  *
- * @see dev.s7a.spigot.util.color
- * @see dev.s7a.spigot.util.uncolor
+ * @see dev.s7a.ktspigot.util.color
+ * @see dev.s7a.ktspigot.util.uncolor
  */
 class StringTest {
     @Test

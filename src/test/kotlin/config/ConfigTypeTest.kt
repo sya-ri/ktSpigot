@@ -1,25 +1,25 @@
 package config
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.type.SpecificEntityType
-import dev.s7a.spigot.config.type.booleanValue
-import dev.s7a.spigot.config.type.dataClassValue
-import dev.s7a.spigot.config.type.dateValue
-import dev.s7a.spigot.config.type.doubleValue
-import dev.s7a.spigot.config.type.entityValue
-import dev.s7a.spigot.config.type.enumNameValue
-import dev.s7a.spigot.config.type.enumOrdinalValue
-import dev.s7a.spigot.config.type.floatValue
-import dev.s7a.spigot.config.type.intValue
-import dev.s7a.spigot.config.type.locationValue
-import dev.s7a.spigot.config.type.longValue
-import dev.s7a.spigot.config.type.materialValue
-import dev.s7a.spigot.config.type.section
-import dev.s7a.spigot.config.type.stringValue
-import dev.s7a.spigot.config.type.uuidValue
-import dev.s7a.spigot.config.type.vectorValue
-import dev.s7a.spigot.entity.spawnEntity
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.type.SpecificEntityType
+import dev.s7a.ktspigot.config.type.booleanValue
+import dev.s7a.ktspigot.config.type.dataClassValue
+import dev.s7a.ktspigot.config.type.dateValue
+import dev.s7a.ktspigot.config.type.doubleValue
+import dev.s7a.ktspigot.config.type.entityValue
+import dev.s7a.ktspigot.config.type.enumNameValue
+import dev.s7a.ktspigot.config.type.enumOrdinalValue
+import dev.s7a.ktspigot.config.type.floatValue
+import dev.s7a.ktspigot.config.type.intValue
+import dev.s7a.ktspigot.config.type.locationValue
+import dev.s7a.ktspigot.config.type.longValue
+import dev.s7a.ktspigot.config.type.materialValue
+import dev.s7a.ktspigot.config.type.section
+import dev.s7a.ktspigot.config.type.stringValue
+import dev.s7a.ktspigot.config.type.uuidValue
+import dev.s7a.ktspigot.config.type.vectorValue
+import dev.s7a.ktspigot.entity.spawnEntity
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.entity.Entity
@@ -42,7 +42,7 @@ import kotlin.test.assertNotNull
 /**
  * コンフィグデータ型に関するテスト
  *
- * @see dev.s7a.spigot.config
+ * @see dev.s7a.ktspigot.config
  */
 class ConfigTypeTest {
     @BeforeTest

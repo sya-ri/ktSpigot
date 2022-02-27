@@ -1,7 +1,7 @@
 package config
 
-import dev.s7a.spigot.config.KtConfig
-import dev.s7a.spigot.config.KtConfigDirectoryBase
+import dev.s7a.ktspigot.config.KtConfig
+import dev.s7a.ktspigot.config.KtConfigDirectoryBase
 import java.io.File
 import kotlin.test.BeforeTest
 import kotlin.test.Test

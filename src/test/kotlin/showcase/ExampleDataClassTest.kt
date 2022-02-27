@@ -2,10 +2,10 @@ package showcase
 
 import config.TestConfig
 import config.writeText
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.config.KtConfigResult
-import dev.s7a.spigot.config.formatter.DefaultLocationFormatter
-import dev.s7a.spigot.config.type.dataClassValue
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.formatter.DefaultLocationFormatter
+import dev.s7a.ktspigot.config.type.dataClassValue
 import randomLocation
 import randomString
 import kotlin.random.Random

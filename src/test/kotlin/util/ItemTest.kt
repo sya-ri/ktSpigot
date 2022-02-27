@@ -1,12 +1,12 @@
 package util
 
-import dev.s7a.spigot.KtSpigotTest
-import dev.s7a.spigot.item.customModelDataOrNull
-import dev.s7a.spigot.item.displayNameOrNull
-import dev.s7a.spigot.item.editItemMeta
-import dev.s7a.spigot.item.itemStack
-import dev.s7a.spigot.item.localizedNameOrNull
-import dev.s7a.spigot.item.loreOrNull
+import dev.s7a.ktspigot.KtSpigotTest
+import dev.s7a.ktspigot.item.customModelDataOrNull
+import dev.s7a.ktspigot.item.displayNameOrNull
+import dev.s7a.ktspigot.item.editItemMeta
+import dev.s7a.ktspigot.item.itemStack
+import dev.s7a.ktspigot.item.localizedNameOrNull
+import dev.s7a.ktspigot.item.loreOrNull
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Color
@@ -32,7 +32,7 @@ import kotlin.test.assertTrue
 /**
  * アイテムに関するテスト
  *
- * @see dev.s7a.spigot.util.editItemMeta
+ * @see dev.s7a.ktspigot.util.editItemMeta
  */
 class ItemTest {
     @BeforeTest
