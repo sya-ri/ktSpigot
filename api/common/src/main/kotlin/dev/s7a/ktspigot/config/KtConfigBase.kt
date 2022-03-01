@@ -18,6 +18,13 @@ abstract class KtConfigBase(val file: File) : KtConfigSection {
     override fun fullPath(path: String) = path
 
     /**
+     * コンフィグファイルを作成したときの処理
+     *
+     * @since 1.0.0
+     */
+    protected open fun onCreateNewFile() {}
+
+    /**
      * コンフィグを読み込むときの処理
      *
      * @since 1.0.0
@@ -27,6 +34,7 @@ abstract class KtConfigBase(val file: File) : KtConfigSection {
             file.exists().not() -> {
                 file.parentFile?.mkdirs()
                 file.createNewFile()
+                onCreateNewFile()
             }
             file.isDirectory -> {
                 throw FileNotFoundException("${file.path} (Is a directory)")
