@@ -1,6 +1,7 @@
 package dev.s7a.ktspigot.config
 
 import java.io.File
+import java.io.FileNotFoundException
 
 /**
  * コンフィグ
@@ -15,6 +16,23 @@ abstract class KtConfigBase(val file: File) : KtConfigSection {
     override val path = ""
 
     override fun fullPath(path: String) = path
+
+    /**
+     * コンフィグを読み込むときの処理
+     *
+     * @since 1.0.0
+     */
+    protected fun onLoadFile() {
+        when {
+            file.exists().not() -> {
+                file.parentFile?.mkdirs()
+                file.createNewFile()
+            }
+            file.isDirectory -> {
+                throw FileNotFoundException("${file.path} (Is a directory)")
+            }
+        }
+    }
 
     /**
      * コンフィグの値を読み込む。既に読み込んでいる場合はリロードする

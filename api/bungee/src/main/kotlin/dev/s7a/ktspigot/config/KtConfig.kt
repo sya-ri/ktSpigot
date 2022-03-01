@@ -40,15 +40,7 @@ abstract class KtConfig(file: File) : KtConfigBase(file) {
      * @since 1.0.0
      */
     private fun loadFromFile(): Configuration {
-        when {
-            file.exists().not() -> {
-                file.parentFile?.mkdirs()
-                file.createNewFile()
-            }
-            file.isDirectory -> {
-                throw FileNotFoundException("${file.path} (Is a directory)")
-            }
-        }
+        onLoadFile()
         return provider.load(file)
     }
 
