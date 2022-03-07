@@ -21,7 +21,7 @@ subprojects {
     dependencies {
         when (project.name) {
             "common" -> {
-                compileOnly("net.md-5:bungeecord-chat:1.8-SNAPSHOT")
+                compileOnly("net.md-5:bungeecord-chat:1.16-R0.4")
             }
             "bungee" -> {
                 compileOnly("net.md-5:bungeecord-api:1.18-R0.1-SNAPSHOT")
