@@ -12,7 +12,7 @@ dependencies {
 configure<BukkitPluginDescription> {
     name = project.name
     version = rootProject.version.toString()
-    main = "dev.s7a.spigot.test.Main"
+    main = "dev.s7a.ktspigot.test.Main"
     apiVersion = "1.17"
     commands {
         register("test") {
