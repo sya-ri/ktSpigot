@@ -4,6 +4,7 @@ package dev.s7a.ktspigot.config
 
 import dev.s7a.ktspigot.util.sendChatMessage
 import net.md_5.bungee.api.CommandSender
+import net.md_5.bungee.api.plugin.Plugin
 
 /**
  * コンフィグエラーを出力する
@@ -16,4 +17,16 @@ fun List<KtConfigError>.printErrors(sender: CommandSender) {
     getErrors().forEach {
         sender.sendChatMessage("&e$it")
     }
+}
+
+/**
+ * リソースからコンフィグをコピーする
+ *
+ * @param plugin プラグイン
+ * @param resourceName リソース名
+ * @see KtConfigBase.onCreateNewFile
+ * @since 1.0.0
+ */
+fun KtConfig.copyFromResource(plugin: Plugin, resourceName: String) {
+    plugin.getResourceAsStream(resourceName).copyTo(file.outputStream())
 }
