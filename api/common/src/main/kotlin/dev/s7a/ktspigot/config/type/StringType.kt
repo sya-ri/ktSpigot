@@ -11,7 +11,7 @@ import dev.s7a.ktspigot.config.setUnsafe
 /**
  * [String] のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.stringValue
+ * @see stringValue
  * @since 1.0.0
  */
 object StringType : KtConfigValueType.Listable<String> {

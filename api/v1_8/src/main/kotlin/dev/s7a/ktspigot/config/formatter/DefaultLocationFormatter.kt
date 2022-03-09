@@ -7,7 +7,7 @@ import org.bukkit.Location
 /**
  * デフォルトとして使用する [Location] のコンフィグフォーマッタ
  *
- * @see dev.s7a.ktspigot.config.locationValue
+ * @see dev.s7a.ktspigot.config.type.locationValue
  * @since 1.0.0
  */
 object DefaultLocationFormatter : KtConfigFormatter<Location> {

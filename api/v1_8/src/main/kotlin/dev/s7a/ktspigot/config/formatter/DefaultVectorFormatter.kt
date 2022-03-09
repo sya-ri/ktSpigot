@@ -6,7 +6,7 @@ import org.bukkit.util.Vector
 /**
  * デフォルトとして使用する [Vector] のコンフィグフォーマッタ
  *
- * @see dev.s7a.ktspigot.config.vectorValue
+ * @see dev.s7a.ktspigot.config.type.vectorValue
  * @since 1.0.0
  */
 object DefaultVectorFormatter : KtConfigFormatter<Vector> {

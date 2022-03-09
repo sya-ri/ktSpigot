@@ -11,7 +11,7 @@ import java.util.UUID
 /**
  * [Entity] のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.entityValue
+ * @see entityValue
  * @since 1.0.0
  */
 class SpecificEntityType<T : Entity>(private val clazz: Class<T>) : KtConfigValueType.Listable<T> {

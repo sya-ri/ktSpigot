@@ -10,7 +10,7 @@ import dev.s7a.ktspigot.config.setUnsafe
 /**
  * [Number] のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.numberValue
+ * @see numberValue
  * @since 1.0.0
  */
 object NumberType : KtConfigValueType.Listable<Number> {

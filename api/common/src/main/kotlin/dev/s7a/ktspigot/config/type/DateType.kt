@@ -11,7 +11,7 @@ import java.util.Date
 /**
  * [Date] のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.dateValue
+ * @see dateValue
  * @since 1.0.0
  */
 object DateType : KtConfigValueType.Listable<Date> {
