@@ -10,7 +10,7 @@ import dev.s7a.ktspigot.config.setUnsafe
 /**
  * [Boolean] のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.booleanValue
+ * @see booleanValue
  * @since 1.0.0
  */
 object BooleanType : KtConfigValueType.Listable<Boolean> {

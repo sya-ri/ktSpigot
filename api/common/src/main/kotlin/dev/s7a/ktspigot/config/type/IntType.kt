@@ -8,7 +8,7 @@ import dev.s7a.ktspigot.config.mapValues
 /**
  * [Int] のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.intValue
+ * @see intValue
  * @since 1.0.0
  */
 object IntType : NumberType.Base<Int>() {

@@ -3,7 +3,7 @@ package dev.s7a.ktspigot.config.type
 /**
  * [Double] のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.doubleValue
+ * @see doubleValue
  * @since 1.0.0
  */
 object DoubleType : NumberType.Base<Double>() {

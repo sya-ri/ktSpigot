@@ -7,7 +7,7 @@ import java.util.UUID
 /**
  * デフォルトとして使用する [UUID] のコンフィグフォーマッタ
  *
- * @see dev.s7a.ktspigot.config.uuidValue
+ * @see dev.s7a.ktspigot.config.type.uuidValue
  * @since 1.0.0
  */
 object DefaultUUIDFormatter : KtConfigFormatter<UUID> {

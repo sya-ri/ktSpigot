@@ -10,7 +10,7 @@ import dev.s7a.ktspigot.config.KtConfigResult
  *
  * @param T 値の型
  * @property formatter フォーマッタ
- * @see dev.s7a.ktspigot.config.formatterValue
+ * @see formatterValue
  * @since 1.0.0
  */
 class FormatterType<T>(private val formatter: KtConfigFormatter<T>) : StringType.Base<T>() {

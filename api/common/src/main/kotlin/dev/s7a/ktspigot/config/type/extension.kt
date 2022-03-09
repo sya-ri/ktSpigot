@@ -26,23 +26,23 @@ fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConf
  * @param T 値の型
  * @param path コンフィグパス
  * @param type 値の種類
- * @see booleanValue
- * @see dataClassValue
- * @see dateValue
- * @see doubleValue
- * @see enumNameValue
- * @see enumOrdinalValue
- * @see floatValue
- * @see formatterValue
- * @see intValue
- * @see locationValue
- * @see longValue
- * @see materialValue
- * @see numberValue
- * @see section
- * @see stringValue
- * @see uuidValue
- * @see vectorValue
+ * @see dev.s7a.ktspigot.config.type.booleanValue
+ * @see dev.s7a.ktspigot.config.type.dataClassValue
+ * @see dev.s7a.ktspigot.config.type.dateValue
+ * @see dev.s7a.ktspigot.config.type.doubleValue
+ * @see dev.s7a.ktspigot.config.type.enumNameValue
+ * @see dev.s7a.ktspigot.config.type.enumOrdinalValue
+ * @see dev.s7a.ktspigot.config.type.floatValue
+ * @see dev.s7a.ktspigot.config.type.formatterValue
+ * @see dev.s7a.ktspigot.config.type.intValue
+ * @see dev.s7a.ktspigot.config.type.locationValue
+ * @see dev.s7a.ktspigot.config.type.longValue
+ * @see dev.s7a.ktspigot.config.type.materialValue
+ * @see dev.s7a.ktspigot.config.type.numberValue
+ * @see dev.s7a.ktspigot.config.type.section
+ * @see dev.s7a.ktspigot.config.type.stringValue
+ * @see dev.s7a.ktspigot.config.type.uuidValue
+ * @see dev.s7a.ktspigot.config.type.vectorValue
  * @since 1.0.0
  */
 fun <T> KtConfigSection.value(path: String, type: KtConfigValueType.Listable<T>) = KtConfigValue.Base.Listable(config, fullPath(path), type)

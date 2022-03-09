@@ -12,7 +12,7 @@ import dev.s7a.ktspigot.config.setUnsafe
  * データクラスのコンフィグデータ型
  *
  * @property converter コンバーター
- * @see dev.s7a.ktspigot.config.dataClassValue
+ * @see dataClassValue
  * @since 1.0.0
  */
 sealed class DataClassType<T>(protected open val converter: KtConfigDataClassConverter<T>) : KtConfigValueType<T> {
@@ -28,7 +28,7 @@ sealed class DataClassType<T>(protected open val converter: KtConfigDataClassCon
      * データクラスのコンフィグデータ型
      *
      * @param converter コンバーター
-     * @see dev.s7a.ktspigot.config.dataClassValue
+     * @see dataClassValue
      * @since 1.0.0
      */
     class Default<T>(converter: KtConfigDataClassConverter<T>) : DataClassType<T>(converter)
@@ -36,7 +36,7 @@ sealed class DataClassType<T>(protected open val converter: KtConfigDataClassCon
     /**
      * 複数の値を受付られるコンフィグデータ型
      *
-     * @see dev.s7a.ktspigot.config.dataClassValue
+     * @see dataClassValue
      * @since 1.0.0
      */
     class Listable<T>(override val converter: KtConfigDataClassConverter.Listable<T>) : DataClassType<T>(converter), KtConfigValueType.Listable<T> {

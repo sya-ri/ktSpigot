@@ -6,7 +6,7 @@ import org.bukkit.Material
  * [Material] のコンフィグデータ型
  *
  * @param ignoreCase 大文字小文字を無視する
- * @see dev.s7a.ktspigot.config.materialValue
+ * @see materialValue
  * @since 1.0.0
  */
 class MaterialType(ignoreCase: Boolean) : EnumType.Name<Material>(Material::class.java, ignoreCase) {

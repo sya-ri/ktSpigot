@@ -6,7 +6,6 @@ import net.md_5.bungee.config.Configuration
 import net.md_5.bungee.config.ConfigurationProvider
 import net.md_5.bungee.config.YamlConfiguration
 import java.io.File
-import java.io.FileNotFoundException
 
 /**
  * コンフィグ

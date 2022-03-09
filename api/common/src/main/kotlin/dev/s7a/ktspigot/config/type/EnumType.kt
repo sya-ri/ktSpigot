@@ -13,7 +13,7 @@ object EnumType {
     /**
      * [Enum.name] として扱うコンフィグデータ型
      *
-     * @see dev.s7a.ktspigot.config.enumNameValue
+     * @see enumNameValue
      * @since 1.0.0
      */
     open class Name<T : Enum<T>>(private val clazz: Class<T>, private val ignoreCase: Boolean) : StringType.Base<T>() {
@@ -38,7 +38,7 @@ object EnumType {
     /**
      * [Enum.ordinal] として扱うコンフィグデータ型
      *
-     * @see dev.s7a.ktspigot.config.enumOrdinalValue
+     * @see enumOrdinalValue
      * @since 1.0.0
      */
     class Ordinal<T : Enum<T>>(private val clazz: Class<T>) : IntType.Base<T>() {

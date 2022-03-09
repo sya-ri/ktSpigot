@@ -7,7 +7,7 @@ import org.bukkit.Bukkit
 /**
  * デフォルトとして使用する [BlockLocation] のコンフィグフォーマッタ
  *
- * @see dev.s7a.ktspigot.config.blockLocationValue
+ * @see dev.s7a.ktspigot.config.type.blockLocationValue
  * @since 1.0.0
  */
 object DefaultBlockLocationFormatter : KtConfigFormatter<BlockLocation> {

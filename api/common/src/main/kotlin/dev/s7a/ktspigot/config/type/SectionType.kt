@@ -11,7 +11,7 @@ import dev.s7a.ktspigot.config.setUnsafe
 /**
  * KtConfigSection のコンフィグデータ型
  *
- * @see dev.s7a.ktspigot.config.section
+ * @see section
  * @since 1.0.0
  */
 class SectionType<T : KtConfigSection>(private val clazz: Class<T>) : KtConfigValueType<T> {
