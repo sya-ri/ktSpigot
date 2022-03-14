@@ -47,7 +47,7 @@ class TestPlayer(
     }
 
     fun assertActionBar(message: String) {
-        assertTrue(message == actionbar || "§f§f$message" == actionbar || "§f$message" == actionbar)
+        assertTrue(message == actionbar || "(§f)+$message".toRegex().matches(actionbar!!))
     }
 
     fun assertTitleIsEmpty() {
