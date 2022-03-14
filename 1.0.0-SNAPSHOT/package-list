@@ -41,5 +41,6 @@ dev.s7a.ktspigot.location
 dev.s7a.ktspigot.player
 dev.s7a.ktspigot.scheduler
 dev.s7a.ktspigot.util
+dev.s7a.ktspigot.vector
 module:v1_9
 dev.s7a.ktspigot.util
