@@ -1,26 +1,24 @@
 name: Dokka
-on:
-  push:
-    branches:
-      - master
+on: [push]
 jobs:
   dokka:
-    if: github.repository == 'sya-ri/ktSpigot'
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository (master)
         uses: actions/checkout@v3
       - name: Clone Repository (gh-pages)
+        if: github.repository == 'sya-ri/ktSpigot' && startsWith(github.ref, 'refs/tags/')
         run: git clone https://github.com/sya-ri/ktSpigot -b gh-pages --depth 1 dokka || mkdir dokka
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: 8
+          java-version: 17
           cache: gradle
       - name: Build
         run: ./gradlew dokka
       - name: Deploy
+        if: github.repository == 'sya-ri/ktSpigot' && startsWith(github.ref, 'refs/tags/')
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

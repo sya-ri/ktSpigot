@@ -1,7 +1,5 @@
 name: Test
-on:
- - pull_request
- - push
+on: [push]
 jobs:
   test:
     name: Test
@@ -13,7 +11,11 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: 16
+          java-version: 17
           cache: gradle
+      - name: Wrapper
+        run: ./gradlew wrapper
+      - name: Lint
+        run: ./gradlew lintKotlin
       - name: Test
         run: ./gradlew test
