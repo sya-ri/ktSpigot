@@ -2,6 +2,7 @@ name: Dokka
 on: [push]
 jobs:
   dokka:
+    name: Dokka
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository (master)
