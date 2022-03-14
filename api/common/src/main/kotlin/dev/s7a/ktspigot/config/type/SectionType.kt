@@ -16,13 +16,24 @@ import dev.s7a.ktspigot.config.setUnsafe
  */
 class SectionType<T : KtConfigSection>(private val clazz: Class<T>) : KtConfigValueType<T> {
     override fun get(config: KtConfigBase, path: String): KtConfigResult<T> {
-        val constructor = try {
-            clazz.getDeclaredConstructor(KtConfigBase::class.java, String::class.java)
-        } catch (ex: NoSuchMethodException) {
-            return KtConfigResult.Failure(KtConfigError.Reflection.ThrowNoSuchMethodException(config, "constructor(KtConfig, String) を定義してください"))
-        }
-        constructor.isAccessible = true
-        return KtConfigResult.Success(constructor.newInstance(config, path))
+        val section = clazz.declaredConstructors.firstNotNullOfOrNull {
+            if (it.parameterCount != 2) return@firstNotNullOfOrNull null
+            val (type0, type1) = it.parameterTypes
+            when {
+                KtConfigBase::class.java.isAssignableFrom(type0) && type1.isAssignableFrom(String::class.java) -> {
+                    it.isAccessible = true
+                    it.newInstance(config, path)
+                }
+                type0.isAssignableFrom(String::class.java) && KtConfigBase::class.java.isAssignableFrom(type1) -> {
+                    it.isAccessible = true
+                    it.newInstance(path, config)
+                }
+                else -> {
+                    null
+                }
+            }
+        } ?: return KtConfigResult.Failure(KtConfigError.Reflection.ThrowNoSuchMethodException(config, "constructor(KtConfigBase, String) を定義してください"))
+        @Suppress("UNCHECKED_CAST") return KtConfigResult.Success(section as T)
     }
 
     override fun set(config: KtConfigBase, path: String, value: T?) {
