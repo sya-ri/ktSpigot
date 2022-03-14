@@ -1,7 +1,5 @@
-name: Release Build
-on:
-  push:
-    tags: ['*']
+name: Build
+on: [push]
 jobs:
   build:
     name: Build
@@ -13,15 +11,16 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: 8
+          java-version: 17
           cache: gradle
       - name: Build
         run: ./gradlew build
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
-          draft: true
-          files: |
+          name: Jar
+          path: |
+            api/bungee/build/libs/ktSpigot-bungee-*.jar
             api/v1_8/build/libs/ktSpigot-v1_8-*.jar
             api/v1_9/build/libs/ktSpigot-v1_9-*.jar
             api/v1_10/build/libs/ktSpigot-v1_10-*.jar
@@ -32,3 +31,10 @@ jobs:
             api/v1_15/build/libs/ktSpigot-v1_15-*.jar
             api/v1_16/build/libs/ktSpigot-v1_16-*.jar
             api/v1_17/build/libs/ktSpigot-v1_17-*.jar
+            api/v1_18/build/libs/ktSpigot-v1_18-*.jar
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "Jar"
+          draft: true
