@@ -3,11 +3,11 @@ package dev.s7a.ktspigot.test.feature
 import dev.s7a.ktspigot.component.appendKeybind
 import dev.s7a.ktspigot.component.appendTranslatable
 import dev.s7a.ktspigot.component.hoverShowText
+import dev.s7a.ktspigot.message.sendActionBarMessage
+import dev.s7a.ktspigot.message.sendChatMessage
+import dev.s7a.ktspigot.message.sendTitleMessage
 import dev.s7a.ktspigot.test.util.FeatureTest
 import dev.s7a.ktspigot.test.util.featureTest
-import dev.s7a.ktspigot.util.sendActionBarMessage
-import dev.s7a.ktspigot.util.sendChatMessage
-import dev.s7a.ktspigot.util.sendTitleMessage
 import net.md_5.bungee.api.ChatColor
 import net.md_5.bungee.api.chat.Keybinds
 import org.bukkit.entity.Player

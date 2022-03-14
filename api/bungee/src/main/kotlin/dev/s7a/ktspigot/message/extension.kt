@@ -1,9 +1,10 @@
-@file:JvmName("MessageBungee")
+@file:JvmName("ExtensionBungee")
 
-package dev.s7a.ktspigot.util
+package dev.s7a.ktspigot.message
 
 import dev.s7a.ktspigot.component.KtComponentBuildAction
 import dev.s7a.ktspigot.component.buildComponent
+import dev.s7a.ktspigot.util.color
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.CommandSender
 import net.md_5.bungee.api.ProxyServer

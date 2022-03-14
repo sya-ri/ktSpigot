@@ -1,9 +1,10 @@
-@file:JvmName("Message8")
+@file:JvmName("Extension8")
 
-package dev.s7a.ktspigot.util
+package dev.s7a.ktspigot.message
 
 import dev.s7a.ktspigot.component.KtComponentBuildAction
 import dev.s7a.ktspigot.component.buildComponent
+import dev.s7a.ktspigot.util.color
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player

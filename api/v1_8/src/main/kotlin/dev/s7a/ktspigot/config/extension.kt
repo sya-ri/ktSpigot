@@ -2,7 +2,7 @@
 
 package dev.s7a.ktspigot.config
 
-import dev.s7a.ktspigot.util.sendChatMessage
+import dev.s7a.ktspigot.message.sendChatMessage
 import org.bukkit.command.CommandSender
 import org.bukkit.plugin.java.JavaPlugin
 

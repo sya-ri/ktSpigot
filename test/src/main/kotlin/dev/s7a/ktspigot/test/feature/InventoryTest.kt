@@ -2,10 +2,10 @@ package dev.s7a.ktspigot.test.feature
 
 import dev.s7a.ktspigot.inventory.item
 import dev.s7a.ktspigot.inventory.ktInventory
+import dev.s7a.ktspigot.message.sendChatMessage
 import dev.s7a.ktspigot.test.Main.Companion.plugin
 import dev.s7a.ktspigot.test.util.FeatureTest
 import dev.s7a.ktspigot.test.util.featureTest
-import dev.s7a.ktspigot.util.sendChatMessage
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.entity.Player
