@@ -42,3 +42,23 @@ operator fun Location.component3() = y
  * @since 1.0.0
  */
 operator fun Location.component4() = z
+
+/**
+ * ```
+ * val (_, _, _, _, yaw) = location
+ * ```
+ *
+ * @see Location.getYaw
+ * @since 1.0.0
+ */
+operator fun Location.component5() = yaw
+
+/**
+ * ```
+ * val (_, _, _, _, _, pitch) = location
+ * ```
+ *
+ * @see Location.getPitch
+ * @since 1.0.0
+ */
+operator fun Location.component6() = pitch
