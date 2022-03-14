@@ -2,7 +2,7 @@
 
 package dev.s7a.ktspigot.config
 
-import dev.s7a.ktspigot.util.sendChatMessage
+import dev.s7a.ktspigot.message.sendChatMessage
 import net.md_5.bungee.api.CommandSender
 import net.md_5.bungee.api.plugin.Plugin
 

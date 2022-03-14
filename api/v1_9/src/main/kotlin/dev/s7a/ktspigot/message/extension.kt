@@ -1,6 +1,6 @@
-@file:JvmName("Message9")
+@file:JvmName("Extension9")
 
-package dev.s7a.ktspigot.util
+package dev.s7a.ktspigot.message
 
 import dev.s7a.ktspigot.component.KtComponentBuildAction
 import dev.s7a.ktspigot.component.buildComponent

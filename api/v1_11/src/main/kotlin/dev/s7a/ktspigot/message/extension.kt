@@ -1,7 +1,8 @@
-@file:JvmName("Message11")
+@file:JvmName("Extension11")
 
-package dev.s7a.ktspigot.util
+package dev.s7a.ktspigot.message
 
+import dev.s7a.ktspigot.util.color
 import org.bukkit.entity.Player
 
 /**

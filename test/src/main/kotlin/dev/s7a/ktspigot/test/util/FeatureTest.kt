@@ -3,7 +3,7 @@ package dev.s7a.ktspigot.test.util
 import dev.s7a.ktspigot.command.KtCommandExecuteAction
 import dev.s7a.ktspigot.command.KtCommandExecuteParameter
 import dev.s7a.ktspigot.command.KtCommandTabCompleteBuilder
-import dev.s7a.ktspigot.util.sendChatMessage
+import dev.s7a.ktspigot.message.sendChatMessage
 import org.bukkit.command.CommandSender
 
 /**
