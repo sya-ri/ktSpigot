@@ -13,16 +13,16 @@ import kotlin.test.assertNotNull
 class ConfigSectionTest {
     @Test
     fun `section can be get`() {
-        class KtConfigBaseString(override val config: KtConfigBase, override val path: String) : KtConfigSection {
+        class KtConfigBaseString private constructor(override val config: KtConfigBase, override val path: String) : KtConfigSection {
             val int = intValue("int")
         }
-        class StringKtConfigBase(override val path: String, override val config: KtConfigBase) : KtConfigSection {
+        class StringKtConfigBase private constructor(override val path: String, override val config: KtConfigBase) : KtConfigSection {
             val int = intValue("int")
         }
-        class KtConfigString(override val config: KtConfig, override val path: String) : KtConfigSection {
+        class KtConfigString private constructor(override val config: KtConfig, override val path: String) : KtConfigSection {
             val int = intValue("int")
         }
-        class StringKtConfig(override val path: String, override val config: KtConfig) : KtConfigSection {
+        class StringKtConfig private constructor(override val path: String, override val config: KtConfig) : KtConfigSection {
             val int = intValue("int")
         }
 
