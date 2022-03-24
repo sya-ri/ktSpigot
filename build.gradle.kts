@@ -109,4 +109,15 @@ task("updateCodeSnippet") {
 
 task("dokka") {
     dependsOn(":api:dokkaHtmlMultiModule")
+
+    doLast {
+        projectDir.resolve("dokka/index.html").writeText(
+            """
+                <!DOCTYPE html>
+                <meta charset="utf-8">
+                <meta http-equiv="refresh" content="0; URL=./$version/">
+                <link rel="canonical" href="./$version/">
+            """.trimIndent()
+        )
+    }
 }
