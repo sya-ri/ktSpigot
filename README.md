@@ -5,8 +5,8 @@
 
 A Library that Simplifies Spigot with Kotlin.
 
-- [Wiki](https://github.com/sya-ri/ktSpigot/wiki)
-- [API Document](https://gh.s7a.dev/ktSpigot/1.0.0-SNAPSHOT/index.html)
+- [Wiki](https://ktspigot.s7a.dev)
+- [API Document](https://gh.s7a.dev/ktSpigot)
 - [CONTRIBUTING.md](CONTRIBUTING.md)
 - [LICENSE](LICENSE)
 
