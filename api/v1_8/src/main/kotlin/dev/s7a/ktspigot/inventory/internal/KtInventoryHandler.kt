@@ -4,8 +4,7 @@ import dev.s7a.ktspigot.inventory.KtInventory
 import dev.s7a.ktspigot.inventory.KtInventoryClickEventResult
 import dev.s7a.ktspigot.listener.registerListener
 import dev.s7a.ktspigot.player.VirtualPlayer
-import dev.s7a.ktspigot.player.VirtualPlayer.Companion.toVirtual
-import org.bukkit.entity.Player
+import org.bukkit.entity.HumanEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
@@ -32,16 +31,16 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
      * @param inventory 開くインベントリ
      * @since 1.0.0
      */
-    internal fun open(player: Player, inventory: KtInventory) {
-        val virtualPlayer = player.toVirtual()
+    internal fun open(player: HumanEntity, inventory: KtInventory) {
+        val virtualPlayer = VirtualPlayer(player.uniqueId)
         player.openInventory(inventory.bukkitInventory)
         players[virtualPlayer] = inventory
     }
 
     @EventHandler
     fun on(event: InventoryClickEvent) {
-        val player = event.whoClicked as? Player ?: return
-        val virtualPlayer = player.toVirtual()
+        val player = event.whoClicked
+        val virtualPlayer = VirtualPlayer(player.uniqueId)
         val inventory = players[virtualPlayer] ?: return
         if (inventory.bukkitInventory !== event.inventory) {
             players.remove(virtualPlayer)
@@ -54,8 +53,8 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
 
     @EventHandler
     fun on(event: InventoryCloseEvent) {
-        val player = event.player as? Player ?: return
-        val virtualPlayer = player.toVirtual()
+        val player = event.player
+        val virtualPlayer = VirtualPlayer(player.uniqueId)
         val inventory = players.remove(virtualPlayer) ?: return
         if (inventory.bukkitInventory === event.inventory) {
             inventory.onClose?.invoke(event)

@@ -1,7 +1,7 @@
 package dev.s7a.ktspigot.inventory
 
 import dev.s7a.ktspigot.inventory.internal.KtInventoryHandler
-import org.bukkit.entity.Player
+import org.bukkit.entity.HumanEntity
 import org.bukkit.inventory.Inventory
 
 /**
@@ -82,7 +82,7 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      * @param player プレイヤー
      * @since 1.0.0
      */
-    fun open(player: Player) {
+    fun open(player: HumanEntity) {
         handler.open(player, this)
     }
 }
