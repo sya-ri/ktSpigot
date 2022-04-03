@@ -1,5 +1,7 @@
 package dev.s7a.ktspigot.config
 
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 import kotlin.collections.List as KotlinList
 import kotlin.collections.Map as KotlinMap
 
@@ -46,7 +48,7 @@ open class KtConfigValue<T>(
      * 強制的に値を設定する
      *
      * @param value 設定後の値
-     * @see type.SectionType.set
+     * @see set
      * @since 1.0.0
      */
     @Suppress("UNCHECKED_CAST")
@@ -95,7 +97,15 @@ open class KtConfigValue<T>(
      *
      * @since 1.0.0
      */
-    open class Base<T>(config: KtConfigBase, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type) {
+    open class Base<T>(config: KtConfigBase, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type), ReadWriteProperty<Nothing?, T?> {
+        override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+            return getValue()
+        }
+
+        override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+            set(value)
+        }
+
         /**
          * 値が設定されていなくてもエラーを出さない
          *
@@ -221,7 +231,15 @@ open class KtConfigValue<T>(
         configValue.config,
         configValue.path,
         configValue.type as KtConfigValueType<T?>
-    ) {
+    ), ReadWriteProperty<Nothing?, T?> {
+        override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+            return getValue()
+        }
+
+        override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+            set(value)
+        }
+
         override fun get(): KtConfigResult<T?> {
             val value = super.get()
             return if (value is KtConfigResult.Failure) {
@@ -282,7 +300,15 @@ open class KtConfigValue<T>(
         class Literal<T>(
             configValue: KtConfigValue<T>,
             private val defaultValue: T,
-        ) : Default<T>(configValue) {
+        ) : Default<T>(configValue), ReadWriteProperty<Nothing?, T?> {
+            override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+                return getValue()
+            }
+
+            override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+                set(value)
+            }
+
             override fun getDefault() = defaultValue
         }
 
@@ -294,7 +320,15 @@ open class KtConfigValue<T>(
         class Dynamic<T>(
             configValue: KtConfigValue<T>,
             private val defaultValue: () -> T,
-        ) : Default<T>(configValue) {
+        ) : Default<T>(configValue), ReadWriteProperty<Nothing?, T?> {
+            override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+                return getValue()
+            }
+
+            override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+                set(value)
+            }
+
             override fun getDefault() = defaultValue()
         }
 
@@ -309,7 +343,15 @@ open class KtConfigValue<T>(
             configValue.config,
             configValue.path,
             configValue.type,
-        ) {
+        ), ReadWriteProperty<Nothing?, T> {
+            override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T {
+                return getValue()
+            }
+
+            override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T) {
+                set(value)
+            }
+
             override fun get(): KtConfigResult<T> {
                 val value = super.get()
                 return if (value is KtConfigResult.Failure) {
