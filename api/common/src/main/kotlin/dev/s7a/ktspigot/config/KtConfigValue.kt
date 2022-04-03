@@ -40,7 +40,7 @@ open class KtConfigValue<T>(
      * @param value 設定後の値
      * @since 1.0.0
      */
-    fun set(value: T?) {
+    open fun set(value: T?) {
         type.set(config, path, value)
     }
 
@@ -62,7 +62,7 @@ open class KtConfigValue<T>(
      * @param value 設定後の値
      * @since 1.0.0
      */
-    fun setAndSave(value: T?) {
+    open fun setAndSave(value: T?) {
         set(value)
         config.save()
     }
@@ -105,6 +105,13 @@ open class KtConfigValue<T>(
         override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
             set(value)
         }
+
+        /**
+         * [set] した際に自動で保存する
+         *
+         * @since 1.0.0
+         */
+        fun autoSave() = AutoSave(this)
 
         /**
          * 値が設定されていなくてもエラーを出さない
@@ -232,6 +239,13 @@ open class KtConfigValue<T>(
         configValue.path,
         configValue.type as KtConfigValueType<T?>
     ), ReadWriteProperty<Nothing?, T?> {
+        /**
+         * [set] した際に自動で保存する
+         *
+         * @since 1.0.0
+         */
+        fun autoSave() = AutoSave(this)
+
         override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
             return getValue()
         }
@@ -266,6 +280,13 @@ open class KtConfigValue<T>(
         configValue.path,
         configValue.type,
     ) {
+        /**
+         * [set] した際に自動で保存する
+         *
+         * @since 1.0.0
+         */
+        fun autoSave() = AutoSave(this)
+
         /**
          * 値が取得できない時はデフォルト値を強制で使用する
          *
@@ -344,6 +365,55 @@ open class KtConfigValue<T>(
             configValue.path,
             configValue.type,
         ), ReadWriteProperty<Nothing?, T> {
+            /**
+             * [set] した際に自動で保存する
+             *
+             * @since 1.0.0
+             */
+            class AutoSave<T>(
+                private val configValue: Force<T>
+            ) : KtConfigValue<T>(
+                configValue.config,
+                configValue.path,
+                configValue.type,
+            ), ReadWriteProperty<Nothing?, T> {
+                override fun getValue(thisRef: Nothing?, property: KProperty<*>): T {
+                    return getValue()
+                }
+
+                override fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T) {
+                    set(value)
+                }
+
+                override fun get() = configValue.get()
+
+                /**
+                 * 値を取得する
+                 *
+                 * @since 1.0.0
+                 */
+                override fun getValue(): T = super.getValue()!!
+
+                @Deprecated("値の取得に失敗することはありません", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith("getValue()"))
+                override fun getValue(handler: KtConfigErrorHandler): T = super.getValue(handler)!!
+
+                override fun set(value: T?) {
+                    super.set(value)
+                    config.save()
+                }
+
+                override fun setAndSave(value: T?) {
+                    set(value)
+                }
+            }
+
+            /**
+             * [set] した際に自動で保存する
+             *
+             * @since 1.0.0
+             */
+            fun autoSave() = AutoSave(this)
+
             override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T {
                 return getValue()
             }
@@ -370,6 +440,41 @@ open class KtConfigValue<T>(
 
             @Deprecated("値の取得に失敗することはありません", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith("getValue()"))
             override fun getValue(handler: KtConfigErrorHandler): T = super.getValue(handler)!!
+        }
+    }
+
+    /**
+     * [set] した際に自動で保存する
+     *
+     * @since 1.0.0
+     */
+    class AutoSave<T>(
+        private val configValue: KtConfigValue<T>
+    ) : KtConfigValue<T>(
+        configValue.config,
+        configValue.path,
+        configValue.type,
+    ), ReadWriteProperty<Nothing?, T?> {
+        override fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+            return getValue()
+        }
+
+        override fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+            set(value)
+        }
+
+        override fun get(): KtConfigResult<T> {
+            return configValue.get()
+        }
+
+        override fun set(value: T?) {
+            super.set(value)
+            config.save()
+        }
+
+        @Deprecated("自動保存されるのでsetを使えます", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith("set(value)"))
+        override fun setAndSave(value: T?) {
+            set(value)
         }
     }
 }
