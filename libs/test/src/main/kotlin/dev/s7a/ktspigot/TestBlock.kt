@@ -230,4 +230,8 @@ class TestBlock : Block {
     override fun getCollisionShape(): VoxelShape {
         TODO("Not yet implemented")
     }
+
+    override fun canPlace(data: BlockData): Boolean {
+        TODO("Not yet implemented")
+    }
 }

@@ -26,6 +26,7 @@ import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.command.PluginCommand
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
+import org.bukkit.entity.SpawnCategory
 import org.bukkit.event.inventory.InventoryType
 import org.bukkit.generator.ChunkGenerator
 import org.bukkit.help.HelpMap
@@ -43,6 +44,7 @@ import org.bukkit.plugin.ServicesManager
 import org.bukkit.plugin.SimplePluginManager
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.plugin.messaging.Messenger
+import org.bukkit.profile.PlayerProfile
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scoreboard.ScoreboardManager
 import org.bukkit.structure.StructureManager
@@ -98,6 +100,10 @@ class TestServer : Server {
         TODO("Not yet implemented")
     }
 
+    override fun getSimulationDistance(): Int {
+        TODO("Not yet implemented")
+    }
+
     override fun getIp(): String {
         TODO("Not yet implemented")
     }
@@ -119,6 +125,22 @@ class TestServer : Server {
     }
 
     override fun getAllowNether(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getResourcePack(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun getResourcePackHash(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun getResourcePackPrompt(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun isResourcePackRequired(): Boolean {
         TODO("Not yet implemented")
     }
 
@@ -183,6 +205,10 @@ class TestServer : Server {
     }
 
     override fun getTicksPerAmbientSpawns(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTicksPerSpawns(spawnCategory: SpawnCategory): Int {
         TODO("Not yet implemented")
     }
 
@@ -328,6 +354,10 @@ class TestServer : Server {
         TODO("Not yet implemented")
     }
 
+    override fun getHideOnlinePlayers(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun getOnlineMode(): Boolean {
         TODO("Not yet implemented")
     }
@@ -354,6 +384,18 @@ class TestServer : Server {
 
     override fun getOfflinePlayer(id: UUID): OfflinePlayer {
         return playerList.getOfflinePlayer(id)
+    }
+
+    override fun createPlayerProfile(uniqueId: UUID?, name: String?): PlayerProfile {
+        TODO("Not yet implemented")
+    }
+
+    override fun createPlayerProfile(uniqueId: UUID): PlayerProfile {
+        TODO("Not yet implemented")
+    }
+
+    override fun createPlayerProfile(name: String): PlayerProfile {
+        TODO("Not yet implemented")
     }
 
     override fun getIPBans(): MutableSet<String> {
@@ -449,6 +491,10 @@ class TestServer : Server {
     }
 
     override fun getAmbientSpawnLimit(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSpawnLimit(spawnCategory: SpawnCategory): Int {
         TODO("Not yet implemented")
     }
 

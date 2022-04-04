@@ -6,6 +6,7 @@ import org.bukkit.OfflinePlayer
 import org.bukkit.Statistic
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.Player
+import org.bukkit.profile.PlayerProfile
 import java.util.UUID
 
 class TestOfflinePlayer(private val uniqueId: UUID) : OfflinePlayer {
@@ -30,6 +31,10 @@ class TestOfflinePlayer(private val uniqueId: UUID) : OfflinePlayer {
     }
 
     override fun isOnline(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPlayerProfile(): PlayerProfile {
         TODO("Not yet implemented")
     }
 
