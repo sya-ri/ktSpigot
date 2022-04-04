@@ -36,7 +36,10 @@ abstract class TestEntity(
 
     fun assertMessage(message: String) {
         val lastMessage = messages.removeLast()
-        assertTrue(message == lastMessage || "(§f)+$message".toRegex().matches(lastMessage))
+        assertTrue(
+            message == lastMessage || "(§f)+$message".toRegex().matches(lastMessage),
+            "Expected <$message>, actual <$lastMessage>."
+        )
     }
 
     override fun setMetadata(metadataKey: String, newMetadataValue: MetadataValue) {
