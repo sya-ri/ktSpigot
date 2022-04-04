@@ -3,6 +3,7 @@ package dev.s7a.ktspigot
 import org.bukkit.Location
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
+import org.bukkit.entity.SpawnCategory
 import org.bukkit.entity.Villager
 import org.bukkit.entity.Zombie
 import org.bukkit.loot.LootTable
@@ -13,6 +14,10 @@ class TestZombie(
     name: String,
     location: Location
 ) : TestLivingEntity(uniqueId, name, EntityType.ZOMBIE, location), Zombie {
+    override fun getSpawnCategory(): SpawnCategory {
+        TODO("Not yet implemented")
+    }
+
     override fun setLootTable(table: LootTable?) {
         TODO("Not yet implemented")
     }

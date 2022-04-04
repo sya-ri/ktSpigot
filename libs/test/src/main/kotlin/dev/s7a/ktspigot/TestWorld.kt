@@ -33,6 +33,7 @@ import org.bukkit.entity.Item
 import org.bukkit.entity.LightningStrike
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
+import org.bukkit.entity.SpawnCategory
 import org.bukkit.entity.Zombie
 import org.bukkit.generator.BiomeProvider
 import org.bukkit.generator.BlockPopulator
@@ -40,6 +41,7 @@ import org.bukkit.generator.ChunkGenerator
 import org.bukkit.inventory.ItemStack
 import org.bukkit.material.MaterialData
 import org.bukkit.metadata.MetadataValue
+import org.bukkit.persistence.PersistentDataContainer
 import org.bukkit.plugin.Plugin
 import org.bukkit.util.BoundingBox
 import org.bukkit.util.Consumer
@@ -149,6 +151,15 @@ class TestWorld(private val name: String) : World {
         TODO("Not yet implemented")
     }
 
+    override fun generateTree(
+        location: Location,
+        random: Random,
+        type: TreeType,
+        statePredicate: Predicate<BlockState>?
+    ): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun spawnEntity(location: Location, type: EntityType): Entity {
         TODO("Not yet implemented")
     }
@@ -241,6 +252,10 @@ class TestWorld(private val name: String) : World {
     }
 
     override fun removeMetadata(metadataKey: String, owningPlugin: Plugin) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPersistentDataContainer(): PersistentDataContainer {
         TODO("Not yet implemented")
     }
 
@@ -874,6 +889,14 @@ class TestWorld(private val name: String) : World {
         TODO("Not yet implemented")
     }
 
+    override fun getTicksPerSpawns(spawnCategory: SpawnCategory): Long {
+        TODO("Not yet implemented")
+    }
+
+    override fun setTicksPerSpawns(spawnCategory: SpawnCategory, ticksPerCategorySpawn: Int) {
+        TODO("Not yet implemented")
+    }
+
     override fun getMonsterSpawnLimit(): Int {
         TODO("Not yet implemented")
     }
@@ -922,6 +945,14 @@ class TestWorld(private val name: String) : World {
         TODO("Not yet implemented")
     }
 
+    override fun getSpawnLimit(spawnCategory: SpawnCategory): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setSpawnLimit(spawnCategory: SpawnCategory, limit: Int) {
+        TODO("Not yet implemented")
+    }
+
     override fun playSound(location: Location, sound: Sound, volume: Float, pitch: Float) {
         TODO("Not yet implemented")
     }
@@ -935,6 +966,14 @@ class TestWorld(private val name: String) : World {
     }
 
     override fun playSound(location: Location, sound: String, category: SoundCategory, volume: Float, pitch: Float) {
+        TODO("Not yet implemented")
+    }
+
+    override fun playSound(entity: Entity, sound: Sound, volume: Float, pitch: Float) {
+        TODO("Not yet implemented")
+    }
+
+    override fun playSound(entity: Entity, sound: Sound, category: SoundCategory, volume: Float, pitch: Float) {
         TODO("Not yet implemented")
     }
 
@@ -1130,6 +1169,10 @@ class TestWorld(private val name: String) : World {
     }
 
     override fun getViewDistance(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSimulationDistance(): Int {
         TODO("Not yet implemented")
     }
 

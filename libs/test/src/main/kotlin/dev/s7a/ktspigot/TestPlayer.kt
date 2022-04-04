@@ -5,6 +5,7 @@ import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.Bukkit
 import org.bukkit.DyeColor
 import org.bukkit.Effect
+import org.bukkit.GameMode
 import org.bukkit.Instrument
 import org.bukkit.Location
 import org.bukkit.Material
@@ -17,15 +18,20 @@ import org.bukkit.WeatherType
 import org.bukkit.advancement.Advancement
 import org.bukkit.advancement.AdvancementProgress
 import org.bukkit.block.Block
+import org.bukkit.block.Sign
 import org.bukkit.block.data.BlockData
 import org.bukkit.conversations.Conversation
 import org.bukkit.conversations.ConversationAbandonedEvent
 import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
+import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
+import org.bukkit.entity.SpawnCategory
+import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 import org.bukkit.map.MapView
 import org.bukkit.plugin.Plugin
+import org.bukkit.profile.PlayerProfile
 import org.bukkit.scoreboard.Scoreboard
 import java.net.InetSocketAddress
 import java.util.UUID
@@ -74,6 +80,10 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
+    override fun getSpawnCategory(): SpawnCategory {
+        TODO("Not yet implemented")
+    }
+
     override fun isConversing(): Boolean {
         TODO("Not yet implemented")
     }
@@ -107,6 +117,10 @@ class TestPlayer(
     }
 
     override fun isOnline(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPlayerProfile(): PlayerProfile {
         TODO("Not yet implemented")
     }
 
@@ -346,6 +360,14 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
+    override fun playSound(entity: Entity, sound: Sound, volume: Float, pitch: Float) {
+        TODO("Not yet implemented")
+    }
+
+    override fun playSound(entity: Entity, sound: Sound, category: SoundCategory, volume: Float, pitch: Float) {
+        TODO("Not yet implemented")
+    }
+
     override fun stopSound(sound: Sound) {
         TODO("Not yet implemented")
     }
@@ -382,7 +404,7 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
-    override fun sendChunkChange(loc: Location, sx: Int, sy: Int, sz: Int, data: ByteArray): Boolean {
+    override fun sendEquipmentChange(entity: LivingEntity, slot: EquipmentSlot, item: ItemStack) {
         TODO("Not yet implemented")
     }
 
@@ -403,6 +425,10 @@ class TestPlayer(
     }
 
     override fun updateInventory() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPreviousGameMode(): GameMode? {
         TODO("Not yet implemented")
     }
 
@@ -506,6 +532,18 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
+    override fun canSee(entity: Entity): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun hideEntity(plugin: Plugin, entity: Entity) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showEntity(plugin: Plugin, entity: Entity) {
+        TODO("Not yet implemented")
+    }
+
     override fun isFlying(): Boolean {
         TODO("Not yet implemented")
     }
@@ -538,7 +576,19 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
-    override fun setResourcePack(url: String, hash: ByteArray) {
+    override fun setResourcePack(url: String, hash: ByteArray?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setResourcePack(url: String, hash: ByteArray?, prompt: String?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setResourcePack(url: String, hash: ByteArray?, force: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setResourcePack(url: String, hash: ByteArray?, prompt: String?, force: Boolean) {
         TODO("Not yet implemented")
     }
 
@@ -728,6 +778,18 @@ class TestPlayer(
     }
 
     override fun openBook(book: ItemStack) {
+        TODO("Not yet implemented")
+    }
+
+    override fun openSign(sign: Sign) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showDemoScreen() {
+        TODO("Not yet implemented")
+    }
+
+    override fun isAllowingServerListings(): Boolean {
         TODO("Not yet implemented")
     }
 
