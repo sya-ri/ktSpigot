@@ -13,6 +13,7 @@ import org.bukkit.Tag
 import org.bukkit.UnsafeValues
 import org.bukkit.Warning
 import org.bukkit.World
+import org.bukkit.WorldBorder
 import org.bukkit.WorldCreator
 import org.bukkit.advancement.Advancement
 import org.bukkit.block.data.BlockData
@@ -259,6 +260,10 @@ class TestServer : Server {
     override fun getWorld(name: String) = worldList.get(name)
 
     override fun getWorld(uid: UUID): World? {
+        TODO("Not yet implemented")
+    }
+
+    override fun createWorldBorder(): WorldBorder {
         TODO("Not yet implemented")
     }
 
