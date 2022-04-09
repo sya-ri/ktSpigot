@@ -15,6 +15,7 @@ import org.bukkit.Sound
 import org.bukkit.SoundCategory
 import org.bukkit.Statistic
 import org.bukkit.WeatherType
+import org.bukkit.WorldBorder
 import org.bukkit.advancement.Advancement
 import org.bukkit.advancement.AdvancementProgress
 import org.bukkit.block.Block
@@ -597,6 +598,14 @@ class TestPlayer(
     }
 
     override fun setScoreboard(scoreboard: Scoreboard) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getWorldBorder(): WorldBorder? {
+        TODO("Not yet implemented")
+    }
+
+    override fun setWorldBorder(border: WorldBorder?) {
         TODO("Not yet implemented")
     }
 
