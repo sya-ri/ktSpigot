@@ -4,6 +4,8 @@ import dev.s7a.ktspigot.KtSpigotTest
 import dev.s7a.ktspigot.item.customModelDataOrNull
 import dev.s7a.ktspigot.item.displayNameOrNull
 import dev.s7a.ktspigot.item.editItemMeta
+import dev.s7a.ktspigot.item.editLore
+import dev.s7a.ktspigot.item.editLoreIfHas
 import dev.s7a.ktspigot.item.itemStack
 import dev.s7a.ktspigot.item.localizedNameOrNull
 import dev.s7a.ktspigot.item.loreOrNull
@@ -120,6 +122,66 @@ class ItemTest {
         itemStack.itemMeta = meta
         assertEquals(expected, itemStack.loreOrNull)
         assertEquals(expected, meta.loreOrNull)
+    }
+
+    @Test
+    fun `lore can be edit`() {
+        val expected = List(5) { randomString() }
+        val itemStack = ItemStack(Material.STONE)
+        assertNull(itemStack.loreOrNull)
+        itemStack.editItemMeta {
+            lore = expected.take(2)
+        }
+        assertNotEquals(expected, itemStack.loreOrNull)
+        itemStack.editItemMeta {
+            editLore {
+                addAll(expected.takeLast(3))
+            }
+        }
+        assertEquals(expected, itemStack.loreOrNull)
+    }
+
+    @Test
+    fun `lore can be edit using editLoreIfHas`() {
+        val expected = List(5) { randomString() }
+        val itemStack = ItemStack(Material.STONE)
+        assertNull(itemStack.loreOrNull)
+        itemStack.editItemMeta {
+            lore = expected.take(2)
+        }
+        assertNotEquals(expected, itemStack.loreOrNull)
+        itemStack.editItemMeta {
+            editLoreIfHas {
+                addAll(expected.takeLast(3))
+            }.let(::assertTrue)
+        }
+        assertEquals(expected, itemStack.loreOrNull)
+    }
+
+    @Test
+    fun `lore cannot be edit using editLoreIfHas`() {
+        val expected = List(5) { randomString() }
+        val itemStack = ItemStack(Material.STONE)
+        assertNull(itemStack.loreOrNull)
+        itemStack.editItemMeta {
+            editLoreIfHas {
+                addAll(expected)
+            }.let(::assertFalse)
+        }
+        assertNull(itemStack.loreOrNull)
+    }
+
+    @Test
+    fun `lore can be set using editLore`() {
+        val expected = List(5) { randomString() }
+        val itemStack = ItemStack(Material.STONE)
+        assertNull(itemStack.loreOrNull)
+        itemStack.editItemMeta {
+            editLore {
+                addAll(expected)
+            }
+        }
+        assertEquals(expected, itemStack.loreOrNull)
     }
 
     @Test

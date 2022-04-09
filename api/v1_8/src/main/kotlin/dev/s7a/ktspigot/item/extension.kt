@@ -77,6 +77,30 @@ inline fun <reified T : ItemMeta> ItemStack.editItemMeta(action: T.() -> Unit): 
 }
 
 /**
+ * アイテムの説明文を変更する
+ *
+ * @param altColorChar [color] に使う文字 / '&'
+ * @param action 説明文の変更処理
+ * @since 1.0.0
+ */
+inline fun ItemMeta.editLore(altColorChar: Char? = '&', action: MutableList<String>.() -> Unit) {
+    lore = loreOrNull.orEmpty().toMutableList().apply(action).color(altColorChar)
+}
+
+/**
+ * アイテムの説明文が存在するならば変更する
+ *
+ * @param altColorChar [color] に使う文字 / '&'
+ * @param action 説明文の変更処理
+ * @return 説明文を変更できたら true
+ * @since 1.0.0
+ */
+inline fun ItemMeta.editLoreIfHas(altColorChar: Char? = '&', action: MutableList<String>.() -> Unit): Boolean {
+    lore = loreOrNull?.toMutableList()?.apply(action)?.color(altColorChar) ?: return false
+    return true
+}
+
+/**
  * [ItemStack] を生成する
  *
  * @param type マテリアル
