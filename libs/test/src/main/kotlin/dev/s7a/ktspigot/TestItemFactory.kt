@@ -46,6 +46,10 @@ class TestItemFactory : ItemFactory {
         return defaultLeatherColor
     }
 
+    override fun createItemStack(input: String): ItemStack {
+        TODO("Not yet implemented")
+    }
+
     override fun updateMaterial(meta: ItemMeta, material: Material): Material {
         return material
     }
