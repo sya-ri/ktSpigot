@@ -37,7 +37,7 @@ abstract class TestEntity(
     fun assertMessage(message: String) {
         val lastMessage = messages.removeLast()
         assertTrue(
-            message == lastMessage || "(§f)+$message".toRegex().matches(lastMessage),
+            message == lastMessage || "§f$message" == lastMessage,
             "Expected <$message>, actual <$lastMessage>."
         )
     }

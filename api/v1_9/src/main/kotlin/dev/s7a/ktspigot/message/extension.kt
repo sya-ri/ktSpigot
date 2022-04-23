@@ -4,6 +4,8 @@ package dev.s7a.ktspigot.message
 
 import dev.s7a.ktspigot.component.KtComponentBuildAction
 import dev.s7a.ktspigot.component.buildComponent
+import dev.s7a.ktspigot.component.textComponents
+import dev.s7a.ktspigot.util.color
 import net.md_5.bungee.api.ChatMessageType
 import net.md_5.bungee.api.chat.BaseComponent
 import org.bukkit.entity.Player
@@ -16,9 +18,7 @@ import org.bukkit.entity.Player
  * @since 1.0.0
  */
 fun Player.sendActionBarMessage(message: String, altColorChar: Char? = '&') {
-    sendActionBarMessage {
-        append(message, altColorChar = altColorChar)
-    }
+    sendActionBarMessage(*textComponents(message.color(altColorChar)))
 }
 
 /**

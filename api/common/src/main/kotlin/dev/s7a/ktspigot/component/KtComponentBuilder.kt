@@ -121,7 +121,7 @@ class KtComponentBuilder {
         clickEvent: ClickEvent? = null,
         altColorChar: Char? = '&',
     ) {
-        TextComponent.fromLegacyText(text.color(altColorChar)).forEach {
+        textComponents(text.color(altColorChar)).forEach {
             it.hoverEvent = hoverEvent
             it.clickEvent = clickEvent
             append(it)
