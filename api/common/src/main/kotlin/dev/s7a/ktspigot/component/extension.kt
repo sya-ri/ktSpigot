@@ -103,3 +103,67 @@ fun clickRunCommand(text: String): ClickEvent {
 fun clickSuggestCommand(text: String): ClickEvent {
     return ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, text)
 }
+
+/**
+ * テキストを [Array]<[BaseComponent]> に変換する
+ *
+ * @param text テキスト
+ * @return [Array]<[BaseComponent]>
+ * @see TextComponent.fromLegacyText
+ * @since 1.0.0
+ */
+fun textComponents(text: String): Array<BaseComponent> {
+    val components = arrayListOf<BaseComponent>()
+    var builder = StringBuilder()
+    var component = TextComponent()
+    var i = 0
+    while (i < text.length) {
+        var c = text[i]
+        if (c == ChatColor.COLOR_CHAR) {
+            i++
+            c = text[i]
+            if (c in 'A'..'Z') {
+                c += 32.toChar().code
+            }
+            val format = ChatColor.getByChar(c)
+            if (format == null) {
+                i++
+                continue
+            }
+            if (builder.isNotEmpty()) {
+                val old = component
+                component = TextComponent(old)
+                old.text = builder.toString()
+                builder = StringBuilder()
+                components.add(old)
+            }
+            when (format) {
+                ChatColor.BOLD -> component.isBold = true
+                ChatColor.ITALIC -> component.isItalic = true
+                ChatColor.UNDERLINE -> component.isUnderlined = true
+                ChatColor.STRIKETHROUGH -> component.isStrikethrough = true
+                ChatColor.MAGIC -> component.isObfuscated = true
+                ChatColor.RESET -> {
+                    component = TextComponent()
+                    component.color = ChatColor.WHITE
+                }
+                else -> {
+                    component = TextComponent()
+                    component.color = format
+                }
+            }
+            i++
+            continue
+        }
+        builder.append(c)
+        i++
+    }
+    if (builder.isNotEmpty()) {
+        component.text = builder.toString()
+        components.add(component)
+    }
+    if (components.isEmpty()) {
+        components.add(component)
+    }
+    return components.toTypedArray()
+}

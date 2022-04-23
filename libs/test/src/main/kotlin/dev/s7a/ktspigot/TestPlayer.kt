@@ -55,7 +55,7 @@ class TestPlayer(
 
     fun assertActionBar(message: String) {
         assertTrue(
-            message == actionbar || "(§f)+$message".toRegex().matches(actionbar!!),
+            message == actionbar || "§f$message" == actionbar,
             "Expected <$message>, actual <$actionbar>."
         )
     }
