@@ -178,6 +178,10 @@ open class TestItemMeta(meta: ItemMeta?) : ItemMeta {
         TODO("Not yet implemented")
     }
 
+    override fun getAsString(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun getCustomTagContainer(): CustomItemTagContainer {
         TODO("Not yet implemented")
     }
