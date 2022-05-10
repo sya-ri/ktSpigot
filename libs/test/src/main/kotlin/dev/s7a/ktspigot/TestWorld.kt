@@ -10,6 +10,7 @@ import org.bukkit.GameRule
 import org.bukkit.HeightMap
 import org.bukkit.Location
 import org.bukkit.Material
+import org.bukkit.NamespacedKey
 import org.bukkit.Particle
 import org.bukkit.Raid
 import org.bukkit.Sound
@@ -256,6 +257,10 @@ class TestWorld(private val name: String) : World {
     }
 
     override fun getPersistentDataContainer(): PersistentDataContainer {
+        TODO("Not yet implemented")
+    }
+
+    override fun getKey(): NamespacedKey {
         TODO("Not yet implemented")
     }
 
