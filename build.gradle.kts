@@ -8,7 +8,7 @@ plugins {
     id("com.github.ben-manes.versions") version "0.42.0"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.1" apply false
     id("net.minecrell.plugin-yml.bungee") version "0.5.1" apply false
-    id("dev.s7a.gradle.minecraft.server") version "1.1.0" apply false
+    id("dev.s7a.gradle.minecraft.server") version "1.2.0" apply false
     id("com.github.johnrengelman.shadow") version "7.1.2" apply false
 }
 
