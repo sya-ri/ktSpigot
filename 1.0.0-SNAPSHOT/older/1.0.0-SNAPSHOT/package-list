@@ -28,6 +28,8 @@ dev.s7a.ktspigot.component
 module:v1_16
 dev.s7a.ktspigot.inventory
 dev.s7a.ktspigot.item
+dev.s7a.ktspigot.persistence
+dev.s7a.ktspigot.persistence.type
 module:v1_8
 dev.s7a.ktspigot.command
 dev.s7a.ktspigot.config
