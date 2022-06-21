@@ -3,11 +3,11 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.6.21"
+    kotlin("jvm") version "1.7.0"
     id("org.jmailen.kotlinter") version "3.10.0"
     id("com.github.ben-manes.versions") version "0.42.0"
-    id("net.minecrell.plugin-yml.bukkit") version "0.5.1" apply false
-    id("net.minecrell.plugin-yml.bungee") version "0.5.1" apply false
+    id("net.minecrell.plugin-yml.bukkit") version "0.5.2" apply false
+    id("net.minecrell.plugin-yml.bungee") version "0.5.2" apply false
     id("dev.s7a.gradle.minecraft.server") version "1.2.0" apply false
     id("com.github.johnrengelman.shadow") version "7.1.2" apply false
 }
