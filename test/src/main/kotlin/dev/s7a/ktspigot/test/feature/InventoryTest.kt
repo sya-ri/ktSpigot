@@ -40,5 +40,5 @@ object InventoryTest : FeatureTest.UseContainer(
             }
         }.open(sender)
         sender.sendChatMessage("&2open1")
-    },
+    }
 )

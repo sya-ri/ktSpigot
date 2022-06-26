@@ -84,7 +84,7 @@ class ComponentTest {
                 append("3", clickEvent = clickRunCommand("c"))
                 append("4", clickEvent = clickSuggestCommand("d"))
                 append("5", clickEvent = clickCopyToClipboard("e"))
-            }.toJson(),
+            }.toJson()
         )
     }
 
@@ -97,7 +97,7 @@ class ComponentTest {
             """.trimIndent(),
             buildComponent {
                 append(text, ChatColor.DARK_GRAY)
-            }.toJson(),
+            }.toJson()
         )
         assertEquals(
             """
@@ -105,7 +105,7 @@ class ComponentTest {
             """.trimIndent(),
             buildComponent {
                 append("&8$text")
-            }.toJson(),
+            }.toJson()
         )
     }
 
@@ -123,7 +123,7 @@ class ComponentTest {
             """.trimIndent(),
             buildComponent {
                 append(text, ChatColor.AQUA, bold, italic, underlined, strikethrough, obfuscated)
-            }.toJson(),
+            }.toJson()
         )
     }
 
@@ -135,7 +135,7 @@ class ComponentTest {
             """.trimIndent(),
             buildComponent {
                 appendTranslatable("language.name")
-            }.toJson(),
+            }.toJson()
         )
     }
 
@@ -147,7 +147,7 @@ class ComponentTest {
             """.trimIndent(),
             buildComponent {
                 appendKeybind(Keybinds.CHAT)
-            }.toJson(),
+            }.toJson()
         )
     }
 
@@ -159,7 +159,7 @@ class ComponentTest {
             """.trimIndent(),
             buildComponent {
                 appendScore("@p", "test")
-            }.toJson(),
+            }.toJson()
         )
     }
 
@@ -171,7 +171,7 @@ class ComponentTest {
             """.trimIndent(),
             buildComponent {
                 appendSelector("@p")
-            }.toJson(),
+            }.toJson()
         )
     }
 }

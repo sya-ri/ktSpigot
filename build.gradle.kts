@@ -23,6 +23,10 @@ allprojects {
         mavenCentral()
     }
 
+    kotlinter {
+        disabledRules = arrayOf("filename")
+    }
+
     tasks.withType<DependencyUpdatesTask> {
         rejectVersionIf {
             isNonStableVersion(candidate.version) && !isNonStableVersion(currentVersion)

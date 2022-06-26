@@ -62,7 +62,7 @@ class KtComponentBuilder {
         strikethrough: Boolean? = null,
         obfuscated: Boolean? = null,
         hoverEvent: HoverEvent? = null,
-        clickEvent: ClickEvent? = null,
+        clickEvent: ClickEvent? = null
     ) {
         component.apply {
             this.color = color
@@ -101,7 +101,7 @@ class KtComponentBuilder {
         strikethrough: Boolean? = null,
         obfuscated: Boolean? = null,
         hoverEvent: HoverEvent? = null,
-        clickEvent: ClickEvent? = null,
+        clickEvent: ClickEvent? = null
     ) {
         appendWith(TextComponent(text), color, bold, italic, underlined, strikethrough, obfuscated, hoverEvent, clickEvent)
     }
@@ -119,7 +119,7 @@ class KtComponentBuilder {
         text: String,
         hoverEvent: HoverEvent? = null,
         clickEvent: ClickEvent? = null,
-        altColorChar: Char? = '&',
+        altColorChar: Char? = '&'
     ) {
         textComponents(text.color(altColorChar)).forEach {
             it.hoverEvent = hoverEvent

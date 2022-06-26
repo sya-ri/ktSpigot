@@ -19,7 +19,7 @@ data class BlockLocation(
     var world: World?,
     var x: Int,
     var y: Int,
-    var z: Int,
+    var z: Int
 ) {
     companion object {
         /**

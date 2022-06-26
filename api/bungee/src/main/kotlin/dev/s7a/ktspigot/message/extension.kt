@@ -94,7 +94,7 @@ fun ProxiedPlayer.sendTitleMessage(
     fadeIn: Int = 10,
     stay: Int = 70,
     fadeOut: Int = 20,
-    altColorChar: Char? = '&',
+    altColorChar: Char? = '&'
 ) {
     ProxyServer.getInstance().createTitle().apply {
         title(*textComponents(title?.color(altColorChar).orEmpty()))

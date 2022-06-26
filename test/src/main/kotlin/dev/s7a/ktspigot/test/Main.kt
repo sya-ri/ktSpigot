@@ -21,7 +21,7 @@ class Main : JavaPlugin() {
 
     private val features = FeatureTest.Container(
         InventoryTest,
-        MessageTest,
+        MessageTest
     )
 
     override fun onEnable() {
