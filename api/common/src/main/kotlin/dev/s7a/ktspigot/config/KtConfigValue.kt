@@ -93,12 +93,12 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      *
      * @since 1.0.0
      */
-    open class Base<T>(config: KtConfigBase, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type), ReadWriteProperty<Nothing?, T?> {
-        override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+    open class Base<T>(config: KtConfigBase, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type), ReadWriteProperty<Any?, T?> {
+        override operator fun getValue(thisRef: Any?, property: KProperty<*>): T? {
             return getValue()
         }
 
-        override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+        override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
             set(value)
         }
 
@@ -228,7 +228,7 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      * @since 1.0.0
      */
     @Suppress("UNCHECKED_CAST")
-    class Nullable<T>(configValue: KtConfigValue<T>) : KtConfigValue<T?>(configValue.config, configValue.path, configValue.type as KtConfigValueType<T?>), ReadWriteProperty<Nothing?, T?> {
+    class Nullable<T>(configValue: KtConfigValue<T>) : KtConfigValue<T?>(configValue.config, configValue.path, configValue.type as KtConfigValueType<T?>), ReadWriteProperty<Any?, T?> {
         /**
          * [set] した際に自動で保存する
          *
@@ -236,11 +236,11 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
          */
         fun autoSave() = AutoSave(this)
 
-        override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+        override operator fun getValue(thisRef: Any?, property: KProperty<*>): T? {
             return getValue()
         }
 
-        override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+        override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
             set(value)
         }
 
@@ -263,12 +263,12 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      * @see Base.default
      * @since 1.0.0
      */
-    abstract class Default<T>(configValue: KtConfigValue<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Nothing?, T?> {
-        override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+    abstract class Default<T>(configValue: KtConfigValue<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T?> {
+        override operator fun getValue(thisRef: Any?, property: KProperty<*>): T? {
             return getValue()
         }
 
-        override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+        override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
             set(value)
         }
 
@@ -328,18 +328,18 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
          *
          * @since 1.0.0
          */
-        class Force<T>(private val configValue: Default<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Nothing?, T> {
+        class Force<T>(private val configValue: Default<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T> {
             /**
              * [set] した際に自動で保存する
              *
              * @since 1.0.0
              */
-            class AutoSave<T>(private val configValue: Force<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Nothing?, T> {
-                override fun getValue(thisRef: Nothing?, property: KProperty<*>): T {
+            class AutoSave<T>(private val configValue: Force<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T> {
+                override fun getValue(thisRef: Any?, property: KProperty<*>): T {
                     return getValue()
                 }
 
-                override fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T) {
+                override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
                     set(value)
                 }
 
@@ -372,11 +372,11 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
              */
             fun autoSave() = AutoSave(this)
 
-            override operator fun getValue(thisRef: Nothing?, property: KProperty<*>): T {
+            override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
                 return getValue()
             }
 
-            override operator fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T) {
+            override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
                 set(value)
             }
 
@@ -406,12 +406,12 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      *
      * @since 1.0.0
      */
-    class AutoSave<T>(private val configValue: KtConfigValue<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Nothing?, T?> {
-        override fun getValue(thisRef: Nothing?, property: KProperty<*>): T? {
+    class AutoSave<T>(private val configValue: KtConfigValue<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T?> {
+        override fun getValue(thisRef: Any?, property: KProperty<*>): T? {
             return getValue()
         }
 
-        override fun setValue(thisRef: Nothing?, property: KProperty<*>, value: T?) {
+        override fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
             set(value)
         }
 
