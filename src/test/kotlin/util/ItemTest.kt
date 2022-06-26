@@ -221,7 +221,7 @@ class ItemTest {
         val itemStack = itemStack(
             Material.STONE,
             displayName = "&${displayNameColor.char}$displayName",
-            lore = lore.map { "&${loreColor.char}$it" },
+            lore = lore.map { "&${loreColor.char}$it" }
         )
         val meta = itemStack.itemMeta
         assertNotNull(meta)

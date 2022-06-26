@@ -43,7 +43,7 @@ fun itemStack(
     lore: List<String>? = null,
     customModelData: Int? = null,
     altColorChar: Char? = '&',
-    editMetaAction: ItemMetaEditAction? = null,
+    editMetaAction: ItemMetaEditAction? = null
 ): ItemStack {
     return itemStack(type, amount, displayName, lore, altColorChar) {
         setCustomModelData(customModelData)

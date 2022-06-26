@@ -63,5 +63,5 @@ object MessageTest : FeatureTest.UseContainer(
         val fadeOut = args.getOrNull(4)?.toIntOrNull() ?: 1020
         val altColorChar = args.getOrNull(5)?.firstOrNull()
         sender.sendTitleMessage(title, subtitle, fadeIn, stay, fadeOut, altColorChar)
-    },
+    }
 )

@@ -53,7 +53,7 @@ data class ExampleDataClass(val int: Int, val location: Location) {
         override fun toMap(value: ExampleDataClass): Map<String, Any> {
             return mapOf(
                 "int" to value.int,
-                "location" to formatter.string(value.location),
+                "location" to formatter.string(value.location)
             )
         }
     }

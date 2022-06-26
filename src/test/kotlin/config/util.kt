@@ -72,7 +72,7 @@ data class TestDataClass(val int: Int, val boolean: Boolean) {
         override fun toMap(value: TestDataClass): Map<String, Any> {
             return mapOf(
                 "int" to value.int,
-                "boolean" to value.boolean,
+                "boolean" to value.boolean
             )
         }
     }

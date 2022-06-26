@@ -33,7 +33,7 @@ fun KtComponentBuilder.appendKeybind(
     strikethrough: Boolean? = null,
     obfuscated: Boolean? = null,
     hoverEvent: HoverEvent? = null,
-    clickEvent: ClickEvent? = null,
+    clickEvent: ClickEvent? = null
 ) {
     appendWith(KeybindComponent(keybind), color, bold, italic, underlined, strikethrough, obfuscated, hoverEvent, clickEvent)
 }
@@ -63,7 +63,7 @@ fun KtComponentBuilder.appendScore(
     strikethrough: Boolean? = null,
     obfuscated: Boolean? = null,
     hoverEvent: HoverEvent? = null,
-    clickEvent: ClickEvent? = null,
+    clickEvent: ClickEvent? = null
 ) {
     appendWith(ScoreComponent(name, objective, null), color, bold, italic, underlined, strikethrough, obfuscated, hoverEvent, clickEvent)
 }
@@ -91,7 +91,7 @@ fun KtComponentBuilder.appendSelector(
     strikethrough: Boolean? = null,
     obfuscated: Boolean? = null,
     hoverEvent: HoverEvent? = null,
-    clickEvent: ClickEvent? = null,
+    clickEvent: ClickEvent? = null
 ) {
     appendWith(SelectorComponent(selector), color, bold, italic, underlined, strikethrough, obfuscated, hoverEvent, clickEvent)
 }

@@ -54,7 +54,7 @@ fun KtComponentBuilder.appendTranslatable(
     strikethrough: Boolean? = null,
     obfuscated: Boolean? = null,
     hoverEvent: HoverEvent? = null,
-    clickEvent: ClickEvent? = null,
+    clickEvent: ClickEvent? = null
 ) {
     appendWith(TranslatableComponent(key, *args), color, bold, italic, underlined, strikethrough, obfuscated, hoverEvent, clickEvent)
 }

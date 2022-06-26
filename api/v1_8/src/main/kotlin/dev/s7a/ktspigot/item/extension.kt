@@ -112,7 +112,7 @@ inline fun ItemMeta.editLoreIfHas(altColorChar: Char? = '&', action: MutableList
 inline fun itemStack(
     type: Material,
     amount: Int = 1,
-    editMetaAction: ItemMetaEditAction,
+    editMetaAction: ItemMetaEditAction
 ): ItemStack {
     return ItemStack(type, amount).apply {
         editItemMeta(editMetaAction)
@@ -137,7 +137,7 @@ fun itemStack(
     displayName: String? = null,
     lore: List<String>? = null,
     altColorChar: Char? = '&',
-    editMetaAction: ItemMetaEditAction? = null,
+    editMetaAction: ItemMetaEditAction? = null
 ): ItemStack {
     return itemStack(type, amount) {
         setDisplayName(displayName?.color(altColorChar))
