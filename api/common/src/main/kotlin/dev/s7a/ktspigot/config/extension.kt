@@ -181,7 +181,7 @@ fun List<KtConfigError>.printErrors(logger: Logger) {
  * @since 1.0.0
  */
 fun <T, R> KtConfigResult<List<T>>.mapValues(config: KtConfigBase, path: String, action: (Int, T) -> KtConfigResult<R>): KtConfigResult<List<R>> {
-    return map { it.mapIndexed(action).toResult(config, path) }
+    return map { it.mapIndexed(action).flatten(config, path) }
 }
 
 /**
@@ -192,7 +192,7 @@ fun <T, R> KtConfigResult<List<T>>.mapValues(config: KtConfigBase, path: String,
  * @return リスト内に一つでもエラーがあれば [KtConfigError.ListConfigError] で失敗したことにする
  * @since 1.0.0
  */
-fun <T> List<KtConfigResult<T>>.toResult(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
+fun <T> List<KtConfigResult<T>>.flatten(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
     val data = filterIsInstance<KtConfigResult.Success<T>>().map(KtConfigResult.Success<T>::value)
     val errors = filterIsInstance<KtConfigResult.Failure<T>>()
     return if (errors.isEmpty()) {
@@ -210,7 +210,7 @@ fun <T> List<KtConfigResult<T>>.toResult(config: KtConfigBase, path: String): Kt
  * @return リスト内に一つでもエラーがあれば [KtConfigError.ListConfigError] で失敗したことにする
  * @since 1.0.0
  */
-fun <T> Map<String, KtConfigResult<T>>.toResult(config: KtConfigBase, path: String): KtConfigResult<Map<String, T>> {
+fun <T> Map<String, KtConfigResult<T>>.flatten(config: KtConfigBase, path: String): KtConfigResult<Map<String, T>> {
     val data = mutableMapOf<String, T>()
     val errors = mutableListOf<KtConfigResult.Failure<T>>()
     entries.forEach { (key, value) ->

@@ -143,7 +143,7 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
                     return config.getSectionKeys(path)?.run {
                         associateWith {
                             type.get(config, "$path.$it")
-                        }.toResult(config, path)
+                        }.flatten(config, path)
                     } ?: KtConfigResult.Failure(KtConfigError.NotFound(config, path))
                 }
 
