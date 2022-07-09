@@ -23,6 +23,7 @@ dev.s7a.ktspigot.item
 dev.s7a.ktspigot.message
 module:v1_12
 dev.s7a.ktspigot.component
+dev.s7a.ktspigot.message
 module:v1_15
 dev.s7a.ktspigot.component
 module:v1_16
