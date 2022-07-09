@@ -76,7 +76,7 @@ class ComponentTest {
                    }
                 ]
             """.trimIndent().let {
-                Gson().toJson(JsonParser().parse(it))
+                Gson().toJson(JsonParser.parseString(it))
             },
             buildComponent {
                 append("1", hoverEvent = hoverShowText("a"))

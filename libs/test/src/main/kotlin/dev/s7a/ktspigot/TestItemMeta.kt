@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package dev.s7a.ktspigot
 
 import com.google.common.collect.Multimap
