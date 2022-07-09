@@ -1,4 +1,4 @@
-@file:JvmName("Extension11")
+@file:JvmName("Extension11") // ktlint-disable filename
 
 package dev.s7a.ktspigot.message
 
