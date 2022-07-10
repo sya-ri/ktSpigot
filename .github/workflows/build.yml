@@ -20,18 +20,18 @@ jobs:
         with:
           name: Jar
           path: |
-            api/bungee/build/libs/ktSpigot-bungee-*.jar
-            api/v1_8/build/libs/ktSpigot-v1_8-*.jar
-            api/v1_9/build/libs/ktSpigot-v1_9-*.jar
-            api/v1_10/build/libs/ktSpigot-v1_10-*.jar
-            api/v1_11/build/libs/ktSpigot-v1_11-*.jar
-            api/v1_12/build/libs/ktSpigot-v1_12-*.jar
-            api/v1_13/build/libs/ktSpigot-v1_13-*.jar
-            api/v1_14/build/libs/ktSpigot-v1_14-*.jar
-            api/v1_15/build/libs/ktSpigot-v1_15-*.jar
-            api/v1_16/build/libs/ktSpigot-v1_16-*.jar
-            api/v1_17/build/libs/ktSpigot-v1_17-*.jar
-            api/v1_18/build/libs/ktSpigot-v1_18-*.jar
+            plugin/bungee/build/libs/ktSpigot-*.jar
+            plugin/v1_8/build/libs/ktSpigot-*.jar
+            plugin/v1_9/build/libs/ktSpigot-*.jar
+            plugin/v1_10/build/libs/ktSpigot-*.jar
+            plugin/v1_11/build/libs/ktSpigot-*.jar
+            plugin/v1_12/build/libs/ktSpigot-*.jar
+            plugin/v1_13/build/libs/ktSpigot-*.jar
+            plugin/v1_14/build/libs/ktSpigot-*.jar
+            plugin/v1_15/build/libs/ktSpigot-*.jar
+            plugin/v1_16/build/libs/ktSpigot-*.jar
+            plugin/v1_17/build/libs/ktSpigot-*.jar
+            plugin/v1_18/build/libs/ktSpigot-*.jar
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: ncipollo/release-action@v1
