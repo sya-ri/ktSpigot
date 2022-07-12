@@ -6,7 +6,7 @@ import java.net.URL
 plugins {
     `maven-publish`
     signing
-    id("org.jetbrains.dokka") version "1.7.0"
+    id("org.jetbrains.dokka") version "1.7.10"
 }
 
 subprojects {
