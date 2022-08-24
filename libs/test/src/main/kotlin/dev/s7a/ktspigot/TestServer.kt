@@ -9,6 +9,7 @@ import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.OfflinePlayer
+import org.bukkit.Registry
 import org.bukkit.Server
 import org.bukkit.StructureType
 import org.bukkit.Tag
@@ -49,6 +50,7 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.plugin.messaging.Messenger
 import org.bukkit.profile.PlayerProfile
 import org.bukkit.scheduler.BukkitScheduler
+import org.bukkit.scoreboard.Criteria
 import org.bukkit.scoreboard.ScoreboardManager
 import org.bukkit.structure.StructureManager
 import org.bukkit.util.CachedServerIcon
@@ -361,6 +363,14 @@ class TestServer : Server {
         TODO("Not yet implemented")
     }
 
+    override fun shouldSendChatPreviews(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isEnforcingSecureProfiles(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun getHideOnlinePlayers(): Boolean {
         TODO("Not yet implemented")
     }
@@ -477,6 +487,10 @@ class TestServer : Server {
         TODO("Not yet implemented")
     }
 
+    override fun getMaxChainedNeighborUpdates(): Int {
+        TODO("Not yet implemented")
+    }
+
     override fun getMonsterSpawnLimit(): Int {
         TODO("Not yet implemented")
     }
@@ -526,6 +540,10 @@ class TestServer : Server {
     }
 
     override fun getScoreboardManager(): ScoreboardManager? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getScoreboardCriteria(name: String): Criteria {
         TODO("Not yet implemented")
     }
 
@@ -626,6 +644,10 @@ class TestServer : Server {
     }
 
     override fun getStructureManager(): StructureManager {
+        TODO("Not yet implemented")
+    }
+
+    override fun <T : Keyed?> getRegistry(tClass: Class<T>): Registry<T>? {
         TODO("Not yet implemented")
     }
 

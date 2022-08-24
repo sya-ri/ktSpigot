@@ -16,7 +16,7 @@ A Library that Simplifies Spigot with Kotlin.
 
 ### Support platform
 
-- Spigot `1.8.x` 〜 `1.18.x`
+- Spigot `1.8.x` 〜 `1.19.x`
 - BungeeCord
 
 ## Example
@@ -155,6 +155,9 @@ dependencies {
 
     // Spigot 1.18.x
     implementation("dev.s7a:ktSpigot-v1_18:1.0.0-SNAPSHOT")
+
+    // Spigot 1.19.x
+    implementation("dev.s7a:ktSpigot-v1_19:1.0.0-SNAPSHOT")
 }
 ```
 

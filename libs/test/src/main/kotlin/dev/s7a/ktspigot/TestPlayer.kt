@@ -85,6 +85,14 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
+    override fun getLastDeathLocation(): Location? {
+        TODO("Not yet implemented")
+    }
+
+    override fun setLastDeathLocation(location: Location?) {
+        TODO("Not yet implemented")
+    }
+
     override fun isConversing(): Boolean {
         TODO("Not yet implemented")
     }
@@ -382,6 +390,10 @@ class TestPlayer(
     }
 
     override fun stopSound(sound: String, category: SoundCategory?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun stopSound(category: SoundCategory) {
         TODO("Not yet implemented")
     }
 

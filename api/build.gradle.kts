@@ -22,7 +22,7 @@ subprojects {
                 compileOnly("net.md-5:bungeecord-chat:1.8-SNAPSHOT")
             }
             "bungee" -> {
-                compileOnly("net.md-5:bungeecord-api:1.18-R0.1-SNAPSHOT")
+                compileOnly("net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT")
                 shadowApi(project(":api:common"))
             }
             "v1_8" -> {
@@ -66,8 +66,12 @@ subprojects {
                 shadowApi(project(":api:v1_16"))
             }
             "v1_18" -> {
-                compileOnly("org.spigotmc:spigot-api:1.18.1-R0.1-SNAPSHOT")
+                compileOnly("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
                 shadowApi(project(":api:v1_17"))
+            }
+            "v1_19" -> {
+                compileOnly("org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT")
+                shadowApi(project(":api:v1_18"))
             }
         }
     }

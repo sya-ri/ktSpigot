@@ -39,6 +39,7 @@ import org.bukkit.entity.Zombie
 import org.bukkit.generator.BiomeProvider
 import org.bukkit.generator.BlockPopulator
 import org.bukkit.generator.ChunkGenerator
+import org.bukkit.generator.structure.Structure
 import org.bukkit.inventory.ItemStack
 import org.bukkit.material.MaterialData
 import org.bukkit.metadata.MetadataValue
@@ -47,6 +48,7 @@ import org.bukkit.plugin.Plugin
 import org.bukkit.util.BoundingBox
 import org.bukkit.util.Consumer
 import org.bukkit.util.RayTraceResult
+import org.bukkit.util.StructureSearchResult
 import org.bukkit.util.Vector
 import java.io.File
 import java.util.Random
@@ -1170,6 +1172,24 @@ class TestWorld(private val name: String) : World {
         radius: Int,
         findUnexplored: Boolean
     ): Location? {
+        TODO("Not yet implemented")
+    }
+
+    override fun locateNearestStructure(
+        origin: Location,
+        structureType: org.bukkit.generator.structure.StructureType,
+        radius: Int,
+        findUnexplored: Boolean
+    ): StructureSearchResult? {
+        TODO("Not yet implemented")
+    }
+
+    override fun locateNearestStructure(
+        origin: Location,
+        structure: Structure,
+        radius: Int,
+        findUnexplored: Boolean
+    ): StructureSearchResult? {
         TODO("Not yet implemented")
     }
 

@@ -141,4 +141,8 @@ class TestOfflinePlayer(private val uniqueId: UUID) : OfflinePlayer {
     override fun getStatistic(statistic: Statistic, entityType: EntityType): Int {
         TODO("Not yet implemented")
     }
+
+    override fun getLastDeathLocation(): Location? {
+        TODO("Not yet implemented")
+    }
 }

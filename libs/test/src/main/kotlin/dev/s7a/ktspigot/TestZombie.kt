@@ -121,4 +121,12 @@ class TestZombie(
     override fun setConversionTime(time: Int) {
         TODO("Not yet implemented")
     }
+
+    override fun canBreakDoors(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun setCanBreakDoors(flag: Boolean) {
+        TODO("Not yet implemented")
+    }
 }
