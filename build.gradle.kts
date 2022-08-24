@@ -70,18 +70,6 @@ subprojects {
     }
 }
 
-repositories {
-    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/public/")
-}
-
-dependencies {
-    testImplementation(project(":api:v1_17"))
-    testImplementation(project(":showcase"))
-    testImplementation(kotlin("test"))
-    testImplementation(kotlin("reflect"))
-    testImplementation(project(":spigot-mock"))
-}
-
 tasks.withType<Jar> {
     enabled = false
 }
