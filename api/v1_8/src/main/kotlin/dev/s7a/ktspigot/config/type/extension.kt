@@ -2,8 +2,8 @@
 
 package dev.s7a.ktspigot.config.type
 
-import dev.s7a.ktspigot.config.KtConfigFormatter
 import dev.s7a.ktspigot.config.KtConfigBase
+import dev.s7a.ktspigot.config.KtConfigFormatter
 import dev.s7a.ktspigot.config.formatter.DefaultBlockLocationFormatter
 import dev.s7a.ktspigot.config.formatter.DefaultLocationFormatter
 import dev.s7a.ktspigot.config.formatter.DefaultVectorFormatter

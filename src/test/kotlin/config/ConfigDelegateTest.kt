@@ -3,7 +3,6 @@ package config
 import dev.s7a.ktspigot.config.KtConfig
 import dev.s7a.ktspigot.config.type.intValue
 import randomString
-import java.io.File
 import kotlin.io.path.createTempFile
 import kotlin.random.Random
 import kotlin.test.Test
