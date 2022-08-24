@@ -79,18 +79,7 @@ dependencies {
     testImplementation(project(":showcase"))
     testImplementation(kotlin("test"))
     testImplementation(kotlin("reflect"))
-    testImplementation(project(":libs:test"))
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "16"
-    }
+    testImplementation(project(":spigot-mock"))
 }
 
 tasks.withType<Jar> {

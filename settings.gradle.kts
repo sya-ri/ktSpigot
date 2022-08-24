@@ -15,7 +15,7 @@ include(
     ":api:v1_17",
     ":api:v1_18",
     ":api:v1_19",
-    ":libs:test",
-    ":showcase",
-    ":test"
+    ":spigot-mock",
+    ":spigot-test",
+    ":showcase"
 )
