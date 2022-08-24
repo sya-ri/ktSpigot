@@ -1,5 +1,66 @@
 # Contributing
 
+## プロジェクト構造
+
+### [api](api)
+
+APIの実装をしている。依存関係は以下の通りであり、
+
+```mermaid
+graph LR
+    common
+    subgraph platforms
+        bungee
+        subgraph spigot
+            v1_8
+            v1_9
+            v1_10
+            v1_11
+            v1_12
+            v1_13
+            v1_14
+            v1_15
+            v1_16
+            v1_17
+            v1_18
+            v1_19
+        end
+    end
+    
+    common --- bungee
+    common --- v1_8
+    v1_8 --- v1_9
+    v1_9 --- v1_10
+    v1_10 --- v1_11
+    v1_11 --- v1_12
+    v1_12 --- v1_13
+    v1_13 --- v1_14
+    v1_14 --- v1_15
+    v1_15 --- v1_16
+    v1_16 --- v1_17
+    v1_17 --- v1_18
+    v1_18 --- v1_19
+```
+
+### [showcase](showcase)
+
+例としてソースコードを埋め込むために使っている。
+
+### [spigot-mock](spigot-mock)
+
+ユニットテストを行なっている。[MockBukkit](https://github.com/MockBukkit/MockBukkit) と似ている。
+
+#### テスト対象
+- `api/*`
+- `showcase`
+
+### [spigot-test](spigot-test)
+
+プラグインとしてフューチャーテストを行なっている。
+
+#### テスト対象
+- `api/*`
+
 ## Gradle タスク
 
 ### ビルド
