@@ -6,7 +6,7 @@ import java.net.URL
 plugins {
     `maven-publish`
     signing
-    id("org.jetbrains.dokka") version "1.7.0"
+    id("org.jetbrains.dokka") version "1.7.10"
 }
 
 subprojects {
@@ -165,7 +165,7 @@ val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
     val version = rootProject.version.toString()
     outputDirectory.set(file(dokkaDir.resolve(version)))
     dependencies {
-        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.7.0")
+        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.7.10")
     }
     pluginsMapConfiguration.set(
         mapOf(
