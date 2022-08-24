@@ -22,13 +22,15 @@ object BooleanType : KtConfigValueType.Listable<Boolean> {
         config.setUnsafe(path, value)
     }
 
-    override val list = object : KtConfigValueType<List<Boolean>> {
-        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Boolean>> {
-            return config.getListUnsafe(path)
-        }
+    override fun list(force: Boolean): KtConfigValueType<List<Boolean>> {
+        return object : KtConfigValueType<List<Boolean>> {
+            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Boolean>> {
+                return config.getListUnsafe(path)
+            }
 
-        override fun set(config: KtConfigBase, path: String, value: List<Boolean>?) {
-            config.setUnsafe(path, value)
+            override fun set(config: KtConfigBase, path: String, value: List<Boolean>?) {
+                config.setUnsafe(path, value)
+            }
         }
     }
 }

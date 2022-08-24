@@ -43,15 +43,17 @@ class SpecificEntityType<T : Entity>(private val clazz: Class<T>) : KtConfigValu
         config.entityValue(path).set(value)
     }
 
-    override val list = object : KtConfigValueType<List<T>> {
-        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
-            return config.entityValue(path).list().get().mapValues(config, path) { index, value ->
-                entityToResult(config, "$path#$index", value)
+    override fun list(force: Boolean): KtConfigValueType<List<T>> {
+        return object : KtConfigValueType<List<T>> {
+            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
+                return config.entityValue(path).list(force).get().mapValues(config, path) { index, value ->
+                    entityToResult(config, "$path#$index", value)
+                }
             }
-        }
 
-        override fun set(config: KtConfigBase, path: String, value: List<T>?) {
-            config.entityValue(path).list().set(value)
+            override fun set(config: KtConfigBase, path: String, value: List<T>?) {
+                config.entityValue(path).list(force).set(value)
+            }
         }
     }
 }

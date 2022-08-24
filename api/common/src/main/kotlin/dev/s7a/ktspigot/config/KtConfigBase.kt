@@ -7,16 +7,10 @@ import java.io.FileNotFoundException
  * コンフィグ
  *
  * @property file ファイル
+ * @property autoSave 変更時に自動で保存する
  * @since 1.0.0
  */
-abstract class KtConfigBase(val file: File) : KtConfigSection {
-    override val config
-        get() = this
-
-    override val path = ""
-
-    override fun fullPath(path: String) = path
-
+abstract class KtConfigBase(val file: File, val autoSave: Boolean = true) {
     /**
      * コンフィグファイルを作成したときの処理
      *

@@ -87,28 +87,6 @@ fun KtConfigBase.setUnsafe(path: String, value: Any?) {
 }
 
 /**
- * セクション内の値を全て取得する
- *
- * @return 値一覧
- */
-fun KtConfigSection.getValues(): List<KtConfigValue<*>> {
-    val values = this::class.java.declaredFields
-    return buildList {
-        values.forEach { field ->
-            try {
-                field.isAccessible = true
-                val value = field.get(this@getValues)
-                if (value is KtConfigValue<*>) {
-                    add(value)
-                }
-            } catch (_: SecurityException) {
-            } catch (_: IllegalAccessException) {
-            }
-        }
-    }
-}
-
-/**
  * 値のエラーを確認する
  *
  * @return エラー一覧
@@ -116,14 +94,17 @@ fun KtConfigSection.getValues(): List<KtConfigValue<*>> {
  * @since 1.0.0
  */
 fun KtConfigBase.checkValues(): List<KtConfigError> {
-    val values = this::class.java.declaredFields
+    val fields = this::class.java.declaredFields
     return buildList {
-        values.forEach { field ->
+        fields.forEach { field ->
             try {
                 field.isAccessible = true
                 val value = field.get(this@checkValues)
                 if (value is KtConfigValue<*>) {
-                    value.getValue(::add)
+                    val result = value.get()
+                    if (result is KtConfigResult.Failure<*>) {
+                        add(result.error)
+                    }
                 }
             } catch (ex: SecurityException) {
                 add(KtConfigError.Reflection.ThrowSecurityException(this@checkValues, field))
@@ -231,42 +212,6 @@ fun <T> Map<String, KtConfigResult<T>>.flatten(config: KtConfigBase, path: Strin
 }
 
 /**
- * リストを取得する。エラーがある項目は無視する。
- *
- * @since 1.0.0
- */
-@Suppress("UNCHECKED_CAST")
-fun <T> KtConfigValue<List<T>>.forceGetValue(): List<T> {
-    return when (val result = get()) {
-        is KtConfigResult.Success -> result.value
-        is KtConfigResult.Failure -> {
-            when (result.error) {
-                is KtConfigError.ListConfigError<*> -> result.error.data as List<T>
-                else -> listOf()
-            }
-        }
-    }
-}
-
-/**
- * マップを取得する。エラーがある項目は無視する。
- *
- * @since 1.0.0
- */
-@Suppress("UNCHECKED_CAST")
-fun <T> KtConfigValue<Map<String, T>>.forceGetValue(): Map<String, T> {
-    return when (val result = get()) {
-        is KtConfigResult.Success -> result.value
-        is KtConfigResult.Failure -> {
-            when (result.error) {
-                is KtConfigError.MapConfigError<*> -> result.error.data as Map<String, T>
-                else -> mapOf()
-            }
-        }
-    }
-}
-
-/**
  * セクション内の指定したパスの値を取得する
  *
  * @param T セクション
@@ -274,7 +219,7 @@ fun <T> KtConfigValue<Map<String, T>>.forceGetValue(): Map<String, T> {
  * @return セクション内にパスが存在すれば値を返し、しなければ [KtConfigResult.Failure] を返す
  * @since 1.0.0
  */
-inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.get(path: String): KtConfigResult<T> {
+inline fun <reified T : KtConfigBase> KtConfigValue<Map<String, T>>.get(path: String): KtConfigResult<T> {
     val fullPath = this.path + "." + path
     return if (config.contains(fullPath)) {
         val constructor = T::class.java.getDeclaredConstructor(KtConfigBase::class.java, String::class.java)
@@ -282,55 +227,4 @@ inline fun <reified T : KtConfigSection> KtConfigValue<Map<String, T>>.get(path:
     } else {
         KtConfigResult.Failure(KtConfigError.NotFound(config, fullPath))
     }
-}
-
-/**
- * セクションの値を変更する
- *
- * @param getAction 取得処理
- * @param block 変更処理
- * @since 1.0.0
- */
-@JvmName("editMap")
-inline fun <reified T> KtConfigValue<Map<String, T>>.edit(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
-    val editor = KtConfigSectionEditor(config, path, T::class.java, getAction().toMutableMap())
-    set(editor.apply(block).toMap())
-}
-
-/**
- * セクションの値を変更し、保存する
- *
- * @param getAction 取得処理
- * @param block 変更処理
- * @since 1.0.0
- */
-@JvmName("editAndSaveMap")
-inline fun <reified T> KtConfigValue<Map<String, T>>.editAndSave(getAction: KtConfigValue<Map<String, T>>.() -> Map<String, T> = KtConfigValue<Map<String, T>>::forceGetValue, block: KtConfigSectionEditor<T>.() -> Unit) {
-    edit(getAction, block)
-    config.save()
-}
-
-/**
- * リストの値を変更する
- *
- * @param getAction 取得処理
- * @param block 変更処理
- * @since 1.0.0
- */
-@JvmName("editList")
-inline fun <reified T> KtConfigValue<List<T>>.edit(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
-    set(getAction().toMutableList().apply(block).toList())
-}
-
-/**
- * リストの値を変更し、保存する
- *
- * @param getAction 取得処理
- * @param block 変更処理
- * @since 1.0.0
- */
-@JvmName("editAndSaveList")
-inline fun <reified T> KtConfigValue<List<T>>.editAndSave(getAction: KtConfigValue<List<T>>.() -> List<T> = KtConfigValue<List<T>>::forceGetValue, block: MutableList<T>.() -> Unit) {
-    edit(getAction, block)
-    config.save()
 }

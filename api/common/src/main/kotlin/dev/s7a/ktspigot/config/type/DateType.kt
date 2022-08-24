@@ -23,13 +23,15 @@ object DateType : KtConfigValueType.Listable<Date> {
         config.setUnsafe(path, value)
     }
 
-    override val list = object : KtConfigValueType<List<Date>> {
-        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Date>> {
-            return config.getListUnsafe(path)
-        }
+    override fun list(force: Boolean): KtConfigValueType<List<Date>> {
+        return object : KtConfigValueType<List<Date>> {
+            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Date>> {
+                return config.getListUnsafe(path)
+            }
 
-        override fun set(config: KtConfigBase, path: String, value: List<Date>?) {
-            config.setUnsafe(path, value)
+            override fun set(config: KtConfigBase, path: String, value: List<Date>?) {
+                config.setUnsafe(path, value)
+            }
         }
     }
 }

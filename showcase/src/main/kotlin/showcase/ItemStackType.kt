@@ -2,7 +2,6 @@ package showcase
 
 import dev.s7a.ktspigot.config.KtConfigBase
 import dev.s7a.ktspigot.config.KtConfigResult
-import dev.s7a.ktspigot.config.KtConfigSection
 import dev.s7a.ktspigot.config.KtConfigValueType
 import dev.s7a.ktspigot.config.getUnsafe
 import dev.s7a.ktspigot.config.setUnsafe
@@ -13,7 +12,7 @@ import org.bukkit.inventory.ItemStack
 /**
  * シリアライザーを利用して [ItemStack] をコンフィグに格納する
  */
-fun KtConfigSection.itemStackValue(path: String) = value(path, ItemStackType)
+fun KtConfigBase.itemStackValue(path: String) = value(path, ItemStackType)
 
 /**
  * シリアライザーを利用して [ItemStack] をコンフィグに格納する

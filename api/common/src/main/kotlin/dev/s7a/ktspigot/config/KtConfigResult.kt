@@ -25,6 +25,15 @@ sealed interface KtConfigResult<out T> {
     fun <R> map(action: (T) -> KtConfigResult<R>): KtConfigResult<R>
 
     /**
+     * 成功時と失敗時でそれぞれ処理を行う
+     *
+     * @param onSuccess 成功時の処理
+     * @param onFailure 失敗時の処理
+     * @since 1.0.0
+     */
+    fun <R> fold(onSuccess: (T) -> R, onFailure: (KtConfigError) -> R): R
+
+    /**
      * 値の取得に成功した
      *
      * @property value 値
@@ -33,6 +42,7 @@ sealed interface KtConfigResult<out T> {
     data class Success<out T>(val value: T) : KtConfigResult<T> {
         override val orNull = value
         override fun <R> map(action: (T) -> KtConfigResult<R>) = action(value)
+        override fun <R> fold(onSuccess: (T) -> R, onFailure: (KtConfigError) -> R) = onSuccess(value)
     }
 
     /**
@@ -44,5 +54,6 @@ sealed interface KtConfigResult<out T> {
     data class Failure<out T>(val error: KtConfigError) : KtConfigResult<T> {
         override val orNull: T? = null
         override fun <R> map(action: (T) -> KtConfigResult<R>) = Failure<R>(error)
+        override fun <R> fold(onSuccess: (T) -> R, onFailure: (KtConfigError) -> R) = onFailure(error)
     }
 }

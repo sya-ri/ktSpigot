@@ -14,21 +14,26 @@ import kotlin.collections.Map as KotlinMap
  * @property type コンフィグデータ型
  * @since 1.0.0
  */
-open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val type: KtConfigValueType<T>) {
+open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val type: KtConfigValueType<T>) : ReadWriteProperty<Any?, T?> {
     /**
-     * 値が設定されているか
+     * 値を取得する
      *
+     * @return [KtConfigResult]<[T]>
      * @since 1.0.0
      */
-    fun exists() = config.contains(path)
+    open fun get(): KtConfigResult<T> {
+        return type.get(config, path)
+    }
 
     /**
      * 値を取得する
      *
-     * @return [KtConfigResult]
+     * @return [T]?
      * @since 1.0.0
      */
-    open fun get() = type.get(config, path)
+    open fun getValue(): T? {
+        return get().orNull
+    }
 
     /**
      * 値を設定する
@@ -36,56 +41,19 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      * @param value 設定後の値
      * @since 1.0.0
      */
-    open fun set(value: T?) {
+    fun set(value: T?) {
         type.set(config, path, value)
-    }
-
-    /**
-     * 強制的に値を設定する
-     *
-     * @param value 設定後の値
-     * @see set
-     * @since 1.0.0
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun setUnsafe(value: Any?) {
-        set(value as T?)
-    }
-
-    /**
-     * 値を設定し、変更を保存する
-     *
-     * @param value 設定後の値
-     * @since 1.0.0
-     */
-    open fun setAndSave(value: T?) {
-        set(value)
-        config.save()
-    }
-
-    /**
-     * 値を取得し、取得できなけば null を返す
-     *
-     * @since 1.0.0
-     */
-    open fun getValue() = get().orNull
-
-    /**
-     * 値を取得し、取得できなけばエラーハンドリングを行い null を返す
-     *
-     * @param handler エラーハンドリングを行うクラス
-     * @since 1.0.0
-     */
-    open fun getValue(handler: KtConfigErrorHandler): T? {
-        return when (val result = get()) {
-            is KtConfigResult.Success -> {
-                result.value
-            }
-            is KtConfigResult.Failure -> {
-                handler.handle(result.error)
-                null
-            }
+        if (config.autoSave) {
+            config.save()
         }
+    }
+
+    override operator fun getValue(thisRef: Any?, property: KProperty<*>): T? {
+        return getValue()
+    }
+
+    override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
+        set(value)
     }
 
     /**
@@ -93,22 +61,7 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      *
      * @since 1.0.0
      */
-    open class Base<T>(config: KtConfigBase, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type), ReadWriteProperty<Any?, T?> {
-        override operator fun getValue(thisRef: Any?, property: KProperty<*>): T? {
-            return getValue()
-        }
-
-        override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
-            set(value)
-        }
-
-        /**
-         * [set] した際に自動で保存する
-         *
-         * @since 1.0.0
-         */
-        fun autoSave() = AutoSave(this)
-
+    open class Base<T>(config: KtConfigBase, path: String, type: KtConfigValueType<T>) : KtConfigValue<T>(config, path, type) {
         /**
          * 値が設定されていなくてもエラーを出さない
          *
@@ -119,18 +72,18 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
         /**
          * 値が設定されていなければデフォルト値を設定する
          *
-         * @param defaultValue デフォルト値
+         * @param value デフォルト値
          * @since 1.0.0
          */
-        fun default(defaultValue: T) = Default.Literal(this, defaultValue)
+        fun default(value: T) = default { value }
 
         /**
          * 値が設定されていなければデフォルト値を設定する
          *
-         * @param defaultValue デフォルト値を生成する処理
+         * @param value デフォルト値を生成する処理
          * @since 1.0.0
          */
-        fun default(defaultValue: () -> T) = Default.Dynamic(this, defaultValue)
+        fun default(value: () -> T) = Default(this, value)
 
         /**
          * マップとしてのコンフィグデータ型
@@ -158,9 +111,11 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
         /**
          * キーを持ったリストでの値
          *
+         * @param force true: 不正な値を無視し、それ以外の値を返す。
+         *              false: 不正な値があれば、エラーにする。
          * @since 1.0.0
          */
-        fun map() = Map(config, path, mapType)
+        fun map(force: Boolean = false) = Map(config, path, mapType, force)
 
         /**
          * [KtConfigValueType.Listable] である値を扱う
@@ -171,9 +126,11 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
             /**
              * リストでの値の入力を受け付ける
              *
+             * @param force true: 不正な値を無視し、それ以外の値を返す。
+             *              false: 不正な値があれば、エラーにする。
              * @since 1.0.0
              */
-            fun list() = List(config, path, type.list)
+            fun list(force: Boolean = false) = List(config, path, type.list(force), force)
         }
 
         /**
@@ -181,7 +138,21 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
          *
          * @since 1.0.0
          */
-        class Map<T>(config: KtConfigBase, path: String, type: KtConfigValueType<KotlinMap<String, T>>) : Base<KotlinMap<String, T>>(config, path, type) {
+        class Map<T>(config: KtConfigBase, path: String, type: KtConfigValueType<KotlinMap<String, T>>, val force: Boolean) : Base<KotlinMap<String, T>>(config, path, type) {
+            override fun get(): KtConfigResult<KotlinMap<String, T>> {
+                return super.get().fold(
+                    onSuccess = { KtConfigResult.Success(it) },
+                    onFailure = {
+                        if (force && it is KtConfigError.MapConfigError<*>) {
+                            @Suppress("UNCHECKED_CAST")
+                            KtConfigResult.Success(it.data as KotlinMap<String, T>)
+                        } else {
+                            KtConfigResult.Failure(it)
+                        }
+                    }
+                )
+            }
+
             /**
              * 値が設定されていなければデフォルト値を設定する
              *
@@ -203,7 +174,21 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
          *
          * @since 1.0.0
          */
-        class List<T>(config: KtConfigBase, path: String, type: KtConfigValueType<KotlinList<T>>) : Base<KotlinList<T>>(config, path, type) {
+        class List<T>(config: KtConfigBase, path: String, type: KtConfigValueType<KotlinList<T>>, val force: Boolean) : Base<KotlinList<T>>(config, path, type) {
+            override fun get(): KtConfigResult<KotlinList<T>> {
+                return super.get().fold(
+                    onSuccess = { KtConfigResult.Success(it) },
+                    onFailure = {
+                        if (force && it is KtConfigError.ListConfigError<*>) {
+                            @Suppress("UNCHECKED_CAST")
+                            KtConfigResult.Success(it.data as KotlinList<T>)
+                        } else {
+                            KtConfigResult.Failure(it)
+                        }
+                    }
+                )
+            }
+
             /**
              * 値が設定されていなければデフォルト値を設定する
              *
@@ -228,32 +213,9 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      * @since 1.0.0
      */
     @Suppress("UNCHECKED_CAST")
-    class Nullable<T>(configValue: KtConfigValue<T>) : KtConfigValue<T?>(configValue.config, configValue.path, configValue.type as KtConfigValueType<T?>), ReadWriteProperty<Any?, T?> {
-        /**
-         * [set] した際に自動で保存する
-         *
-         * @since 1.0.0
-         */
-        fun autoSave() = AutoSave(this)
-
-        override operator fun getValue(thisRef: Any?, property: KProperty<*>): T? {
-            return getValue()
-        }
-
-        override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
-            set(value)
-        }
-
-        override fun get(): KtConfigResult<T?> {
-            val value = super.get()
-            return if (value is KtConfigResult.Failure) {
-                when (value.error) {
-                    is KtConfigError.NotFound -> KtConfigResult.Success(null)
-                    else -> value
-                }
-            } else {
-                value
-            }
+    class Nullable<T>(configValue: KtConfigValue<T>) : KtConfigValue<T?>(configValue.config, configValue.path, configValue.type as KtConfigValueType<T?>) {
+        override fun getValue(): T? {
+            return get().orNull
         }
     }
 
@@ -263,22 +225,7 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      * @see Base.default
      * @since 1.0.0
      */
-    abstract class Default<T>(configValue: KtConfigValue<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T?> {
-        override operator fun getValue(thisRef: Any?, property: KProperty<*>): T? {
-            return getValue()
-        }
-
-        override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
-            set(value)
-        }
-
-        /**
-         * [set] した際に自動で保存する
-         *
-         * @since 1.0.0
-         */
-        fun autoSave() = AutoSave(this)
-
+    class Default<T>(configValue: KtConfigValue<T>, val defaultValue: () -> T) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type) {
         /**
          * 値が取得できない時はデフォルト値を強制で使用する
          *
@@ -286,41 +233,17 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
          */
         fun force() = Force(this)
 
-        /**
-         * デフォルト値を取得する
-         *
-         * @since 1.0.0
-         */
-        abstract fun getDefault(): T
-
-        override fun get(): KtConfigResult<T> {
-            val value = super.get()
-            return if (value is KtConfigResult.Failure) {
-                when (value.error) {
-                    is KtConfigError.NotFound -> KtConfigResult.Success(getDefault().apply(::setAndSave))
-                    else -> value
+        override fun getValue(): T? {
+            return get().fold(
+                onSuccess = { it },
+                onFailure = {
+                    if (it is KtConfigError.NotFound) {
+                        defaultValue().apply(this::set)
+                    } else {
+                        null
+                    }
                 }
-            } else {
-                value
-            }
-        }
-
-        /**
-         * デフォルト値として固定値を使う
-         *
-         * @since 1.0.0
-         */
-        class Literal<T>(configValue: KtConfigValue<T>, private val defaultValue: T) : Default<T>(configValue) {
-            override fun getDefault() = defaultValue
-        }
-
-        /**
-         * デフォルト値として変化する値を使う
-         *
-         * @since 1.0.0
-         */
-        class Dynamic<T>(configValue: KtConfigValue<T>, private val defaultValue: () -> T) : Default<T>(configValue) {
-            override fun getDefault() = defaultValue()
+            )
         }
 
         /**
@@ -328,105 +251,19 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
          *
          * @since 1.0.0
          */
-        class Force<T>(private val configValue: Default<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T> {
-            /**
-             * [set] した際に自動で保存する
-             *
-             * @since 1.0.0
-             */
-            class AutoSave<T>(private val configValue: Force<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T> {
-                override fun getValue(thisRef: Any?, property: KProperty<*>): T {
-                    return getValue()
-                }
-
-                override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-                    set(value)
-                }
-
-                override fun get() = configValue.get()
-
-                /**
-                 * 値を取得する
-                 *
-                 * @since 1.0.0
-                 */
-                override fun getValue(): T = super.getValue()!!
-
-                @Deprecated("値の取得に失敗することはありません", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith("getValue()"))
-                override fun getValue(handler: KtConfigErrorHandler): T = super.getValue(handler)!!
-
-                override fun set(value: T?) {
-                    super.set(value)
-                    config.save()
-                }
-
-                override fun setAndSave(value: T?) {
-                    set(value)
-                }
+        class Force<T>(private val configValue: Default<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type) {
+            override fun getValue(): T {
+                return get().fold(
+                    onSuccess = { it },
+                    onFailure = {
+                        configValue.defaultValue().apply(this::set)
+                    }
+                )
             }
 
-            /**
-             * [set] した際に自動で保存する
-             *
-             * @since 1.0.0
-             */
-            fun autoSave() = AutoSave(this)
-
-            override operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
+            override fun getValue(thisRef: Any?, property: KProperty<*>): T {
                 return getValue()
             }
-
-            override operator fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-                set(value)
-            }
-
-            override fun get(): KtConfigResult<T> {
-                val value = super.get()
-                return if (value is KtConfigResult.Failure) {
-                    KtConfigResult.Success(configValue.getDefault().apply(::setAndSave))
-                } else {
-                    value
-                }
-            }
-
-            /**
-             * 値を取得する
-             *
-             * @since 1.0.0
-             */
-            override fun getValue(): T = super.getValue()!!
-
-            @Deprecated("値の取得に失敗することはありません", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith("getValue()"))
-            override fun getValue(handler: KtConfigErrorHandler): T = super.getValue(handler)!!
-        }
-    }
-
-    /**
-     * [set] した際に自動で保存する
-     *
-     * @since 1.0.0
-     */
-    class AutoSave<T>(private val configValue: KtConfigValue<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type), ReadWriteProperty<Any?, T?> {
-        override fun getValue(thisRef: Any?, property: KProperty<*>): T? {
-            return getValue()
-        }
-
-        override fun setValue(thisRef: Any?, property: KProperty<*>, value: T?) {
-            set(value)
-        }
-
-        override fun get(): KtConfigResult<T> {
-            return configValue.get()
-        }
-
-        override fun set(value: T?) {
-            super.set(value)
-            config.save()
-        }
-
-        @Deprecated("自動保存されるのでsetを使えます", level = DeprecationLevel.ERROR, replaceWith = ReplaceWith("set(value)"))
-        override fun setAndSave(value: T?) {
-            set(value)
         }
     }
 }

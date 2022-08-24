@@ -1,8 +1,8 @@
 package dev.s7a.ktspigot.config.type
 
+import dev.s7a.ktspigot.config.KtConfigBase
 import dev.s7a.ktspigot.config.KtConfigDataClassConverter
 import dev.s7a.ktspigot.config.KtConfigFormatter
-import dev.s7a.ktspigot.config.KtConfigSection
 import dev.s7a.ktspigot.config.KtConfigValue
 import dev.s7a.ktspigot.config.KtConfigValueType
 import dev.s7a.ktspigot.config.formatter.DefaultUUIDFormatter
@@ -18,7 +18,7 @@ import java.util.UUID
  * @see section
  * @since 1.0.0
  */
-fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConfigValue.Base(config, fullPath(path), type)
+fun <T> KtConfigBase.value(path: String, type: KtConfigValueType<T>) = KtConfigValue.Base(this, path, type)
 
 /**
  * コンフィグの値を登録する
@@ -45,7 +45,7 @@ fun <T> KtConfigSection.value(path: String, type: KtConfigValueType<T>) = KtConf
  * @see dev.s7a.ktspigot.config.type.vectorValue
  * @since 1.0.0
  */
-fun <T> KtConfigSection.value(path: String, type: KtConfigValueType.Listable<T>) = KtConfigValue.Base.Listable(config, fullPath(path), type)
+fun <T> KtConfigBase.value(path: String, type: KtConfigValueType.Listable<T>) = KtConfigValue.Base.Listable(this, path, type)
 
 /**
  * [Boolean] のコンフィグデータ型として値を登録する
@@ -53,7 +53,7 @@ fun <T> KtConfigSection.value(path: String, type: KtConfigValueType.Listable<T>)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.booleanValue(path: String) = value(path, BooleanType)
+fun KtConfigBase.booleanValue(path: String) = value(path, BooleanType)
 
 /**
  * データクラスを登録する
@@ -63,7 +63,7 @@ fun KtConfigSection.booleanValue(path: String) = value(path, BooleanType)
  * @param converter データクラスとの変換を行うクラス
  * @since 1.0.0
  */
-fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClassConverter<T>) = value(
+fun <T> KtConfigBase.dataClassValue(path: String, converter: KtConfigDataClassConverter<T>) = value(
     path,
     DataClassType.Default(converter)
 )
@@ -76,7 +76,7 @@ fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClas
  * @param converter データクラスとの変換を行うクラス
  * @since 1.0.0
  */
-fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClassConverter.Listable<T>) = value(
+fun <T> KtConfigBase.dataClassValue(path: String, converter: KtConfigDataClassConverter.Listable<T>) = value(
     path,
     DataClassType.Listable(converter)
 )
@@ -87,7 +87,7 @@ fun <T> KtConfigSection.dataClassValue(path: String, converter: KtConfigDataClas
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.dateValue(path: String) = value(path, DateType)
+fun KtConfigBase.dateValue(path: String) = value(path, DateType)
 
 /**
  * [Double] のコンフィグデータ型として値を登録する
@@ -95,7 +95,7 @@ fun KtConfigSection.dateValue(path: String) = value(path, DateType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.doubleValue(path: String) = value(path, DoubleType)
+fun KtConfigBase.doubleValue(path: String) = value(path, DoubleType)
 
 /**
  * [Enum.name] のコンフィグデータ型として値を登録する
@@ -104,7 +104,7 @@ fun KtConfigSection.doubleValue(path: String) = value(path, DoubleType)
  * @param ignoreCase 大文字小文字を無視するか / false
  * @since 1.0.0
  */
-fun <T : Enum<T>> KtConfigSection.enumNameValue(path: String, clazz: Class<T>, ignoreCase: Boolean = false) = value(
+fun <T : Enum<T>> KtConfigBase.enumNameValue(path: String, clazz: Class<T>, ignoreCase: Boolean = false) = value(
     path,
     EnumType.Name(clazz, ignoreCase)
 )
@@ -116,7 +116,7 @@ fun <T : Enum<T>> KtConfigSection.enumNameValue(path: String, clazz: Class<T>, i
  * @param ignoreCase 大文字小文字を無視するか / false
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ignoreCase: Boolean = false) = enumNameValue(path, T::class.java, ignoreCase)
+inline fun <reified T : Enum<T>> KtConfigBase.enumNameValue(path: String, ignoreCase: Boolean = false) = enumNameValue(path, T::class.java, ignoreCase)
 
 /**
  * [Enum.ordinal] のコンフィグデータ型として値を登録する
@@ -124,7 +124,7 @@ inline fun <reified T : Enum<T>> KtConfigSection.enumNameValue(path: String, ign
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun <T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String, clazz: Class<T>) = value(path, EnumType.Ordinal(clazz))
+fun <T : Enum<T>> KtConfigBase.enumOrdinalValue(path: String, clazz: Class<T>) = value(path, EnumType.Ordinal(clazz))
 
 /**
  * [Enum.ordinal] のコンフィグデータ型として値を登録する
@@ -132,7 +132,7 @@ fun <T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String, clazz: Class<T>
  * @param path コンフィグパス
  * @since 1.0.0
  */
-inline fun <reified T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String) = enumOrdinalValue(path, T::class.java)
+inline fun <reified T : Enum<T>> KtConfigBase.enumOrdinalValue(path: String) = enumOrdinalValue(path, T::class.java)
 
 /**
  * [Float] のコンフィグデータ型として値を登録する
@@ -140,7 +140,7 @@ inline fun <reified T : Enum<T>> KtConfigSection.enumOrdinalValue(path: String) 
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.floatValue(path: String) = value(path, FloatType)
+fun KtConfigBase.floatValue(path: String) = value(path, FloatType)
 
 /**
  * [KtConfigFormatter] のコンフィグデータ型として値を登録する
@@ -149,7 +149,7 @@ fun KtConfigSection.floatValue(path: String) = value(path, FloatType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun <T> KtConfigSection.formatterValue(path: String, formatter: KtConfigFormatter<T>) = value(path, FormatterType(formatter))
+fun <T> KtConfigBase.formatterValue(path: String, formatter: KtConfigFormatter<T>) = value(path, FormatterType(formatter))
 
 /**
  * [Int] のコンフィグデータ型として値を登録する
@@ -157,7 +157,7 @@ fun <T> KtConfigSection.formatterValue(path: String, formatter: KtConfigFormatte
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.intValue(path: String) = value(path, IntType)
+fun KtConfigBase.intValue(path: String) = value(path, IntType)
 
 /**
  * [Long] のコンフィグデータ型として値を登録する
@@ -165,7 +165,7 @@ fun KtConfigSection.intValue(path: String) = value(path, IntType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.longValue(path: String) = value(path, LongType)
+fun KtConfigBase.longValue(path: String) = value(path, LongType)
 
 /**
  * [Number] のコンフィグデータ型として値を登録する
@@ -173,25 +173,7 @@ fun KtConfigSection.longValue(path: String) = value(path, LongType)
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.numberValue(path: String) = value(path, NumberType)
-
-/**
- * セクションマップを登録する
- *
- * @param T セクション型
- * @param path コンフィグパス
- * @since 1.0.0
- */
-fun <T : KtConfigSection> KtConfigSection.section(path: String, clazz: Class<T>) = value(path, SectionType(clazz))
-
-/**
- * セクションマップを登録する
- *
- * @param T セクション型
- * @param path コンフィグパス
- * @since 1.0.0
- */
-inline fun <reified T : KtConfigSection> KtConfigSection.section(path: String) = section(path, T::class.java)
+fun KtConfigBase.numberValue(path: String) = value(path, NumberType)
 
 /**
  * [String] のコンフィグデータ型として値を登録する
@@ -199,7 +181,7 @@ inline fun <reified T : KtConfigSection> KtConfigSection.section(path: String) =
  * @param path コンフィグパス
  * @since 1.0.0
  */
-fun KtConfigSection.stringValue(path: String) = value(path, StringType)
+fun KtConfigBase.stringValue(path: String) = value(path, StringType)
 
 /**
  * [UUID] のコンフィグデータ型として値を登録する
@@ -208,4 +190,4 @@ fun KtConfigSection.stringValue(path: String) = value(path, StringType)
  * @param formatter フォーマッタ
  * @since 1.0.0
  */
-fun KtConfigSection.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = formatterValue(path, formatter)
+fun KtConfigBase.uuidValue(path: String, formatter: KtConfigFormatter<UUID> = DefaultUUIDFormatter) = formatterValue(path, formatter)

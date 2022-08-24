@@ -1,19 +1,18 @@
 package showcase
 
-import config.TestConfig
 import config.writeText
 import dev.s7a.ktspigot.KtSpigotTest
-import dev.s7a.ktspigot.config.KtConfigResult
+import dev.s7a.ktspigot.config.KtConfig
 import dev.s7a.ktspigot.config.formatter.DefaultLocationFormatter
 import dev.s7a.ktspigot.config.type.dataClassValue
 import randomLocation
 import randomString
+import kotlin.io.path.createTempFile
 import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlin.test.assertIs
 
 /**
  * [ExampleDataClass] に関するテスト
@@ -36,19 +35,17 @@ class ExampleDataClassTest {
         val world = KtSpigotTest.addWorld(randomString())
         val expected = ExampleDataClass(Random.nextInt(), randomLocation(world))
         val formatter = DefaultLocationFormatter
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by dataClassValue("value", ExampleDataClass.Converter(formatter))
+        }
+        testConfig.writeText(
             """
                 value:
                   int: ${expected.int}
                   location: ${formatter.string(expected.location)}
             """.trimIndent()
         )
-        TestConfig.dataClassValue("value", ExampleDataClass.Converter(formatter)).run {
-            get().run {
-                assertIs<KtConfigResult.Success<ExampleDataClass>>(this)
-                assertEquals(expected, value)
-            }
-        }
+        assertEquals(expected, testConfig.value)
     }
 
     @Test
@@ -56,7 +53,10 @@ class ExampleDataClassTest {
         val world = KtSpigotTest.addWorld(randomString())
         val expected = List(5) { ExampleDataClass(Random.nextInt(), randomLocation(world)) }
         val formatter = DefaultLocationFormatter
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by dataClassValue("value", ExampleDataClass.Converter(formatter)).list()
+        }
+        testConfig.writeText(
             buildString {
                 appendLine("value:")
                 expected.forEach {
@@ -65,11 +65,6 @@ class ExampleDataClassTest {
                 }
             }
         )
-        TestConfig.dataClassValue("value", ExampleDataClass.Converter(formatter)).list().run {
-            get().run {
-                assertIs<KtConfigResult.Success<List<ExampleDataClass>>>(this)
-                assertEquals(expected, value)
-            }
-        }
+        assertEquals(expected, testConfig.value)
     }
 }

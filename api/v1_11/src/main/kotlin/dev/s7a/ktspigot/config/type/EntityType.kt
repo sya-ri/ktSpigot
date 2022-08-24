@@ -49,15 +49,17 @@ object EntityType : KtConfigValueType.Listable<Entity> {
         config.uuidValue(path).set(value?.let(::valueToUuid))
     }
 
-    override val list = object : KtConfigValueType<List<Entity>> {
-        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Entity>> {
-            return config.uuidValue(path).list().get().mapValues(config, path) { index, value ->
-                uuidToResult(config, "$path#$index", value)
+    override fun list(force: Boolean): KtConfigValueType<List<Entity>> {
+        return object : KtConfigValueType<List<Entity>> {
+            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Entity>> {
+                return config.uuidValue(path).list(force).get().mapValues(config, path) { index, value ->
+                    uuidToResult(config, "$path#$index", value)
+                }
             }
-        }
 
-        override fun set(config: KtConfigBase, path: String, value: List<Entity>?) {
-            config.uuidValue(path).list().set(value?.map(::valueToUuid))
+            override fun set(config: KtConfigBase, path: String, value: List<Entity>?) {
+                config.uuidValue(path).list(force).set(value?.map(::valueToUuid))
+            }
         }
     }
 }

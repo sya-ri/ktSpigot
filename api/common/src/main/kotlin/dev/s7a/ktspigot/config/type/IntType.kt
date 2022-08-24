@@ -42,15 +42,17 @@ object IntType : NumberType.Base<Int>() {
             config.intValue(path).set(value?.let(valueToInt))
         }
 
-        override val list = object : KtConfigValueType<List<T>> {
-            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
-                return config.intValue(path).list().get().mapValues(config, path) { index, value ->
-                    intToResult(config, "$path#$index", value)
+        override fun list(force: Boolean): KtConfigValueType<List<T>> {
+            return object : KtConfigValueType<List<T>> {
+                override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
+                    return config.intValue(path).list(force).get().mapValues(config, path) { index, value ->
+                        intToResult(config, "$path#$index", value)
+                    }
                 }
-            }
 
-            override fun set(config: KtConfigBase, path: String, value: List<T>?) {
-                config.intValue(path).list().set(value?.map(valueToInt))
+                override fun set(config: KtConfigBase, path: String, value: List<T>?) {
+                    config.intValue(path).list(force).set(value?.map(valueToInt))
+                }
             }
         }
     }

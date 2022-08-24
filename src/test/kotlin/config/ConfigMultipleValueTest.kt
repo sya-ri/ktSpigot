@@ -1,15 +1,14 @@
 package config
 
-import dev.s7a.ktspigot.config.KtConfigError
-import dev.s7a.ktspigot.config.KtConfigResult
-import dev.s7a.ktspigot.config.editAndSave
-import dev.s7a.ktspigot.config.forceGetValue
+import dev.s7a.ktspigot.config.KtConfig
 import dev.s7a.ktspigot.config.type.intValue
 import randomString
+import kotlin.io.path.createTempFile
 import kotlin.random.Random
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
-import kotlin.test.assertIs
+import kotlin.test.assertNull
 
 /**
  * list, map 等の複数の値を受け付けるコンフィグデータ型に関するテスト
@@ -20,23 +19,24 @@ class ConfigMultipleValueTest {
     @Test
     fun `single value can be get as list`() {
         val expected = Random.nextInt()
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by intValue("value").list()
+        }
+        testConfig.writeText(
             """
                 value: $expected
             """.trimIndent()
         )
-        TestConfig.intValue("value").list().run {
-            get().run {
-                assertIs<KtConfigResult.Success<List<Int>>>(this)
-                assertEquals(listOf(expected), value)
-            }
-        }
+        assertEquals(listOf(expected), testConfig.value)
     }
 
     @Test
     fun `multiple value can be get as list`() {
         val expected = List(5) { Random.nextInt() }
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by intValue("value").list()
+        }
+        testConfig.writeText(
             buildString {
                 appendLine("value:")
                 expected.forEach {
@@ -44,19 +44,17 @@ class ConfigMultipleValueTest {
                 }
             }
         )
-        TestConfig.intValue("value").list().run {
-            get().run {
-                assertIs<KtConfigResult.Success<List<Int>>>(this)
-                assertEquals(expected, value)
-            }
-        }
+        assertEquals(expected, testConfig.value)
     }
 
     @Test
     fun `multiple value can be edited as list`() {
         val expected1 = List(5) { Random.nextInt() }
         val expected2 = List(5) { Random.nextInt() }
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            var value by intValue("value").list()
+        }
+        testConfig.writeText(
             buildString {
                 appendLine("value:")
                 expected1.forEach {
@@ -64,20 +62,12 @@ class ConfigMultipleValueTest {
                 }
             }
         )
-        TestConfig.intValue("value").list().run {
-            get().run {
-                assertIs<KtConfigResult.Success<List<Int>>>(this)
-                assertEquals(expected1, value)
-            }
-            editAndSave {
-                addAll(expected2)
-            }
-            get().run {
-                assertIs<KtConfigResult.Success<List<Int>>>(this)
-                assertEquals(expected1 + expected2, value)
-            }
+        assertEquals(expected1, testConfig.value)
+        testConfig.value = testConfig.value.orEmpty().toMutableList().apply {
+            addAll(expected2)
         }
-        TestConfig.assertContent(
+        assertEquals(expected1 + expected2, testConfig.value)
+        testConfig.assertContent(
             buildString {
                 appendLine("value:")
                 (expected1 + expected2).forEach {
@@ -90,7 +80,10 @@ class ConfigMultipleValueTest {
     @Test
     fun `forceGet can be get as list, ignore error`() {
         val expected = List(2) { Random.nextInt() }
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by intValue("value").list(true)
+        }
+        testConfig.writeText(
             """
                 value:
                  - a
@@ -100,19 +93,35 @@ class ConfigMultipleValueTest {
                  - c
             """.trimIndent()
         )
-        TestConfig.intValue("value").list().run {
-            get().run {
-                assertIs<KtConfigResult.Failure<List<Int>>>(this)
-                assertIs<KtConfigError.ListConfigError<List<Int>>>(error)
-                assertEquals(expected, forceGetValue())
-            }
+        assertEquals(expected, testConfig.value)
+    }
+
+    @Test
+    fun `forceGet can be get as list, returns null`() {
+        val expected = List(2) { Random.nextInt() }
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by intValue("value").list(false)
         }
+        testConfig.writeText(
+            """
+                value:
+                 - a
+                 - ${expected[0]}
+                 - b
+                 - ${expected[1]}
+                 - c
+            """.trimIndent()
+        )
+        assertNull(testConfig.value)
     }
 
     @Test
     fun `multiple value can be get as map`() {
         val expected = List(5) { randomString() to Random.nextInt() }.toMap()
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by intValue("value").map()
+        }
+        testConfig.writeText(
             buildString {
                 appendLine("value:")
                 expected.forEach { (key, value) ->
@@ -120,19 +129,17 @@ class ConfigMultipleValueTest {
                 }
             }
         )
-        TestConfig.intValue("value").map().run {
-            get().run {
-                assertIs<KtConfigResult.Success<Map<String, Int>>>(this)
-                assertEquals(expected, value)
-            }
-        }
+        assertEquals(expected, testConfig.value)
     }
 
     @Test
     fun `multiple value can be edited as map`() {
         val expected1 = List(5) { randomString() to Random.nextInt() }.toMap()
         val expected2 = List(5) { randomString() to Random.nextInt() }.toMap()
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            var value by intValue("value").map()
+        }
+        testConfig.writeText(
             buildString {
                 appendLine("value:")
                 expected1.forEach { (key, value) ->
@@ -140,20 +147,12 @@ class ConfigMultipleValueTest {
                 }
             }
         )
-        TestConfig.intValue("value").map().run {
-            get().run {
-                assertIs<KtConfigResult.Success<Map<String, Int>>>(this)
-                assertEquals(expected1, value)
-            }
-            editAndSave {
-                putAll(expected2)
-            }
-            get().run {
-                assertIs<KtConfigResult.Success<Map<String, Int>>>(this)
-                assertEquals(expected1 + expected2, value)
-            }
+        assertEquals(expected1, testConfig.value)
+        testConfig.value = testConfig.value.orEmpty().toMutableMap().apply {
+            putAll(expected2)
         }
-        TestConfig.assertContent(
+        assertEquals(expected1 + expected2, testConfig.value)
+        testConfig.assertContent(
             buildString {
                 appendLine("value:")
                 (expected1 + expected2).forEach { (key, value) ->
@@ -166,7 +165,10 @@ class ConfigMultipleValueTest {
     @Test
     fun `forceGet can be get as map, ignore error`() {
         val expected = List(2) { Random.nextInt() }
-        TestConfig.writeText(
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by intValue("value").map(true)
+        }
+        testConfig.writeText(
             """
                 value:
                   a: a
@@ -176,12 +178,25 @@ class ConfigMultipleValueTest {
                   e: e
             """.trimIndent()
         )
-        TestConfig.intValue("value").map().run {
-            get().run {
-                assertIs<KtConfigResult.Failure<Map<String, Int>>>(this)
-                assertIs<KtConfigError.MapConfigError<Map<String, Int>>>(error)
-                assertEquals(expected, forceGetValue().values.toList())
-            }
+        assertContentEquals(expected, testConfig.value?.values)
+    }
+
+    @Test
+    fun `forceGet can be get as map, returns null`() {
+        val expected = List(2) { Random.nextInt() }
+        val testConfig = object : KtConfig(createTempFile().toFile()) {
+            val value by intValue("value").map(false)
         }
+        testConfig.writeText(
+            """
+                value:
+                  a: a
+                  b: ${expected[0]}
+                  c: c
+                  d: ${expected[1]}
+                  e: e
+            """.trimIndent()
+        )
+        assertNull(testConfig.value)
     }
 }

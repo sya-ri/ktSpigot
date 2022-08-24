@@ -1,6 +1,5 @@
 package showcase
 
-import config.writeText
 import dev.s7a.ktspigot.KtSpigotTest
 import org.bukkit.Material
 import randomString
@@ -34,7 +33,7 @@ class ItemConfigTest {
         val expectedAmount = (1..64).random()
         val expectedDisplay = randomString()
         val expectedLore = List(5) { randomString() }
-        itemConfig.writeText(
+        itemConfig.file.writeText(
             buildString {
                 appendLine("material: $expectedMaterial")
                 appendLine("amount: $expectedAmount")
@@ -45,6 +44,7 @@ class ItemConfigTest {
                 }
             }
         )
+        itemConfig.load()
         itemConfig.itemStack.run {
             assertNotNull(this)
             assertEquals(expectedMaterial, type)

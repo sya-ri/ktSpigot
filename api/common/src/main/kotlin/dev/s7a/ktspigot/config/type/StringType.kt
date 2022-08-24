@@ -23,13 +23,15 @@ object StringType : KtConfigValueType.Listable<String> {
         config.setUnsafe(path, value)
     }
 
-    override val list = object : KtConfigValueType<List<String>> {
-        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<String>> {
-            return config.getListUnsafe(path)
-        }
+    override fun list(force: Boolean): KtConfigValueType<List<String>> {
+        return object : KtConfigValueType<List<String>> {
+            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<String>> {
+                return config.getListUnsafe(path)
+            }
 
-        override fun set(config: KtConfigBase, path: String, value: List<String>?) {
-            config.setUnsafe(path, value)
+            override fun set(config: KtConfigBase, path: String, value: List<String>?) {
+                config.setUnsafe(path, value)
+            }
         }
     }
 
@@ -61,15 +63,17 @@ object StringType : KtConfigValueType.Listable<String> {
             config.stringValue(path).set(value?.let(valueToString))
         }
 
-        override val list = object : KtConfigValueType<List<T>> {
-            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
-                return config.stringValue(path).list().get().mapValues(config, path) { index, value ->
-                    stringToResult(config, "$path#$index", value)
+        override fun list(force: Boolean): KtConfigValueType<List<T>> {
+            return object : KtConfigValueType<List<T>> {
+                override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
+                    return config.stringValue(path).list(force).get().mapValues(config, path) { index, value ->
+                        stringToResult(config, "$path#$index", value)
+                    }
                 }
-            }
 
-            override fun set(config: KtConfigBase, path: String, value: List<T>?) {
-                config.stringValue(path).list().set(value?.map(valueToString))
+                override fun set(config: KtConfigBase, path: String, value: List<T>?) {
+                    config.stringValue(path).list(force).set(value?.map(valueToString))
+                }
             }
         }
     }

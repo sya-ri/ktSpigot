@@ -13,7 +13,7 @@ import java.io.File
  * @property file ファイル
  * @since 1.0.0
  */
-abstract class KtConfig(file: File) : KtConfigBase(file) {
+abstract class KtConfig(file: File, autoSave: Boolean = true) : KtConfigBase(file, autoSave) {
     companion object {
         private val provider: ConfigurationProvider = ConfigurationProvider.getProvider(YamlConfiguration::class.java)
     }

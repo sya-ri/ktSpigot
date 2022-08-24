@@ -38,6 +38,6 @@ interface KtConfigValueType<T> {
          *
          * @since 1.0.0
          */
-        val list: KtConfigValueType<List<T>>
+        fun list(force: Boolean): KtConfigValueType<List<T>>
     }
 }

@@ -22,13 +22,15 @@ object NumberType : KtConfigValueType.Listable<Number> {
         config.setUnsafe(path, value)
     }
 
-    override val list = object : KtConfigValueType<List<Number>> {
-        override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Number>> {
-            return config.getListUnsafe(path)
-        }
+    override fun list(force: Boolean): KtConfigValueType<List<Number>> {
+        return object : KtConfigValueType<List<Number>> {
+            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<Number>> {
+                return config.getListUnsafe(path)
+            }
 
-        override fun set(config: KtConfigBase, path: String, value: List<Number>?) {
-            config.setUnsafe(path, value)
+            override fun set(config: KtConfigBase, path: String, value: List<Number>?) {
+                config.setUnsafe(path, value)
+            }
         }
     }
 
@@ -53,13 +55,15 @@ object NumberType : KtConfigValueType.Listable<Number> {
             config.numberValue(path).set(value)
         }
 
-        override val list = object : KtConfigValueType<List<T>> {
-            override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
-                return config.numberValue(path).list().get().map { KtConfigResult.Success(it.map(numberToValue)) }
-            }
+        override fun list(force: Boolean): KtConfigValueType<List<T>> {
+            return object : KtConfigValueType<List<T>> {
+                override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
+                    return config.numberValue(path).list(force).get().map { KtConfigResult.Success(it.map(numberToValue)) }
+                }
 
-            override fun set(config: KtConfigBase, path: String, value: List<T>?) {
-                config.numberValue(path).list().set(value)
+                override fun set(config: KtConfigBase, path: String, value: List<T>?) {
+                    config.numberValue(path).list(force).set(value)
+                }
             }
         }
     }

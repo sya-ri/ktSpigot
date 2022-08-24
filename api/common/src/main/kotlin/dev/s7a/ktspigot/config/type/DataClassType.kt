@@ -40,8 +40,8 @@ sealed class DataClassType<T>(protected open val converter: KtConfigDataClassCon
      * @since 1.0.0
      */
     class Listable<T>(override val converter: KtConfigDataClassConverter.Listable<T>) : DataClassType<T>(converter), KtConfigValueType.Listable<T> {
-        override val list: KtConfigValueType<List<T>>
-            get() = object : KtConfigValueType<List<T>> {
+        override fun list(force: Boolean): KtConfigValueType<List<T>> {
+            return object : KtConfigValueType<List<T>> {
                 override fun get(config: KtConfigBase, path: String): KtConfigResult<List<T>> {
                     return config.getMapListUnsafe(path).mapValues(config, path) { index, map ->
                         converter.toValue(config, path, index, map)
@@ -52,5 +52,6 @@ sealed class DataClassType<T>(protected open val converter: KtConfigDataClassCon
                     config.setUnsafe(path, value?.map(converter::toMap))
                 }
             }
+        }
     }
 }
