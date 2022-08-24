@@ -3,7 +3,7 @@
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 [![ktSpigot](https://img.shields.io/badge/ktSpigot-%E2%AD%90-16E.svg)](https://github.com/sya-ri/ktSpigot)
 
-A Library that Simplifies Spigot with Kotlin.
+Simplifies API library for Spigot/Bungee.
 
 - [Wiki](https://ktspigot.s7a.dev)
 - [API Document](https://gh.s7a.dev/ktSpigot)
