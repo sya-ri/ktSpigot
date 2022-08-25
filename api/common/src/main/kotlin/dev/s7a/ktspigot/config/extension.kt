@@ -210,21 +210,3 @@ fun <T> Map<String, KtConfigResult<T>>.flatten(config: KtConfigBase, path: Strin
         KtConfigResult.Failure(KtConfigError.MapConfigError(config, path, data, errors))
     }
 }
-
-/**
- * セクション内の指定したパスの値を取得する
- *
- * @param T セクション
- * @param path コンフィグパス
- * @return セクション内にパスが存在すれば値を返し、しなければ [KtConfigResult.Failure] を返す
- * @since 1.0.0
- */
-inline fun <reified T : KtConfigBase> KtConfigValue<Map<String, T>>.get(path: String): KtConfigResult<T> {
-    val fullPath = this.path + "." + path
-    return if (config.contains(fullPath)) {
-        val constructor = T::class.java.getDeclaredConstructor(KtConfigBase::class.java, String::class.java)
-        KtConfigResult.Success(constructor.newInstance(config, fullPath))
-    } else {
-        KtConfigResult.Failure(KtConfigError.NotFound(config, fullPath))
-    }
-}
