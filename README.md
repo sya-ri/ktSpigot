@@ -38,14 +38,16 @@ class Main : JavaPlugin() {
 
     override fun onEnable() {
         // プラグイン起動時にコンフィグを読み込む
-        itemConfig = ItemConfig(this).apply(ItemConfig::load)
+        itemConfig = ItemConfig(this).apply {
+            load(logger)
+        }
     }
 }
 
 /**
  * コンフィグ
  */
-class ItemConfig(private val plugin: JavaPlugin) : KtConfig(plugin, "item.yml") {
+class ItemConfig(plugin: JavaPlugin) : KtConfig(plugin, "item.yml") {
     /**
      * コンフィグからマテリアルを取得する。
      * 設定されていなければランダムなマテリアルを使う。
@@ -85,12 +87,6 @@ class ItemConfig(private val plugin: JavaPlugin) : KtConfig(plugin, "item.yml") 
                 }
             }
         }
-
-    override fun load() {
-        super.load()
-        // 不正な値があったらログを流す
-        checkValues().printErrors(plugin.logger)
-    }
 }
 ```
 <!-- CODE-SNIPPET END ItemConfig -->
