@@ -2,6 +2,7 @@ package dev.s7a.ktspigot.config
 
 import java.io.File
 import java.io.FileNotFoundException
+import java.util.logging.Logger
 
 /**
  * コンフィグ
@@ -42,6 +43,17 @@ abstract class KtConfigBase(val file: File, val autoSave: Boolean = true) {
      * @since 1.0.0
      */
     abstract fun load()
+
+    /**
+     * コンフィグの値を読み込む。既に読み込んでいる場合はリロードする
+     *
+     * @param logger コンフィグエラーの送信先
+     * @since 1.0.0
+     */
+    fun load(logger: Logger) {
+        load()
+        checkValues().printErrors(logger)
+    }
 
     /**
      * コンフィグに指定したパスが存在するか

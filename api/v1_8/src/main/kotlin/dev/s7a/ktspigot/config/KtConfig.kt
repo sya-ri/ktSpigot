@@ -1,9 +1,11 @@
 package dev.s7a.ktspigot.config
 
 import dev.s7a.ktspigot.util.LazyMutable
+import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.File
+import java.util.logging.Logger
 
 /**
  * コンフィグ
@@ -37,8 +39,19 @@ abstract class KtConfig(file: File, autoSave: Boolean = true) : KtConfigBase(fil
         return YamlConfiguration.loadConfiguration(file)
     }
 
-    override fun load() {
+    final override fun load() {
         bukkitConfig = loadFromFile()
+    }
+
+    /**
+     * コンフィグの値を読み込む。既に読み込んでいる場合はリロードする
+     *
+     * @param sender コンフィグエラーの送信先
+     * @since 1.0.0
+     */
+    fun load(sender: CommandSender) {
+        load()
+        checkValues().printErrors(sender)
     }
 
     final override fun contains(path: String): Boolean {
