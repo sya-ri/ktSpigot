@@ -45,9 +45,9 @@ abstract class KtConfigBase(val file: File, val autoSave: Boolean = true) {
      * @param logger コンフィグエラーの送信先
      * @since 1.0.0
      */
-    fun load(logger: Logger) {
+    inline fun load(logger: Logger, block: List<KtConfigError>.(Logger) -> Unit = List<KtConfigError>::printErrors) {
         load()
-        checkValues().printErrors(logger)
+        checkValues().block(logger)
     }
 
     /**

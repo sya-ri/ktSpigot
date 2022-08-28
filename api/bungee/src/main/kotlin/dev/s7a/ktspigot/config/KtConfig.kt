@@ -56,9 +56,9 @@ abstract class KtConfig(file: File, autoSave: Boolean = true) : KtConfigBase(fil
      * @param sender コンフィグエラーの送信先
      * @since 1.0.0
      */
-    fun load(sender: CommandSender) {
+    inline fun load(sender: CommandSender, block: List<KtConfigError>.(CommandSender) -> Unit = List<KtConfigError>::printErrors) {
         load()
-        checkValues().printErrors(sender)
+        checkValues().block(sender)
     }
 
     final override fun contains(path: String): Boolean {
