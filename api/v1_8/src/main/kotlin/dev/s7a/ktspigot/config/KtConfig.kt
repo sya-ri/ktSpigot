@@ -10,6 +10,8 @@ import java.io.File
  * コンフィグ
  *
  * @property file ファイル
+ * @see KtConfigDefault
+ * @see KtConfigDefaultResource
  * @since 1.0.0
  */
 abstract class KtConfig(file: File, autoSave: Boolean = true) : KtConfigBase(file, autoSave) {

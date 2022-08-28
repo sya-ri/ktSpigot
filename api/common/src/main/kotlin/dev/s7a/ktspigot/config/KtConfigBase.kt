@@ -13,13 +13,6 @@ import java.util.logging.Logger
  */
 abstract class KtConfigBase(val file: File, val autoSave: Boolean = true) {
     /**
-     * コンフィグファイルを作成したときの処理
-     *
-     * @since 1.0.0
-     */
-    protected open fun onCreateNewFile() {}
-
-    /**
      * コンフィグを読み込むときの処理
      *
      * @since 1.0.0
@@ -29,7 +22,9 @@ abstract class KtConfigBase(val file: File, val autoSave: Boolean = true) {
             file.exists().not() -> {
                 file.parentFile?.mkdirs()
                 file.createNewFile()
-                onCreateNewFile()
+                if (this is KtConfigDefault) {
+                    saveDefault(file)
+                }
             }
             file.isDirectory -> {
                 throw FileNotFoundException("${file.path} (Is a directory)")
