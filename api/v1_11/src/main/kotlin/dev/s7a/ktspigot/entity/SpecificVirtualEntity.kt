@@ -7,6 +7,14 @@ import java.util.UUID
 /**
  * タイプが指定された仮想エンティティ
  *
+ * @param entity [T]
+ * @since 1.0.0
+ */
+inline fun <reified T : Entity> SpecificVirtualEntity(entity: T) = SpecificVirtualEntity<T>(entity.uniqueId)
+
+/**
+ * タイプが指定された仮想エンティティ
+ *
  * @param uniqueId [UUID]
  * @since 1.0.0
  */
