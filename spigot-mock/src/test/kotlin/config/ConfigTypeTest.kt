@@ -19,6 +19,8 @@ import dev.s7a.ktspigot.config.type.materialValue
 import dev.s7a.ktspigot.config.type.stringValue
 import dev.s7a.ktspigot.config.type.uuidValue
 import dev.s7a.ktspigot.config.type.vectorValue
+import dev.s7a.ktspigot.entity.SpecificVirtualEntity
+import dev.s7a.ktspigot.entity.VirtualEntity
 import dev.s7a.ktspigot.entity.spawnEntity
 import org.bukkit.Location
 import org.bukkit.Material
@@ -143,20 +145,14 @@ class ConfigTypeTest {
         testConfig.writeText("value: ${expected.uniqueId}")
         testConfig.entityValue("value").run {
             get().run {
-                assertIs<KtConfigResult.Success<Entity>>(this)
-                assertEquals(expected, value)
+                assertIs<KtConfigResult.Success<VirtualEntity>>(this)
+                assertEquals(expected, value.get())
             }
         }
         testConfig.entityValue<Zombie>("value").run {
             get().run {
-                assertIs<KtConfigResult.Success<Entity>>(this)
-                assertEquals(expected, value)
-            }
-        }
-        testConfig.entityValue<Skeleton>("value").run {
-            get().run {
-                assertIs<KtConfigResult.Failure<Entity>>(this)
-                assertIs<SpecificEntityType.MismatchEntityTypeError>(error)
+                assertIs<KtConfigResult.Success<SpecificVirtualEntity<Zombie>>>(this)
+                assertEquals(expected, value.get())
             }
         }
     }
