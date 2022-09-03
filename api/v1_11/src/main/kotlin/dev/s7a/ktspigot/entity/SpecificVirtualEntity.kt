@@ -7,21 +7,19 @@ import java.util.UUID
 /**
  * タイプが指定された仮想エンティティ
  *
+ * @param uniqueId [UUID]
+ * @since 1.0.0
+ */
+inline fun <reified T : Entity> SpecificVirtualEntity(uniqueId: UUID) = SpecificVirtualEntity(T::class.java, uniqueId)
+
+/**
+ * タイプが指定された仮想エンティティ
+ *
  * @property clazz タイプクラス
  * @property uniqueId [UUID]
  * @since 1.0.0
  */
 data class SpecificVirtualEntity<T : Entity>(val clazz: Class<T>, val uniqueId: UUID) {
-    companion object {
-        /**
-         * タイプが指定された仮想エンティティ
-         *
-         * @param uniqueId [UUID]
-         * @since 1.0.0
-         */
-        inline fun <reified T : Entity> SpecificVirtualEntity(uniqueId: UUID) = SpecificVirtualEntity(T::class.java, uniqueId)
-    }
-
     /**
      * エンティティとして取得する
      *
