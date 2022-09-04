@@ -3,7 +3,6 @@ package config
 import dev.s7a.ktspigot.KtSpigotTest
 import dev.s7a.ktspigot.config.KtConfig
 import dev.s7a.ktspigot.config.KtConfigResult
-import dev.s7a.ktspigot.config.type.SpecificEntityType
 import dev.s7a.ktspigot.config.type.booleanValue
 import dev.s7a.ktspigot.config.type.dataClassValue
 import dev.s7a.ktspigot.config.type.dateValue
@@ -24,8 +23,6 @@ import dev.s7a.ktspigot.entity.VirtualEntity
 import dev.s7a.ktspigot.entity.spawnEntity
 import org.bukkit.Location
 import org.bukkit.Material
-import org.bukkit.entity.Entity
-import org.bukkit.entity.Skeleton
 import org.bukkit.entity.Zombie
 import randomLocation
 import randomString
