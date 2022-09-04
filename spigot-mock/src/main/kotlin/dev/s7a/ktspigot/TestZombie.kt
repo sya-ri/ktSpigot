@@ -18,6 +18,10 @@ class TestZombie(
         TODO("Not yet implemented")
     }
 
+    override fun canBreatheUnderwater(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun setLootTable(table: LootTable?) {
         TODO("Not yet implemented")
     }

@@ -85,6 +85,10 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
+    override fun canBreatheUnderwater(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun getLastDeathLocation(): Location? {
         TODO("Not yet implemented")
     }
