@@ -22,7 +22,8 @@ class KtCommand : KtCommandBase<CommandSender>, CommandExecutor, TabCompleter {
     }
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean {
-        return manager.execute(sender, label, args)
+        manager.execute(sender, label, args)
+        return true
     }
 
     override fun onTabComplete(sender: CommandSender, command: Command, alias: String, args: Array<out String>): List<String> {

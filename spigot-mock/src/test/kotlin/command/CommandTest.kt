@@ -1,7 +1,6 @@
 package command
 
 import dev.s7a.ktspigot.KtSpigotTest
-import dev.s7a.ktspigot.command.KtCommandCancelException
 import dev.s7a.ktspigot.command.ktCommand
 import randomString
 import java.util.concurrent.atomic.AtomicBoolean
@@ -11,7 +10,6 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
@@ -141,21 +139,5 @@ class CommandTest {
         assertTrue(player.performCommand(commandName))
         assertEquals(1, executeCount1.get())
         assertEquals(1, executeCount2.get())
-    }
-
-    @Test
-    fun `command can be cancelled`() {
-        val commandName = randomString()
-        val plugin = KtSpigotTest.getPlugin()
-        plugin.addCommand(commandName)
-        plugin.ktCommand(commandName) {
-            execute {
-                throw KtCommandCancelException()
-            }
-        }
-        val player = KtSpigotTest.addPlayer()
-        val command = plugin.getCommand(commandName)
-        assertNotNull(command)
-        assertFalse(player.performCommand("/$commandName"))
     }
 }

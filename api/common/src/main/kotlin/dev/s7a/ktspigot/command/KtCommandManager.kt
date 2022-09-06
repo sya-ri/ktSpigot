@@ -39,13 +39,8 @@ class KtCommandManager<T> {
      * @param args 実行引数
      * @since 1.0.0
      */
-    fun execute(sender: T, label: String, args: Array<out String>): Boolean {
-        return try {
-            executeAction(KtCommandExecuteParameter(sender, label, args.toList()))
-            true
-        } catch (ex: KtCommandCancelException) {
-            false
-        }
+    fun execute(sender: T, label: String, args: Array<out String>) {
+        executeAction(KtCommandExecuteParameter(sender, label, args.toList()))
     }
 
     /**
