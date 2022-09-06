@@ -83,23 +83,6 @@ class InventoryTest {
     }
 
     @Test
-    fun `ktInventory#onClick can be executed`() {
-        val plugin = KtSpigotTest.getPlugin()
-        val player = KtSpigotTest.addPlayer()
-        val executed = AtomicBoolean(false)
-        plugin.ktInventory("", 1) {
-            onClickResult {
-                executed.set(true)
-            }
-        }.open(player)
-        player.assertInventoryView(InventoryType.CHEST)
-        val inventoryView = player.openInventory
-        val event = InventoryClickEvent(inventoryView, InventoryType.SlotType.CONTAINER, 0, ClickType.LEFT, InventoryAction.NOTHING)
-        plugin.server.pluginManager.callEvent(event)
-        assertTrue(executed.get())
-    }
-
-    @Test
     fun `ktInventory#onClose can be executed`() {
         val plugin = KtSpigotTest.getPlugin()
         val player = KtSpigotTest.addPlayer()

@@ -1,7 +1,6 @@
 package dev.s7a.ktspigot.inventory.internal
 
 import dev.s7a.ktspigot.inventory.KtInventory
-import dev.s7a.ktspigot.inventory.KtInventoryClickEventResult
 import dev.s7a.ktspigot.listener.registerListener
 import dev.s7a.ktspigot.player.VirtualPlayer
 import org.bukkit.entity.HumanEntity
@@ -47,8 +46,7 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
             return
         }
         inventory.onClick?.invoke(event)
-        val isInvoked = inventory.actions[event.slot]?.invoke(event) != null
-        inventory.onClickResult?.invoke(KtInventoryClickEventResult(event, isInvoked))
+        inventory.actions[event.slot]?.invoke(event)
     }
 
     @EventHandler

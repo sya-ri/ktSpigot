@@ -19,14 +19,12 @@ object InventoryTest : FeatureTest.UseContainer(
         plugin.ktInventory("with-log1", 1) {
             sender.sendChatMessage("&2init1")
             onClick { sender.sendChatMessage("&2onClick1") }
-            onClickResult { (_, isInvoked) -> sender.sendChatMessage("&2onClickResult1($isInvoked)") }
             onClose { sender.sendChatMessage("&2onClose1") }
             item(0, Material.STONE, displayName = "&3ktInventory") {
                 sender.sendChatMessage("&2click1[0]")
                 plugin.ktInventory("with-log2", 1) {
                     sender.sendChatMessage("&3init2")
                     onClick { sender.sendChatMessage("&3onClick2") }
-                    onClickResult { (_, isInvoked) -> sender.sendChatMessage("&3onClickResult2($isInvoked)") }
                     onClose { sender.sendChatMessage("&3onClose2") }
                     item(0, Material.STONE) {
                         sender.sendChatMessage("&3click2")

@@ -24,13 +24,6 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
     }
 
     /**
-     * クリック時の処理。アイテム毎のクリックアクションが処理された後に実行する
-     *
-     * @since 1.0.0
-     */
-    internal var onClickResult: KtInventoryClickEventResultHandler? = null
-
-    /**
      * 閉じる時の処理
      *
      * @since 1.0.0
@@ -54,16 +47,6 @@ class KtInventory internal constructor(private val handler: KtInventoryHandler, 
      */
     fun onClick(action: KtInventoryClickEventHandler?) {
         onClick = action
-    }
-
-    /**
-     * クリック時の処理を変更する。アイテム毎のクリックアクションが処理された後に実行する
-     *
-     * @param action 処理
-     * @since 1.0.0
-     */
-    fun onClickResult(action: KtInventoryClickEventResultHandler?) {
-        onClickResult = action
     }
 
     /**
