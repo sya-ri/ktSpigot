@@ -19,37 +19,6 @@ open class KtCommandTabCompleterTree<T> internal constructor() {
         list.add(candidate to child)
     }
 
-    private fun addLiteral(option: Collection<String>, type: KtCommandTabCompleterType, child: KtCommandTabCompleteBuilder<T>?) {
-        val candidate = KtCommandTabCompleterCandidate.Literal(option.toList(), type)
-        add(candidate, child?.run { KtCommandTabCompleterTree<T>().apply(this) })
-    }
-
-    private fun addDynamic(candidate: KtCommandTabCompleterCandidate.Dynamic<T>, child: KtCommandTabCompleteBuilder<T>?) {
-        add(candidate, child?.run { KtCommandTabCompleterTree<T>().apply(this) })
-    }
-
-    /**
-     * 不変な値であり、常に固定
-     *
-     * @param option 候補
-     * @param type 補完方式
-     * @since 1.0.0
-     */
-    fun literal(vararg option: String, type: KtCommandTabCompleterType = KtCommandTabCompleterType.Single) {
-        literal(option.toList(), type)
-    }
-
-    /**
-     * 不変な値であり、常に固定
-     *
-     * @param option 候補
-     * @param type 補完方式
-     * @since 1.0.0
-     */
-    fun literal(option: Collection<String>, type: KtCommandTabCompleterType = KtCommandTabCompleterType.Single) {
-        addLiteral(option, type, null)
-    }
-
     /**
      * 不変な値であり、常に固定
      *
@@ -57,7 +26,7 @@ open class KtCommandTabCompleterTree<T> internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun literal(vararg option: String, child: KtCommandTabCompleteBuilder<T>) {
+    fun literal(vararg option: String, child: KtCommandTabCompleteBuilder<T>? = null) {
         literal(option.toList(), child)
     }
 
@@ -68,19 +37,8 @@ open class KtCommandTabCompleterTree<T> internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun literal(option: Collection<String>, child: KtCommandTabCompleteBuilder<T>) {
-        addLiteral(option, KtCommandTabCompleterType.Single, child)
-    }
-
-    /**
-     * 実行する度に値の生成を行う
-     *
-     * @param action 値を生成する処理
-     * @param type 補完方式
-     * @since 1.0.0
-     */
-    fun dynamic(action: KtCommandTabCompleteAction<T>, type: KtCommandTabCompleterType = KtCommandTabCompleterType.Single) {
-        addDynamic(KtCommandTabCompleterCandidate.Dynamic(action, type), null)
+    fun literal(option: Collection<String>, child: KtCommandTabCompleteBuilder<T>? = null) {
+        add(KtCommandTabCompleterCandidate.Literal(option.toList()), child?.run { KtCommandTabCompleterTree<T>().apply(this) })
     }
 
     /**
@@ -90,8 +48,8 @@ open class KtCommandTabCompleterTree<T> internal constructor() {
      * @param child 子要素
      * @since 1.0.0
      */
-    fun dynamic(action: KtCommandTabCompleteAction<T>, child: KtCommandTabCompleteBuilder<T>) {
-        addDynamic(KtCommandTabCompleterCandidate.Dynamic(action, KtCommandTabCompleterType.Single), child)
+    fun dynamic(action: KtCommandTabCompleteAction<T>, child: KtCommandTabCompleteBuilder<T>? = null) {
+        add(KtCommandTabCompleterCandidate.Dynamic(action), child?.run { KtCommandTabCompleterTree<T>().apply(this) })
     }
 
     /**

@@ -2,7 +2,6 @@ package command
 
 import dev.s7a.ktspigot.KtSpigotTest
 import dev.s7a.ktspigot.command.KtCommandCancelException
-import dev.s7a.ktspigot.command.KtCommandTabCompleterType
 import dev.s7a.ktspigot.command.ktCommand
 import randomString
 import java.util.concurrent.atomic.AtomicBoolean
@@ -59,12 +58,6 @@ class CommandTest {
                 literal("b", "bb") {
                     literal("c", "cc")
                 }
-                literal("d") {
-                    literal("e", "f", type = KtCommandTabCompleterType.NoDuplication)
-                }
-                literal("g") {
-                    literal("h", "i", type = KtCommandTabCompleterType.Multiple)
-                }
                 literal("j") {
                     dynamic({ listOf("k", "l") }) {
                         dynamic({ listOf("m", "n") })
@@ -87,7 +80,7 @@ class CommandTest {
         assertNotNull(command)
         val player = KtSpigotTest.addPlayer()
         tabCompleteAssert(player, command, commandName) {
-            assert(listOf("a", "abc", "b", "bb", "d", "g", "j", "o"), arrayOf(""))
+            assert(listOf("a", "abc", "b", "bb", "j", "o"), arrayOf(""))
             assert(listOf("a", "abc"), arrayOf("a"))
             assert(listOf("abc"), arrayOf("ab"))
             assert(listOf("abc"), arrayOf("abc"))
@@ -95,15 +88,6 @@ class CommandTest {
             assert(listOf(), arrayOf("a", ""))
             assert(listOf("c", "cc"), arrayOf("b", ""))
             assert(listOf("c", "cc"), arrayOf("b", "c"))
-            assert(listOf("e", "f"), arrayOf("d", ""))
-            assert(listOf("f"), arrayOf("d", "e", ""))
-            assert(listOf("e"), arrayOf("d", "f", ""))
-            assert(listOf(), arrayOf("d", "e", "f", ""))
-            assert(listOf(), arrayOf("d", "f", "e", ""))
-            assert(listOf("h", "i"), arrayOf("g", ""))
-            assert(listOf("h", "i"), arrayOf("g", "h", ""))
-            assert(listOf("h", "i"), arrayOf("g", "i", ""))
-            assert(listOf("h", "i"), arrayOf("g", "h", "h", ""))
             assert(listOf("k", "l"), arrayOf("j", ""))
             assert(listOf("k"), arrayOf("j", "k"))
             assert(listOf("l"), arrayOf("j", "l"))
