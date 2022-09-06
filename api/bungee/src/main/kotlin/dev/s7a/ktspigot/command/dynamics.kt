@@ -1,4 +1,4 @@
-@file:Suppress("DEPRECATION", "unused")
+@file:Suppress("unused")
 
 package dev.s7a.ktspigot.command
 
@@ -7,46 +7,21 @@ import net.md_5.bungee.api.ProxyServer
 import net.md_5.bungee.api.connection.ProxiedPlayer
 
 /**
- * よく使う補完候補
- *
- * @see Dynamics
- * @since 1.0.0
- */
-@Deprecated("Dynamics を使ってください")
-object Dynamic {
-    /**
-     * プレイヤー
-     *
-     * @see Dynamics.Players
-     * @since 1.0.0
-     */
-    @Deprecated("Dynamics::Players を使ってください", ReplaceWith("Dynamics.Players"))
-    val Players = KtCommandTabCompleteAction<CommandSender> { ProxyServer.getInstance().players.map(ProxiedPlayer::getName) }
-
-    /**
-     * サーバー
-     *
-     * @see ProxyServer.getServers
-     * @since 1.0.0
-     */
-    @Deprecated("Dynamics::Servers を使ってください", ReplaceWith("Dynamics.Servers"))
-    val Servers = KtCommandTabCompleteAction<CommandSender> { ProxyServer.getInstance().servers.keys }
-}
-
-/**
- * プレイヤー
+ * プレイヤーのタブ補完
  *
  * @see ProxyServer.getPlayers
  * @since 1.0.0
  */
-inline val Dynamics.Players
-    get() = Dynamic.Players
+fun KtCommandTabCompleterTree<CommandSender>.players(child: KtCommandTabCompleteBuilder<CommandSender>? = null) {
+    dynamic({ ProxyServer.getInstance().players.map(ProxiedPlayer::getName) }, child)
+}
 
 /**
- * サーバー
+ * サーバーのタブ補完
  *
  * @see ProxyServer.getServers
  * @since 1.0.0
  */
-inline val Dynamics.Servers
-    get() = Dynamic.Servers
+fun KtCommandTabCompleterTree<CommandSender>.servers(child: KtCommandTabCompleteBuilder<CommandSender>? = null) {
+    dynamic({ ProxyServer.getInstance().servers.keys }, child)
+}
