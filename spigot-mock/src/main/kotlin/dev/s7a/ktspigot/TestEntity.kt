@@ -111,7 +111,7 @@ abstract class TestEntity(
     }
 
     override fun sendMessage(message: String) {
-        messages.addFirst(message)
+        message.lines().forEach(messages::addFirst)
     }
 
     override fun sendMessage(vararg messages: String?) {

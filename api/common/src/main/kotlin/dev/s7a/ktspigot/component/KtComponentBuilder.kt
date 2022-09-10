@@ -21,25 +21,6 @@ class KtComponentBuilder {
     private val components = mutableListOf<BaseComponent>()
 
     /**
-     * 現在のコンポーネント
-     *
-     * @since 1.0.0
-     */
-    private val extras = mutableListOf<BaseComponent>()
-
-    /**
-     * 現在のコンポーネントを取得する
-     *
-     * @return [TextComponent]
-     * @since 1.0.0
-     */
-    private fun getCurrentComponent(): TextComponent {
-        return TextComponent().apply {
-            extras.forEach(::addExtra)
-        }
-    }
-
-    /**
      * スタイルを変更して、コンポーネントを末尾に追加する
      *
      * @param component コンポーネント
@@ -135,28 +116,7 @@ class KtComponentBuilder {
      * @since 1.0.0
      */
     fun append(component: BaseComponent) {
-        extras.add(component)
-    }
-
-    /**
-     * 改行する
-     *
-     * @since 1.0.0
-     */
-    fun lineBreak() {
-        components.add(getCurrentComponent())
-        extras.clear()
-    }
-
-    /**
-     * 行を追加する
-     *
-     * @param buildAction 行の内容を生成する処理
-     * @since 1.0.0
-     */
-    fun line(buildAction: KtComponentBuildAction) {
-        buildAction()
-        lineBreak()
+        components.add(component)
     }
 
     /**
@@ -166,10 +126,6 @@ class KtComponentBuilder {
      * @since 1.0.0
      */
     fun build(): Array<BaseComponent> {
-        return if (extras.isEmpty()) {
-            components.toTypedArray() + arrayOf()
-        } else {
-            components.toTypedArray() + getCurrentComponent()
-        }
+        return arrayOf(TextComponent(*components.toTypedArray()))
     }
 }

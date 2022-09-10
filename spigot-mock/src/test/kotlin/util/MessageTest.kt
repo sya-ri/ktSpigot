@@ -123,27 +123,16 @@ class MessageTest {
     @Test
     fun `component message using line can be received`() {
         val expected = """
-            §a1
-            §f2§f§k3
-            §b4
-            §c5§d6§e7
-            
+            §a1§f2§f§k3§b4
+            §f5§d6§e7
         """.trimIndent()
         val player = KtSpigotTest.addPlayer()
         player.sendChatMessage {
-            line {
-                append("&a1")
-                lineBreak()
-                line {
-                    append("2")
-                    append("&k3")
-                }
-                append("4", ChatColor.AQUA.asBungee())
-            }
-            line {
-                append("&c5&d6&e7")
-                lineBreak()
-            }
+            append("&a1")
+            append("2")
+            append("&k3")
+            append("4\n", ChatColor.AQUA.asBungee())
+            append("5&d6&e7")
         }
         expected.lines().forEach {
             player.assertMessage(it)
