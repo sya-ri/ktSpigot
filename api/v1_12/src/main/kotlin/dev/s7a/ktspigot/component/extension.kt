@@ -3,11 +3,13 @@
 package dev.s7a.ktspigot.component
 
 import net.md_5.bungee.api.ChatColor
+import net.md_5.bungee.api.chat.BaseComponent
 import net.md_5.bungee.api.chat.ClickEvent
 import net.md_5.bungee.api.chat.HoverEvent
 import net.md_5.bungee.api.chat.KeybindComponent
 import net.md_5.bungee.api.chat.ScoreComponent
 import net.md_5.bungee.api.chat.SelectorComponent
+import org.bukkit.command.CommandSender
 
 /**
  * [KeybindComponent] を末尾に追加する
@@ -94,4 +96,24 @@ fun KtComponentBuilder.appendSelector(
     clickEvent: ClickEvent? = null
 ) {
     appendWith(SelectorComponent(selector), color, bold, italic, underlined, strikethrough, obfuscated, hoverEvent, clickEvent)
+}
+
+/**
+ * チャットにコンポーネントメッセージを送信する
+ *
+ * @param buildAction メッセージの生成処理
+ * @since 1.0.0
+ */
+inline fun CommandSender.sendChatMessage(buildAction: KtComponentBuildAction) {
+    sendChatMessage(*buildComponent(buildAction))
+}
+
+/**
+ * チャットにコンポーネントメッセージを送信する
+ *
+ * @param message メッセージ
+ * @since 1.0.0
+ */
+fun CommandSender.sendChatMessage(vararg message: BaseComponent) {
+    spigot().sendMessage(*message)
 }
