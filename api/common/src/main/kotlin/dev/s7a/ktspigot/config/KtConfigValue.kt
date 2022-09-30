@@ -225,7 +225,7 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
      * @see Base.default
      * @since 1.0.0
      */
-    class Default<T>(configValue: KtConfigValue<T>, val defaultValue: () -> T) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type) {
+    open class Default<T>(configValue: KtConfigValue<T>, val defaultValue: () -> T) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type) {
         /**
          * 値が取得できない時はデフォルト値を強制で使用する
          *
@@ -251,7 +251,7 @@ open class KtConfigValue<T>(val config: KtConfigBase, val path: String, open val
          *
          * @since 1.0.0
          */
-        class Force<T>(private val configValue: Default<T>) : KtConfigValue<T>(configValue.config, configValue.path, configValue.type) {
+        class Force<T>(private val configValue: Default<T>) : Default<T>(configValue, configValue.defaultValue) {
             override fun getValue(): T {
                 return get().fold(
                     onSuccess = { it },
