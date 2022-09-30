@@ -103,7 +103,12 @@ fun KtConfigBase.checkValues(): List<KtConfigError> {
                 if (value is KtConfigValue<*>) {
                     val result = value.get()
                     if (result is KtConfigResult.Failure<*>) {
-                        add(result.error)
+                        val error = result.error
+                        if (error is KtConfigError.NotFound && (value is KtConfigValue.Nullable<*> || value is KtConfigValue.Default<*>)) {
+                            // Nullable, Default は NotFound エラーを出さない
+                            return@forEach
+                        }
+                        add(error)
                     }
                 }
             } catch (ex: SecurityException) {
