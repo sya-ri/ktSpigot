@@ -19,12 +19,14 @@ import org.bukkit.WorldBorder
 import org.bukkit.advancement.Advancement
 import org.bukkit.advancement.AdvancementProgress
 import org.bukkit.block.Block
+import org.bukkit.block.BlockState
 import org.bukkit.block.Sign
 import org.bukkit.block.data.BlockData
 import org.bukkit.conversations.Conversation
 import org.bukkit.conversations.ConversationAbandonedEvent
 import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
+import org.bukkit.entity.Firework
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.entity.SpawnCategory
@@ -81,7 +83,47 @@ class TestPlayer(
         TODO("Not yet implemented")
     }
 
+    override fun getSwimSound(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSwimSplashSound(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSwimHighSpeedSplashSound(): Sound {
+        TODO("Not yet implemented")
+    }
+
     override fun getSpawnCategory(): SpawnCategory {
+        TODO("Not yet implemented")
+    }
+
+    override fun getHurtSound(): Sound? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getDeathSound(): Sound? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFallDamageSound(fallHeight: Int): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFallDamageSoundSmall(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFallDamageSoundBig(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getDrinkingSound(itemStack: ItemStack): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getEatingSound(itemStack: ItemStack): Sound {
         TODO("Not yet implemented")
     }
 
@@ -94,6 +136,10 @@ class TestPlayer(
     }
 
     override fun setLastDeathLocation(location: Location?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun fireworkBoost(fireworkItemStack: ItemStack): Firework? {
         TODO("Not yet implemented")
     }
 
@@ -414,6 +460,10 @@ class TestPlayer(
     }
 
     override fun sendBlockChange(loc: Location, block: BlockData) {
+        TODO("Not yet implemented")
+    }
+
+    override fun sendBlockChanges(blocks: MutableCollection<BlockState>, suppressLightUpdates: Boolean) {
         TODO("Not yet implemented")
     }
 

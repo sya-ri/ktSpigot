@@ -1,11 +1,13 @@
 package dev.s7a.ktspigot
 
 import org.bukkit.Location
+import org.bukkit.Sound
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.SpawnCategory
 import org.bukkit.entity.Villager
 import org.bukkit.entity.Zombie
+import org.bukkit.inventory.ItemStack
 import org.bukkit.loot.LootTable
 import java.util.UUID
 
@@ -14,7 +16,47 @@ class TestZombie(
     name: String,
     location: Location
 ) : TestLivingEntity(uniqueId, name, EntityType.ZOMBIE, location), Zombie {
+    override fun getSwimSound(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSwimSplashSound(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSwimHighSpeedSplashSound(): Sound {
+        TODO("Not yet implemented")
+    }
+
     override fun getSpawnCategory(): SpawnCategory {
+        TODO("Not yet implemented")
+    }
+
+    override fun getHurtSound(): Sound? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getDeathSound(): Sound? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFallDamageSound(fallHeight: Int): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFallDamageSoundSmall(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFallDamageSoundBig(): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getDrinkingSound(itemStack: ItemStack): Sound {
+        TODO("Not yet implemented")
+    }
+
+    override fun getEatingSound(itemStack: ItemStack): Sound {
         TODO("Not yet implemented")
     }
 
@@ -51,6 +93,10 @@ class TestZombie(
     }
 
     override fun isAware(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getAmbientSound(): Sound? {
         TODO("Not yet implemented")
     }
 
