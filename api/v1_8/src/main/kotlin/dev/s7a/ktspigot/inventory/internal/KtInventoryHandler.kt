@@ -46,7 +46,9 @@ internal class KtInventoryHandler(plugin: Plugin) : Listener {
             return
         }
         inventory.onClick?.invoke(event)
-        inventory.actions[event.slot]?.invoke(event)
+        if (inventory.bukkitInventory === event.clickedInventory) {
+            inventory.actions[event.slot]?.invoke(event)
+        }
     }
 
     @EventHandler
