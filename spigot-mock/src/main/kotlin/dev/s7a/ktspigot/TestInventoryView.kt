@@ -5,11 +5,14 @@ import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.InventoryView
 
-class TestInventoryView(private val player: HumanEntity) : InventoryView() {
-    private var topInventory: Inventory = TestInventory.Crafting
-
-    fun setTopInventory(inventory: Inventory) {
-        topInventory = inventory
+class TestInventoryView(
+    private val player: HumanEntity,
+    private var topInventory: Inventory,
+    private val bottomInventory: Inventory,
+    private val title: String
+) : InventoryView() {
+    fun setTopInventory(topInventory: Inventory) {
+        this.topInventory = topInventory
     }
 
     override fun getTopInventory(): Inventory {
@@ -17,7 +20,7 @@ class TestInventoryView(private val player: HumanEntity) : InventoryView() {
     }
 
     override fun getBottomInventory(): Inventory {
-        TODO("Not yet implemented")
+        return bottomInventory
     }
 
     override fun getPlayer(): HumanEntity {
@@ -25,10 +28,10 @@ class TestInventoryView(private val player: HumanEntity) : InventoryView() {
     }
 
     override fun getType(): InventoryType {
-        TODO("Not yet implemented")
+        return topInventory.type
     }
 
     override fun getTitle(): String {
-        TODO("Not yet implemented")
+        return title
     }
 }

@@ -26,7 +26,7 @@ abstract class TestHumanEntity(
     type: EntityType,
     location: Location
 ) : TestLivingEntity(uniqueId, name, type, location), HumanEntity {
-    private var inventoryView = TestInventoryView(this)
+    private var inventoryView = TestInventoryView(this, TestInventory.Crafting(), TestInventory.Player(this), "Inventory")
 
     fun assertInventoryView(chest: InventoryType) {
         assertEquals(chest, inventoryView.topInventory.type)
@@ -80,8 +80,8 @@ abstract class TestHumanEntity(
 
     override fun closeInventory() {
         val lastInventoryView = openInventory
-        inventoryView = TestInventoryView(this)
         Bukkit.getPluginManager().callEvent(InventoryCloseEvent(lastInventoryView))
+        inventoryView.topInventory = TestInventory.Crafting()
     }
 
     override fun getItemInHand(): ItemStack {

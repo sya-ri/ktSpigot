@@ -15,7 +15,8 @@ open class TestInventory(
     private val size: Int = type.defaultSize,
     val title: String = type.defaultTitle
 ) : Inventory {
-    object Crafting : TestInventory(null, InventoryType.CRAFTING)
+    class Crafting : TestInventory(null, InventoryType.CRAFTING)
+    class Player(holder: HumanEntity) : TestInventory(holder, InventoryType.PLAYER)
 
     private val items = arrayOfNulls<ItemStack>(size)
 
