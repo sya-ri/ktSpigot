@@ -169,7 +169,7 @@ val dokkaHtmlMultiModule by tasks.getting(DokkaMultiModuleTask::class) {
     val version = rootProject.version.toString()
     outputDirectory.set(file(dokkaDir.resolve(version)))
     dependencies {
-        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.7.10")
+        dokkaPlugin("org.jetbrains.dokka:versioning-plugin:1.7.20")
     }
     pluginsMapConfiguration.set(
         mapOf(
