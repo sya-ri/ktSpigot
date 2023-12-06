@@ -6,5 +6,5 @@
 
 | Name                                                 | Version    | Website                                      |
 |------------------------------------------------------|------------|----------------------------------------------|
-| [ktConfig](https://github.com/sya-ri/ktConfig)       | _SNAPSHOT_ | [ktConfig.s7a.dev](https://ktConfig.s7a.dev) |
+| [ktConfig](https://github.com/sya-ri/ktConfig)       | _SNAPSHOT_ | [gh.s7a.dev/ktConfig](https://gh.s7a.dev/ktConfig) |
 | [ktInventory](https://github.com/sya-ri/ktInventory) | _SNAPSHOT_ |                                              |
